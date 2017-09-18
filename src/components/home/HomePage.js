@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as airportsActions from 'actions/airports'
+// import { bindActionCreators } from 'redux'
+// import * as airportsActions from 'actions/airports'
 import AirportsList from 'components/home/AirportsList'
 
 class HomePage extends Component {
-
-	constructor() {
-		super()
-
-		this.state = {
-			cities: ['NYC', 'LA', 'SF']
-		}
-	}
-
 	render() {
 		return (
 			<div>
@@ -30,10 +21,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		actions: bindActionCreators(airportsActions, dispatch)
-	}
-}
+// const mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		actions: bindActionCreators(airportsActions, dispatch)
+// 	}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(mapStateToProps)(HomePage)
