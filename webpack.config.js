@@ -29,6 +29,20 @@ const webpackConfig = {
 				use: 'babel-loader'
 			},
 			{
+				test: /\.css$/,
+				use: [
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					}
+				]
+			},
+			{
 				test: /\.sass/,
 				exclude: /node_modules/,
 				use: [
@@ -70,10 +84,14 @@ const webpackConfig = {
 				use: 'file-loader?name=data/[name].json'
 			},
 			{
+				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				loader: 'url-loader'
+			},
+			{
 				test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, './src/assets/'),
-				loader: 'file-loader?name=assets/fonts/[name].[ext]'
+				loader: 'url-loader?name=assets/fonts/[name].[ext]'
 			}
 		]
 	},
@@ -97,7 +115,10 @@ const webpackConfig = {
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
-			jQuery: 'jquery'
+			jquery: 'jquery',
+			jQuery: 'jquery',
+			'window.jquery': 'jquery',
+			'window.jQuery': 'jquery'
 		}),
 		new webpack.NamedModulesPlugin(),
 		new webpack.HotModuleReplacementPlugin()
