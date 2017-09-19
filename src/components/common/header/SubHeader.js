@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import planeIcon from 'assets/images/plane.svg'
-import bedIcon from 'assets/images/bed2.svg'
-import carIcon from 'assets/images/car2.svg'
-import trainIcon from 'assets/images/train.svg'
+import planeIcon from 'assets/images/svg/plane.svg'
+import bedIcon from 'assets/images/svg/bed2.svg'
+import carIcon from 'assets/images/svg/car2.svg'
+import trainIcon from 'assets/images/svg/train.svg'
 
 export default class SubHeader extends Component {
 	render() {

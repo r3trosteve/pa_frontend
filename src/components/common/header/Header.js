@@ -4,9 +4,9 @@ import RetinaImage from 'react-retina-image'
 import logoImg from 'assets/images/logo.png'
 import logoImg2x from 'assets/images/logo@2x.png'
 import logoImg3x from 'assets/images/logo@3x.png'
-import carIcon from 'assets/images/car.svg'
-import bedIcon from 'assets/images/bed.svg'
-import cityIcon from 'assets/images/city.svg'
+import carIcon from 'assets/images/svg/car.svg'
+import bedIcon from 'assets/images/svg/bed.svg'
+import cityIcon from 'assets/images/svg/city.svg'
 import SubHeader from 'components/common/header/SubHeader'
 
 export default class Header extends Component {
