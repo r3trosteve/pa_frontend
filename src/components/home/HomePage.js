@@ -3,13 +3,15 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 // import * as airportsActions from 'actions/airports'
 import AirportsList from 'components/home/AirportsList'
+import Search from 'components/common/search/Search'
 
 class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<h1>Home</h1>
-				<AirportsList airports={this.props.airports} />
+				<h2>Home</h2>
+				<Search />
+				{/*<AirportsList airports={this.props.airports} />*/}
 			</div>
 		)
 	}
