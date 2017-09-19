@@ -13,7 +13,7 @@ export default class Main extends Component {
 		return (
 			<Switch>
 				<Route exact path="/" component={HomePage} />
-				<Route exact path="/airport_parking.html" component={AirportParkingPage} />
+				<Route exact path="/airport_parking" component={AirportParkingPage} />
 				<Route exact path="/park_sleep_hotel_parking" component={HotelParkingPage} />
 				<Route exact path="/city_parking" component={CityParkingPage} />
 			</Switch>

@@ -1,0 +1,156 @@
+// Navigation
+
+nav.navbar.navbar-default
+  background: none
+  border: none
+  border-radius: 0
+  margin: 0
+
+  .navbar-header
+    a.navbar-brand
+      display: block
+      padding: 22px 15px
+      height: auto
+      img
+        width: 125px
+
+  ul.nav.navbar-nav
+    li
+      padding: 22px 0
+      a
+        font-family: 'Montserrat-SemiBold'
+        font-size: 14px
+        text-align: center
+        color: $blue
+        position: relative
+        padding: 10px 25px
+        -webkit-transition: all 0.3s
+        -moz-transition: all 0.3s
+        -ms-transition: all 0.3s
+        -o-transition: all 0.3s
+        transition: all 0.3s
+        i
+          color: $orange
+          position: absolute
+          left: 0
+          top: 5px
+          font-size: 30px
+        &:hover
+          color: $orange
+
+        &.navbar-join
+          border-radius: 4px
+          background-color: rgba(255, 255, 255, 0.9)
+          box-shadow: 0 20px 20px 0 rgba(18, 83, 140, 0.1)
+          padding: 10px 30px
+          &:hover
+            color: white
+            background: $orange
+
+    &:not(.navbar-right)
+      padding-left: 30px
+      li a
+        padding-left: 30px
+
+// end
+
+// Responsiveness
+
+@media (max-width: 1199px)
+  nav.navbar.navbar-default
+
+    ul.nav.navbar-nav:not(.navbar-right)
+      padding-left: 0
+
+@media (max-width: 991px)
+  nav.navbar.navbar-default
+    .container
+      width: 100%
+
+    .navbar-header
+      a.navbar-brand img
+        width: 100px
+
+    ul.nav.navbar-nav
+      li
+        padding: 18px 0
+        a
+          padding: 10px 17px
+          font-size: 12px
+          i
+            font-size: 20px
+            top: 10px
+          &.navbar-join
+            padding: 10px 17px
+      &:not(.navbar-right)
+        li a
+          padding-left: 18px
+
+@media (max-width: 767px)
+  nav.navbar.navbar-default
+
+    .navbar-header
+      a.navbar-brand
+        padding: 15px
+      .navbar-toggle
+        border: none
+        margin: 1px 15px
+        i
+          color: $orange
+          font-size: 30px
+
+        &:active, &:focus, &:hover
+          background: none!important
+
+    .navbar-collapse.collapse.in
+      border-bottom: 1px solid $grey-light
+
+    ul.nav.navbar-nav
+      li
+        text-align: center
+        padding: 5px 0
+        a
+          display: inline-block
+          padding: 10px 30px!important
+          font-size: 14px
+          i
+            top: 11px
+      &.navbar-right
+        padding-top: 7.5px
+      &:not(.navbar-right)
+        li a
+          padding-left: 22px
+
+// end
+
+// Sub header
+
+.sub-header
+  text-align: center
+  margin-top: 25px
+
+  &__link
+    display: inline-block
+    i, p
+      color: $blue-light
+      -webkit-transition: all 0.3s
+      -moz-transition: all 0.3s
+      -ms-transition: all 0.3s
+      -o-transition: all 0.3s
+      transition: all 0.3s
+    &:hover
+      i, p
+        color: $orange
+
+  &__list-item
+    display: inline-block
+    margin: 0 10px
+
+  &__text
+    font-family: 'Montserrat-Regular'
+    font-size: 12px
+    text-align: left
+    position: relative
+    bottom: 1px
+
+// end

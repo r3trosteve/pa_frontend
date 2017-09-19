@@ -72,10 +72,14 @@ const webpackConfig = {
 				]
 			},
 			{
-				test: /\.(gif|png|jpg|jpeg|svg)$/,
+				test: /\.(gif|png|jpg|jpeg)$/,
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, './src/assets/'),
-				use: 'url-loader?limit=10000&name=assets/[name]-[hash].[ext]'
+				use: 'url-loader?limit=10000&name=assets/images/[name]-[hash].[ext]'
+			},
+			{
+				test: /\.svg$/,
+				loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
 			},
 			{
 				test: /\.json$/,
@@ -84,11 +88,11 @@ const webpackConfig = {
 				use: 'file-loader?name=data/[name].json'
 			},
 			{
-				test: /\.(eot|svg|ttf|woff|woff2)$/,
+				test: /\.(eot|ttf|woff|woff2)$/,
 				loader: 'url-loader'
 			},
 			{
-				test: /\.(eot|svg|ttf|otf|woff|woff2)$/,
+				test: /\.(eot|ttf|otf|woff|woff2)$/,
 				exclude: /node_modules/,
 				include: path.resolve(__dirname, './src/assets/'),
 				loader: 'url-loader?name=assets/fonts/[name].[ext]'
