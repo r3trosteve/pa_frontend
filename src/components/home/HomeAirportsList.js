@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 
-export default class AirportsList extends Component {
+export default class HomeAirportsList extends Component {
 	render() {
 		return (
 			<section>
@@ -14,11 +14,11 @@ export default class AirportsList extends Component {
 							<li key={index}>
 								<a href="#">{airport.name}</a>
 							</li>
-						)
+						);
 					})}
 				</ul>
 
 			</section>
-		)
+		);
 	}
 }

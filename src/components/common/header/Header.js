@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
-import RetinaImage from 'react-retina-image'
-import logoImg from 'assets/images/logo.png'
-import logoImg2x from 'assets/images/logo@2x.png'
-import logoImg3x from 'assets/images/logo@3x.png'
-import carIcon from 'assets/images/svg/car.svg'
-import bedIcon from 'assets/images/svg/bed.svg'
-import cityIcon from 'assets/images/svg/city.svg'
-import SubHeader from 'components/common/header/SubHeader'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import RetinaImage from 'react-retina-image';
+import logoImg from 'assets/images/logo.png';
+import logoImg2x from 'assets/images/logo@2x.png';
+import logoImg3x from 'assets/images/logo@3x.png';
+import carIcon from 'assets/images/svg/car.svg';
+import SubHeader from 'components/common/header/SubHeader';
 
 export default class Header extends Component {
 	render() {
@@ -33,21 +31,9 @@ export default class Header extends Component {
 
 							<ul className="nav navbar-nav">
 								<li>
-									<NavLink exact to="/airport_parking">
+									<NavLink exact to="/">
 										<img src={carIcon} alt="Car" />
 										Airport Parking
-									</NavLink>
-								</li>
-								<li>
-									<NavLink exact to="/park_sleep_hotel_parking">
-										<img src={bedIcon} alt="Bed" />
-										Airports Hotels
-									</NavLink>
-								</li>
-								<li>
-									<NavLink exact to="/city_parking">
-										<img src={cityIcon} alt="City" />
-										City Parking
 									</NavLink>
 								</li>
 							</ul>
@@ -63,9 +49,11 @@ export default class Header extends Component {
 					</div>
 				</nav>
 
+				{/*sbuheader*/}
+
 				<SubHeader />
 
 			</header>
-		)
+		);
 	}
 }

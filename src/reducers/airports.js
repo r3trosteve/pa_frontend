@@ -1,11 +1,11 @@
 const airportsReducer = (state = [], action) => {
 	switch(action.type) {
 		case 'LOAD_AIRPORTS_SUCCESS':
-			return action.airports
+			return action.airports;
 
 		default:
-			return state
+			return state;
 	}
-}
+};
 
-export default airportsReducer
+export default airportsReducer;

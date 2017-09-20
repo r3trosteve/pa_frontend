@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import planeIcon from 'assets/images/svg/plane.svg'
-import bedIcon from 'assets/images/svg/bed2.svg'
-import carIcon from 'assets/images/svg/car2.svg'
-import trainIcon from 'assets/images/svg/train.svg'
+import React, { Component } from 'react';
+import planeIcon from 'assets/images/svg/plane.svg';
+import bedIcon from 'assets/images/svg/bed2.svg';
+import carIcon from 'assets/images/svg/car2.svg';
+import trainIcon from 'assets/images/svg/train.svg';
 
 export default class SubHeader extends Component {
 	render() {
@@ -32,6 +32,6 @@ export default class SubHeader extends Component {
 				</a>
 			</div>
 
-		)
+		);
 	}
 }

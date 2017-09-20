@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-// import { NavLink } from 'react-router-dom'
-import RetinaImage from 'react-retina-image'
-import logoImg from 'assets/images/logo.png'
-import logoImg2x from 'assets/images/logo@2x.png'
-import logoImg3x from 'assets/images/logo@3x.png'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import RetinaImage from 'react-retina-image';
+import logoImg from 'assets/images/logo.png';
+import logoImg2x from 'assets/images/logo@2x.png';
+import logoImg3x from 'assets/images/logo@3x.png';
 
 export default class Footer extends Component {
 	render() {
@@ -17,27 +17,27 @@ export default class Footer extends Component {
 					<div className="row footer__row footer__row--top">
 
 						<div className="col-md-3 footer__column">
-							<a href="https://www.parkingaccess.com/">
+							<NavLink exact to="/">
 								<RetinaImage src={[ logoImg, logoImg2x, logoImg3x ]} alt="Logo" />
-							</a>
+							</NavLink>
 						</div>
 
 						<div className="col-md-6 footer__column">
 							<ul className="footer__list-nav">
 								<li><a href="#airports">Our Airports</a></li>
-								<li><a href="#airtports-information">Airport Information</a></li>
+								<li><a href="#airtports_information">Airport Information</a></li>
 								<li><a href="#help">Help/Faq</a></li>
 								<li><a href="#">Affiliates</a></li>
-								<li><a href="#hotel-operators">Hotel Operators</a></li>
+								<li><a href="#hotel_operators">Hotel Operators</a></li>
 								<li><a href="#">Parking Operators</a></li>
 							</ul>
 						</div>
 
 						<div className="col-md-3 footer__column">
 							<ul className="footer__list-social">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 
@@ -65,6 +65,6 @@ export default class Footer extends Component {
 
 				</ul>
 			</footer>
-		)
+		);
 	}
 }
