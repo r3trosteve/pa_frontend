@@ -8,10 +8,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 import 'assets/styles/main.sass';
 import store from 'store';
 import App from 'components/App';
-import { loadAirports } from 'actions/airports';
-
-// to load airports data
-store.dispatch(loadAirports());
 
 const renderApp = Component => {
 	render(

@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import HomeSearch from 'components/home/HomeSearch';
+import HomeOptions from 'components/home/HomeOptions';
+import HomeHowItWorks from 'components/home/HomeHowItWorks';
+import HomeTopAirports from 'components/home/HomeTopAirports';
 
-class HomePage extends Component {
+export default class HomePage extends Component {
+
 	render() {
 		return (
 			<div>
 				<HomeSearch />
-				{/*<AirportsList airports={this.props.airports} />*/}
+				<HomeOptions />
+				<HomeHowItWorks />
+				<HomeTopAirports />
 			</div>
 		);
 	}
+
 }
-
-const mapStateToProps = (state) => {
-	return {
-		airports: state.airportsReducer
-	};
-};
-
-export default connect(mapStateToProps)(HomePage);
