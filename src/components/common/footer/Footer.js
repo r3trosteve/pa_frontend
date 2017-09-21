@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import RetinaImage from 'react-retina-image';
-import logoImg from 'assets/images/logo.png';
-import logoImg2x from 'assets/images/logo@2x.png';
-import logoImg3x from 'assets/images/logo@3x.png';
+import logoImg from 'assets/images/logo/logo.png';
+import logoImg2x from 'assets/images/logo/logo@2x.png';
+import logoImg3x from 'assets/images/logo/logo@3x.png';
 
 export default class Footer extends Component {
 	render() {
