@@ -35,9 +35,9 @@ export default class Footer extends Component {
 
 						<div className="col-md-3 footer__column">
 							<ul className="footer__list-social">
-								<li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="ion-social-facebook"></i></a></li>
+								<li><a href="#"><i className="ion-social-twitter"></i></a></li>
+								<li><a href="#"><i className="ion-social-googleplus"></i></a></li>
 							</ul>
 						</div>
 
