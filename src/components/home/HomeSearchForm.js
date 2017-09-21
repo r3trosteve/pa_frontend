@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import moment from 'moment';
+import DatetimeRangePicker from 'react-bootstrap-datetimerangepicker';
+import 'bootstrap-daterangepicker/daterangepicker.css';
 
 export default class HomeSearchForm extends Component {
 
@@ -8,14 +11,16 @@ export default class HomeSearchForm extends Component {
 
 		this.state = {
 			airportName: '',
-			leavingDate: '',
-			returningDate: '',
+			startDate: '',
+			endDate: '',
 			errors: {},
 			loading: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handlePicker = this.handlePicker.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
 	}
 
 	handleChange(e) {
@@ -32,14 +37,31 @@ export default class HomeSearchForm extends Component {
 		}
 	}
 
+	handlePicker(e, picker) {
+		let errors = Object.assign({}, this.state.errors);
+		delete errors.startDate;
+
+		this.setState({
+			startDate: picker.startDate,
+			endDate: picker.endDate,
+			errors
+		});
+	}
+
+	handleCancel() {
+		this.setState({
+			startDate: '',
+			endDate: '',
+		});
+	}
+
 	handleSubmit(e) {
 		e.preventDefault();
 
 		let errors = {};
 
 		if (this.state.airportName === '') errors.airportName = 'Please enter airport name';
-		if (this.state.leavingDate === '') errors.leavingDate = 'Please select leaving date and time';
-		if (this.state.returningDate === '') errors.returningDate = 'Please select returning date and time';
+		if (this.state.startDate === '') errors.startDate = 'Please enter leaving and returning dates';
 
 		this.setState({ errors });
 
@@ -48,10 +70,39 @@ export default class HomeSearchForm extends Component {
 		if (isValid) {
 			const { airportName, leavingDate, returningDate  } = this.state;
 			this.setState({ loading: true });
+			alert(
+				'Airport: ' + this.state.airportName +
+				' Leaving date: ' + this.state.startDate.format('DD/MM/YYYY hh:mm A') +
+				' Returning date: ' + this.state.endDate.format('DD/MM/YYYY hh:mm A')
+			);
 		}
 	}
 
 	render() {
+
+		// label is a format showing startDate and endDate in input
+
+		const { startDate, endDate } = this.state;
+		let label = '';
+		let start = startDate && startDate.format('DD/MM/YYYY hh:mm A') || '';
+		let end = endDate && endDate.format('DD/MM/YYYY hh:mm A') || '';
+		label = start + ' - ' + end;
+		if (start === end) {
+			label = start;
+		}
+
+		let locale = {
+			format: 'DD/MM/YYYY hh:mm A',
+			cancelLabel: 'Clear',
+		};
+
+		let pickerProps = {
+			startDate,
+			endDate,
+		};
+
+		// end
+
 		return (
 			<form onSubmit={this.handleSubmit}>
 
@@ -69,28 +120,28 @@ export default class HomeSearchForm extends Component {
 						<span>{this.state.errors.airportName}</span>
 					</div>
 
-					<div className={classnames('form-group', { 'has-error': this.state.errors.leavingDate })}>
-						<input
-							type="text"
-							name="leavingDate"
-							placeholder="Start date and time"
-							className="form-control"
-							value={this.state.leavingDate}
-							onChange={this.handleChange}
-						/>
-						<span>{this.state.errors.leavingDate}</span>
-					</div>
-
-					<div className={classnames('form-group', { 'has-error': this.state.errors.returningDate })}>
-						<input
-							type="text"
-							name="returningDate"
-							placeholder="End date and time"
-							className="form-control"
-							value={this.state.returningDate}
-							onChange={this.handleChange}
-						/>
-						<span>{this.state.errors.returningDate}</span>
+					<div className={classnames('form-group', { 'has-error': this.state.errors.startDate })}>
+						<DatetimeRangePicker
+							//autoUpdateInput={false}
+							locale={locale}
+							onApply={this.handlePicker}
+							onCancel={this.handleCancel}
+							timePicker
+							showDropdowns
+							minDate={moment()}
+							{...pickerProps}
+						>
+							<input
+								type="text"
+								name="startDate"
+								placeholder="Leaving date - Returning date"
+								className="form-control"
+								readOnly
+								value={label}
+								onChange={this.handleChange}
+							/>
+						</DatetimeRangePicker>
+						<span>{this.state.errors.startDate}</span>
 					</div>
 
 				</div>
@@ -103,8 +154,9 @@ export default class HomeSearchForm extends Component {
 				<div className="form-group">
 					<input
 						type="submit"
+						disabled={this.state.loading}
 						value={this.state.loading ? 'Searching... Please wait...' : 'Search Airport Parking'}
-						className="btn btn-primary"
+						className={this.state.loading ? 'btn btn-primary disabled' : 'btn btn-primary'}
 					/>
 				</div>
 
