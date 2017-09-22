@@ -104,23 +104,25 @@ export default class HomeSearchForm extends Component {
 		// end
 
 		return (
-			<form onSubmit={this.handleSubmit}>
+			<form onSubmit={this.handleSubmit} className="home__search-form">
 
-				<div className="form-inline">
-
-					<div className={classnames('form-group', { 'has-error': this.state.errors.airportName })}>
+				<div className="datepicker">
+					<label className={classnames('name-label', { 'has-error': this.state.errors.airportName })}>
+						<span className="label-title">
+							Airport
+						</span>
 						<input
 							type="text"
 							name="airportName"
 							placeholder="Type airport name or code"
-							className="form-control"
+							className="airport-name"
 							value={this.state.airportName}
 							onChange={this.handleChange}
 						/>
 						<span>{this.state.errors.airportName}</span>
-					</div>
+					</label>
 
-					<div className={classnames('form-group', { 'has-error': this.state.errors.startDate })}>
+					<label className={classnames('date-label', { 'has-error': this.state.errors.startDate })}>
 						<DatetimeRangePicker
 							//autoUpdateInput={false}
 							locale={locale}
@@ -131,19 +133,21 @@ export default class HomeSearchForm extends Component {
 							minDate={moment()}
 							{...pickerProps}
 						>
+							<span className="label-title">
+								When
+							</span>
 							<input
 								type="text"
 								name="startDate"
 								placeholder="Leaving date - Returning date"
-								className="form-control"
 								readOnly
+								className="airport-date"
 								value={label}
 								onChange={this.handleChange}
 							/>
 						</DatetimeRangePicker>
 						<span>{this.state.errors.startDate}</span>
-					</div>
-
+					</label>
 				</div>
 
 				<p>
@@ -151,14 +155,14 @@ export default class HomeSearchForm extends Component {
 					return to the parking facility - not your actual flight times.
 				</p>
 
-				<div className="form-group">
+				<label>
 					<input
 						type="submit"
 						disabled={this.state.loading}
 						value={this.state.loading ? 'Searching... Please wait...' : 'Search Airport Parking'}
-						className={this.state.loading ? 'btn btn-primary disabled' : 'btn btn-primary'}
+						className={this.state.loading ? 'btn btn-primary disabled' : 'btn-custom'}
 					/>
-				</div>
+				</label>
 
 			</form>
 		);

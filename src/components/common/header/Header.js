@@ -6,6 +6,7 @@ import logoImg2x from 'assets/images/logo/logo@2x.png';
 import logoImg3x from 'assets/images/logo/logo@3x.png';
 import carIcon from 'assets/images/svg/car.svg';
 import SubHeader from 'components/common/header/SubHeader';
+import 'assets/js/custom';
 
 export default class Header extends Component {
 	render() {

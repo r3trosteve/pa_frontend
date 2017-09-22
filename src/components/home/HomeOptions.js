@@ -25,7 +25,7 @@ import option33x from 'assets/images/home/options/o-3@3x.png';
 export default class HomeOptions extends Component {
 	render() {
 		return (
-			<section>
+			<section className="home__options">
 
 				<div>
 					<span>01.</span>

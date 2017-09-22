@@ -29,11 +29,10 @@ nav.navbar.navbar-default
         -ms-transition: all 0.3s
         -o-transition: all 0.3s
         transition: all 0.3s
-        i
-          color: $orange
+        img
           position: absolute
           left: 0
-          top: 5px
+          top: 10px
           font-size: 30px
         &:hover
           color: $orange
@@ -56,45 +55,47 @@ nav.navbar.navbar-default
 
 // Responsiveness
 
-@media (max-width: 1199px)
-  nav.navbar.navbar-default
-
-    ul.nav.navbar-nav:not(.navbar-right)
-      padding-left: 0
-
-@media (max-width: 991px)
-  nav.navbar.navbar-default
-    .container
-      width: 100%
-
-    .navbar-header
-      a.navbar-brand img
-        width: 100px
-
-    ul.nav.navbar-nav
-      li
-        padding: 18px 0
-        a
-          padding: 10px 17px
-          font-size: 12px
-          i
-            font-size: 20px
-            top: 10px
-          &.navbar-join
-            padding: 10px 17px
-      &:not(.navbar-right)
-        li a
-          padding-left: 18px
+//@media (max-width: 1199px)
+//  nav.navbar.navbar-default
+//
+//    ul.nav.navbar-nav:not(.navbar-right)
+//      padding-left: 0
+//
+//@media (max-width: 991px)
+//  nav.navbar.navbar-default
+//    .container
+//      width: 100%
+//
+//    .navbar-header
+//      a.navbar-brand img
+//        width: 100px
+//
+//    ul.nav.navbar-nav
+//      li
+//        padding: 18px 0
+//        a
+//          padding: 10px 17px
+//          font-size: 12px
+//          i
+//            font-size: 20px
+//            top: 10px
+//          &.navbar-join
+//            padding: 10px 17px
+//      &:not(.navbar-right)
+//        li a
+//          padding-left: 18px
 
 @media (max-width: 767px)
   nav.navbar.navbar-default
+    background: white
+    box-shadow: 0 20px 20px 0 rgba(18, 83, 140, 0.1)
 
     .navbar-header
       a.navbar-brand
         padding: 15px
       .navbar-toggle
         border: none
-        margin: 1px 15px
+        margin: 5.5px 15px
         i
           color: $orange
           font-size: 30px
@@ -102,24 +103,28 @@ nav.navbar.navbar-default
         &:active, &:focus, &:hover
           background: none!important
 
-    .navbar-collapse.collapse.in
-      border-bottom: 1px solid $grey-light
+
 
     ul.nav.navbar-nav
+      margin: 0
       li
-        text-align: center
-        padding: 5px 0
+        padding: 0
         a
-          display: inline-block
-          padding: 10px 30px!important
+          padding: 10px 0!important
           font-size: 14px
-          i
-            top: 11px
-      &.navbar-right
-        padding-top: 7.5px
+          text-align: left
+          img
+            display: none
+          &.navbar-join
+            box-shadow: none
+            &:hover
+              background: none
+              color: $orange
+
       &:not(.navbar-right)
-        li a
-          padding-left: 22px
+        padding: 10px 0 0
+      &.navbar-right
+        padding-bottom: 10px!important
 
 // end
 

@@ -4,12 +4,23 @@ import HomeSearchForm from 'components/home/HomeSearchForm';
 export default class HomeSearch extends Component {
 	render() {
 		return (
-			<section>
+			<section className="home__search">
 
-				<h1>When you have to leave your car at the airport, your only turn is Right Here!</h1>
-				<h4>Save a bundle. Get turn by turn directions on your phone.</h4>
+				<div className="container home__search__container">
+					<div className="home__search__title">
+						<h1 className="title-big">
+							When you have to leave your car at the airport, your only turn is Right Here!
+						</h1>
+						<h4>
+							Save a bundle. Get turn by turn directions on your phone.
+							<br/>
+							Free shuttle to the airport. Get started
+						</h4>
+					</div>
 
-				<HomeSearchForm />
+					<HomeSearchForm />
+
+				</div>
 
 			</section>
 		);

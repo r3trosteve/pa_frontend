@@ -1,0 +1,68 @@
+
+.home__search-form
+
+  .datepicker
+    border-radius: 4px
+    background: white
+    box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
+    display: flex
+    max-width: 800px
+    margin: 0 auto 30px
+    label
+      margin: 0
+      position: relative
+      span.label-title
+        opacity: 0.5
+        font-size: 13px
+        font-weight: 700
+        color: $orange
+        text-transform: uppercase
+        position: absolute
+        left: 45px
+        top: 17px
+      input
+        height: 80px
+        width: 100%
+        padding: 20px 45px 0
+        font-size: 16px
+        font-weight: 600
+        color: $blue-op
+        outline: none!important
+        border: none
+        transition: all 0.3s
+        text-transform: capitalize
+        border-bottom: 3px solid transparent
+        &::-webkit-input-placeholder
+          color: $blue-op
+          opacity: 1
+        &::-moz-placeholder
+          color: $blue-op
+          opacity: 1
+        &:-ms-input-placeholder
+          color: $blue-op
+          opacity: 1
+        &:-moz-placeholder
+          color: $blue-op
+          opacity: 1
+
+        &:active, &:focus
+          border-color: $blue-light
+
+
+      &.name-label
+        width: 40%
+        &:after
+          content: ''
+          position: absolute
+          right: 0
+          top: 11px
+          height: 56px
+          background: $blue-light-op
+          width: 1px
+
+      &.date-label
+        width: 60%
+        input
+          cursor: pointer
+
+

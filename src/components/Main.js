@@ -8,7 +8,7 @@ import HomePage from 'components/home/HomePage';
 export default class Main extends Component {
 	render() {
 		return (
-			<div className="container">
+			<div>
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 				</Switch>
