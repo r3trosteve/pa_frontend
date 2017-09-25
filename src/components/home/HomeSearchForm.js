@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import moment from 'moment';
-import DatetimeRangePicker from 'react-bootstrap-datetimerangepicker';
-import 'bootstrap-daterangepicker/daterangepicker.css';
+import HomeSearchFormAirport from 'components/home/HomeSearchFormAirport';
+import HomeSearchFormCalendar from 'components/home/HomeSearchFormCalendar';
+
+// helper function for getAirportSuggestions
+
+function getSuggestions(value, airports) {
+	const escapedValue = value.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+	if (escapedValue === '') {
+		return [];
+	}
+
+	const regex = new RegExp('^' + escapedValue, 'i');
+
+	return airports.filter(airport => regex.test(airport.name));
+}
+
+// end
 
 export default class HomeSearchForm extends Component {
 
@@ -11,33 +27,53 @@ export default class HomeSearchForm extends Component {
 
 		this.state = {
 			airportName: '',
+			airportSuggestions: [],
 			startDate: '',
 			endDate: '',
 			errors: {},
 			loading: false
 		};
 
-		this.handleChange = this.handleChange.bind(this);
+		this.getAirportSuggestions = this.getAirportSuggestions.bind(this);
+		this.clearAirportSuggestions = this.clearAirportSuggestions.bind(this);
+		this.handleAirportChange = this.handleAirportChange.bind(this);
+
+		this.handleCalendarPicker = this.handleCalendarPicker.bind(this);
+		this.clearCalendarPicker = this.clearCalendarPicker.bind(this);
+
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handlePicker = this.handlePicker.bind(this);
-		this.handleCancel = this.handleCancel.bind(this);
 	}
 
-	handleChange(e) {
-		if (this.state.errors[e.target.name]) {
-			let errors = Object.assign({}, this.state.errors);
-			delete errors[e.target.name];
+	// airport autocomplete functions
 
-			this.setState({
-				[e.target.name]: e.target.value,
-				errors
-			});
-		} else {
-			this.setState({ [e.target.name]: e.target.value });
-		}
+	getAirportSuggestions({ value }) {
+		this.setState({
+			airportSuggestions: getSuggestions(value, this.props.airports)
+		});
 	}
 
-	handlePicker(e, picker) {
+	clearAirportSuggestions() {
+		this.setState({
+			airportSuggestions: []
+		});
+	}
+
+	handleAirportChange(e, { newValue, method }) {
+
+		let errors = Object.assign({}, this.state.errors);
+		delete errors.airportName;
+
+		this.setState({
+			airportName: newValue,
+			errors
+		});
+	}
+
+	// end
+
+	// calendar functions
+
+	handleCalendarPicker(e, picker) {
 		let errors = Object.assign({}, this.state.errors);
 		delete errors.startDate;
 
@@ -48,106 +84,64 @@ export default class HomeSearchForm extends Component {
 		});
 	}
 
-	handleCancel() {
+	clearCalendarPicker() {
 		this.setState({
 			startDate: '',
 			endDate: '',
 		});
 	}
 
+	// end
+
 	handleSubmit(e) {
 		e.preventDefault();
 
+		const { airportName, startDate, endDate  } = this.state;
 		let errors = {};
 
-		if (this.state.airportName === '') errors.airportName = 'Please enter airport name';
-		if (this.state.startDate === '') errors.startDate = 'Please enter leaving and returning dates';
+		if (airportName === '') errors.airportName = 'Please enter airport name';
+		if (startDate === '') errors.startDate = 'Please enter leaving and returning dates';
 
 		this.setState({ errors });
 
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			const { airportName, leavingDate, returningDate  } = this.state;
+
 			this.setState({ loading: true });
+
 			alert(
-				'Airport: ' + this.state.airportName +
-				' Leaving date: ' + this.state.startDate.format('DD/MM/YYYY hh:mm A') +
-				' Returning date: ' + this.state.endDate.format('DD/MM/YYYY hh:mm A')
+				'Airport: ' + airportName +
+				' Leaving date: ' + startDate.format('DD/MM/YYYY hh:mm A') +
+				' Returning date: ' + endDate.format('DD/MM/YYYY hh:mm A')
 			);
 		}
 	}
 
 	render() {
-
-		// label is a format showing startDate and endDate in input
-
-		const { startDate, endDate } = this.state;
-		let label = '';
-		let start = startDate && startDate.format('DD/MM/YYYY hh:mm A') || '';
-		let end = endDate && endDate.format('DD/MM/YYYY hh:mm A') || '';
-		label = start + ' - ' + end;
-		if (start === end) {
-			label = start;
-		}
-
-		let locale = {
-			format: 'DD/MM/YYYY hh:mm A',
-			cancelLabel: 'Clear',
-		};
-
-		let pickerProps = {
-			startDate,
-			endDate,
-		};
-
-		// end
-
 		return (
+
 			<form onSubmit={this.handleSubmit} className="home__search-form">
 
 				<div className="datepicker">
-					<label className={classnames('name-label', { 'has-error': this.state.errors.airportName })}>
-						<span className="label-title">
-							Airport
-						</span>
-						<input
-							type="text"
-							name="airportName"
-							placeholder="Type airport name or code"
-							className="airport-name"
-							value={this.state.airportName}
-							onChange={this.handleChange}
-						/>
-						<span>{this.state.errors.airportName}</span>
-					</label>
 
-					<label className={classnames('date-label', { 'has-error': this.state.errors.startDate })}>
-						<DatetimeRangePicker
-							//autoUpdateInput={false}
-							locale={locale}
-							onApply={this.handlePicker}
-							onCancel={this.handleCancel}
-							timePicker
-							showDropdowns
-							minDate={moment()}
-							{...pickerProps}
-						>
-							<span className="label-title">
-								When
-							</span>
-							<input
-								type="text"
-								name="startDate"
-								placeholder="Leaving date - Returning date"
-								readOnly
-								className="airport-date"
-								value={label}
-								onChange={this.handleChange}
-							/>
-						</DatetimeRangePicker>
-						<span>{this.state.errors.startDate}</span>
-					</label>
+					<HomeSearchFormAirport
+						airportName={this.state.airportName}
+						airportSuggestions={this.state.airportSuggestions}
+						getAirportSuggestions={this.getAirportSuggestions}
+						clearAirportSuggestions={this.clearAirportSuggestions}
+						handleAirportChange={this.handleAirportChange}
+						errors={this.state.errors}
+					/>
+
+					<HomeSearchFormCalendar
+						startDate={this.state.startDate}
+						endDate={this.state.endDate}
+						handleCalendarPicker={this.handleCalendarPicker}
+						clearCalendarPicker={this.clearCalendarPicker}
+						errors={this.state.errors}
+					/>
+
 				</div>
 
 				<p>
@@ -160,12 +154,17 @@ export default class HomeSearchForm extends Component {
 						type="submit"
 						disabled={this.state.loading}
 						value={this.state.loading ? 'Searching... Please wait...' : 'Search Airport Parking'}
-						className={this.state.loading ? 'btn btn-primary disabled' : 'btn-custom'}
+						className={classnames('btn-custom', { 'disabled': this.props.loading })}
 					/>
 				</label>
 
 			</form>
+
 		);
 	}
 
 }
+
+HomeSearchForm.propTypes = {
+	airports: PropTypes.array.isRequired
+};

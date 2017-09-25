@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loadAirports } from 'actions/airports';
 import HomeSearch from 'components/home/HomeSearch';
 import HomeOptions from 'components/home/HomeOptions';
 import HomeHowItWorks from 'components/home/HomeHowItWorks';
 import HomeTopAirports from 'components/home/HomeTopAirports';
 
-export default class HomePage extends Component {
+class HomePage extends Component {
+
+	componentDidMount() {
+		this.props.loadAirports();
+	}
 
 	render() {
 		return (
 			<div className="home">
-				<HomeSearch />
+				<HomeSearch airports={this.props.airports} />
 				<HomeOptions />
 				<HomeHowItWorks />
-				<HomeTopAirports />
+				<HomeTopAirports airports={this.props.airports} />
 			</div>
 		);
 	}
 
 }
+
+HomeTopAirports.propTypes = {
+	loadAirports: PropTypes.func.isRequired,
+	airports: PropTypes.array.isRequired
+};
+
+const mapStateToProps = (state) => {
+	return {
+		airports: state.airportsReducer
+	};
+};
+
+export default connect(mapStateToProps, { loadAirports })(HomePage);

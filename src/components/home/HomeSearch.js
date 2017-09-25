@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import HomeSearchForm from 'components/home/HomeSearchForm';
 
 export default class HomeSearch extends Component {
@@ -18,7 +19,7 @@ export default class HomeSearch extends Component {
 						</h4>
 					</div>
 
-					<HomeSearchForm />
+					<HomeSearchForm airports={this.props.airports} />
 
 				</div>
 
@@ -26,3 +27,7 @@ export default class HomeSearch extends Component {
 		);
 	}
 }
+
+HomeSearch.propTypes = {
+	airports: PropTypes.array.isRequired
+};

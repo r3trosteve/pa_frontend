@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loadAirports } from 'actions/airports';
 import RetinaImage from 'react-retina-image';
 import HomeAirportsList from 'components/home/HomeAirportsList';
 
@@ -20,12 +18,7 @@ import ta42x from 'assets/images/home/top-airports/ta-4@2x.png';
 import ta43x from 'assets/images/home/top-airports/ta-4@3x.png';
 // end
 
-class HomeTopAirports extends Component {
-
-	componentDidMount() {
-		this.props.loadAirports();
-	}
-
+export default class HomeTopAirports extends Component {
 	render() {
 		return (
 			<section>
@@ -60,14 +53,5 @@ class HomeTopAirports extends Component {
 }
 
 HomeTopAirports.propTypes = {
-	loadAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired
 };
-
-const mapStateToProps = (state) => {
-	return {
-		airports: state.airportsReducer
-	};
-};
-
-export default connect(mapStateToProps, { loadAirports })(HomeTopAirports);
