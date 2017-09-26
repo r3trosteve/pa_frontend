@@ -5,7 +5,6 @@ import logoImg from 'assets/images/logo/logo.png';
 import logoImg2x from 'assets/images/logo/logo@2x.png';
 import logoImg3x from 'assets/images/logo/logo@3x.png';
 import carIcon from 'assets/images/svg/car.svg';
-import SubHeader from 'components/common/header/SubHeader';
 import 'assets/js/custom';
 
 export default class Header extends Component {
@@ -19,7 +18,7 @@ export default class Header extends Component {
 						<div className="navbar-header">
 
 							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								<i className="ion-android-menu"></i>
+								<i class="fa fa-bars" aria-hidden="true"></i>
 							</button>
 
 							<NavLink exact to="/" className="navbar-brand">
@@ -49,10 +48,6 @@ export default class Header extends Component {
 
 					</div>
 				</nav>
-
-				{/*sbuheader*/}
-
-				<SubHeader />
 
 			</header>
 		);

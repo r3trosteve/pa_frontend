@@ -1,18 +1,34 @@
 
 .home__search
-  background: #f9f9f9
+  background: url('../images/home/bg2.png') no-repeat center/cover fixed
+  padding: 95px 0 55px
   &__title
     text-align: center
     max-width: 860px
     margin: 40px auto 55px
     h1.title-big
       text-align: center
-      color: #3d6a92
+      color: $blue
     h4
       opacity: 0.8
-      font-family:  'Montserrat-Bold', sans-serif
+      font-family:  'Montserrat-SemiBold', sans-serif
       font-size: 17px
       line-height: 1.53
       letter-spacing: 1px
       color: $blue-op
       margin-top: 20px
+
+//responsiveness
+@media (max-width: 768px)
+  .home__search
+    padding: 68px 0 20px
+    background: $blue
+
+    &__title
+      margin: 20px auto
+      h1, h4
+        color: white
+      h1
+        display: none
+      h4
+        font-size: 12px

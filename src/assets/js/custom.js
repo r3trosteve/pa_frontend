@@ -20,3 +20,4 @@
 // $('.date-label').click(function () {
 // 	$('.daterangepicker.dropdown-menu .yearselect, .daterangepicker.dropdown-menu .monthselect').attr('disabled');
 // });
+

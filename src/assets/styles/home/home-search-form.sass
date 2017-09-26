@@ -7,7 +7,7 @@
     box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
     display: flex
     max-width: 800px
-    margin: 0 auto 30px
+    margin: 0 auto 15px
     label
       margin: 0
       position: relative
@@ -26,7 +26,7 @@
         padding: 20px 45px 0
         font-size: 16px
         font-weight: 600
-        color: $blue-op
+        color: $blue
         outline: none!important
         border: none
         transition: all 0.3s
@@ -48,21 +48,123 @@
         &:active, &:focus
           border-color: $blue-light
 
+      &.has-error
+        input
+          border-color: $red
+        span.error-text
+          display: block
+          color: $red
+          position: absolute
+          top: -26px
+          left: 0
+          font-size: 15px
+          font-weight: 600
 
       &.name-label
         width: 40%
+        position: relative
         &:after
           content: ''
           position: absolute
           right: 0
-          top: 11px
-          height: 56px
+          top: 0
+          height: 100%
           background: $blue-light-op
           width: 1px
+
+        .react-autosuggest__suggestions-container--open
+          position: absolute
+          left: 0
+          top: 100%
+          right: 0
+          background: white
+          box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
+          padding: 0
+          margin-top: 40px
+          opacity: 0
+          animation: fade-in-top 0.5s forwards
+          z-index: 10
+          span
+            color: $blue-op
+            font-size: 18px
+            font-weight: 400
+            padding: 7px 45px
+            display: block
+            &:hover
+              background: $orange
+              cursor: pointer
+              color: white
 
       &.date-label
         width: 60%
         input
           cursor: pointer
 
+  p
+    font-family:  'Montserrat-Regular', sans-serif
+    max-width: 800px
+    margin: 0 auto
+    color: $blue
+    font-weight: 600
+    text-align: center
+    font-size: 16px
+
+  .submit
+    text-align: center
+    margin-top: 40px
+
+    i
+      animation: rotate-loading 0.5s infinite
+      display: inline-block
+      margin-right: 8px
+
+@keyframes rotate-loading
+  to
+    transform: rotate(360deg)
+
+//responsiveness
+@media (max-width: 992px)
+  .home__search-form
+    .datepicker
+      label
+        span.label-title, input
+          font-size: 12px
+        input
+          height: 65px
+
+@media (max-width: 768px)
+  .home__search-form
+    .datepicker
+      flex-wrap: wrap
+      background: none
+      box-shadow: none
+      margin: 0
+      label
+        width: 100%!important
+        border-radius: 4px
+        &:after
+          display: none
+        input
+          border-radius: 4px
+          border: 2px solid transparent
+          &:active, &:focus
+            border-color: $orange
+
+        &.date-label
+          margin-top: 8px
+
+        &.has-error
+          input
+            border-color: $red
+
+          span.error-text
+            font-size: 12px
+            position: relative
+            top: 0
+            padding: 5px 0 0
+
+    .submit
+      margin: 8px auto 0
+      label
+        width: 100%
 

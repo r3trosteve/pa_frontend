@@ -10,6 +10,9 @@
 
 // Common
 @import 'common/header'
+@import 'common/footer'
+@import 'common/animations'
+@import 'common/book-travel'
 // end
 
 // Date-range picker
@@ -32,13 +35,9 @@
   box-sizing: border-box
 
 body
-  background: #fdfdfd
+
 
 a
-  -webkit-transition: all 0.3s
-  -moz-transition: all 0.3s
-  -ms-transition: all 0.3s
-  -o-transition: all 0.3s
   transition: all 0.3s
 
 h1
@@ -47,13 +46,31 @@ h1
 ul
   list-style: none
   padding: 0
+  margin: 0
 
 // buttons
 .btn-custom
   border-radius: 4px
   background: $orange
-  font-family: 'Montserrat-Bold'
-  font-size: 17px
-  letter-spacing: 0.3px
+  font-family: 'Montserrat-Regular'
+  font-size: 15px
+  letter-spacing: 1px
   text-align: center
+  border: none
+  transition: all 0.3s
+  outline: none
+  text-transform: uppercase
+  &:hover
+    box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
+
+  &--big
+    width: 255px
+    height: 64px
+    color: white
 //end
+
+
+//responsiveness
+@media (max-width: 768px)
+  .btn-custom
+    width: 100%!important

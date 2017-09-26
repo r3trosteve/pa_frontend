@@ -1,0 +1,126 @@
+
+.home__how-it-works
+  background: url('../images/home/how-it-works/bg.jpg') no-repeat center/cover fixed
+  padding: 105px 0 55px
+  text-align: center
+  margin-bottom: 1000px
+
+  i
+    font-size: 40px
+    color: white
+
+  &__title
+    font-family: 'Montserrat-Regular'
+    h2, h4
+      color: white
+    h2
+      font-size: 34px
+      line-height: 1.47
+      max-width: 900px
+      margin: 0 auto 20px
+    h4
+      opacity: 0.5
+      font-size: 18px
+      line-height: 1.44
+      letter-spacing: 1px
+      text-transform: uppercase
+
+  &__row
+    display: flex
+    align-items: center
+
+  &__column
+    padding: 25px 15px
+    display: flex
+    flex-direction: column
+    min-height: 100%
+    flex-grow: 1
+
+    &--small
+      width: 260px
+      align-self: stretch
+
+    &--big
+      width: 500px
+
+  &__card
+    border-radius: 4px
+    background-image: linear-gradient(to top,rgba(255,255,255,.1),rgba(255,255,255,0))
+    padding: 10px 0 15px
+    margin: 0 auto
+    display: flex
+    flex-direction: column
+    min-height: 100%
+    box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
+
+  &__card-images
+    margin-bottom: 10px
+
+    &--doubles
+      img
+        position: relative
+        &:first-child
+          left: 3px
+          z-index: 2
+        &:last-child
+          right: 3px
+
+  &__card-description
+    flex-grow: 1
+    display: flex
+    align-items: center
+
+  &__card-text
+    font-family: 'Montserrat-Thin'
+    font-size: 18px
+    line-height: 1.67
+    letter-spacing: 1px
+    text-align: center
+    color: #ffffff
+    padding: 0 25px
+    min-height: 100%
+    b
+      font-family: 'Montserrat-Regular'
+
+
+//responsiveness
+@media (max-width: 1200px)
+  .home__how-it-works
+
+    &__column
+      padding: 25px 10px
+
+      &--arrow
+        padding: 0!important
+
+    &__card-text
+      padding: 0 15px
+
+@media (max-width: 992px)
+  .home__how-it-works
+    background-image: linear-gradient(to top, rgba(2, 59, 96, 0.8), #0078bd)
+    background-attachment: scroll
+    padding: 25px 0 20px
+
+    &__title
+      h2
+        font-size: 18px
+
+    &__row
+      flex-direction: column
+
+    &__column
+      padding: 25px 15px
+      width: 100%
+
+      &--arrow
+        i
+          transform: rotate(90deg)
+
+    &__card
+      width: 100%
+      box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
+
+    &__card-text
+      padding: 0 15px
+      width: 100%

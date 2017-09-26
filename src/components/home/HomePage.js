@@ -19,7 +19,7 @@ class HomePage extends Component {
 				<HomeSearch airports={this.props.airports} />
 				<HomeOptions />
 				<HomeHowItWorks />
-				<HomeTopAirports airports={this.props.airports} />
+				{/*<HomeTopAirports airports={this.props.airports} />*/}
 			</div>
 		);
 	}

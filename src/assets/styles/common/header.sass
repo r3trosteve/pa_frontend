@@ -1,10 +1,14 @@
-// Navigation
 
 nav.navbar.navbar-default
   background: none
   border: none
   border-radius: 0
   margin: 0
+  position: absolute
+  left: 0
+  width: 100%
+  top: 0
+  z-index: 10
 
   .navbar-header
     a.navbar-brand
@@ -51,8 +55,6 @@ nav.navbar.navbar-default
       li a
         padding-left: 30px
 
-// end
-
 // Responsiveness
 
 //@media (max-width: 1199px)
@@ -87,75 +89,45 @@ nav.navbar.navbar-default
 
 @media (max-width: 767px)
   nav.navbar.navbar-default
-    background: white
-    box-shadow: 0 20px 20px 0 rgba(18, 83, 140, 0.1)
+    background: $white
 
     .navbar-header
       a.navbar-brand
         padding: 15px
+
       .navbar-toggle
         border: none
-        margin: 5.5px 15px
+        margin: 13px 5px
+        padding: 10px
         i
           color: $orange
-          font-size: 30px
+          font-size: 20px
 
         &:active, &:focus, &:hover
           background: none!important
 
+    .navbar-collapse
+      background: white!important
+      box-shadow: 0 20px 20px 0 rgba(18, 83, 140, 0.1)
 
+      ul.nav.navbar-nav
+        margin: 0
+        li
+          padding: 0
+          a
+            padding: 10px 0!important
+            font-size: 14px
+            text-align: left
+            img
+              display: none
+            &.navbar-join
+              box-shadow: none
+              &:hover
+                background: none
+                color: $orange
 
-    ul.nav.navbar-nav
-      margin: 0
-      li
-        padding: 0
-        a
-          padding: 10px 0!important
-          font-size: 14px
-          text-align: left
-          img
-            display: none
-          &.navbar-join
-            box-shadow: none
-            &:hover
-              background: none
-              color: $orange
+        &:not(.navbar-right)
+          padding: 10px 0 0
+        &.navbar-right
+          padding-bottom: 10px!important
 
-      &:not(.navbar-right)
-        padding: 10px 0 0
-      &.navbar-right
-        padding-bottom: 10px!important
-
-// end
-
-// Sub header
-
-.sub-header
-  text-align: center
-  margin-top: 25px
-
-  &__link
-    display: inline-block
-    i, p
-      color: $blue-light
-      -webkit-transition: all 0.3s
-      -moz-transition: all 0.3s
-      -ms-transition: all 0.3s
-      -o-transition: all 0.3s
-      transition: all 0.3s
-    &:hover
-      i, p
-        color: $orange
-
-  &__list-item
-    display: inline-block
-    margin: 0 10px
-
-  &__text
-    font-family: 'Montserrat-Regular'
-    font-size: 12px
-    text-align: left
-    position: relative
-    bottom: 1px
-
-// end

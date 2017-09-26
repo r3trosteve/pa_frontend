@@ -1,0 +1,62 @@
+
+.home__options
+  padding: 60px 0 90px
+
+  &__column
+    padding: 50px 15px
+  &__card
+    background: $white-dark-op
+    border-radius: 4px
+    padding: 60px 60px 35px
+    position: relative
+    max-width: 300px
+    margin: 0 auto
+    min-height: 167px
+    box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
+    p
+      font-family: 'Montserrat-Light'
+      font-size: 16px
+      line-height: 1.5
+      text-align: left
+      color: $blue-light
+
+  &__card-title
+    position: absolute
+    left: -15px
+    top: -40px
+    max-width: 250px
+    span
+      font-size: 14px
+      font-weight: bold
+      color: $orange
+    h4
+      font-size: 29px
+      font-weight: bold
+      color: $blue
+      text-transform: uppercase
+
+  &__card-images
+    position: absolute
+    bottom: -32px
+    left: 60px
+    right: 0
+    text-align: right
+
+    img
+      margin-right: 20px
+
+//responsiveness
+@media (max-width: 768px)
+  .home__options
+    padding: 15px 0 20px
+
+    &__column
+      padding: 50px 40px
+
+    &__card
+      padding: 60px 15px 35px
+
+    &__card-images
+      left: 15px
+      img
+        margin-bottom: 5px

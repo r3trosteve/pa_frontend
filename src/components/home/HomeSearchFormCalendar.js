@@ -63,7 +63,7 @@ export default class HomeSearchFormCalendar extends Component {
 					/>
 				</DatetimeRangePicker>
 
-				<span>{this.props.errors.startDate}</span>
+				<span className="error-text">{this.props.errors.startDate}</span>
 
 			</label>
 

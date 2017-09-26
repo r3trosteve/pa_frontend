@@ -1,26 +1,26 @@
-
-
 .daterangepicker.dropdown-menu
   border-radius: 4px
   background-color: white
   box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
   border: none
-  padding: 20px
+  padding: 20px 25px
   margin-right: 15px
-  margin-top: 60px
+  margin-top: 40px
   opacity: 0
   max-width: 700px!important
-  animation: fade-in-top 0.6s forwards
+  animation: fade-in-top 0.5s forwards
   overflow: hidden
+
+  .calendar, .ranges button
+    animation: fade-in-top 0.5s forwards
+    animation-delay: 0.2s
+    transform: translateY(60px)
+    opacity: 0
 
   .calendar
     width: 50%
     max-width: 100%
     margin: 0
-    animation: fade-in-top 0.6s forwards
-    animation-delay: 0.2s
-    transform: translateY(60px)
-    opacity: 0
     .input-mini, .fa.fa-clock-o, .fa.fa-calendar
       display: none
     select
@@ -37,7 +37,6 @@
       table thead tr:first-child th:first-child
         padding: 0!important
     &.right
-      animation-delay: 0.4s
       table thead tr:first-child th:last-child
         padding: 0!important
 
@@ -142,7 +141,6 @@
     text-align: center
     padding: 15px 0 0
     button
-      animation: fade-in-top 0.6s forwards
       border: none
       border-radius: 4px
       font-family: 'Montserrat-SemiBold'
@@ -154,24 +152,45 @@
       margin: 0 12px
       transition: all 0.3s
       opacity: 0
-      transform: translateY(60px)
       &:hover
         box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
 
     .applyBtn
       background: $orange
       color: white
-      animation-delay: 0.4s
     .cancelBtn
       background: $white-dark
-      animation-delay: 0.6s
       color: $blue-op
 
   &:before, &:after
     display: none
 
-@keyframes fade-in-top
-  to
-    margin-top: 1px
-    transform: translateY(0)
-    opacity: 1
+//responsiveness
+@media (max-width: 1200px)
+  .daterangepicker.dropdown-menu
+    .calendar
+      width: 100%
+
+      &.right
+        margin-top: 20px
+        border-top: 1px solid $white-dark
+        padding-top: 20px
+
+      .calendar-table
+        padding: 0!important
+
+        th.prev.available, th.next.available
+          text-align: center!important
+
+@media (max-width: 768px)
+  .daterangepicker.dropdown-menu
+    padding: 20px 0
+    position: fixed!important
+    width: 100%
+    top: 0!important
+    left: 0!important
+    right: 0!important
+    bottom: 0!important
+    margin-right: 0
+    overflow-y: auto
+    z-index: 1000!important

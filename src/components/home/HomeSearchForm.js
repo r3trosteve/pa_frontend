@@ -119,6 +119,7 @@ export default class HomeSearchForm extends Component {
 	}
 
 	render() {
+
 		return (
 
 			<form onSubmit={this.handleSubmit} className="home__search-form">
@@ -144,19 +145,36 @@ export default class HomeSearchForm extends Component {
 
 				</div>
 
-				<p>
+				<p className="hidden-xs">
 					Choose dates and reservation times based on your departure and
 					return to the parking facility - not your actual flight times.
 				</p>
 
-				<label>
-					<input
-						type="submit"
-						disabled={this.state.loading}
-						value={this.state.loading ? 'Searching... Please wait...' : 'Search Airport Parking'}
-						className={classnames('btn-custom', { 'disabled': this.props.loading })}
-					/>
-				</label>
+				<div className="submit">
+
+					<label>
+						{
+							this.state.loading ?
+								<button
+									type="submit"
+									disabled={this.state.loading}
+									className={classnames('btn-custom btn-custom--big', { 'disabled': this.props.loading })}
+									>
+									<i class="fa fa-spinner" aria-hidden="true"></i>
+									Searching...
+								</button> :
+								<button
+									type="submit"
+									disabled={this.state.loading}
+									className={classnames('btn-custom btn-custom--big', { 'disabled': this.props.loading })}
+								>
+									Search parking lots
+								</button>
+						}
+
+					</label>
+
+				</div>
 
 			</form>
 

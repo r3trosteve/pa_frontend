@@ -22,39 +22,91 @@ import hiw313x from 'assets/images/home/how-it-works/hiw-31@3x.png';
 export default class HomeHowItWorks extends Component {
 	render() {
 		return (
-			<section>
+			<section className="home__how-it-works">
 
-				<h2>Book your Travel as you Normally do and Earn Cash back and FREE Airport Parking</h2>
-				<h4>How it Works</h4>
+				<div className="container home__how-it-works__container">
 
-				<div>
-					<RetinaImage src={[ hiw11, hiw112x, hiw113x ]} alt="Guest" />
-					<RetinaImage src={[ hiw12, hiw122x, hiw123x ]} alt="Hotel" />
+					<div className="home__how-it-works__title">
+						<h2>Book your Travel as you Normally do and Earn Cash back and FREE Airport Parking</h2>
+						<h4>How it Works</h4>
+					</div>
 
-					<p>
-						Guest Jane L
-						<b>Booked her hotel</b>
-						on booking.com
-					</p>
-				</div>
+					<div className="home__how-it-works__row">
 
-				<div>
-					<RetinaImage src={[ hiw21, hiw212x, hiw213x ]} alt="Parking" />
-					<RetinaImage src={[ hiw22, hiw222x, hiw223x ]} alt="Cash" />
+						{/*left*/}
 
-					<p>
-						Returned to <b>parkingaccess.com</b>
-						to book 6 days of parking $80.00 parking fee $40.00
-						<b>cash reward $40.00</b> > $80 Expense through Concur
-					</p>
-				</div>
+						<div className="home__how-it-works__column home__how-it-works__column--small">
 
-				<div>
-					<RetinaImage src={[ hiw31, hiw312x, hiw313x ]} alt="PayPal" />
+							<div className="home__how-it-works__card">
+								<div className="home__how-it-works__card-images home__how-it-works__card-images--doubles">
+									<RetinaImage src={[ hiw11, hiw112x, hiw113x ]} alt="Guest" />
+									<RetinaImage className="hidden-md" src={[ hiw12, hiw122x, hiw123x ]} alt="Hotel" />
+								</div>
 
-					<p>
-						Jane choose to <b>transfer $40</b> to her personal Paypal
-					</p>
+								<div className="home__how-it-works__card-description">
+									<div className="home__how-it-works__card-text">
+										Guest Jane L
+										<b> Booked her hotel </b>
+										on booking.com
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						{/*divider*/}
+
+						<div className="home__how-it-works__column home__how-it-works__column--arrow">
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</div>
+
+						{/*center*/}
+
+						<div className="home__how-it-works__column home__how-it-works__column--big">
+
+							<div className="home__how-it-works__card home__how-it-works__card--center">
+								<div className="home__how-it-works__card-images home__how-it-works__card-images--doubles">
+									<RetinaImage src={[ hiw21, hiw212x, hiw213x ]} alt="Parking" />
+									<RetinaImage src={[ hiw22, hiw222x, hiw223x ]} alt="Cash" />
+								</div>
+
+								<div className="home__how-it-works__card-description">
+									<div className="home__how-it-works__card-text">
+										Returned to <b> parkingaccess.com </b>
+										to book 6 days of parking $80.00 parking fee $40.00
+										<b> cash reward $40.00 </b> > $80 Expense through Concur
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						{/*divider*/}
+
+						<div className="home__how-it-works__column home__how-it-works__column--arrow">
+							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+						</div>
+
+						{/*right*/}
+
+						<div className="home__how-it-works__column home__how-it-works__column--small">
+
+							<div className="home__how-it-works__card">
+								<div className="home__how-it-works__card-images">
+									<RetinaImage src={[ hiw31, hiw312x, hiw313x ]} alt="PayPal" />
+								</div>
+
+								<div className="home__how-it-works__card-description">
+									<div className="home__how-it-works__card-text">
+										Jane choose to <b> transfer $40 </b> to her personal Paypal
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
 				</div>
 
 			</section>

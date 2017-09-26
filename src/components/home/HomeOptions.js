@@ -27,31 +27,66 @@ export default class HomeOptions extends Component {
 		return (
 			<section className="home__options">
 
-				<div>
-					<span>01.</span>
-					<h4>Book your travel</h4>
-					<p>Air, Hotel, Car, Cruise & more</p>
+				<div className="container home__option__container">
 
-					<RetinaImage src={[ option11, option112x, option113x ]} alt="booking.com" />
-					<RetinaImage src={[ option12, option122x, option123x ]} alt="Expedia" />
-					<RetinaImage src={[ option13, option132x, option133x ]} alt="hotels.com" />
-					<RetinaImage src={[ option14, option142x, option143x ]} alt="cruise.com" />
-				</div>
+					<div className="row home__options__row">
 
-				<div>
-					<span>02.</span>
-					<h4>Book airport parking</h4>
-					<p>Enter your booking confirmations and get instant savings</p>
+						{/*left*/}
 
-					<RetinaImage src={[ option2, option22x, option23x ]} alt="Receipt" />
-				</div>
+						<div className="col-md-4 home__options__column home__options__column--left">
+							<div className="home__options__card">
+								<div className="home__options__card-title">
+									<span>01.</span>
+									<h4>Book your travel</h4>
+								</div>
 
-				<div>
-					<span>03.</span>
-					<h4>Expense and track</h4>
-					<p>Quickly link your Tripit or Concur accounts</p>
+								<p>Air, Hotel, Car, Cruise & more</p>
 
-					<RetinaImage src={[ option3, option32x, option33x ]} alt="Tripit" />
+								<div className="home__options__card-images">
+									<RetinaImage src={[ option11, option112x, option113x ]} alt="booking.com" />
+									<RetinaImage src={[ option12, option122x, option123x ]} alt="Expedia" />
+									<RetinaImage src={[ option13, option132x, option133x ]} alt="hotels.com" />
+									<RetinaImage src={[ option14, option142x, option143x ]} alt="cruise.com" />
+								</div>
+							</div>
+						</div>
+
+						{/*center*/}
+
+						<div className="col-md-4 home__options__column home__options__column--center">
+							<div className="home__options__card">
+								<div className="home__options__card-title">
+									<span>02.</span>
+									<h4>Book airport parking</h4>
+								</div>
+
+								<p>Enter your booking confirmations and get instant savings</p>
+
+								<div className="home__options__card-images">
+									<RetinaImage src={[ option2, option22x, option23x ]} alt="Receipt" />
+								</div>
+							</div>
+						</div>
+
+						{/*right*/}
+
+						<div className="col-md-4 home__options__column home__options__column--right">
+							<div className="home__options__card">
+								<div className="home__options__card-title">
+									<span>03.</span>
+									<h4>Expense and track</h4>
+								</div>
+
+								<p>Quickly link your Tripit or Concur accounts</p>
+
+								<div className="home__options__card-images">
+									<RetinaImage src={[ option3, option32x, option33x ]} alt="Tripit" />
+								</div>
+							</div>
+						</div>
+
+					</div>
+
 				</div>
 
 			</section>

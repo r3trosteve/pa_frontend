@@ -42,7 +42,7 @@ export default class HomeSearchFormAirport extends Component {
 					className="airport-name"
 				/>
 
-				<span>{this.props.errors.airportName}</span>
+				<span className="error-text">{this.props.errors.airportName}</span>
 
 			</label>
 		);
