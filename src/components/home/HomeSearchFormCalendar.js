@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import moment from 'moment';
-import DatetimeRangePicker from 'react-bootstrap-datetimerangepicker';
+import DatetimeRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 
 export default class HomeSearchFormCalendar extends Component {
@@ -25,11 +25,6 @@ export default class HomeSearchFormCalendar extends Component {
 			cancelLabel: 'Clear',
 		};
 
-		let pickerProps = {
-			startDate,
-			endDate,
-		};
-
 		// end
 
 		return (
@@ -37,19 +32,16 @@ export default class HomeSearchFormCalendar extends Component {
 			<label className={classnames('date-label', { 'has-error': this.props.errors.startDate })}>
 
 				<DatetimeRangePicker
-					//autoUpdateInput={false}
-					locale={locale}
 					onApply={this.props.handleCalendarPicker}
 					onCancel={this.props.clearCalendarPicker}
-					timePicker
-					showDropdowns
+					timePicker={true}
 					minDate={moment()}
-					{...pickerProps}
+					locale={locale}
+					//showDropdowns
 				>
-
-					<span className="label-title">
+					{/* <span className="label-title">
 						When
-					</span>
+					</span> */}
 
 					<input
 						type="text"
@@ -59,7 +51,6 @@ export default class HomeSearchFormCalendar extends Component {
 						className="airport-date"
 						value={label}
 						onChange={this.props.handleCalendarPicker}
-
 					/>
 				</DatetimeRangePicker>
 
