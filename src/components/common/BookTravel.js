@@ -8,7 +8,7 @@ export default class BookTravel extends Component {
 	render() {
 		return (
 
-			<div className="book-travel  container hidden-xs">
+			<div className="book-travel">
 				<a href="#" className="book-travel__link">
 					<ul className="book-travel__list">
 						<li className="book-travel__list-item">

@@ -4,15 +4,11 @@
 
   &__link
     display: inline-block
-    i, p
+    p
       color: $blue-light
-      -webkit-transition: all 0.3s
-      -moz-transition: all 0.3s
-      -ms-transition: all 0.3s
-      -o-transition: all 0.3s
       transition: all 0.3s
     &:hover
-      i, p
+      p
         color: $orange
 
   &__list-item
@@ -25,3 +21,9 @@
     text-align: left
     position: relative
     bottom: 1px
+
+//responsiveness
+@media (max-width: 355px)
+  .book-travel
+    p
+      margin-top: 15px

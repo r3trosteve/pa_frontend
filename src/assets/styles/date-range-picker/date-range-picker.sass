@@ -29,6 +29,7 @@
       -moz-appearance: none
       -webkit-appearance: none
       transition: all 0.3s
+
     .calendar-table
       padding: 0 20px!important
       border: none
@@ -52,7 +53,7 @@
         text-align-last: center
         background: $white-dark
         color: $blue
-        font-family: 'Montserrat-SemiBold'
+        font-family: 'Montserrat-Regular'
         padding: 0 15px
         &:hover
           background: $orange
@@ -102,6 +103,8 @@
 
           select
             background: none
+            option
+              font-size: 12px!important
             &.yearselect, &.monthselect
               font-size: 24px
               text-align: left

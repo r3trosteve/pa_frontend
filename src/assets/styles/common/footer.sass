@@ -1,0 +1,88 @@
+
+.footer
+  background: $blue-second
+  padding: 30px 0 25px
+  hr
+    margin: 30px 0 33px
+    border-top: 1px solid $blue-light
+  a
+    color: $blue-light
+    &:hover
+      color: $white
+
+  ul, ul li
+    display: inline-block
+
+  &__row
+    &--top
+
+    &--bottom
+      .col-md-4
+        padding-bottom: 20px
+
+  &__list-nav li
+    margin: 8px 13px 0
+    a
+      font-size: 14px
+      font-weight: 600
+      text-transform: capitalize
+      text-align: left
+
+  &__list-social
+    li
+      margin-top: 8px
+      margin-left: 25px
+      a
+        color: #b0c2d4
+        font-size: 18px
+
+  &__address
+    color: $blue-light
+    font-size: 14px
+    line-height: 1.43
+
+  &__copyright
+    color: $blue-light
+    font-size: 12px
+
+  .book-travel__link:hover p
+    color: $white!important
+
+//responsiveness
+@media (max-width: 1200px)
+  .footer
+
+    .col-md-push-4, &__column--top-big
+      padding-left: 0
+      padding-right: 0
+
+    &__list-nav li
+      margin: 8px 6px 0
+
+@media (max-width: 992px)
+  .footer
+    &__column
+      text-align: center!important
+
+      &--top-big
+        margin-top: 10px
+
+    &__list-social
+      text-align: center
+      li
+        margin: 0 15px
+
+    .col-md-pull-4
+      padding-bottom: 2px
+
+@media (max-width: 768px)
+  .footer
+
+    .col-md-push-4, &__column--top-big
+      padding-left: 15px!important
+      padding-right: 15px!important
+
+    &__list-nav li
+      display: block!important
+      margin-top: 12px
+

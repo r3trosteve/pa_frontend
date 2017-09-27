@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import RetinaImage from 'react-retina-image';
-import logoImg from 'assets/images/logo/logo.png';
-import logoImg2x from 'assets/images/logo/logo@2x.png';
-import logoImg3x from 'assets/images/logo/logo@3x.png';
+import logoImg from 'assets/images/logo/logo-dark.png';
+import logoImg2x from 'assets/images/logo/logo-dark@2x.png';
+import logoImg3x from 'assets/images/logo/logo-dark@3x.png';
+import BookTravel from 'components/common/BookTravel';
 
 export default class Footer extends Component {
 	render() {
@@ -16,13 +17,13 @@ export default class Footer extends Component {
 
 					<div className="row footer__row footer__row--top">
 
-						<div className="col-md-3 footer__column">
+						<div className="col-md-2 footer__column">
 							<NavLink exact to="/">
 								<RetinaImage src={[ logoImg, logoImg2x, logoImg3x ]} alt="Logo" />
 							</NavLink>
 						</div>
 
-						<div className="col-md-6 footer__column">
+						<div className="col-md-8 footer__column footer__column--top-big text-center">
 							<ul className="footer__list-nav">
 								<li><a href="#airports">Our Airports</a></li>
 								<li><a href="#airtports_information">Airport Information</a></li>
@@ -33,37 +34,41 @@ export default class Footer extends Component {
 							</ul>
 						</div>
 
-						<div className="col-md-3 footer__column">
+						<div className="col-md-2 footer__column text-right hidden-xs hidden-sm">
 							<ul className="footer__list-social">
-								<li><a href="#"><i className="ion-social-facebook"></i></a></li>
-								<li><a href="#"><i className="ion-social-twitter"></i></a></li>
-								<li><a href="#"><i className="ion-social-googleplus"></i></a></li>
+								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 
 					</div>
 
+					<hr/>
+
 					{/*bottom row*/}
 
 					<div className="row footer__row footer__row--bottom">
-						<div className="col-md-4 footer__column">
-							<span>
+						<div className="col-md-4 col-md-push-4 footer__column text-center">
+							<BookTravel />
+						</div>
+						<div className="col-md-4 col-md-pull-4 footer__column">
+							<span className="footer__address">
 								New York, 12 Feesr Meadow Apt. 692
 							</span>
 						</div>
-						<div className="col-md-4 footer__column">
-
-						</div>
-						<div className="col-md-4 footer__column">
+						<div className="col-md-4 footer__column text-right">
 							<p className="footer__copyright">© Copyright parkingaccess.com 2017</p>
 						</div>
 					</div>
 
+					<ul className="footer__list-social visible-sm visible-xs">
+						<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+					</ul>
+
 				</div>
-
-				<ul className="list-inline">
-
-				</ul>
 			</footer>
 		);
 	}

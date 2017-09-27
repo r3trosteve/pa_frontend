@@ -10,7 +10,9 @@ export default class HomeSearch extends Component {
 
 				<div className="container home__search__container">
 
-					<BookTravel />
+					<div className="home__search__book-travel-container hidden-xs">
+						<BookTravel />
+					</div>
 
 					<div className="home__search__title">
 						<h1 className="title-big">

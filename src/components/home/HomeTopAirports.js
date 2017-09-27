@@ -21,31 +21,91 @@ import ta43x from 'assets/images/home/top-airports/ta-4@3x.png';
 export default class HomeTopAirports extends Component {
 	render() {
 		return (
-			<section>
+			<section className="home__top-airports">
 
-				<h3>Top Airports</h3>
+				<div className="container home__top-airports__container">
 
-				<div>
-					<RetinaImage src={[ ta1, ta12x, ta13x ]} alt="Atlanta" />
-					<span>Atlanta</span>
+					<div className="home__top-airports__title">
+						<h2>Top Airports</h2>
+					</div>
+
+					{/*TOP*/}
+
+					<div className="row home__top-airports__row">
+
+						{/*1*/}
+
+						<div className="col-md-3 col-sm-6 home__top-airports__column">
+
+							<a className="home__top-airports__card">
+								<RetinaImage src={[ ta1, ta12x, ta13x ]} alt="Atlanta" />
+								<div className="home__top-airports__card-overlay">
+									<h3>
+										Dameonmouth
+										<span>Swaziland</span>
+									</h3>
+								</div>
+							</a>
+
+						</div>
+
+						{/*2*/}
+
+						<div className="col-md-3 col-sm-6 home__top-airports__column">
+
+							<a className="home__top-airports__card">
+								<RetinaImage src={[ ta2, ta22x, ta23x ]} alt="Newark" />
+								<div className="home__top-airports__card-overlay">
+									<h3>
+										New Forest
+										<span>Swaziland</span>
+									</h3>
+								</div>
+							</a>
+
+						</div>
+
+						{/*3*/}
+
+						<div className="col-md-3 col-sm-6 home__top-airports__column">
+
+							<a className="home__top-airports__card">
+								<RetinaImage src={[ ta3, ta32x, ta33x ]} alt="Laguardia" />
+								<div className="home__top-airports__card-overlay">
+									<h3>
+										New Forest
+										<span>Swaziland</span>
+									</h3>
+								</div>
+							</a>
+
+						</div>
+
+						{/*4*/}
+
+						<div className="col-md-3 col-sm-6 home__top-airports__column">
+
+							<a className="home__top-airports__card">
+								<RetinaImage src={[ ta4, ta42x, ta43x ]} alt="Seattle" />
+								<div className="home__top-airports__card-overlay">
+									<h3>
+										New Forest
+										<span>Swaziland</span>
+									</h3>
+								</div>
+							</a>
+
+						</div>
+
+					</div>
+
+					{/*END TOP*/}
+
+					{/*LIST*/}
+					<HomeAirportsList airports={this.props.airports} />
+					{/*END LIST*/}
+
 				</div>
-
-				<div>
-					<RetinaImage src={[ ta2, ta22x, ta23x ]} alt="Newark" />
-					<span>Newark</span>
-				</div>
-
-				<div>
-					<RetinaImage src={[ ta3, ta32x, ta33x ]} alt="Laguardia" />
-					<span>Laguardia</span>
-				</div>
-
-				<div>
-					<RetinaImage src={[ ta4, ta42x, ta43x ]} alt="Seattle" />
-					<span>Seattle</span>
-				</div>
-
-				<HomeAirportsList airports={this.props.airports} />
 
 			</section>
 		);
