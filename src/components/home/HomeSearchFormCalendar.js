@@ -31,18 +31,18 @@ export default class HomeSearchFormCalendar extends Component {
 
 			<label className={classnames('date-label', { 'has-error': this.props.errors.startDate })}>
 
+				<span className="label-title">
+					When
+				</span>
+
 				<DatetimeRangePicker
 					onApply={this.props.handleCalendarPicker}
 					onCancel={this.props.clearCalendarPicker}
 					timePicker={true}
 					minDate={moment()}
 					locale={locale}
-					//showDropdowns
+					showDropdowns
 				>
-					{/* <span className="label-title">
-						When
-					</span> */}
-
 					<input
 						type="text"
 						name="startDate"
