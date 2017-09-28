@@ -1,0 +1,218 @@
+.modal-backdrop.fade.in
+  display: none
+.auth-modal
+  background: rgba(246, 250, 250, 0.8)
+
+  .modal-dialog
+    max-width: 530px
+    margin: 85px auto
+    padding: 0 15px
+
+    .modal-content
+      border-radius: 6px
+      background-color: white
+      box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
+      border: solid 1px #e8f2f2
+      padding: 50px 15px 30px
+      position: relative
+
+      .modal-body
+        padding: 0
+        .close
+          position: absolute
+          right: 2px
+          top: -30px
+          opacity: 0.7
+          transition: all 0.3s
+          padding: 0 5px
+          i
+            color: $orange
+            font-size: 32px
+          &:hover
+            opacity: 1
+
+        .header-modal
+          margin-bottom: 35px
+          img
+            margin-bottom: 20px
+          h4
+            font-size: 24px
+            font-weight: 600
+            color: $blue
+        p
+          font-size: 15px
+          text-align: center
+          color: #6a6b6f
+          a
+            color: $blue
+            font-weight: 600
+            &:hover
+              color: $orange
+
+        .modal-btn-orange, .modal-btn-white
+          width: 272px
+          height: 48px
+          border-radius: 4px
+          font-weight: 600
+          border: none
+          transition: all 0.3s
+          &:hover
+            box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
+
+        .modal-btn-orange
+          color: white
+          background-color: $orange
+        .modal-btn-white
+          color: $blue
+          border: solid 1px $blue
+          &:hover
+            background: $blue
+            color: white
+
+        .modal-terms-privacy
+          max-width: 330px
+          margin: 15px auto 0
+          p
+            font-size: 12px
+            color: #a1a4b6
+            line-height: 20px
+            a
+              color: $blue
+              font-weight: 400
+              &:hover
+                color: $orange
+
+        form
+          max-width: 272px
+          margin: 0 auto
+          label
+            width: 100%
+            text-align: left
+            font-size: 14px
+            font-weight: 600
+            color: rgba(64, 64, 64, 0.5)
+            margin-bottom: 13px
+            position: relative
+            input:not([type='checkbox'])
+              width: 100%
+              height: 40px
+              border-radius: 4px
+              background-color: white
+              border: solid 1px #e0e0e0
+              padding: 0 16px
+              font-size: 14px
+              font-weight: 600
+              color: $blue
+              margin-top: 6px
+              &:active, &:focus
+                border-color: $blue
+
+            &.checkbox-label
+              opacity: 0.5
+              font-size: 12px
+              font-weight: 600
+              color: #404040
+              padding-left: 30px
+              line-height: 25px
+              cursor: pointer
+              input
+                display: none
+              &:before, &:after
+                position: absolute
+              &:before
+                content: ''
+                left: 0
+                top: 0
+                width: 23px
+                height: 23px
+                border-radius: 4px
+                border: solid 1px #e0e0e0
+              &:after
+                content: '\f00c'
+                font-family: FontAwesome
+                left: 4px
+                top: -1px
+                font-size: 17px
+                color: $blue
+                transform: scale(0.1)
+                opacity: 0
+                transition: all 0.3s
+              &.checked
+                &:after
+                  transform: scale(1)
+                  opacity: 1
+
+        .divider
+          margin-top: 1px
+          label
+            float: left
+            width: auto
+          a
+            float: right
+            opacity: 0.5
+            font-size: 12px
+            font-weight: 600
+            text-align: left
+            color: $blue
+            margin-top: 4px
+            &:hover
+              color: $orange
+
+        .modal-social
+          margin: 20px 0 24px
+
+
+
+
+
+
+#register-login-modal
+
+  .cta-buttons
+    max-width: 272px
+    margin: 30px auto 25px
+    position: relative
+    &:before, &:after
+      position: absolute
+    &:before
+      content: ''
+      width: 222px
+      height: 1px
+      background: #eaeaea
+      left: 25px
+      right: 25px
+      top: 50%
+    &:after
+      content: 'or'
+      left: calc(50% - 32.5px)
+      top: calc(50% - 10px)
+      font-size: 14px
+      font-weight: 600
+      text-align: left
+      color: $blue
+      background: white
+      padding: 0 25px
+    a
+      display: block
+      line-height: 48px
+      &.modal-btn-white
+        margin-top: 60px
+
+  .modal-terms-privacy
+    margin-top: 38px
+
+//responsiveness
+@media (max-width: 768px)
+  .auth-modal
+    .modal-dialog
+      margin: 15px auto
+    .modal-terms-privacy
+      max-width: 180px!important
+
+@media (max-width: 400px)
+  .auth-modal
+    .modal-btn-orange, .modal-btn-white
+      width: 100%!important
+
+
+

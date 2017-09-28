@@ -5,6 +5,8 @@ import logoImg from 'assets/images/logo/logo.png';
 import logoImg2x from 'assets/images/logo/logo@2x.png';
 import logoImg3x from 'assets/images/logo/logo@3x.png';
 import carIcon from 'assets/images/svg/car.svg';
+import RegisterLoginModal from 'components/modals/RegisterLoginModal';
+import LoginModal from 'components/modals/LoginModal';
 import 'assets/js/custom';
 
 export default class Header extends Component {
@@ -39,8 +41,12 @@ export default class Header extends Component {
 							</ul>
 
 							<ul className="nav navbar-nav navbar-right">
-								<li><a href="#join" className="navbar-join">Join</a></li>
-								<li><a href="#login">Login</a></li>
+								<li>
+									<a href="#join" className="navbar-join" data-toggle="modal" data-target="#register-login-modal">
+										Join
+									</a>
+								</li>
+								<li><a href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
 								<li><a href="tel:8008515863">800-851-5863</a></li>
 							</ul>
 
@@ -48,6 +54,11 @@ export default class Header extends Component {
 
 					</div>
 				</nav>
+
+				{/*modals*/}
+
+				<RegisterLoginModal />
+				<LoginModal />
 
 			</header>
 		);
