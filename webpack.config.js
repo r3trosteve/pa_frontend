@@ -1,104 +1,133 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-const outputPath = path.resolve(__dirname, './dist')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
-const webpackConfig = {
-	entry: {
-		app: [
-			'react-hot-loader/patch',
-			path.resolve(__dirname, './src/index.js')
-		]
+const isProd = process.env.NODE_ENV === 'production';
+const cssDev = [
+	'style-loader',
+	'css-loader?sourceMap',
+	{
+		loader: 'postcss-loader',
+		options: {
+			plugins: [
+				autoprefixer({
+					browsers: ['ie >= 8', 'last 4 version']
+				})
+			],
+			sourceMap: true
+		}
 	},
+	'sass-loader?sourceMap'
+];
+const cssProd = ExtractTextPlugin.extract({
+	fallback: 'style-loader', 
+	use: [
+		'css-loader?sourceMap',
+		{
+			loader: 'postcss-loader',
+			options: {
+				plugins: [
+					autoprefixer({
+						browsers: ['ie >= 8', 'last 4 version']
+					})
+				],
+				sourceMap: true
+			}
+		},
+		'sass-loader?sourceMap'
+	],
+	publicPath: './'
+});
+const cssConfig = isProd ? cssProd : cssDev;
+
+module.exports = {
+	entry: [
+		'react-hot-loader/patch',
+		'./src/index.js'
+	],
 	output: {
-		path: path.resolve(__dirname, './dist'),
-		filename: '[name].js'
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [
+			// CSS
 			{
-				test: /\.js$/,
-				exclude: [/node_modules/, path.resolve(__dirname, './src/assets/js/')],
-				enforce: 'pre',
-				use: 'eslint-loader'
+				test: /\.css$/, 
+				use: ['style-loader','css-loader?sourceMap']
 			},
+			// SASS
+			{
+				test: /\.sass$/, 
+				use: cssConfig
+			},
+			// JS
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
 			{
-				test: /\.css$/,
+				enforce: 'pre',
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: 'eslint-loader'
+			},
+			// IMAGES
+			{
+				test: /\.(png|jpe?g|gif|svg)$/,
 				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
-						}
-					}
+					'file-loader?name=images/[name].[ext]',
+					'image-webpack-loader'
 				]
 			},
-			{
-				test: /\.sass/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'style-loader'
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
-						}
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							plugins: [
-								autoprefixer({
-									browsers:['ie >= 8', 'last 4 version']
-								})
-							],
-							sourceMap: true
-						}
-					},
-					{
-						loader: 'sass-loader'
-					}
-				]
-			},
-			{
-				test: /\.(gif|png|jpg|jpeg)$/,
-				exclude: /node_modules/,
-				include: path.resolve(__dirname, './src/assets/'),
-				use: 'url-loader?limit=10000&name=assets/images/[name]-[hash].[ext]'
-			},
-			{
-				test: /\.svg$/,
-				loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
-			},
-			{
-				test: /\.json$/,
-				exclude: /node_modules/,
-				include: path.resolve(__dirname, './src/data/'),
-				use: 'file-loader?name=data/[name].json'
-			},
-			{
-				test: /\.(eot|ttf|woff|woff2)$/,
-				loader: 'url-loader'
-			},
+			// FONTS
 			{
 				test: /\.(eot|ttf|otf|woff|woff2)$/,
-				exclude: /node_modules/,
-				include: path.resolve(__dirname, './src/assets/'),
-				loader: 'url-loader?name=assets/fonts/[name].[ext]'
+				loader: 'url-loader?name=fonts/[name].[ext]'
+			},
+			// JSON
+			{
+				test: /\.json$/,
+				use: 'file-loader?name=data/[name].json'
 			}
 		]
 	},
+	// DEV SERVER
+	devServer: {
+		contentBase: path.join(__dirname, 'dist'),
+		compress: true,
+		port: 8000,
+		stats: 'errors-only',
+		hot: true
+	},
+	// PLUGINS
+	plugins: [
+		new HtmlWebpackPlugin({
+			minify: {
+				collapseWhitespace: true
+			},
+			hash: true,
+			template: './src/index.html'
+		}),
+		new ExtractTextPlugin({
+			filename: 'bundle.css',
+			disable: !isProd,
+			allChunks: true
+		}),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jquery: 'jquery',
+			jQuery: 'jquery',
+			'window.jquery': 'jquery',
+			'window.jQuery': 'jquery'
+		})
+	],
+	// PATHS
 	resolve: {
 		alias: {
 			'components': path.resolve(__dirname, './src/components'),
@@ -110,31 +139,5 @@ const webpackConfig = {
 			'utils': path.resolve(__dirname, './src/utils'),
 			'data': path.resolve(__dirname, './src/data'),
 		}
-	},
-	plugins: [
-		new HtmlWebpackPlugin({
-			template: path.join(__dirname, './src/assets/index.html'),
-			filename: 'index.html',
-			path: outputPath
-		}),
-		new webpack.ProvidePlugin({
-			$: 'jquery',
-			jquery: 'jquery',
-			jQuery: 'jquery',
-			'window.jquery': 'jquery',
-			'window.jQuery': 'jquery'
-		}),
-		new webpack.NamedModulesPlugin(),
-		new webpack.HotModuleReplacementPlugin()
-	],
-	devServer: {
-		contentBase: path.resolve(__dirname, './dist'),
-		port: 8000,
-		historyApiFallback: true,
-		inline: true,
-		hot: true,
-		host: '0.0.0.0'
 	}
-}
-
-module.exports = webpackConfig
+};

@@ -20,7 +20,7 @@ export default class Header extends Component {
 						<div className="navbar-header">
 
 							<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-								<i class="fa fa-bars" aria-hidden="true"></i>
+								<i className="fa fa-bars" aria-hidden="true"></i>
 							</button>
 
 							<NavLink exact to="/" className="navbar-brand">

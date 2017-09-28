@@ -24,9 +24,6 @@ export default class LoginModal extends Component {
 	}
 
 	render() {
-
-		console.log(this.state.checkboxChecked);
-
 		return (
 
 			<div className="modal auth-modal fade" id="login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

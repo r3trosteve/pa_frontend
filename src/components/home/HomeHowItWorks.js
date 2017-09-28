@@ -57,7 +57,7 @@ export default class HomeHowItWorks extends Component {
 						{/*divider*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--arrow">
-							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							<i className="fa fa-long-arrow-right" aria-hidden="true"></i>
 						</div>
 
 						{/*center*/}
@@ -84,7 +84,7 @@ export default class HomeHowItWorks extends Component {
 						{/*divider*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--arrow">
-							<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+							<i className="fa fa-long-arrow-right" aria-hidden="true"></i>
 						</div>
 
 						{/*right*/}

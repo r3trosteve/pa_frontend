@@ -36,9 +36,9 @@ export default class Footer extends Component {
 
 						<div className="col-md-2 footer__column text-right hidden-xs hidden-sm">
 							<ul className="footer__list-social">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 
@@ -63,9 +63,9 @@ export default class Footer extends Component {
 					</div>
 
 					<ul className="footer__list-social visible-sm visible-xs">
-						<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i className="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li><a href="#"><i className="fa fa-google-plus" aria-hidden="true"></i></a></li>
 					</ul>
 
 				</div>

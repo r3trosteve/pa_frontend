@@ -26,7 +26,7 @@ class HomePage extends Component {
 
 }
 
-HomeTopAirports.propTypes = {
+HomePage.propTypes = {
 	loadAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired
 };

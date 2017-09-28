@@ -158,15 +158,15 @@ export default class HomeSearchForm extends Component {
 								<button
 									type="submit"
 									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.props.loading })}
+									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
 									>
-									<i class="fa fa-spinner" aria-hidden="true"></i>
+									<i className="fa fa-spinner" aria-hidden="true"></i>
 									Searching...
 								</button> :
 								<button
 									type="submit"
 									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.props.loading })}
+									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
 								>
 									Search parking lots
 								</button>
