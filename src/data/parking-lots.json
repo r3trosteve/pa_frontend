@@ -1,0 +1,24 @@
+[
+  {
+    "airport": "Atlanta",
+    "name": "Park'n Fly Plus",
+    "address": "2525 Camp Creek Pkwy., College Park, GA 30337",
+    "price": 100,
+    "distance": 3,
+    "type": "Self-park",
+    "shuttleFrequency": 5,
+    "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+    "available": true
+  },
+  {
+    "airport": "Atlanta",
+    "name": "Park'n Fly",
+    "address": "3950 Conley Street, College Park, GA 30337",
+    "price": 150,
+    "distance": 3,
+    "type": "Self-park",
+    "shuttleFrequency": 5,
+    "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+    "available": true
+  }
+]

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import HomeSearchFormAirport from 'components/home/HomeSearchFormAirport';
 import HomeSearchFormCalendar from 'components/home/HomeSearchFormCalendar';
+import { Redirect } from 'react-router-dom';
 
 // helper function for getAirportSuggestions
 
@@ -31,7 +32,8 @@ export default class HomeSearchForm extends Component {
 			startDate: '',
 			endDate: '',
 			errors: {},
-			loading: false
+			loading: false,
+			redirect: false
 		};
 
 		this.getAirportSuggestions = this.getAirportSuggestions.bind(this);
@@ -108,77 +110,86 @@ export default class HomeSearchForm extends Component {
 
 		if (isValid) {
 
-			this.setState({ loading: true });
+			// api request goes here
+			this.setState({loading: true, redirect: true});
 
-			alert(
-				'Airport: ' + airportName +
-				' Leaving date: ' + startDate.format('MM/DD/YYYY hh:mm A') +
-				' Returning date: ' + endDate.format('MM/DD/YYYY hh:mm A')
-			);
+			// alert(
+			// 	'Airport: ' + airportName +
+			// 	' Leaving date: ' + startDate.format('MM/DD/YYYY hh:mm A') +
+			// 	' Returning date: ' + endDate.format('MM/DD/YYYY hh:mm A')
+			// );
 		}
 	}
 
 	render() {
 
-		return (
+		if (this.state.redirect) {
 
-			<form onSubmit={this.handleSubmit} className="home__search-form">
+			return <Redirect to="/airport-parking-results" />;
 
-				<div className="datepicker">
+		} else {
 
-					<HomeSearchFormAirport
-						airportName={this.state.airportName}
-						airportSuggestions={this.state.airportSuggestions}
-						getAirportSuggestions={this.getAirportSuggestions}
-						clearAirportSuggestions={this.clearAirportSuggestions}
-						handleAirportChange={this.handleAirportChange}
-						errors={this.state.errors}
-					/>
+			return (
 
-					<HomeSearchFormCalendar
-						startDate={this.state.startDate}
-						endDate={this.state.endDate}
-						handleCalendarPicker={this.handleCalendarPicker}
-						clearCalendarPicker={this.clearCalendarPicker}
-						errors={this.state.errors}
-					/>
+				<form onSubmit={this.handleSubmit} className="home__search-form">
 
-				</div>
+					<div className="datepicker">
 
-				<p className="hidden-xs">
-					Choose dates and reservation times based on your departure and
-					return to the parking facility - not your actual flight times.
-				</p>
+						<HomeSearchFormAirport
+							airportName={this.state.airportName}
+							airportSuggestions={this.state.airportSuggestions}
+							getAirportSuggestions={this.getAirportSuggestions}
+							clearAirportSuggestions={this.clearAirportSuggestions}
+							handleAirportChange={this.handleAirportChange}
+							errors={this.state.errors}
+						/>
 
-				<div className="submit">
+						<HomeSearchFormCalendar
+							startDate={this.state.startDate}
+							endDate={this.state.endDate}
+							handleCalendarPicker={this.handleCalendarPicker}
+							clearCalendarPicker={this.clearCalendarPicker}
+							errors={this.state.errors}
+						/>
 
-					<label>
-						{
-							this.state.loading ?
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
+					</div>
+
+					<p className="hidden-xs">
+						Choose dates and reservation times based on your departure and
+						return to the parking facility - not your actual flight times.
+					</p>
+
+					<div className="submit">
+
+						<label>
+							{
+								this.state.loading ?
+									<button
+										type="submit"
+										disabled={this.state.loading}
+										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
 									>
-									<i className="fa fa-spinner" aria-hidden="true"></i>
-									Searching...
-								</button> :
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
-								>
-									Search parking lots
-								</button>
-						}
+										<i className="fa fa-spinner" aria-hidden="true"></i>
+										Searching...
+									</button> :
+									<button
+										type="submit"
+										disabled={this.state.loading}
+										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
+									>
+										Search parking lots
+									</button>
+							}
 
-					</label>
+						</label>
 
-				</div>
+					</div>
 
-			</form>
+				</form>
 
-		);
+			);
+		}
+
 	}
 
 }

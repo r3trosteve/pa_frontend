@@ -101,7 +101,8 @@ module.exports = {
 		compress: true,
 		port: 8000,
 		stats: 'errors-only',
-		hot: true
+		hot: true,
+		historyApiFallback: true
 	},
 	// PLUGINS
 	plugins: [
