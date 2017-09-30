@@ -112,8 +112,8 @@ export default class HomeSearchForm extends Component {
 
 			alert(
 				'Airport: ' + airportName +
-				' Leaving date: ' + startDate.format('DD/MM/YYYY hh:mm A') +
-				' Returning date: ' + endDate.format('DD/MM/YYYY hh:mm A')
+				' Leaving date: ' + startDate.format('MM/DD/YYYY hh:mm A') +
+				' Returning date: ' + endDate.format('MM/DD/YYYY hh:mm A')
 			);
 		}
 	}

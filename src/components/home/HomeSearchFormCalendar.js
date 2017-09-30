@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import moment from 'moment';
 import DatetimeRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
+import arrow from 'assets/images/svg/arrow-right.svg';
 
 export default class HomeSearchFormCalendar extends Component {
 	render() {
@@ -12,16 +13,11 @@ export default class HomeSearchFormCalendar extends Component {
 
 		const { startDate, endDate } = this.props;
 
-		let label = '';
-		let start = startDate && startDate.format('DD/MM/YYYY hh:mm A') || '';
-		let end = endDate && endDate.format('DD/MM/YYYY hh:mm A') || '';
-		label = start + '  ⟶  ' + end;
-		if (start === end) {
-			label = start;
-		}
+		let start = startDate && startDate.format('MM/DD/YYYY hh:mm A') || '';
+		let end = endDate && endDate.format('MM/DD/YYYY hh:mm A') || '';
 
 		let locale = {
-			format: 'DD/MM/YYYY hh:mm A',
+			format: 'MM/DD/YYYY hh:mm A',
 			cancelLabel: 'Clear',
 		};
 
@@ -38,7 +34,8 @@ export default class HomeSearchFormCalendar extends Component {
 				<DatetimeRangePicker
 					onApply={this.props.handleCalendarPicker}
 					onCancel={this.props.clearCalendarPicker}
-					timePicker={true}
+					autoUpdateInput={false}
+					timePicker
 					minDate={moment()}
 					locale={locale}
 					showDropdowns
@@ -46,10 +43,34 @@ export default class HomeSearchFormCalendar extends Component {
 					<input
 						type="text"
 						name="startDate"
-						placeholder="Leaving date  ⟶  Returning date"
+						placeholder="Leaving date"
 						readOnly
 						className="airport-date"
-						value={label}
+						value={start}
+						onChange={this.props.handleCalendarPicker}
+					/>
+				</DatetimeRangePicker>
+
+				<span>
+					<img src={arrow} alt="Arrow to right" />
+				</span>
+
+				<DatetimeRangePicker
+					onApply={this.props.handleCalendarPicker}
+					onCancel={this.props.clearCalendarPicker}
+					autoUpdateInput={false}
+					timePicker
+					minDate={moment()}
+					locale={locale}
+					showDropdowns
+				>
+					<input
+						type="text"
+						name="endDate"
+						placeholder="Returning date"
+						readOnly
+						className="airport-date"
+						value={end}
 						onChange={this.props.handleCalendarPicker}
 					/>
 				</DatetimeRangePicker>
