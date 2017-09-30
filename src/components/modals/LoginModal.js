@@ -12,11 +12,46 @@ export default class LoginModal extends Component {
 		super();
 
 		this.state = {
+			email: '',
+			password: '',
+			errors: {},
 			checkboxChecked: false
 		};
 
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 		this.changeChecked = this.changeChecked.bind(this);
+	}
 
+	handleChange(e) {
+		if (this.state.errors[e.target.name]) {
+			let errors = Object.assign({}, this.state.errors);
+			delete errors[e.target.name];
+			this.setState({
+				[e.target.name]: e.target.value,
+				errors
+			});
+		} else {
+			this.setState({ [e.target.name]: e.target.value });
+		}
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+
+		// validation
+		let errors = {};
+		if (this.state.email === '') errors.email = "Email can't be empty";
+		if (this.state.password === '') errors.password = "Password can't be empty";
+		this.setState({ errors });
+		const isValid = Object.keys(errors).length === 0;
+
+		if (isValid) {
+			const { email, password } = this.state;
+
+			// api request
+			alert('Login: ' + email + ' Password: ' + password);
+		}
 	}
 
 	changeChecked() {
@@ -42,17 +77,19 @@ export default class LoginModal extends Component {
 								</h4>
 							</div>
 
-							<form>
+							<form onSubmit={this.handleSubmit}>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.email })}>
 									Username / Email
-									<input type="text"/>
+									<input type="text" name="email" onChange={this.handleChange} />
 								</label>
+								<span>{this.state.errors.email}</span>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.password })}>
 									Password
-									<input type="password"/>
+									<input type="password" name="password" onChange={this.handleChange} />
 								</label>
+								<span>{this.state.errors.password}</span>
 
 								<div className="divider">
 									<label className={classnames('checkbox-label', { 'checked': this.state.checkboxChecked })}>
