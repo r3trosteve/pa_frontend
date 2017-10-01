@@ -143,14 +143,14 @@ export default class AirportParkingSearchForm extends Component {
 									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
 								>
 									<i className="fa fa-spinner" aria-hidden="true"></i>
-									Searching...
+									Updating...
 								</button> :
 								<button
 									type="submit"
 									disabled={this.state.loading}
 									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
 								>
-									Search parking lots
+									Update
 								</button>
 						}
 					</label>
@@ -165,5 +165,8 @@ export default class AirportParkingSearchForm extends Component {
 }
 
 AirportParkingSearchForm.propTypes = {
-	airports: PropTypes.array.isRequired
+	airports: PropTypes.array.isRequired,
+	airportName: PropTypes.string.isRequired,
+	startDate: PropTypes.string.isRequired,
+	endDate: PropTypes.string.isRequired,
 };

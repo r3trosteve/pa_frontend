@@ -55,6 +55,9 @@ class AirportParkingResults extends Component {
 }
 
 AirportParkingResults.propTypes = {
+	airportName: PropTypes.string.isRequired,
+	startDate: PropTypes.string.isRequired,
+	endDate: PropTypes.string.isRequired,
 	location: PropTypes.object.isRequired,
 	loadAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired,
