@@ -7,6 +7,7 @@ import logoImg3x from 'assets/images/logo/logo@3x.png';
 import carIcon from 'assets/images/svg/car.svg';
 import RegisterLoginModal from 'components/modals/RegisterLoginModal';
 import LoginModal from 'components/modals/LoginModal';
+import RegisterModal from 'components/modals/RegisterModal';
 import 'assets/js/custom';
 
 export default class Header extends Component {
@@ -58,6 +59,7 @@ export default class Header extends Component {
 				{/*modals*/}
 
 				<RegisterLoginModal />
+				<RegisterModal />
 				<LoginModal />
 
 			</header>

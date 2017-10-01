@@ -19,7 +19,7 @@ export default class HomeSearchFormAirport extends Component {
 		const { airportName, airportSuggestions } = this.props;
 
 		const inputProps = {
-			placeholder: 'Type airport name or code',
+			placeholder: 'Airport name or code',
 			value: airportName,
 			onChange: this.props.handleAirportChange,
 			name: 'airportName'
@@ -31,6 +31,8 @@ export default class HomeSearchFormAirport extends Component {
 				<span className="label-title">
 					Airport
 				</span>
+
+				<i class="fa fa-map-marker mobile-icon visible-xs" aria-hidden="true"></i>
 
 				<Autosuggest
 					suggestions={airportSuggestions}

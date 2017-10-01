@@ -41,8 +41,8 @@ export default class LoginModal extends Component {
 
 		// validation
 		let errors = {};
-		if (this.state.email === '') errors.email = "Email can't be empty";
-		if (this.state.password === '') errors.password = "Password can't be empty";
+		if (this.state.email === '') errors.email = " can't be empty";
+		if (this.state.password === '') errors.password = " can't be empty";
 		this.setState({ errors });
 		const isValid = Object.keys(errors).length === 0;
 
@@ -81,15 +81,16 @@ export default class LoginModal extends Component {
 
 								<label className={classnames('', { 'has-error': this.state.errors.email })}>
 									Username / Email
+									<span className="error-text">{this.state.errors.email}</span>
 									<input type="text" name="email" onChange={this.handleChange} />
+
 								</label>
-								<span>{this.state.errors.email}</span>
 
 								<label className={classnames('', { 'has-error': this.state.errors.password })}>
 									Password
+									<span className="error-text">{this.state.errors.password}</span>
 									<input type="password" name="password" onChange={this.handleChange} />
 								</label>
-								<span>{this.state.errors.password}</span>
 
 								<div className="divider">
 									<label className={classnames('checkbox-label', { 'checked': this.state.checkboxChecked })}>
@@ -107,7 +108,11 @@ export default class LoginModal extends Component {
 
 							</form>
 
-							<AuthModalFooter />
+							<AuthModalFooter
+								authText="Don't have an account?"
+								modalTarget="#register-modal"
+								linkText="Register"
+							/>
 
 						</div>
 					</div>

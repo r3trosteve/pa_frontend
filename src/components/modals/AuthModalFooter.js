@@ -27,16 +27,26 @@ export default class AuthModalFooter extends Component {
 			<div className="auth-modal-footer">
 				<p>Or login with:</p>
 				<div className="modal-social">
-					<RetinaImage src={[ fb, fb2x, fb3x ]} alt="Facebook" />
-					<RetinaImage src={[ gp, gp2x, gp3x ]} alt="Google Plus" />
-					<RetinaImage src={[ tw, tw2x, tw3x ]} alt="Twitter" />
-					<RetinaImage src={[ concur, concur2x, concur3x ]} alt="Concur" />
-					<RetinaImage src={[ tripit, tripit2x, tripit3x ]} alt="TripIt" />
+					<div className="modal-social-img">
+						<RetinaImage src={[ fb, fb2x, fb3x ]} alt="Facebook" />
+					</div>
+					<div className="modal-social-img">
+						<RetinaImage src={[ gp, gp2x, gp3x ]} alt="Google Plus" />
+					</div>
+					<div className="modal-social-img">
+						<RetinaImage src={[ tw, tw2x, tw3x ]} alt="Twitter" />
+					</div>
+					<div className="modal-social-img">
+						<RetinaImage src={[ concur, concur2x, concur3x ]} alt="Concur" />
+					</div>
+					<div className="modal-social-img">
+						<RetinaImage src={[ tripit, tripit2x, tripit3x ]} alt="TripIt" />
+					</div>
 				</div>
 
 				<p>
-					Don't have an account?
-					<a href="#"> Register</a>
+					{this.props.authText}
+					<a href="#" data-toggle="modal" data-target={this.props.modalTarget}> {this.props.linkText} </a>
 				</p>
 
 				<div className="modal-terms-privacy">

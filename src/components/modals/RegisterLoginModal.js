@@ -33,8 +33,12 @@ export default class RegisterLoginModal extends Component {
 
 							{/*buttons*/}
 							<div className="cta-buttons">
-								<a href="#" className="modal-btn-orange">Register</a>
-								<a href="#" className="modal-btn-white" data-toggle="modal" data-target="#login-modal">Log in</a>
+								<a href="#" className="modal-btn-orange" data-toggle="modal" data-target="#register-modal">
+									Register
+								</a>
+								<a href="#" className="modal-btn-white" data-toggle="modal" data-target="#login-modal">
+									Log in
+								</a>
 							</div>
 
 							<p>to view best offers</p>

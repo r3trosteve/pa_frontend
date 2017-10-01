@@ -180,7 +180,6 @@ export default class HomeSearchForm extends Component {
 										Search parking lots
 									</button>
 							}
-
 						</label>
 
 					</div>
