@@ -138,7 +138,7 @@ module.exports = {
 			'store': path.resolve(__dirname, './src/store'),
 			'assets': path.resolve(__dirname, './src/assets'),
 			'utils': path.resolve(__dirname, './src/utils'),
-			'data': path.resolve(__dirname, './src/data'),
+			'data': path.resolve(__dirname, './src/data')
 		}
 	}
 };

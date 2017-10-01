@@ -32,7 +32,7 @@ export default class HomeSearchFormAirport extends Component {
 					Airport
 				</span>
 
-				<i class="fa fa-map-marker mobile-icon visible-xs" aria-hidden="true"></i>
+				<i className="fa fa-map-marker mobile-icon visible-xs" aria-hidden="true"></i>
 
 				<Autosuggest
 					suggestions={airportSuggestions}

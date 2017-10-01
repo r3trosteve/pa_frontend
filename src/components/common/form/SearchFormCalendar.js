@@ -39,6 +39,8 @@ export default class HomeSearchFormCalendar extends Component {
 				<div className="hidden-xs">
 
 					<DatetimeRangePicker
+						startDate={this.props.startDate ? this.props.startDate : moment()}
+						endDate={this.props.endDate ? this.props.endDate : moment()}
 						onApply={this.props.handleCalendarPicker}
 						onCancel={this.props.clearCalendarPicker}
 						autoUpdateInput={false}
@@ -73,7 +75,7 @@ export default class HomeSearchFormCalendar extends Component {
 
 				<div className="visible-xs">
 
-					<i class="mobile-icon fa fa-calendar" aria-hidden="true"></i>
+					<i className="mobile-icon fa fa-calendar" aria-hidden="true"></i>
 
 					<DatetimeRangePicker
 						onApply={this.props.handleCalendarPicker}

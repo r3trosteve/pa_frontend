@@ -8,17 +8,43 @@
     "type": "Self-park",
     "shuttleFrequency": 5,
     "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-    "available": true
+    "available": true,
+    "options": [
+      "Luggage Assistance",
+      "Online Reservations",
+      "Valet Parking"
+    ]
   },
   {
     "airport": "Atlanta",
     "name": "Park'n Fly",
     "address": "3950 Conley Street, College Park, GA 30337",
     "price": 150,
-    "distance": 3,
+    "distance": 10,
     "type": "Self-park",
     "shuttleFrequency": 5,
     "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-    "available": true
+    "available": true,
+    "options": [
+      "Luggage Assistance",
+      "Online Reservations",
+      "Valet Parking",
+      "24-Hour Access"
+    ]
+  },
+  {
+    "airport": "New York",
+    "name": "Airpark",
+    "address": "153-44 South Conduit Ave., Jamaica, NY 11434",
+    "price": 90,
+    "distance": 5,
+    "type": "Self-park",
+    "shuttleFrequency": 5,
+    "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
+    "available": true,
+    "options": [
+      "Luggage Assistance",
+      "Online Reservations"
+    ]
   }
 ]

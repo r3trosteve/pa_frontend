@@ -17,6 +17,10 @@ export default class AirportParkingLot extends Component {
 				<p>{this.props.parkingLot.price}</p>
 
 				<p>{this.props.parkingLot.available}</p>
+
+				{this.props.parkingLot.options.map(option => {
+					return <p>{option}</p>;
+				})}
 			</div>
 		);
 	}

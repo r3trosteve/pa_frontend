@@ -1,25 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import HomeSearchFormAirport from 'components/home/HomeSearchFormAirport';
-import HomeSearchFormCalendar from 'components/home/HomeSearchFormCalendar';
+import HomeSearchFormAirport from 'components/common/form/SearchFormAirport';
+import HomeSearchFormCalendar from 'components/common/form/SearchFormCalendar';
 import { Redirect } from 'react-router-dom';
-
-// helper function for getAirportSuggestions
-
-function getSuggestions(value, airports) {
-	const escapedValue = value.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-	if (escapedValue === '') {
-		return [];
-	}
-
-	const regex = new RegExp('^' + escapedValue, 'i');
-
-	return airports.filter(airport => regex.test(airport.name));
-}
-
-// end
+import { getSuggestions } from 'utils';
 
 export default class HomeSearchForm extends Component {
 
@@ -109,15 +94,12 @@ export default class HomeSearchForm extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-
 			// api request goes here
-			this.setState({loading: true, redirect: true});
-
-			// alert(
-			// 	'Airport: ' + airportName +
-			// 	' Leaving date: ' + startDate.format('MM/DD/YYYY hh:mm A') +
-			// 	' Returning date: ' + endDate.format('MM/DD/YYYY hh:mm A')
-			// );
+			this.setState({
+				loading: false,
+				redirect: true,
+				searchData: { airportName, startDate: startDate.toString(), endDate: endDate.toString() }
+			});
 		}
 	}
 
@@ -125,7 +107,10 @@ export default class HomeSearchForm extends Component {
 
 		if (this.state.redirect) {
 
-			return <Redirect to="/airport-parking-results" />;
+			return <Redirect to={{
+				pathname: '/airport-parking-results',
+				state: { searchData: this.state.searchData }
+			}} />;
 
 		} else {
 

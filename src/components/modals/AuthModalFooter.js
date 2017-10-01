@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import RetinaImage from 'react-retina-image';
 
 // import images
@@ -64,3 +65,9 @@ export default class AuthModalFooter extends Component {
 	}
 
 }
+
+AuthModalFooter.propTypes = {
+	authText: PropTypes.string.isRequired,
+	modalTarget: PropTypes.string.isRequired,
+	linkText: PropTypes.string.isRequired
+};
