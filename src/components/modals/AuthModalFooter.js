@@ -47,7 +47,7 @@ export default class AuthModalFooter extends Component {
 
 				<p>
 					{this.props.authText}
-					<a href="#" data-toggle="modal" data-target={this.props.modalTarget}> {this.props.linkText} </a>
+					<a href="#" data-toggle="modal" data-dismiss="modal" data-target={this.props.modalTarget}> {this.props.linkText} </a>
 				</p>
 
 				<div className="modal-terms-privacy">

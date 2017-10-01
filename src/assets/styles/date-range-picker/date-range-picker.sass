@@ -51,7 +51,7 @@
         cursor: pointer
         text-align: center
         text-align-last: center
-        background: $white-dark
+        background: $white-dark-op
         color: $blue
         font-family: 'Montserrat-Regular'
         padding: 0 15px
@@ -126,13 +126,14 @@
             border-radius: 0
             font-family: 'Montserrat-Light'
             font-size: 12px
+            background: $white
+            color:  #797979
             &.off.disabled
               text-decoration: none
-              background: $white
               color: $grey-light
               line-height: 1.54
             &.today.active.start-date.available, &.active.end-date.in-range.available,
-            &.active.start-date.available, &.off.active.start-date.available
+            &.active.start-date.available, &.active.end-date.available, &.off.active.start-date.available
               background: $orange
               color: white
             &.in-range.available

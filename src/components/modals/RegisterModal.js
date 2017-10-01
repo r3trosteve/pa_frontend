@@ -28,7 +28,7 @@ export default class RegisterModal extends Component {
 	render() {
 		return (
 
-			<div className="modal auth-modal fade" id="register-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div className="modal auth-modal" id="register-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-body text-center">

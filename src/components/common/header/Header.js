@@ -43,11 +43,11 @@ export default class Header extends Component {
 
 							<ul className="nav navbar-nav navbar-right">
 								<li>
-									<a href="#join" className="navbar-join" data-toggle="modal" data-target="#register-login-modal">
+									<a href="#join" className="navbar-join" data-toggle="modal" data-dismiss="modal" data-target="#register-login-modal">
 										Join
 									</a>
 								</li>
-								<li><a href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
+								<li><a href="#login" data-toggle="modal" data-dismiss="modal" data-target="#login-modal">Login</a></li>
 								<li><a href="tel:8008515863">800-851-5863</a></li>
 							</ul>
 

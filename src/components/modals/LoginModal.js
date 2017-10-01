@@ -61,7 +61,7 @@ export default class LoginModal extends Component {
 	render() {
 		return (
 
-			<div className="modal auth-modal fade" id="login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div className="modal auth-modal" id="login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-body text-center">

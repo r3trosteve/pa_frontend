@@ -9,7 +9,7 @@ export default class RegisterLoginModal extends Component {
 	render() {
 		return (
 
-			<div className="modal auth-modal fade" id="register-login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div className="modal auth-modal" id="register-login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-body text-center">
@@ -33,10 +33,10 @@ export default class RegisterLoginModal extends Component {
 
 							{/*buttons*/}
 							<div className="cta-buttons">
-								<a href="#" className="modal-btn-orange" data-toggle="modal" data-target="#register-modal">
+								<a href="#" className="modal-btn-orange" data-toggle="modal" data-target="#register-modal" data-dismiss="modal">
 									Register
 								</a>
-								<a href="#" className="modal-btn-white" data-toggle="modal" data-target="#login-modal">
+								<a href="#" className="modal-btn-white" data-toggle="modal" data-target="#login-modal" data-dismiss="modal">
 									Log in
 								</a>
 							</div>
