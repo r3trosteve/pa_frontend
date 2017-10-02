@@ -118,7 +118,7 @@ export default class HomeSearchForm extends Component {
 
 				<form onSubmit={this.handleSubmit} className="home__search-form">
 
-					<div className="datepicker">
+					<div className="search-form">
 
 						<HomeSearchFormAirport
 							airportName={this.state.airportName}
@@ -139,12 +139,12 @@ export default class HomeSearchForm extends Component {
 
 					</div>
 
-					<p className="hidden-xs">
+					<p className="hidden-xs home__search-form__text">
 						Choose dates and reservation times based on your departure and
 						return to the parking facility - not your actual flight times.
 					</p>
 
-					<div className="submit">
+					<div className="home__search-form__submit">
 
 						<label>
 							{

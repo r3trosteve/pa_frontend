@@ -1,43 +1,89 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import GoogleMapReact from 'google-map-react';
-
-const GoogleMapMark = () => <div><i className="ion-ios-location"></i></div>;
 
 export default class AirportParkingLot extends Component {
 	render() {
 		return (
-			<div>
-				<h2>{this.props.parkingLot.name}</h2>
-				<p>{this.props.parkingLot.address}</p>
+			<div className="airport-parking__lot">
 
-				<img src={this.props.parkingLot.image} alt={this.props.parkingLot.name} />
+				{/*image*/}
 
-				<div style={{width: '600px', height: '400px'}}>
-					<GoogleMapReact
-						defaultCenter={{lat: 33.640411, lng: -84.419853}}
-						defaultZoom={13}
-					>
-						<GoogleMapMark
-							lat={33.640411}
-							lng={-84.419853}
-						/>
-					</GoogleMapReact>
+				<div className="airport-parking__lot__image">
+					<img src={this.props.parkingLot.image} alt={this.props.parkingLot.name} />
 				</div>
 
-				<p>{this.props.parkingLot.distance} mile(s)</p>
-				<p>{this.props.parkingLot.type}</p>
-				<p>{this.props.parkingLot.shuttleFrequency}</p>
+				{/*content*/}
 
-				<p>{this.props.parkingLot.description}</p>
+				<div className="airport-parking__lot__content">
 
-				<p>${this.props.parkingLot.price}</p>
+					{/*row*/}
 
-				<p>{this.props.parkingLot.available}</p>
+					<div className="airport-parking__lot__row">
 
-				{this.props.parkingLot.options.map((option, index) => {
-					return <p key={index}>{option}</p>;
-				})}
+						{/*left*/}
+
+						<div className="airport-parking__lot__column airport-parking__lot__column--left">
+
+							{/*header*/}
+
+							<div className="airport-parking__lot__header">
+								<h2>{this.props.parkingLot.name}</h2>
+								<p>{this.props.parkingLot.address}</p>
+							</div>
+
+							{/*info list*/}
+
+							<ul className="airport-parking__lot__list">
+								<li className="airport-parking__lot__list-item">
+									<i className="fa fa-map" aria-hidden="true"></i>
+									Distance from airport:
+									<span>{this.props.parkingLot.distance} mile(s)</span>
+								</li>
+								<li className="airport-parking__lot__list-item">
+									<i className="fa fa-car" aria-hidden="true"></i>
+									Parking type:
+									<span>{this.props.parkingLot.type}</span>
+								</li>
+								<li className="airport-parking__lot__list-item">
+									<i className="fa fa-clock-o" aria-hidden="true"></i>
+									Shuttle frequency:
+									<span>{this.props.parkingLot.shuttleFrequency}</span>
+								</li>
+							</ul>
+
+						</div>
+
+						{/*right (price)*/}
+
+						<div className="airport-parking__lot__column airport-parking__lot__column--price">
+
+							<div className="airport-parking__lot__price">
+								<p>${this.props.parkingLot.price}</p>
+								<a href="#" className="btn-custom">
+									View details
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+
+					{/*description*/}
+
+					<div className="airport-parking__lot__description">
+						<p>{this.props.parkingLot.description}</p>
+					</div>
+
+					{/*options*/}
+
+					{/*<div className="airport-parking__lot__options">*/}
+						{/*{this.props.parkingLot.options.map((option, index) => {*/}
+							{/*return <p key={index}>{option}</p>;*/}
+						{/*})}*/}
+					{/*</div>*/}
+
+				</div>
+
 			</div>
 		);
 	}

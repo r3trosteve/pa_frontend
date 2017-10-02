@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from 'components/home/HomePage';
-import AirportParkingResults from 'components/airport-parking/AirportParkingResults';
+import AirportParkingPage from 'components/airport-parking/AirportParkingPage';
 
 export default class Main extends Component {
 	render() {
@@ -12,7 +12,7 @@ export default class Main extends Component {
 			<div>
 				<Switch>
 					<Route exact path="/" component={HomePage} />
-					<Route exact path="/airport-parking-results" component={AirportParkingResults} />
+					<Route exact path="/airport-parking-results" component={AirportParkingPage} />
 				</Switch>
 			</div>
 		);

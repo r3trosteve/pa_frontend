@@ -109,9 +109,9 @@ export default class AirportParkingSearchForm extends Component {
 	render() {
 		return (
 
-			<form onSubmit={this.handleSubmit} className="home__search-form">
+			<form onSubmit={this.handleSubmit} className="airport-parking__search-form">
 
-				<div className="datepicker">
+				<div className="search-form">
 
 					<HomeSearchFormAirport
 						airportName={this.state.airportName}
@@ -130,30 +130,30 @@ export default class AirportParkingSearchForm extends Component {
 						errors={this.state.errors}
 					/>
 
-				</div>
+					<div className="submit">
 
-				<div className="submit">
+						<label>
+							{
+								this.state.loading ?
+									<button
+										type="submit"
+										disabled={this.state.loading}
+										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
+									>
+										<i className="fa fa-spinner" aria-hidden="true"></i>
+										Updating...
+									</button> :
+									<button
+										type="submit"
+										disabled={this.state.loading}
+										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
+									>
+										Update
+									</button>
+							}
+						</label>
 
-					<label>
-						{
-							this.state.loading ?
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
-								>
-									<i className="fa fa-spinner" aria-hidden="true"></i>
-									Updating...
-								</button> :
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
-								>
-									Update
-								</button>
-						}
-					</label>
+					</div>
 
 				</div>
 

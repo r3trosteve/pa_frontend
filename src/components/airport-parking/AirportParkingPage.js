@@ -8,33 +8,43 @@ import AirportParkingSearchForm from 'components/airport-parking/AirportParkingS
 
 class AirportParkingResults extends Component {
 
+	constructor() {
+		super();
+
+		this.showNothingFound = this.showNothingFound.bind(this);
+		this.showLots = this.showLots.bind(this);
+
+	}
+
 	componentDidMount() {
 		this.props.loadAirports();
 		this.props.getParkingLots(this.props.airportName);
 	}
 
+	showNothingFound() {
+
+		return (
+			<h2 className="airport-parking__nothing-found">
+				<i className="fa fa-frown-o" aria-hidden="true"></i>
+				Sorry, nothing was found...
+			</h2>
+		);
+
+	}
+
+	showLots(parkingLots) {
+		return (
+			parkingLots.map((parkingLot, index) => {
+				return <AirportParkingLot key={index}  parkingLot={parkingLot} /> ;
+			})
+		);
+	}
+
 	render() {
-		if (this.props.parkingLots.length === 0) {
+		return (
+			<div className="airport-parking">
 
-			return (
-				<div style={{marginTop: 200}}>
-
-					<AirportParkingSearchForm
-						airports={this.props.airports}
-						airportName={this.props.airportName}
-						startDate={this.props.startDate}
-						endDate={this.props.endDate}
-					/>
-
-					<h2>Sorry, nothing was found...</h2>
-
-				</div>
-			);
-
-		} else {
-
-			return (
-				<div style={{marginTop: 200}}>
+				<div className="container airport-parking__container">
 
 					<AirportParkingSearchForm
 						airports={this.props.airports}
@@ -43,14 +53,12 @@ class AirportParkingResults extends Component {
 						endDate={this.props.endDate}
 					/>
 
-					{this.props.parkingLots.map((parkingLot, index) => {
-						return <AirportParkingLot key={index}  parkingLot={parkingLot} />;
-					})}
+					{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}
 
 				</div>
 
-			);
-		}
+			</div>
+		);
 	}
 }
 

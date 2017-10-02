@@ -1,208 +1,30 @@
 
 .home__search-form
+  max-width: 760px
+  margin: 0 auto
 
-  .datepicker
-    border-radius: 4px
-    background: white
-    box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
-    display: flex
-    max-width: 760px
-    margin: 0 auto 15px
-    label
-      margin: 0
-      position: relative
-
-      i.mobile-icon
-        color: $orange
-        font-size: 23px
-        position: absolute
-        left: 13px
-        top: 32%
-        &.fa-map-marker
-          left: 16px
-
-      span.label-title
-        opacity: 0.5
-        font-size: 13px
-        font-weight: 700
-        color: $orange
-        text-transform: uppercase
-        position: absolute
-        left: 45px
-        top: 17px
-      input, span.end-date
-        height: 80px
-        width: 100%
-        padding: 20px 45px 0
-        font-size: 15px
-        font-weight: 400
-        text-transform: uppercase
-        color: $blue
-        outline: none!important
-        border: none
-        transition: all 0.3s
-        border-bottom: 3px solid transparent
-
-        &:active, &:focus
-          border-color: $blue-light
-
-      &.has-error
-        input
-          border-color: $red
-        span.error-text
-          display: block
-          color: $red
-          position: absolute
-          top: -26px
-          left: 0
-          font-size: 15px
-          font-weight: 600
-          transform: translateY(10px)
-          opacity: 0
-          animation: fade-in-top-error 0.6s forwards
-
-          @keyframes fade-in-top-error
-            to
-              transform: translateY(0)
-              opacity: 1
-
-      &.name-label
-        width: 40%
-        position: relative
-        &:after
-          content: ''
-          position: absolute
-          right: 0
-          top: 0
-          height: 100%
-          background: $blue-light-op
-          width: 1px
-
-        .react-autosuggest__suggestions-container--open
-          position: absolute
-          left: 0
-          top: 100%
-          right: 0
-          background: white
-          box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
-          padding: 0
-          margin-top: 40px
-          opacity: 0
-          animation: fade-in-top 0.5s forwards
-          z-index: 10
-          span
-            color: $blue-op
-            font-size: 15px
-            font-weight: 400
-            padding: 7px 45px
-            display: block
-            text-transform: uppercase
-            &:hover
-              background: $orange
-              cursor: pointer
-              color: white
-
-      &.date-label
-        width: 60%
-        span
-          &.arrow
-            position: absolute
-            left: calc(47% - 12.5px)
-            top: 20px
-            cursor: pointer
-            transition: all 0.3s
-            i
-              font-size: 40px
-              color: $grey
-            &.left-arrow
-              left: calc(50% - 12.5px)
-
-
-          &.end-date
-            position: absolute
-            left: 0
-            right: 0
-            bottom: 3px
-            border-bottom: none
-            text-align: right
-            padding-top: 41px
-            cursor: pointer
-        input
-          cursor: pointer
-
-
-  p
+  &__text
     font-family:  'Montserrat-Regular', sans-serif
-    max-width: 760px
-    margin: 0 auto
     color: $blue
     text-align: center
     font-size: 16px
 
-  .submit
+  &__submit
     text-align: center
     margin-top: 40px
-
     i
       animation: rotate-loading 0.5s infinite
       display: inline-block
-      margin-right: 8px
-
-@keyframes rotate-loading
-  to
-    transform: rotate(360deg)
 
 //responsiveness
 @media (max-width: 992px)
   .home__search-form
-    p, .datepicker
-      max-width: 630px
-
-    .datepicker
-      label
-        span.label-title, input, span.end-date
-          font-size: 12px
-        input, span.end-date
-          height: 65px
-        span.end-date
-          padding-top: 35px!important
-        span.arrow
-          top: 12px!important
+    max-width: 630px
 
 @media (max-width: 768px)
   .home__search-form
-    .datepicker
-      max-width: 100%
-      flex-wrap: wrap
-      background: none
-      box-shadow: none
-      margin: 0
-      label
-        width: 100%!important
-        border-radius: 4px
-        &:after
-          display: none
-        input
-          border-radius: 4px
-          border: 2px solid transparent
-          padding-right: 15px
-          &:active, &:focus
-            border-color: $orange
 
-        &.date-label
-          margin-top: 8px
-
-        &.has-error
-          input
-            border-color: $red
-
-          span.error-text
-            font-size: 12px
-            position: relative
-            top: 0
-            padding: 5px 0 0
-
-    .submit
+    &__submit
       margin: 8px auto 0
       label
         width: 100%
