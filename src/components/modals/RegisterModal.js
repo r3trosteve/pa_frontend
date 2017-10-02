@@ -11,11 +11,52 @@ export default class RegisterModal extends Component {
 	constructor() {
 		super();
 		this.state = {
+			name: '',
+			email: '',
+			password: '',
+			passwordConfirm: '',
+			errors: {},
 			travelerChecked: true,
 			parkingLotChecked: false
 		};
-		this.changeChecked = this.changeChecked.bind(this);
 
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.changeChecked = this.changeChecked.bind(this);
+	}
+
+	handleChange(e) {
+		if (this.state.errors[e.target.name]) {
+			let errors = Object.assign({}, this.state.errors);
+			delete errors[e.target.name];
+			this.setState({
+				[e.target.name]: e.target.value,
+				errors
+			});
+		} else {
+			this.setState({ [e.target.name]: e.target.value });
+		}
+	}
+
+	handleSubmit(e) {
+		e.preventDefault();
+
+		// validation
+		let errors = {};
+		if (this.state.name === '') errors.name = " can't be empty";
+		if (this.state.email === '') errors.email = " can't be empty";
+		if (this.state.password === '') errors.password = " can't be empty";
+		if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
+		if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm) errors.passwordConfirm = " doesn't match password above";
+		this.setState({ errors });
+		const isValid = Object.keys(errors).length === 0;
+
+		if (isValid) {
+			const { email, password } = this.state;
+
+			// api request
+			alert('Auth request goes here');
+		}
 	}
 
 	changeChecked() {
@@ -46,28 +87,28 @@ export default class RegisterModal extends Component {
 
 							<form onSubmit={this.handleSubmit}>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.name })}>
 									Name
-									<input type="text"/>
-									{/*<span className="error-text">{this.state.errors.email}</span>*/}
+									<span className="error-text">{this.state.errors.name}</span>
+									<input type="text" name="name" onChange={this.handleChange} />
 								</label>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.email })}>
 									Email
-									<input type="email" name="email"/>
-									{/*<span className="error-text">{this.state.errors.password}</span>*/}
+									<span className="error-text">{this.state.errors.email}</span>
+									<input type="email" name="email" onChange={this.handleChange} />
 								</label>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.password })}>
 									Password
-									<input type="password"/>
-									{/*<span className="error-text">{this.state.errors.email}</span>*/}
+									<span className="error-text">{this.state.errors.password}</span>
+									<input type="password" name="password" onChange={this.handleChange} />
 								</label>
 
-								<label>
+								<label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
 									Confirm password
-									<input type="email" name="email"/>
-									{/*<span className="error-text">{this.state.errors.password}</span>*/}
+									<span className="error-text">{this.state.errors.passwordConfirm}</span>
+									<input type="password" name="passwordConfirm" onChange={this.handleChange} />
 								</label>
 
 								<div className="register-as">

@@ -50,7 +50,7 @@ export default class LoginModal extends Component {
 			const { email, password } = this.state;
 
 			// api request
-			alert('Login: ' + email + ' Password: ' + password);
+			alert('Auth request goes here');
 		}
 	}
 
