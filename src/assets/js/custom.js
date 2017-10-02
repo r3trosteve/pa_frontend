@@ -1,5 +1,9 @@
-// $('.modal').on('show', function () {
-// 	$('.modal').not($(this)).each(function () {
-// 		$(this).modal('hide');
-// 	});
-// });
+
+$(window).scroll(function () {
+	let posYZero = 0;
+	let wScrollTop = $(window).scrollTop();
+
+	$('.home__search').css({
+		'background-position-y': posYZero + wScrollTop/3
+	});
+});
