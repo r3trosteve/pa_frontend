@@ -5,6 +5,11 @@ import { loadAirports } from 'actions/airports';
 import { getParkingLots } from 'actions/parking-lots';
 import AirportParkingLot from 'components/airport-parking/AirportParkingLot';
 import AirportParkingSearchForm from 'components/airport-parking/AirportParkingSearchForm';
+import GoogleMapReact from 'google-map-react';
+
+// google map mark
+const GoogleMapMark = (props) => <div><i className="ion-ios-location">${props.price}</i></div>;
+// end
 
 class AirportParkingResults extends Component {
 
@@ -13,7 +18,6 @@ class AirportParkingResults extends Component {
 
 		this.showNothingFound = this.showNothingFound.bind(this);
 		this.showLots = this.showLots.bind(this);
-
 	}
 
 	componentDidMount() {
@@ -34,9 +38,38 @@ class AirportParkingResults extends Component {
 
 	showLots(parkingLots) {
 		return (
-			parkingLots.map((parkingLot, index) => {
-				return <AirportParkingLot key={index}  parkingLot={parkingLot} /> ;
-			})
+			<div>
+
+				<div className="col-md-8">
+					{parkingLots.map((parkingLot, index) => {
+						return <AirportParkingLot
+							key={index}
+							parkingLot={parkingLot}
+						/>;
+					})}
+				</div>
+
+				<div className="col-md-4">
+
+					<div style={{width: '100%', height: '600px'}}>
+						<GoogleMapReact
+							center={{lat: 33.640411, lng: -84.419853}}
+							zoom={13}
+						>
+							{parkingLots.map((parkingLot, index) => {
+								return <GoogleMapMark
+									key={index}
+									lat={parkingLot.lat}
+									lng={parkingLot.lng}
+									price={parkingLot.price}
+								/>;
+							})}
+						</GoogleMapReact>
+					</div>
+
+				</div>
+
+			</div>
 		);
 	}
 

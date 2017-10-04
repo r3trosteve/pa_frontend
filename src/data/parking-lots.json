@@ -14,7 +14,9 @@
       "Online Reservations",
       "Valet Parking"
     ],
-    "image": "https://www.pnf.com/-/media/pnf/backgrounds/fpo-location-hero.ashx?h=981&w=2749&la=en&hash=FAC8017AA9C4AB1590C1F925B6D4E15DF2873A69"
+    "image": "https://www.pnf.com/-/media/pnf/backgrounds/fpo-location-hero.ashx?h=981&w=2749&la=en&hash=FAC8017AA9C4AB1590C1F925B6D4E15DF2873A69",
+    "lat": 33.652485,
+    "lng": -84.473903
   },
   {
     "airport": "Atlanta",
@@ -32,22 +34,8 @@
       "Valet Parking",
       "24-Hour Access"
     ],
-    "image": "https://productimages.nimbledeals.com/nimblebuy/d86dc9a75da18620c026e7ca3b9fa_0"
-  },
-  {
-    "airport": "New York",
-    "name": "Airpark",
-    "address": "153-44 South Conduit Ave., Jamaica, NY 11434",
-    "price": 90,
-    "distance": 5,
-    "type": "Self-park",
-    "shuttleFrequency": 5,
-    "description": "Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.",
-    "available": true,
-    "options": [
-      "Luggage Assistance",
-      "Online Reservations"
-    ],
-    "image": "https://dz5vhvq2e26ss.cloudfront.net/media/image/100571a58335bb5f4.84235382.png"
+    "image": "https://productimages.nimbledeals.com/nimblebuy/d86dc9a75da18620c026e7ca3b9fa_0",
+    "lat": 33.647187,
+    "lng": -84.453490
   }
 ]
