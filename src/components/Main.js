@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from 'components/home/HomePage';
 import AirportParkingPage from 'components/airport-parking/AirportParkingPage';
+import AirportParkingDetailsPage from 'components/airport-parking-details/AirportParkingDetailsPage';
 
 export default class Main extends Component {
 	render() {
@@ -13,6 +14,7 @@ export default class Main extends Component {
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route exact path="/airport-parking-results" component={AirportParkingPage} />
+					<Route exact path="/airport-parking-results/1" component={AirportParkingDetailsPage} />
 				</Switch>
 			</div>
 		);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class AirportParkingLot extends Component {
 	render() {
@@ -59,9 +60,9 @@ export default class AirportParkingLot extends Component {
 
 							<div className="airport-parking__lot__price">
 								<p>${this.props.parkingLot.price}</p>
-								<a href="#" className="btn-custom">
+								<Link to={'/airport-parking-results/1'} className="btn-custom">
 									View details
-								</a>
+								</Link>
 							</div>
 
 						</div>
