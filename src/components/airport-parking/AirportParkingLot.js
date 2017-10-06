@@ -71,14 +71,6 @@ export default class AirportParkingLot extends Component {
 
 					</div>
 
-					{/*options*/}
-
-					{/*<div className="airport-parking__lot__options">*/}
-						{/*{this.props.parkingLot.options.map((option, index) => {*/}
-							{/*return <p key={index}>{option}</p>;*/}
-						{/*})}*/}
-					{/*</div>*/}
-
 				</div>
 
 				{/*description*/}
@@ -86,6 +78,19 @@ export default class AirportParkingLot extends Component {
 
 				<div className="airport-parking__lot__description hidden-xs">
 					<p>{this.props.parkingLot.description}</p>
+				</div>
+
+				{/*options*/}
+
+				<div className="airport-parking__lot__options hidden-xs">
+					{this.props.parkingLot.options.map((option, index) => {
+						return (
+							<p key={index} className="airport-parking__lot__option-text">
+								<i className="ion-ios-checkmark"></i>
+								{option}
+							</p>
+						);
+					})}
 				</div>
 
 			</div>

@@ -81,8 +81,6 @@
         width: 1px
 
       .react-autosuggest__suggestions-container--open
-        ul.react-autosuggest__suggestions-list
-          margin: 0!important
         position: absolute
         left: 0
         top: 100%
@@ -94,6 +92,7 @@
         opacity: 0
         animation: fade-in-top 0.5s forwards
         z-index: 10
+        overflow: hidden
         span
           color: $blue-op
           font-size: 15px
@@ -101,10 +100,16 @@
           padding: 7px 45px
           display: block
           text-transform: uppercase
+          animation: fade-in-top 0.5s forwards
+          animation-delay: 0.2s
+          transform: translateY(30px)
+          opacity: 0
           &:hover
             background: $orange
             cursor: pointer
             color: white
+        ul.react-autosuggest__suggestions-list
+          margin: 0!important
 
     &.date-label
       width: 60%

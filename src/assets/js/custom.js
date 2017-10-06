@@ -1,4 +1,6 @@
 
+
+
 $(window).scroll(function () {
 	let posYZero = 0;
 	let wScrollTop = $(window).scrollTop();
@@ -6,4 +8,5 @@ $(window).scroll(function () {
 	$('.home__search').css({
 		'background-position-y': posYZero + wScrollTop/3
 	});
+
 });
