@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 export default class AirportParkingLot extends Component {
 	render() {
 		return (
-			<div className="airport-parking__lot">
+			<div className={classnames('airport-parking__lot', { 'hidden-xs hidden-sm': this.props.activeMobileTabMap })}>
 
 				<div className="airport-parking__lot__content">
 
 					{/*row*/}
 
 					<div className="airport-parking__lot__row">
+
+						{/*image*/}
+
+						<div className="airport-parking__lot__image">
+							<img src={this.props.parkingLot.image} alt={this.props.parkingLot.name} />
+						</div>
 
 						{/*left*/}
 
@@ -61,8 +68,6 @@ export default class AirportParkingLot extends Component {
 
 					</div>
 
-					{/*description*/}
-
 					{/*options*/}
 
 					{/*<div className="airport-parking__lot__options">*/}
@@ -73,8 +78,10 @@ export default class AirportParkingLot extends Component {
 
 				</div>
 
+				{/*description*/}
 
-				<div className="airport-parking__lot__description">
+
+				<div className="airport-parking__lot__description hidden-xs">
 					<p>{this.props.parkingLot.description}</p>
 				</div>
 

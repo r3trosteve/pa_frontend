@@ -78,19 +78,19 @@ class AirportParkingResults extends Component {
 
 						<ul className="airport-parking__mobile-tabs visible-xs visible-sm">
 							<li
-								className={classnames('airport-parking__mobile-tabs__map', { 'active': this.state.activeMobileTabMap })}
-								onClick={this.mapTabActive}
-							>
-								<span>
-									<i className="fa fa-map" aria-hidden="true"></i> Map
-								</span>
-							</li>
-							<li
 								className={classnames('airport-parking__mobile-tabs__list', { 'active': this.state.activeMobileTabList })}
 								onClick={this.listTabActive}
 							>
 								<span>
 									<i className="fa fa-list" aria-hidden="true"></i> List View
+								</span>
+							</li>
+							<li
+								className={classnames('airport-parking__mobile-tabs__map', { 'active': this.state.activeMobileTabMap })}
+								onClick={this.mapTabActive}
+							>
+								<span>
+									<i className="fa fa-map" aria-hidden="true"></i> Map
 								</span>
 							</li>
 						</ul>
@@ -99,6 +99,7 @@ class AirportParkingResults extends Component {
 
 						{parkingLots.map((parkingLot, index) => {
 							return <AirportParkingLot
+								activeMobileTabMap={this.state.activeMobileTabMap}
 								key={index}
 								parkingLot={parkingLot}
 							/>;
