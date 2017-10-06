@@ -3,9 +3,6 @@ import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js';
-import 'assets/styles/main.sass';
 import store from 'store';
 import App from 'components/App';
 

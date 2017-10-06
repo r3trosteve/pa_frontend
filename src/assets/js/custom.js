@@ -1,6 +1,4 @@
 
-
-
 $(window).scroll(function () {
 	let posYZero = 0;
 	let wScrollTop = $(window).scrollTop();
