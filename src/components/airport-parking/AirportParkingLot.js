@@ -7,14 +7,6 @@ export default class AirportParkingLot extends Component {
 		return (
 			<div className="airport-parking__lot">
 
-				{/*image*/}
-
-				<div className="airport-parking__lot__image">
-					<img src={this.props.parkingLot.image} alt={this.props.parkingLot.name} />
-				</div>
-
-				{/*content*/}
-
 				<div className="airport-parking__lot__content">
 
 					{/*row*/}
@@ -71,10 +63,6 @@ export default class AirportParkingLot extends Component {
 
 					{/*description*/}
 
-					<div className="airport-parking__lot__description">
-						<p>{this.props.parkingLot.description}</p>
-					</div>
-
 					{/*options*/}
 
 					{/*<div className="airport-parking__lot__options">*/}
@@ -83,6 +71,11 @@ export default class AirportParkingLot extends Component {
 						{/*})}*/}
 					{/*</div>*/}
 
+				</div>
+
+
+				<div className="airport-parking__lot__description">
+					<p>{this.props.parkingLot.description}</p>
 				</div>
 
 			</div>

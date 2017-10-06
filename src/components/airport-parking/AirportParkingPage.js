@@ -6,6 +6,7 @@ import { getParkingLots } from 'actions/parking-lots';
 import AirportParkingLot from 'components/airport-parking/AirportParkingLot';
 import AirportParkingSearchForm from 'components/airport-parking/AirportParkingSearchForm';
 import GoogleMapReact from 'google-map-react';
+import classnames from 'classnames';
 
 // google map mark
 const GoogleMapMark = (props) => <div><i className="ion-ios-location">${props.price}</i></div>;
@@ -18,6 +19,28 @@ class AirportParkingResults extends Component {
 
 		this.showNothingFound = this.showNothingFound.bind(this);
 		this.showLots = this.showLots.bind(this);
+		this.mapTabActive = this.mapTabActive.bind(this);
+		this.listTabActive = this.listTabActive.bind(this);
+
+		this.state = {
+			activeMobileTabList: true,
+			activeMobileTabMap: false
+		};
+
+	}
+
+	mapTabActive() {
+		this.setState({
+			activeMobileTabList: false,
+			activeMobileTabMap: true
+		});
+	}
+
+	listTabActive() {
+		this.setState({
+			activeMobileTabList: true,
+			activeMobileTabMap: false
+		});
 	}
 
 	componentDidMount() {
@@ -38,38 +61,75 @@ class AirportParkingResults extends Component {
 
 	showLots(parkingLots) {
 		return (
-			<div>
+			<section className="airport-parking__lot-section">
 
-				<div className="col-md-8">
-					{parkingLots.map((parkingLot, index) => {
-						return <AirportParkingLot
-							key={index}
-							parkingLot={parkingLot}
-						/>;
-					})}
-				</div>
+				<div className="airport-parking__lot-section__row">
 
-				<div className="col-md-4">
+					<div className="airport-parking__lot-section__column-big">
 
-					<div style={{width: '100%', height: '600px'}}>
-						<GoogleMapReact
-							center={{lat: 33.640411, lng: -84.419853}}
-							zoom={13}
-						>
-							{parkingLots.map((parkingLot, index) => {
-								return <GoogleMapMark
-									key={index}
-									lat={parkingLot.lat}
-									lng={parkingLot.lng}
-									price={parkingLot.price}
-								/>;
-							})}
-						</GoogleMapReact>
+						<AirportParkingSearchForm
+							airports={this.props.airports}
+							airportName={this.props.airportName}
+							startDate={this.props.startDate}
+							endDate={this.props.endDate}
+						/>
+
+						{/*tabs*/}
+
+						<ul className="airport-parking__mobile-tabs visible-xs visible-sm">
+							<li
+								className={classnames('airport-parking__mobile-tabs__map', { 'active': this.state.activeMobileTabMap })}
+								onClick={this.mapTabActive}
+							>
+								<span>
+									<i className="fa fa-map" aria-hidden="true"></i> Map
+								</span>
+							</li>
+							<li
+								className={classnames('airport-parking__mobile-tabs__list', { 'active': this.state.activeMobileTabList })}
+								onClick={this.listTabActive}
+							>
+								<span>
+									<i className="fa fa-list" aria-hidden="true"></i> List View
+								</span>
+							</li>
+						</ul>
+
+						{/*lots*/}
+
+						{parkingLots.map((parkingLot, index) => {
+							return <AirportParkingLot
+								key={index}
+								parkingLot={parkingLot}
+							/>;
+						})}
+					</div>
+
+					{/*map*/}
+
+					<div className={classnames('airport-parking__lot-section__column-small', { 'hidden-xs hidden-sm': this.state.activeMobileTabList })}>
+
+						<div className="map" style={{width: '100%', height: '100vh'}}>
+							<GoogleMapReact
+								center={{lat: 33.640411, lng: -84.419853}}
+								zoom={11}
+							>
+								{parkingLots.map((parkingLot, index) => {
+									return <GoogleMapMark
+										key={index}
+										lat={parkingLot.lat}
+										lng={parkingLot.lng}
+										price={parkingLot.price}
+									/>;
+								})}
+							</GoogleMapReact>
+						</div>
+
 					</div>
 
 				</div>
 
-			</div>
+			</section>
 		);
 	}
 
@@ -78,13 +138,6 @@ class AirportParkingResults extends Component {
 			<div className="airport-parking">
 
 				<div className="container airport-parking__container">
-
-					<AirportParkingSearchForm
-						airports={this.props.airports}
-						airportName={this.props.airportName}
-						startDate={this.props.startDate}
-						endDate={this.props.endDate}
-					/>
 
 					{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}
 
