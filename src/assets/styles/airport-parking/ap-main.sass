@@ -73,6 +73,9 @@
       &__column-small
         width: 100%
         height: 100vh
+        border-top-right-radius: 0
+        border-bottom-left-radius: 4px
+
 
     &__mobile-tabs
       display: flex!important
@@ -115,7 +118,10 @@
         font-size: 50px
         margin-bottom: 10px
 
-@media (max-width: 768px)
+@media (max-width: 767px)
   .airport-parking
     padding: 110px 0 45px
     background: $blue
+
+    &__lot-section
+      border: none

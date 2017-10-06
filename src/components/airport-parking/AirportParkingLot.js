@@ -27,7 +27,10 @@ export default class AirportParkingLot extends Component {
 							{/*header*/}
 
 							<div className="airport-parking__lot__header">
-								<h2>{this.props.parkingLot.name}</h2>
+								<h2>
+									{this.props.parkingLot.name}
+									<span>${this.props.parkingLot.price}</span>
+									</h2>
 								<p>{this.props.parkingLot.address}</p>
 							</div>
 
