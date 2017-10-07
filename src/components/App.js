@@ -1,6 +1,4 @@
-require('bootstrap/dist/css/bootstrap.css');
-require('bootstrap/dist/js/bootstrap.js');
-require('assets/styles/main.sass');
+import 'assets/styles/main.sass';
 
 import React, { Component } from 'react';
 import Header from 'components/common/header/Header';

@@ -9,7 +9,10 @@ import GoogleMapReact from 'google-map-react';
 import classnames from 'classnames';
 
 // google map mark
-const GoogleMapMark = (props) => <div><i className="ion-ios-location">${props.price}</i></div>;
+const GoogleMapMark = (props) =>
+	<div className="airport-parking__map-price">
+		<span><i className="fa fa-caret-down" aria-hidden="true"></i>${props.price}</span>
+	</div>;
 // end
 
 class AirportParkingResults extends Component {
@@ -112,8 +115,8 @@ class AirportParkingResults extends Component {
 
 						<div className="map" style={{width: '100%', height: '100vh'}}>
 							<GoogleMapReact
-								center={{lat: 33.640411, lng: -84.419853}}
-								zoom={11}
+								center={{lat: 33.602485, lng: -84.473903}}
+								zoom={12}
 							>
 								{parkingLots.map((parkingLot, index) => {
 									return <GoogleMapMark

@@ -1,7 +1,7 @@
 
 .airport-parking
   padding: 110px 0 150px
-  background: white
+  background: $white
   min-height: calc(100vh - 198px)
 
   &__container
@@ -28,6 +28,7 @@
 
     &__column-big
       padding-right: 0
+      width: 895px
 
     &__column-small
       padding-left: 0
@@ -45,6 +46,27 @@
         right: 0
         top: 0
         bottom: 0
+
+  &__map-price
+    font-size: 16px
+    color: white
+    position: relative
+    padding: 5px 0
+    min-width: 65px
+    border-radius: 2px
+    background: $orange
+    text-align: center
+    span
+      display: block
+      font-family: 'Montserrat-Regular'
+      letter-spacing: 0.5px
+      i
+        position: absolute
+        bottom: -10px
+        color: $orange
+        left: 45%
+
+
 
 //responsiveness
 
@@ -79,7 +101,7 @@
 
     &__mobile-tabs
       margin: 0 auto
-      border-radius: 4px
+      box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
       li
         width: 50%
         text-transform: uppercase
@@ -116,8 +138,7 @@
 
 @media (max-width: 767px)
   .airport-parking
-    padding: 110px 0 45px
-    background: $blue
+    padding: 70px 0 45px
 
     &__lot-section
       border: none
