@@ -21,7 +21,7 @@ import ta43x from 'assets/images/home/top-airports/ta-4@3x.png';
 export default class HomeTopAirports extends Component {
 	render() {
 		return (
-			<section className="home__top-airports">
+			<section className="home__top-airports section-pad">
 
 				<div className="container home__top-airports__container">
 

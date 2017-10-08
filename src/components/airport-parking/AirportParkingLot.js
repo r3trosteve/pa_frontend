@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+import InfoList from 'components/common/info-list';
 
 export default class AirportParkingLot extends Component {
 	render() {
@@ -35,24 +36,11 @@ export default class AirportParkingLot extends Component {
 							</div>
 
 							{/*info list*/}
-
-							<ul className="airport-parking__lot__list">
-								<li className="airport-parking__lot__list-item">
-									<i className="fa fa-map" aria-hidden="true"></i>
-									Distance from airport:
-									<span>{this.props.parkingLot.distance} mile(s)</span>
-								</li>
-								<li className="airport-parking__lot__list-item">
-									<i className="fa fa-car" aria-hidden="true"></i>
-									Parking type:
-									<span>{this.props.parkingLot.type}</span>
-								</li>
-								<li className="airport-parking__lot__list-item">
-									<i className="fa fa-clock-o" aria-hidden="true"></i>
-									Shuttle frequency:
-									<span>{this.props.parkingLot.shuttleFrequency}</span>
-								</li>
-							</ul>
+							<InfoList
+								distance={this.props.parkingLot.distance}
+                                type={this.props.parkingLot.type}
+								shuttleFrequency={this.props.parkingLot.shuttleFrequency}
+							/>
 
 						</div>
 
@@ -62,7 +50,7 @@ export default class AirportParkingLot extends Component {
 
 							<div className="airport-parking__lot__price">
 								<p>${this.props.parkingLot.price}</p>
-								<Link to={'/airport-parking-results/1'} className="btn-custom">
+								<Link to={'/airport-parking-details'} className="btn-custom">
 									View details
 								</Link>
 							</div>

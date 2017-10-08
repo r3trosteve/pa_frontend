@@ -1,4 +1,5 @@
 import 'assets/styles/main.sass';
+import 'assets/js/custom';
 
 import React, { Component } from 'react';
 import Header from 'components/common/header/Header';

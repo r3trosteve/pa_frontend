@@ -22,7 +22,7 @@ import hiw313x from 'assets/images/home/how-it-works/hiw-31@3x.png';
 export default class HomeHowItWorks extends Component {
 	render() {
 		return (
-			<section className="home__how-it-works">
+			<section className="home__how-it-works section-pad">
 
 				<div className="container home__how-it-works__container">
 

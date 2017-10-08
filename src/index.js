@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from 'store';
 import App from 'components/App';
 
+
 const renderApp = Component => {
 	render(
 		<Provider key={module.hot ? Date.now() : store} store={store}>

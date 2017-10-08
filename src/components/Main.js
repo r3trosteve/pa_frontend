@@ -14,7 +14,7 @@ export default class Main extends Component {
 				<Switch>
 					<Route exact path="/" component={HomePage} />
 					<Route exact path="/airport-parking-results" component={AirportParkingPage} />
-					<Route exact path="/airport-parking-results/1" component={AirportParkingDetailsPage} />
+					<Route exact path="/airport-parking-details" component={AirportParkingDetailsPage} />
 				</Switch>
 			</div>
 		);
