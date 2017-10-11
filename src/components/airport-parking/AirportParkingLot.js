@@ -50,7 +50,7 @@ export default class AirportParkingLot extends Component {
 
 							<div className="airport-parking__lot__price">
 								<p>${this.props.parkingLot.price}</p>
-								<Link to={'/airport-parking-details'} className="btn-custom">
+								<Link to={'/airport_parking_details'} className="btn-custom">
 									View details
 								</Link>
 							</div>

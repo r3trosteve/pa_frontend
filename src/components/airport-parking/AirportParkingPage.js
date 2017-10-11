@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadAirports } from 'actions/airports';
-import { getParkingLots } from 'actions/parking-lots';
+import { getSearch, getParkingLots } from 'actions/parking-lots';
 import AirportParkingLot from 'components/airport-parking/AirportParkingLot';
 import AirportParkingSearchForm from 'components/airport-parking/AirportParkingSearchForm';
 import GoogleMapReact from 'google-map-react';
@@ -48,7 +48,8 @@ class AirportParkingResults extends Component {
 
 	componentDidMount() {
 		this.props.loadAirports();
-		this.props.getParkingLots(this.props.airportName);
+		this.props.getParkingLots();
+		this.props.getSearch(this.props.airportId);
 	}
 
 	showNothingFound() {
@@ -159,13 +160,15 @@ AirportParkingResults.propTypes = {
 	location: PropTypes.object.isRequired,
 	loadAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired,
-	getParkingLots: PropTypes.func.isRequired,
+    getSearch: PropTypes.func.isRequired,
+    getParkingLots: PropTypes.func.isRequired,
 	parkingLots: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
 	return {
 		airportName: ownProps.location.state.searchData.airportName,
+        airportId: ownProps.location.state.searchData.airportId,
 		startDate: ownProps.location.state.searchData.startDate,
 		endDate: ownProps.location.state.searchData.endDate,
 		airports: state.airportsReducer,
@@ -173,4 +176,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default connect(mapStateToProps, { loadAirports, getParkingLots })(AirportParkingResults);
+export default connect(mapStateToProps, { loadAirports, getSearch, getParkingLots })(AirportParkingResults);

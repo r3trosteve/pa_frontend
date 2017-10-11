@@ -8,6 +8,9 @@ import AirportParkingDetailsReviews from 'components/airport-parking-details/Rev
 export default class AirportParkingDetailsPage extends Component {
 
     componentDidMount() {
+
+        // jquery for fixed summary
+
 		let apdSummary = $('.ap-details__summary');
 		let apdSummaryTop = apdSummary.offset().top - 20;
 
@@ -42,6 +45,8 @@ export default class AirportParkingDetailsPage extends Component {
         $(window).resize(function () {
             dynamicWidth();
         });
+
+        // end
 
     }
 

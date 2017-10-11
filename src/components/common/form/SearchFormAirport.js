@@ -42,6 +42,7 @@ export default class HomeSearchFormAirport extends Component {
 					renderSuggestion={renderSuggestion}
 					inputProps={inputProps}
 					className="airport-name"
+					onSuggestionSelected={this.props.handleAirportSelected}
 				/>
 
 				<span className="error-text">{this.props.errors.airportName}</span>
@@ -58,5 +59,6 @@ HomeSearchFormAirport.propTypes = {
 	getAirportSuggestions: PropTypes.func.isRequired,
 	clearAirportSuggestions: PropTypes.func.isRequired,
 	handleAirportChange: PropTypes.func.isRequired,
+    handleAirportSelected: PropTypes.func,
 	errors: PropTypes.object.isRequired
 };

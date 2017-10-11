@@ -15,7 +15,6 @@ export const loadAirports = () => {
 		})
       .then(response => response.json())
 			.then(json => {
-				console.log(json);
 				dispatch(loadAirportsSuccess(json.airports));
 			})
 			.catch(error => {
