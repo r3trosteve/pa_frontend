@@ -1,6 +1,3 @@
-import axios from 'axios';
-import airportsJSON from 'data/airports.json';
-
 export const loadAirportsSuccess = (airports) => {
 	return {
 		type: 'LOAD_AIRPORTS_SUCCESS',
@@ -9,13 +6,20 @@ export const loadAirportsSuccess = (airports) => {
 };
 
 export const loadAirports = () => {
-	return (dispatch) => {
-		return axios.get(airportsJSON)
-			.then((airports) => {
-				dispatch(loadAirportsSuccess(airports.data));
+  return dispatch => {
+    return fetch('http://staging.back.parkingaccess.com/airports', {
+			method: 'get',
+			headers: {
+				'Accept': 'application/json; version=1'
+			}
+		})
+      .then(response => response.json())
+			.then(json => {
+				console.log(json);
+				dispatch(loadAirportsSuccess(json.airports));
 			})
-			.catch((error) => {
+			.catch(error => {
 				throw(error);
 			});
-	};
-};
+  }
+}
