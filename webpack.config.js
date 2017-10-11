@@ -69,12 +69,12 @@ module.exports = {
 				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
-			{
-				enforce: 'pre',
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: 'eslint-loader'
-			},
+			// {
+            // 	enforce: 'pre',
+            // 	test: /\.js$/,
+            // 	exclude: /node_modules/,
+            // 	use: 'eslint-loader'
+            // },
 			// IMAGES
 			{
 				test: /\.(png|jpe?g|gif|svg)$/,

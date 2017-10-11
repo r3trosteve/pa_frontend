@@ -32,37 +32,29 @@ export default class HomeAirportsList extends Component {
 
 			<div className="home__top-airports__list-section">
 
-				<div className="row home__top-airports__row home__top-airports__row--list-part hidden-xs">
+				<div className="row home__top-airports__row home__top-airports__row--list-part hidden-sm hidden-xs">
 
 					{/*1*/}
 
-					<div className="col-md-3 col-sm-6 home__top-airports__column">
+					<div className="col-md-4 col-sm-4 home__top-airports__column">
 						<ul className="home__top-airports__list">
-							{this.props.airports.slice(0, 20).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(0, 9).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
 					{/*2*/}
 
-					<div className="col-md-3 col-sm-6 home__top-airports__column">
+					<div className="col-md-4 col-sm-4 home__top-airports__column">
 						<ul className="home__top-airports__list">
-							{this.props.airports.slice(20, 40).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(9, 18).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
 					{/*3*/}
 
-					<div className="col-md-3 col-sm-6 home__top-airports__column">
+					<div className="col-md-4 col-sm-4 home__top-airports__column">
 						<ul className="home__top-airports__list">
-							{this.props.airports.slice(40, 60).map((airport, index) => this.showList(index, airport))}
-						</ul>
-					</div>
-
-					{/*4*/}
-
-					<div className="col-md-3 col-sm-6 home__top-airports__column">
-						<ul className="home__top-airports__list">
-							{this.props.airports.slice(60, 80).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(18, 25).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
@@ -70,14 +62,14 @@ export default class HomeAirportsList extends Component {
 
 				{/*mobile*/}
 
-				<div className="row home__top-airports__row home__top-airports__row--list-part visible-xs">
+				<div className="row home__top-airports__row home__top-airports__row--list-part visible-sm visible-xs">
 
 					<div className="col-md-3 col-sm-6 home__top-airports__column">
 						<ul className="home__top-airports__list">
 
 							{
 								this.state.visible ?
-								this.props.airports.slice(0, 80).map((airport, index) => this.showList(index, airport)) :
+								this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport)) :
 								this.props.airports.slice(0, 10).map((airport, index) => this.showList(index, airport))
 							}
 

@@ -9,5 +9,5 @@ export function getSuggestions(value, airports) {
 
 	const regex = new RegExp('^' + escapedValue, 'i');
 
-	return airports.filter(airport => regex.test(airport.name));
+	return airports.filter(airport => regex.test(airport.name) || regex.test(airport.code));
 }

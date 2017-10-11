@@ -18,7 +18,6 @@
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
-    "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
     "eslint": "^4.6.1",
@@ -26,7 +25,6 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^3.0.0",
-    "faker": "^4.1.0",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
@@ -42,7 +40,6 @@
     "webpack-dev-server": "^2.8.1"
   },
   "dependencies": {
-    "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
     "bootstrap-daterangepicker": "^2.1.25",
     "classnames": "^2.2.5",

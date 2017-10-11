@@ -1,4 +1,3 @@
-import axios from 'axios';
 import parkingLotsJSON from 'data/parking-lots.json';
 
 export const getParkingLotsSuccess = (parkingLots, airportName) => {
@@ -10,9 +9,10 @@ export const getParkingLotsSuccess = (parkingLots, airportName) => {
 
 export const getParkingLots = (airportName) => {
 	return (dispatch) => {
-		return axios.get(parkingLotsJSON)
-			.then((parkingLots) => {
-				dispatch(getParkingLotsSuccess(parkingLots.data, airportName));
+		return fetch(parkingLotsJSON)
+            .then(response => response.json())
+			.then((json) => {
+				dispatch(getParkingLotsSuccess(json.data, airportName));
 			})
 			.catch((error) => {
 				throw(error);
