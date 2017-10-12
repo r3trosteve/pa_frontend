@@ -9,7 +9,7 @@
     border-radius: 4px
     background-color: white
     box-shadow: $shadow-main
-    padding: 20px 25px 20px
+    padding: 20px 25px
     overflow: hidden
     &--no-pad
       padding: 0
@@ -18,4 +18,44 @@
 
     &--summary
       position: relative
+
+  //average rating
+
+  &__average-rating
+    display: flex
+
+    &__num
+      display: block
+      b
+        font-family: 'Montserrat-Light'
+        color: $blue
+        font-size: 30px
+        letter-spacing: 3px
+
+    &__stars
+      padding-left: 25px
+
+      .stars
+        span
+          font-size: 20px!important
+          display: inline-block
+          margin-right: 2px
+          text-align: center
+
+      p
+        font-size: 13px
+        font-weight: 600
+        text-align: left
+        color: #0274d8
+        text-transform: uppercase
+        margin-top: 6px
+
+//responsiveness
+@media (max-width: 767px)
+  .ap-details
+    padding: 70px 0 45px
+    .card-custom
+      padding: 15px
+      &--no-pad
+        padding: 0
 

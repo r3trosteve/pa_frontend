@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import AirportParkingDetailsInfo from 'components/airport-parking-details/Info';
-import AirportParkingDetailsSummary from 'components/airport-parking-details/Summary';
-import AirportParkingDetailsDetails from 'components/airport-parking-details/Details';
+import AirportParkingDetailsOverview from 'components/airport-parking-details/Overview';
 import AirportParkingDetailsLocation from 'components/airport-parking-details/Location';
+import AirportParkingDetailsDetails from 'components/airport-parking-details/Details';
 import AirportParkingDetailsReviews from 'components/airport-parking-details/Reviews';
+import AirportParkingDetailsSummary from 'components/airport-parking-details/Summary';
+
+
 
 export default class AirportParkingDetailsPage extends Component {
 
@@ -59,6 +62,9 @@ export default class AirportParkingDetailsPage extends Component {
 
 							{/*Info*/}
 							<AirportParkingDetailsInfo />
+
+                            {/*Overview*/}
+                            <AirportParkingDetailsOverview />
 
                             {/*Location*/}
 							<AirportParkingDetailsLocation />

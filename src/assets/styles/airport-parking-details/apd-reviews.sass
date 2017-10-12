@@ -1,0 +1,50 @@
+
+.ap-details__reviews
+
+  &__title
+    margin-bottom: 12px
+
+  //review
+
+  &__review
+    border-top: 1px solid #f5f5f5
+    margin-top: 13px
+    padding-top: 15px
+
+  &__review-header
+    display: flex
+    align-items: center
+
+  &__review-name
+    flex-grow: 1
+
+  &__review-date
+    p
+      font-family: 'Montserrat-Regular'
+
+  &__rating-stars
+    padding-left: 15px
+    .stars
+      span
+        font-size: 14px!important
+        margin: 0 1px
+
+  &__review-body
+    padding-top: 9px
+    p
+      line-height: 21px
+
+
+
+//responsiveness
+@media (max-width: 767px)
+  .ap-details__reviews
+
+    &__review-header
+      flex-wrap: wrap
+
+    &__review-name
+      width: 100%
+      margin-bottom: 5px
+
+

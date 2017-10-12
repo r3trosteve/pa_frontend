@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactStars from 'react-stars';
 
 export default class AirportParkingDetailsInfo extends Component {
 
@@ -13,6 +14,21 @@ export default class AirportParkingDetailsInfo extends Component {
                     <h3 className="title-normal-bold">
                         Hilton Atlanta Airport
                     </h3>
+                </div>
+
+                <div className="ap-details__info__rating">
+                    <ReactStars
+                        className="ap-details__info__rating-stars"
+                        count={5}
+                        value={4.5}
+                        size={24}
+                        color1={'#c1c1c1'}
+                        color2={'#fdb509'}
+                        edit={false}
+                        half={true}
+                    />
+                    <p> |<span>(41</span> reviews) | 3889 Herschel Rd, College Park</p>
+
                 </div>
 
                 {/*info list*/}
