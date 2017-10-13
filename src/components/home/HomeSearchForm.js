@@ -6,7 +6,7 @@ import HomeSearchFormCalendar from 'components/common/form/SearchFormCalendar';
 import { Redirect } from 'react-router-dom';
 import { getSuggestions } from 'utils';
 import { connect } from 'react-redux';
-import { postSearch } from 'actions/parking-lots';
+import { postSearch } from 'actions/search';
 import moment from 'moment';
 
 class HomeSearchForm extends Component {
@@ -22,7 +22,8 @@ class HomeSearchForm extends Component {
 			endDate: '',
 			errors: {},
 			loading: false,
-			redirect: false
+			redirect: false,
+			searchId: ''
 		};
 
 		this.getAirportSuggestions = this.getAirportSuggestions.bind(this);
@@ -102,10 +103,13 @@ class HomeSearchForm extends Component {
 
 		if (isValid) {
 			// api request goes here
-            let { airportName, airportId, startDate, endDate } = this.state;
+            let { airportId, startDate, endDate } = this.state;
 
-            startDate = startDate.format('YYYY-MM-DDTHH:MM');
-            endDate = endDate.format('YYYY-MM-DDTHH:MM');
+            startDate = startDate.format('YYYY-MM-DDTHH:mm');
+            endDate = endDate.format('YYYY-MM-DDTHH:mm');
+
+            //2017-10-26T11:50
+			//2017-10-28T11:00
 
             this.setState({ loading: true });
 
@@ -117,14 +121,8 @@ class HomeSearchForm extends Component {
 			.then(() => this.setState({
 				loading: false,
                 redirect: true,
-                searchData: {
-					airportName,
-					airportId,
-					startDate: startDate.toString(),
-					endDate: endDate.toString()
-				}
 			}))
-			.catch((err) => err.response.json());
+			.catch(err => err.response.json());
 		}
 	}
 
@@ -134,10 +132,12 @@ class HomeSearchForm extends Component {
 
             return <Redirect to={{
                 pathname: 'airport_parking_results',
-                state: { searchData: this.state.searchData }
+                state: { searchData: this.props.searchData }
             }} />;
 
 		} else {
+
+			console.log(this.props.searchData);
 
 			return (
 
@@ -205,7 +205,14 @@ class HomeSearchForm extends Component {
 }
 
 HomeSearchForm.propTypes = {
-	airports: PropTypes.array.isRequired
+	airports: PropTypes.array.isRequired,
+    searchData: PropTypes.object.isRequired
 };
 
-export default connect(null, { postSearch })(HomeSearchForm);
+const mapStateToProps = state => {
+	return {
+		searchData: state.searchReducer
+	};
+};
+
+export default connect(mapStateToProps, { postSearch })(HomeSearchForm);

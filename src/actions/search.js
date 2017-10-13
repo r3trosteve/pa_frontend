@@ -1,26 +1,11 @@
-import parkingLotsJSON from 'data/parking-lots.json';
-
-// GET AIRPORTS
-
-export const getParkingLotsSuccess = parkingLots => {
-	return {
-		type: 'GET_PARKING_LOTS_SUCCESS',
-		parkingLots
-	};
-};
-
-export const getParkingLots = () => {
-	return dispatch => {
-		return fetch(parkingLotsJSON)
-            .then(response => response.json())
-			.then(json => dispatch(getParkingLotsSuccess(json)))
-			.catch((error) => {
-				throw(error);
-			});
-	};
-};
-
 // POST SEARCH
+
+export const postSearchSuccess = data => {
+    return {
+        type: 'POST_SEARCH_SUCCESS',
+        data
+    };
+};
 
 export function postSearch(data) {
     return dispatch => {
@@ -33,6 +18,7 @@ export function postSearch(data) {
             }
         })
 		.then(response => response.json())
+        .then(json => dispatch(postSearchSuccess(json['airport_parking/search'])))
 		.catch(error => {
 			throw(error);
 		});
@@ -40,6 +26,13 @@ export function postSearch(data) {
 }
 
 // GET SEARCH
+
+export const getSearchSuccess = data => {
+    return {
+        type: 'GET_SEARCH_SUCCESS',
+        data
+    };
+};
 
 export function getSearch(id) {
     return dispatch => {
@@ -50,9 +43,8 @@ export function getSearch(id) {
                 'Accept': 'application/json; version=1'
             }
         })
-            .then(response => {
-                response.json();
-			})
+            .then(response => response.json())
+            .then(json => dispatch(getSearchSuccess(json['airport_parking/search'])))
             .catch(error => {
                 throw(error);
             });

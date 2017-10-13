@@ -1,4 +1,4 @@
-export const loadAirportsSuccess = (airports) => {
+export const loadAirportsSuccess = airports => {
 	return {
 		type: 'LOAD_AIRPORTS_SUCCESS',
 		airports
@@ -13,12 +13,10 @@ export const loadAirports = () => {
 				'Accept': 'application/json; version=1'
 			}
 		})
-      .then(response => response.json())
-			.then(json => {
-				dispatch(loadAirportsSuccess(json.airports));
-			})
-			.catch(error => {
-				throw(error);
-			});
-  }
-}
+		.then(response => response.json())
+		.then(json => dispatch(loadAirportsSuccess(json.airports)))
+		.catch(error => {
+			throw(error);
+		});
+  };
+};

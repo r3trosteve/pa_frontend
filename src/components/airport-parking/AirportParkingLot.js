@@ -18,7 +18,7 @@ export default class AirportParkingLot extends Component {
 						{/*image*/}
 
 						<div className="airport-parking__lot__image">
-							<img src={this.props.parkingLot.image} alt={this.props.parkingLot.name} />
+							<img src={this.props.rate.parking_lot.logo_url} alt={this.props.rate.parking_lot.name} />
 						</div>
 
 						{/*left*/}
@@ -29,17 +29,17 @@ export default class AirportParkingLot extends Component {
 
 							<div className="airport-parking__lot__header">
 								<h2>
-									{this.props.parkingLot.name}
-									<span>${this.props.parkingLot.price}</span>
+									{this.props.rate.parking_lot.name}
+									<span>${this.props.rate.price.total}</span>
 									</h2>
-								<p>{this.props.parkingLot.address}</p>
+								<p>{this.props.rate.parking_lot.location.address1} {this.props.rate.parking_lot.location.address2}</p>
 							</div>
 
 							{/*info list*/}
 							<InfoList
-								distance={this.props.parkingLot.distance}
-                                type={this.props.parkingLot.type}
-								shuttleFrequency={this.props.parkingLot.shuttleFrequency}
+								distance={this.props.rate.distance}
+                                type={this.props.rate.name}
+								// shuttleFrequency={this.props.rate.shuttleFrequency}
 							/>
 
 						</div>
@@ -49,7 +49,7 @@ export default class AirportParkingLot extends Component {
 						<div className="airport-parking__lot__column airport-parking__lot__column--price">
 
 							<div className="airport-parking__lot__price">
-								<p>${this.props.parkingLot.price}</p>
+								<p>${this.props.rate.price.total}</p>
 								<Link to={'/airport_parking_details'} className="btn-custom">
 									View details
 								</Link>
@@ -65,13 +65,13 @@ export default class AirportParkingLot extends Component {
 
 
 				<div className="airport-parking__lot__description hidden-xs">
-					<p>{this.props.parkingLot.description}</p>
+					<p>{this.props.rate.terminal_comment}</p>
 				</div>
 
 				{/*options*/}
 
 				<div className="airport-parking__lot__options hidden-xs">
-					{this.props.parkingLot.options.map((option, index) => {
+					{this.props.rate.parking_lot.services.map((option, index) => {
 						return (
 							<p key={index} className="airport-parking__lot__option-text">
 								<i className="ion-ios-checkmark"></i>
@@ -87,5 +87,5 @@ export default class AirportParkingLot extends Component {
 }
 
 AirportParkingLot.propTypes = {
-	parkingLot: PropTypes.object.isRequired
+    rate: PropTypes.object.isRequired
 };

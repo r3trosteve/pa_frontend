@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadAirports } from 'actions/airports';
-import { getSearch, getParkingLots } from 'actions/parking-lots';
+import { getRates } from 'actions/rates';
 import AirportParkingLot from 'components/airport-parking/AirportParkingLot';
 import AirportParkingSearchForm from 'components/airport-parking/AirportParkingSearchForm';
 import GoogleMapReact from 'google-map-react';
@@ -48,8 +48,7 @@ class AirportParkingResults extends Component {
 
 	componentDidMount() {
 		this.props.loadAirports();
-		this.props.getParkingLots();
-		this.props.getSearch(this.props.airportId);
+		this.props.getRates(this.props.searchData.id);
 	}
 
 	showNothingFound() {
@@ -63,7 +62,8 @@ class AirportParkingResults extends Component {
 
 	}
 
-	showLots(parkingLots) {
+	showLots(rates, centerLat, centerLng) {
+
 		return (
 			<section className="airport-parking__lot-section">
 
@@ -73,9 +73,9 @@ class AirportParkingResults extends Component {
 
 						<AirportParkingSearchForm
 							airports={this.props.airports}
-							airportName={this.props.airportName}
-							startDate={this.props.startDate}
-							endDate={this.props.endDate}
+							airportName={this.props.searchData.airport.name}
+							startDate={this.props.searchData.arrive_at}
+							endDate={this.props.searchData.exit_at}
 						/>
 
 						{/*tabs*/}
@@ -101,11 +101,11 @@ class AirportParkingResults extends Component {
 
 						{/*lots*/}
 
-						{parkingLots.map((parkingLot, index) => {
+						{rates.map((rate, index) => {
 							return <AirportParkingLot
 								activeMobileTabMap={this.state.activeMobileTabMap}
 								key={index}
-								parkingLot={parkingLot}
+								rate={rate}
 							/>;
 						})}
 					</div>
@@ -116,15 +116,18 @@ class AirportParkingResults extends Component {
 
 						<div className="map" style={{width: '100%', height: '100vh'}}>
 							<GoogleMapReact
-								center={{lat: 33.602485, lng: -84.473903}}
-								zoom={12}
+								center={{
+									lat: centerLat,
+									lng: centerLng
+								}}
+								zoom={10}
 							>
-								{parkingLots.map((parkingLot, index) => {
+								{rates.map((rate, index) => {
 									return <GoogleMapMark
 										key={index}
-										lat={parkingLot.lat}
-										lng={parkingLot.lng}
-										price={parkingLot.price}
+										lat={rate.parking_lot.location.latitude}
+										lng={rate.parking_lot.location.longitude}
+										price={rate.price.total}
 									/>;
 								})}
 							</GoogleMapReact>
@@ -139,12 +142,18 @@ class AirportParkingResults extends Component {
 	}
 
 	render() {
+
+		const centerLat = parseFloat(this.props.searchData.airport.location.latitude);
+		const centerLng = parseFloat(this.props.searchData.airport.location.longitude);
+
 		return (
 			<div className="airport-parking">
 
 				<div className="container airport-parking__container">
 
-					{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}
+					{this.showLots(this.props.rates, centerLat, centerLng)}
+
+					{/*{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}*/}
 
 				</div>
 
@@ -154,26 +163,18 @@ class AirportParkingResults extends Component {
 }
 
 AirportParkingResults.propTypes = {
-	airportName: PropTypes.string.isRequired,
-	startDate: PropTypes.string.isRequired,
-	endDate: PropTypes.string.isRequired,
-	location: PropTypes.object.isRequired,
 	loadAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired,
-    getSearch: PropTypes.func.isRequired,
-    getParkingLots: PropTypes.func.isRequired,
-	parkingLots: PropTypes.array.isRequired
+    getRates: PropTypes.func.isRequired,
+    rates: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		airportName: ownProps.location.state.searchData.airportName,
-        airportId: ownProps.location.state.searchData.airportId,
-		startDate: ownProps.location.state.searchData.startDate,
-		endDate: ownProps.location.state.searchData.endDate,
+		searchData: ownProps.location.state.searchData,
 		airports: state.airportsReducer,
-		parkingLots: state.parkingLotsReducer
+        rates: state.ratesReducer
 	};
 };
 
-export default connect(mapStateToProps, { loadAirports, getSearch, getParkingLots })(AirportParkingResults);
+export default connect(mapStateToProps, { loadAirports, getRates })(AirportParkingResults);
