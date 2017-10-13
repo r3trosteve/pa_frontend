@@ -103,7 +103,7 @@ class AirportParkingSearchForm extends Component {
 		let errors = {};
 
 		if (airportName === '') errors.airportName = 'Please enter airport name';
-		if (startDate === '') errors.startDate = 'Please enter leaving and returning dates';
+		if (startDate === '') errors.startDate = 'Please enter check-in and check-out dates';
 
 		this.setState({ errors });
 

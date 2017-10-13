@@ -52,7 +52,7 @@ export default class HomeSearchFormCalendar extends Component {
 						<input
 							type="text"
 							name="startDate"
-							placeholder="Leaving date"
+							placeholder="Parking Check-in"
 							readOnly
 							className="airport-date"
 							value={start}
@@ -62,7 +62,7 @@ export default class HomeSearchFormCalendar extends Component {
 					</DatetimeRangePicker>
 
 					<span className="end-date">
-						{end ? end : 'Returning date'}
+						{end ? end : 'Parking Check-out'}
 					</span>
 
 					<span className={classnames('arrow', { 'left-arrow': this.props.startDate })}>
@@ -89,7 +89,7 @@ export default class HomeSearchFormCalendar extends Component {
 						<input
 							type="text"
 							name="startDate"
-							placeholder="Leaving date  ⟶  Returning date"
+							placeholder="Parking Check-in  ⟶  Parking Check-out"
 							readOnly
 							className="airport-date"
 							value={label}

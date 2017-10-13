@@ -37,6 +37,10 @@ class HomeSearchForm extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+    componentDidMount() {
+        $('#search-form-tooltip').tooltip();
+	}
+
 	// airport autocomplete functions
 
 	getAirportSuggestions({ value }) {
@@ -96,7 +100,7 @@ class HomeSearchForm extends Component {
 		let errors = {};
 
 		if (airportName === '') errors.airportName = 'Please enter airport name';
-		if (startDate === '') errors.startDate = 'Please enter leaving and returning dates';
+		if (startDate === '') errors.startDate = 'Please enter check-in and check-out dates';
 
 		this.setState({ errors });
 
@@ -144,7 +148,20 @@ class HomeSearchForm extends Component {
 
 				<form onSubmit={this.handleSubmit} className="home__search-form">
 
-					<div className="search-form">
+					<span
+						className="home__search-form__help hidden-xs"
+						id="search-form-tooltip"
+						data-toggle="tooltip"
+						data-placement="left"
+						title="Choose dates and reservation times based on your
+						departure and return to the parking facility - not your actual flight times."
+					>
+						<b>help?</b>
+					</span>
+
+					<div
+						className="search-form"
+					>
 
 						<HomeSearchFormAirport
 							airportName={this.state.airportName}
@@ -165,12 +182,6 @@ class HomeSearchForm extends Component {
 						/>
 
 					</div>
-
-					<p className="hidden-xs home__search-form__text">
-						Choose dates and reservation times based on your departure and
-						return to the parking facility - not your actual flight times.
-					</p>
-
 					<div className="home__search-form__submit">
 
 						<label>
