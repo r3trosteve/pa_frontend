@@ -37,7 +37,7 @@ export default class AirportParkingLot extends Component {
 
 							{/*info list*/}
 							<InfoList
-								distance={this.props.rate.distance}
+								distance={this.props.rate.distance.toFixed()}
                                 type={this.props.rate.name}
 								// shuttleFrequency={this.props.rate.shuttleFrequency}
 							/>

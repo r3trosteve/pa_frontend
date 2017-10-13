@@ -32,14 +32,13 @@ class AirportParkingResults extends Component {
 			activeMobileTabMap: false,
 			mapCenterLat: '',
 			mapCenterLng: '',
-            paginator: 1,
-            itemsPerPage: 3
+			loaded: false
 		};
 
 	}
     loadMore() {
-        const { paginator } = this.state
-        this.setState({ paginator: paginator + 1 })
+        const { paginator } = this.state;
+        this.setState({ paginator: paginator + 1 });
     }
 
 	mapTabActive() {
@@ -59,6 +58,7 @@ class AirportParkingResults extends Component {
 	componentDidMount() {
 		this.props.loadAirports();
 		this.props.getRates(this.props.searchData.id);
+		this.setState({ loaded: true });
 	}
 
 	showNothingFound() {
@@ -73,8 +73,6 @@ class AirportParkingResults extends Component {
 	}
 
 	showLots(rates, centerLat, centerLng) {
-
-        const { paginator, itemsPerPage } = this.state;
 
 		return (
 			<section className="airport-parking__lot-section">
@@ -112,46 +110,46 @@ class AirportParkingResults extends Component {
 
 						{/*lots*/}
 
-						{rates.slice(0, paginator * itemsPerPage).map((rate, index) => {
-							return <AirportParkingLot
-								activeMobileTabMap={this.state.activeMobileTabMap}
-								key={index}
-								rate={rate}
-							/>;
-						})}
+						<div className="airport-parking__lot-section__lots-container">
 
-						{/*load more button*/}
+                            {rates.map((rate, index) => {
+                                return <AirportParkingLot
+									activeMobileTabMap={this.state.activeMobileTabMap}
+									key={index}
+									rate={rate}
+								/>;
+                            })}
 
-                        {paginator * itemsPerPage < rates.length
-                            ? <span onClick={this.loadMore}>Show More</span>
-                            : null
-                        }
+						</div>
+
 					</div>
 
 					{/*map*/}
 
-					<div className={classnames('airport-parking__lot-section__column-small', { 'hidden-xs hidden-sm': this.state.activeMobileTabList })}>
+					<div className={classnames('airport-parking__lot-section__column-small', { 'mobile-map': this.state.activeMobileTabList })}>
 
-						<div className="map" style={{width: '100%', height: '100vh'}}>
-							<GoogleMapReact
-								center={{
-									lat: centerLat,
-									lng: centerLng
-                                    // lat: parseFloat(rates[0].search.airport.location.latitude),
-                                    // lng: parseFloat(rates[0].search.airport.location.longitude)
-								}}
-								zoom={7}
-							>
-								{rates.slice(0, paginator * itemsPerPage).map((rate, index) => {
-									return <GoogleMapMark
-										key={index}
-										lat={rate.parking_lot.location.latitude}
-										lng={rate.parking_lot.location.longitude}
-										price={rate.price.total}
-									/>;
-								})}
-							</GoogleMapReact>
-						</div>
+                        { this.state.loaded ?
+
+							<div className="map-container">
+								<GoogleMapReact
+									center={{
+                                        lat: centerLat,
+                                        lng: centerLng
+                                    }}
+									zoom={7}
+								>
+                                    {rates.map((rate, index) => {
+                                        return <GoogleMapMark
+											key={index}
+											lat={rate.parking_lot.location.latitude}
+											lng={rate.parking_lot.location.longitude}
+											price={rate.price.total}
+										/>;
+                                    })}
+								</GoogleMapReact>
+							</div>
+
+                        : null }
 
 					</div>
 
@@ -173,9 +171,8 @@ class AirportParkingResults extends Component {
 
 				<div className="container airport-parking__container">
 
-					{this.showLots(this.props.rates, centerLat, centerLng)}
-
-					{/*{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}*/}
+                    {this.showLots(this.props.rates, centerLat, centerLng)}
+                    {/*{this.props.parkingLots.length === 0 ? this.showNothingFound() : this.showLots(this.props.parkingLots)}*/}
 
 				</div>
 
