@@ -25,14 +25,22 @@ class AirportParkingResults extends Component {
 		this.mapTabActive = this.mapTabActive.bind(this);
 		this.listTabActive = this.listTabActive.bind(this);
 
+		this.loadMore = this.loadMore.bind(this);
+
 		this.state = {
 			activeMobileTabList: true,
 			activeMobileTabMap: false,
 			mapCenterLat: '',
-			mapCenterLng: ''
+			mapCenterLng: '',
+            paginator: 1,
+            itemsPerPage: 3
 		};
 
 	}
+    loadMore() {
+        const { paginator } = this.state
+        this.setState({ paginator: paginator + 1 })
+    }
 
 	mapTabActive() {
 		this.setState({
@@ -65,6 +73,8 @@ class AirportParkingResults extends Component {
 	}
 
 	showLots(rates, centerLat, centerLng) {
+
+        const { paginator, itemsPerPage } = this.state;
 
 		return (
 			<section className="airport-parking__lot-section">
@@ -102,13 +112,20 @@ class AirportParkingResults extends Component {
 
 						{/*lots*/}
 
-						{rates.map((rate, index) => {
+						{rates.slice(0, paginator * itemsPerPage).map((rate, index) => {
 							return <AirportParkingLot
 								activeMobileTabMap={this.state.activeMobileTabMap}
 								key={index}
 								rate={rate}
 							/>;
 						})}
+
+						{/*load more button*/}
+
+                        {paginator * itemsPerPage < rates.length
+                            ? <span onClick={this.loadMore}>Show More</span>
+                            : null
+                        }
 					</div>
 
 					{/*map*/}
@@ -125,7 +142,7 @@ class AirportParkingResults extends Component {
 								}}
 								zoom={7}
 							>
-								{rates.map((rate, index) => {
+								{rates.slice(0, paginator * itemsPerPage).map((rate, index) => {
 									return <GoogleMapMark
 										key={index}
 										lat={rate.parking_lot.location.latitude}
