@@ -30,6 +30,7 @@ class HomeSearchForm extends Component {
 		this.clearAirportSuggestions = this.clearAirportSuggestions.bind(this);
 		this.handleAirportChange = this.handleAirportChange.bind(this);
         this.handleAirportSelected = this.handleAirportSelected.bind(this);
+
 		this.handleCalendarPicker = this.handleCalendarPicker.bind(this);
 		this.clearCalendarPicker = this.clearCalendarPicker.bind(this);
 

@@ -5,13 +5,16 @@ import HomeSearchFormAirport from 'components/common/form/SearchFormAirport';
 import HomeSearchFormCalendar from 'components/common/form/SearchFormCalendar';
 import { getSuggestions } from 'utils';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import { postSearch } from 'actions/search';
 
-export default class AirportParkingSearchForm extends Component {
+class AirportParkingSearchForm extends Component {
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			airportId: '',
 			airportName: '',
 			airportSuggestions: [],
 			startDate: '',
@@ -23,6 +26,7 @@ export default class AirportParkingSearchForm extends Component {
 		this.getAirportSuggestions = this.getAirportSuggestions.bind(this);
 		this.clearAirportSuggestions = this.clearAirportSuggestions.bind(this);
 		this.handleAirportChange = this.handleAirportChange.bind(this);
+        this.handleAirportSelected = this.handleAirportSelected.bind(this);
 
 		this.handleCalendarPicker = this.handleCalendarPicker.bind(this);
 		this.clearCalendarPicker = this.clearCalendarPicker.bind(this);
@@ -32,9 +36,10 @@ export default class AirportParkingSearchForm extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			airportName: nextProps.airportName,
-			startDate: moment(nextProps.startDate),
-			endDate: moment(nextProps.endDate)
+			airportId: nextProps.searchData.airport_id,
+			airportName: nextProps.searchData.airport.name,
+			startDate: moment(nextProps.searchData.arrive_at),
+			endDate: moment(nextProps.searchData.exit_at)
 		});
 	}
 
@@ -62,6 +67,10 @@ export default class AirportParkingSearchForm extends Component {
 			errors
 		});
 	}
+
+    handleAirportSelected(e, { suggestion }) {
+        this.setState({ airportId: suggestion.id });
+    }
 
 	// end
 
@@ -101,12 +110,34 @@ export default class AirportParkingSearchForm extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			// api request goes here
-			this.setState({ loading: true });
+            // api request goes here
+            let { airportId, startDate, endDate } = this.state;
+
+            startDate = startDate.format('YYYY-MM-DDTHH:mm');
+            endDate = endDate.format('YYYY-MM-DDTHH:mm');
+
+            this.setState({ loading: true });
+
+            console.log('id: ' + airportId + ' start: ' + startDate + ' end: ' + endDate);
+
+            this.props.postSearch({
+                airport_id: airportId,
+                arrive_at: startDate,
+                exit_at: endDate
+            })
+				.then(() => this.props.getRates(this.props.searchData.id))
+                .then(() => this.setState({
+                    loading: false,
+                }))
+                .catch(err => err.response.json());
 		}
 	}
 
 	render() {
+
+        console.log('state', this.state.airportId);
+        console.log('search', this.props.searchData);
+
 		return (
 
 			<form onSubmit={this.handleSubmit} className="airport-parking__search-form">
@@ -119,6 +150,7 @@ export default class AirportParkingSearchForm extends Component {
 						getAirportSuggestions={this.getAirportSuggestions}
 						clearAirportSuggestions={this.clearAirportSuggestions}
 						handleAirportChange={this.handleAirportChange}
+						handleAirportSelected={this.handleAirportSelected}
 						errors={this.state.errors}
 					/>
 
@@ -166,7 +198,13 @@ export default class AirportParkingSearchForm extends Component {
 
 AirportParkingSearchForm.propTypes = {
 	airports: PropTypes.array.isRequired,
-	airportName: PropTypes.string.isRequired,
-	startDate: PropTypes.string.isRequired,
-	endDate: PropTypes.string.isRequired,
+    searchData: PropTypes.object.isRequired
 };
+
+const mapStateToProps = state => {
+    return {
+        searchData: state.searchReducer
+    };
+};
+
+export default connect(mapStateToProps, { postSearch })(AirportParkingSearchForm);

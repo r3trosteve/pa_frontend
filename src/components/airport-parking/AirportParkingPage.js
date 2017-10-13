@@ -27,7 +27,9 @@ class AirportParkingResults extends Component {
 
 		this.state = {
 			activeMobileTabList: true,
-			activeMobileTabMap: false
+			activeMobileTabMap: false,
+			mapCenterLat: '',
+			mapCenterLng: ''
 		};
 
 	}
@@ -73,9 +75,8 @@ class AirportParkingResults extends Component {
 
 						<AirportParkingSearchForm
 							airports={this.props.airports}
-							airportName={this.props.searchData.airport.name}
-							startDate={this.props.searchData.arrive_at}
-							endDate={this.props.searchData.exit_at}
+							searchData={this.props.searchData}
+							getRates={this.props.getRates}
 						/>
 
 						{/*tabs*/}
@@ -119,8 +120,10 @@ class AirportParkingResults extends Component {
 								center={{
 									lat: centerLat,
 									lng: centerLng
+                                    // lat: parseFloat(rates[0].search.airport.location.latitude),
+                                    // lng: parseFloat(rates[0].search.airport.location.longitude)
 								}}
-								zoom={10}
+								zoom={7}
 							>
 								{rates.map((rate, index) => {
 									return <GoogleMapMark
@@ -143,8 +146,10 @@ class AirportParkingResults extends Component {
 
 	render() {
 
-		const centerLat = parseFloat(this.props.searchData.airport.location.latitude);
-		const centerLng = parseFloat(this.props.searchData.airport.location.longitude);
+		let centerLat = parseFloat(this.props.searchData.airport.location.latitude);
+		let centerLng = parseFloat(this.props.searchData.airport.location.longitude);
+
+		console.log(this.props.searchData.airport.location);
 
 		return (
 			<div className="airport-parking">
