@@ -58,7 +58,9 @@ class AirportParkingResults extends Component {
 	componentDidMount() {
 		this.props.loadAirports();
 		this.props.getRates(this.props.searchData.id);
-		this.setState({ loaded: true });
+		setTimeout(() => {
+            this.setState({ loaded: true });
+		}, 300);
 	}
 
 	showNothingFound() {
