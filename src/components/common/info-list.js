@@ -15,11 +15,11 @@ export default class InfoList extends Component {
                     Parking type:
                     <span>{this.props.type}</span>
                 </li>
-                <li className="info-list__item text-bold">
-                    <i className="fa fa-clock-o" aria-hidden="true"></i>
-                    Shuttle frequency:
-                    <span>{this.props.shuttleFrequency}</span>
-                </li>
+                {/*<li className="info-list__item text-bold">*/}
+                    {/*<i className="fa fa-clock-o" aria-hidden="true"></i>*/}
+                    {/*Shuttle frequency:*/}
+                    {/*<span>{this.props.shuttleFrequency}</span>*/}
+                {/*</li>*/}
             </ul>
         );
     }

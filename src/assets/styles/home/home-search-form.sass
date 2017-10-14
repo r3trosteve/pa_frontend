@@ -4,16 +4,22 @@
   margin: 0 auto
   position: relative
 
+  //tooltip
+
   .tooltip-inner
     background: $blue!important
     color: white
     text-align: left
-    line-height: 18px
+    line-height: 20px
     font-size: 13px
     box-shadow: $shadow-main
-    max-width: 300px
+    font-family: 'Montserrat', sans-serif
+    max-width: 420px
+    font-weight: 300
   .tooltip-arrow
     border-left-color: $blue!important
+
+  //end
 
   &__help
     display: inline-block
@@ -27,18 +33,16 @@
     border-radius: 6px
     cursor: default
     b
-      font-weight: 400
-
-
-  &__text
-    font-family:  'Montserrat-Regular', sans-serif
-    color: $blue
-    text-align: center
-    font-size: 16px
+      font-weight: 300
+      font-family: 'Montserrat', sans-serif
 
   &__submit
     text-align: center
-    margin-top: 40px
+    width: 255px
+    margin: 40px auto 0
+    button
+      width: 100%
+      height: 64px
     i
       animation: rotate-loading 0.5s infinite
       display: inline-block

@@ -17,6 +17,7 @@
 @import 'common/animations'
 @import 'common/book-travel'
 @import 'common/modals/auth-modals'
+@import 'common/form-layout/form-layout'
 // end
 
 // Date-range picker
@@ -56,13 +57,16 @@
 @import 'airport-parking-details/apd-reviews'
 // end
 
-
+//Airport parking checkout
+@import 'airport-parking-checkout/apch-main'
+@import 'airport-parking-checkout/apch-payment-details'
+//end
 
 *
   font-family: 'Open Sans', sans-serif
   box-sizing: border-box
-  -webkit-appearance: none!important
-  -moz-appearance: none!important
+  //-webkit-appearance: none!important
+  //-moz-appearance: none!important
 
 body, html
   height: 100%
@@ -106,8 +110,9 @@ button
 .btn-custom
   border-radius: 4px
   background: $orange
-  font-family: 'Montserrat-Light'
+  font-family: 'Montserrat', sans-serif
   font-size: 15px
+  font-weight: 400
   letter-spacing: 1px
   text-align: center
   border: none
@@ -122,22 +127,31 @@ button
   &:hover
     box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)
 
-  &--big
-    width: 255px
-    height: 64px
-    color: white
 //end
-
-
 
 @keyframes rotate-loading
   to
     transform: rotate(360deg)
 
+//cards
+.card-custom
+  margin-top: 30px
+  border-radius: 4px
+  background-color: white
+  box-shadow: $shadow-main
+  padding: 20px 25px
+  overflow: hidden
+  &--no-pad
+    padding: 0
 
 
 //responsiveness
-@media (max-width: 768px)
+@media (max-width: 767px)
   .btn-custom
     width: 100%!important
     color: white
+
+  .card-custom
+    padding: 15px
+    &--no-pad
+      padding: 0

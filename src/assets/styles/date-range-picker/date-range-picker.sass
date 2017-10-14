@@ -53,7 +53,8 @@
         text-align-last: center
         background: $white-dark-op
         color: $blue
-        font-family: 'Montserrat-Regular'
+        font-family: 'Montserrat', sans-serif
+        font-weight: 500
         padding: 0 15px
         &:hover
           background: $orange
@@ -77,9 +78,9 @@
           &:last-child
             th
               text-transform: uppercase
-              font-family: 'Montserrat-Light'
+              font-family: 'Montserrat', sans-serif
+              font-weight: 400
               font-size: 12px
-              line-height: 1.54
               color: $blue-op
               height: 43px
           th.available
@@ -112,23 +113,25 @@
               text-transform: uppercase
               width: 50%
               height: 36px
+              font-family: 'Montserrat', sans-serif
             &.monthselect
               text-align: right
               text-align-last: right
-              font-family: 'Montserrat-Bold'
               direction: rtl
+              font-weight: 600
             &.yearselect
-              font-family: 'Montserrat-Light'
+              font-weight: 300
 
       tbody
         tr
           td
             height: 40px
             border-radius: 0
-            font-family: 'Montserrat-Light'
+            font-family: 'Montserrat', sans-serif
             font-size: 12px
             background: $white
             color:  #797979
+            font-weight: 300
             &.off.disabled
               text-decoration: none
               color: $grey-light
@@ -148,7 +151,7 @@
     button
       border: none
       border-radius: 4px
-      font-family: 'Montserrat-Light'
+      font-family: 'Montserrat', sans-serif
       font-size: 15px
       text-align: center
       text-transform: uppercase
@@ -157,6 +160,7 @@
       height: 45px
       margin: 0 12px
       transition: all 0.3s
+      font-weight: 400
       opacity: 0
       &:hover
         box-shadow: 0 12px 24px 0 rgba(70, 134, 155, 0.2)

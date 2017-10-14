@@ -37,9 +37,9 @@ export default class AirportParkingDetailsPage extends Component {
         });
 
         const dynamicWidth = () => {
-            let apdDummaryColumnW = $('.ap-details__column--summary').width();
+            let apdSummaryColumnW = $('.ap-details__column--summary').width();
             apdSummary.css({
-                'width': apdDummaryColumnW
+                'width': apdSummaryColumnW
             });
         };
 
@@ -58,6 +58,9 @@ export default class AirportParkingDetailsPage extends Component {
 			<div className="ap-details">
 				<div className="container ap-details__container">
 					<div className="row ap-details__row">
+
+                        {/*left column*/}
+
 						<div className="col-md-7 ap-details__column">
 
 							{/*Info*/}
@@ -76,9 +79,16 @@ export default class AirportParkingDetailsPage extends Component {
 							<AirportParkingDetailsReviews />
 
 						</div>
+
+                        {/*right column*/}
+
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
+
+                            {/*Summary*/}
 							<AirportParkingDetailsSummary />
+
 						</div>
+
 					</div>
 				</div>
 			</div>

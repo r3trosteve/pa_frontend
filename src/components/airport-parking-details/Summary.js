@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
 export default class AirportParkingDetailsSummary extends Component {
 
@@ -124,9 +125,9 @@ export default class AirportParkingDetailsSummary extends Component {
                     {/*submit*/}
 
                     <div className="ap-details__summary__submit">
-                        <button className="btn-custom">
+                        <Link to={'/airport_parking_booking'} className="btn-custom">
                             BOOK NOW
-                        </button>
+                        </Link>
                     </div>
 
                 </form>

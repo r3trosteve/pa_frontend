@@ -49,7 +49,12 @@ export default class AirportParkingLot extends Component {
 						<div className="airport-parking__lot__column airport-parking__lot__column--price">
 
 							<div className="airport-parking__lot__price">
-								<p>${this.props.rate.price.total}</p>
+								<span>${this.props.rate.price.total}</span>
+								<p className="cancellation">
+									<i className="ion-ios-checkmark"></i>
+									Free Cancellation
+								</p>
+								<p className="taxes">Taxes and Fees included</p>
 								<Link to={'/airport_parking_details'} className="btn-custom">
 									View details
 								</Link>
