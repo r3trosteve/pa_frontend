@@ -33,7 +33,7 @@ export default class HomeOptions extends Component {
 
 						{/*left*/}
 
-						<div className="col-md-4 home__options__column home__options__column--left">
+						<div className="col-md-4 home__options__column">
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>01.</span>
@@ -53,7 +53,7 @@ export default class HomeOptions extends Component {
 
 						{/*center*/}
 
-						<div className="col-md-4 home__options__column home__options__column--center">
+						<div className="col-md-4 home__options__column">
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>02.</span>
@@ -70,7 +70,7 @@ export default class HomeOptions extends Component {
 
 						{/*right*/}
 
-						<div className="col-md-4 home__options__column home__options__column--right">
+						<div className="col-md-4 home__options__column">
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>03.</span>

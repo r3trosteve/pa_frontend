@@ -60,7 +60,7 @@ class AirportParkingResults extends Component {
 		this.props.getRates(this.props.searchData.id);
 		setTimeout(() => {
             this.setState({ loaded: true });
-		}, 300);
+		}, 500);
 	}
 
 	showNothingFound() {

@@ -97,7 +97,7 @@ export default class LoginModal extends Component {
 										<input type="checkbox" checked={this.state.checkboxChecked} onClick={this.changeChecked}/>
 										Remember me
 									</label>
-									<a href="#">
+									<a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forgot-pwd-modal">
 										Forgot password?
 									</a>
 								</div>

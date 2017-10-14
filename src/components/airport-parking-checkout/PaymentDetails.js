@@ -49,18 +49,27 @@ export default class AirportParkingCheckoutPaymentDetails extends Component {
 
                     {/*inputs body*/}
 
-                    <label>Cardholder Name<input type="text"/></label>
+                    <div className="row">
 
-                    <label>
-                        Card Number
-                        <input type="num"/>
-                        <span className="cards-image">
+                        <div className="col-md-6">
+                            <label>Cardholder Name<input type="text"/></label>
+                        </div>
 
-                        </span>
-                    </label>
+                        <div className="col-md-6">
+                            <label>
+                                Card Number
+                                <input type="num"/>
+                                <span className="cards-image">
+
+                                </span>
+                            </label>
+                        </div>
+
+                    </div>
 
                     <div className="row">
-                        <div className="col-sm-4">
+
+                        <div className="col-sm-8">
                             <p className="label-title">
                                 End Date
                             </p>
@@ -77,12 +86,14 @@ export default class AirportParkingCheckoutPaymentDetails extends Component {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-3">
+
+                        <div className="col-sm-4">
                             <label>
                                 CVV
                                 <input type="num" maxLength="3"/>
                             </label>
                         </div>
+
                     </div>
 
                     {/*t&c*/}

@@ -2,7 +2,7 @@
 .ap-checkout
   padding: 110px 0 150px
   background: $white
-  min-height: calc(100vh - 198px)
+  min-height: calc(100vh - 40px)
 
   &__title
     h4
@@ -13,5 +13,19 @@
         top: 4px
     h2
       margin-top: 12px
+
+  .order-summary
+    position: relative
+
+    &__form
+      padding-bottom: 0
+
+    &__submit
+      display: none
+
+    &__table.coupon
+      border-bottom: none
+      td
+        height: 65px
 
 

@@ -1,5 +1,5 @@
 
-.ap-details__summary
+.order-summary
   position: fixed
 
   &__header
@@ -70,23 +70,15 @@
 
           input
             height: 36px
-            border-radius: 4px
-            width: 100%
-            background: white
-            border: solid 1px #e0e0e0
-            padding: 0 16px
-            font-size: 18px
-            font-weight: 400
-            color: $blue
             text-align: center
-            &:active, &:focus
-              border-color: $blue
+            margin: 0
 
   &__submit
     padding-top: 30px
-    button
+    .btn-custom
       width: 100%
       line-height: 48px
+      display: block
 
 //responsiveness
 @media (max-width: 991px)
@@ -109,5 +101,5 @@
 
 @media (max-width: 560px)
   .ap-details__summary
-      .coupon label
-        max-width: 100%!important
+    .coupon label
+      max-width: 100%!important

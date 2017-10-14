@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
 
-export default class AirportParkingDetailsSummary extends Component {
+export default class OrderSummary extends Component {
 
     constructor() {
         super();
@@ -23,11 +23,11 @@ export default class AirportParkingDetailsSummary extends Component {
     render() {
         return (
 
-            <div className="ap-details__summary card-custom card-custom--no-pad">
+            <div className="order-summary card-custom card-custom--no-pad">
 
                 {/*header*/}
 
-                <div className="ap-details__summary__header">
+                <div className="order-summary__header">
                     <h3 className="title-normal-bold">
                         Order Summary
                     </h3>
@@ -35,17 +35,17 @@ export default class AirportParkingDetailsSummary extends Component {
 
                 {/*form*/}
 
-                <form className="ap-details__summary__form">
+                <form className="order-summary__form">
 
                     {/*title*/}
 
-                    <div className="ap-details__summary__title">
+                    <div className="order-summary__title">
                         <h4>Hilton Atlanta Airport</h4>
                     </div>
 
                     {/*1*/}
 
-                    <table className="ap-details__summary__table">
+                    <table className="order-summary__table">
                         <tbody>
                             <tr>
                                 <td>Check-in:</td>
@@ -64,7 +64,7 @@ export default class AirportParkingDetailsSummary extends Component {
 
                     {/*2*/}
 
-                    <table className="ap-details__summary__table">
+                    <table className="order-summary__table">
                         <tbody>
                             <tr>
                                 <td>Price per day: <span>$8</span></td>
@@ -79,7 +79,7 @@ export default class AirportParkingDetailsSummary extends Component {
 
                     {/*total*/}
 
-                    <table className="ap-details__summary__table">
+                    <table className="order-summary__table">
                         <tbody>
                             <tr>
                                 <td className="total">Total:</td>
@@ -90,7 +90,7 @@ export default class AirportParkingDetailsSummary extends Component {
 
                     {/*4*/}
 
-                    <table className="ap-details__summary__table">
+                    <table className="order-summary__table">
                         <tbody>
                             <tr>
                                 <td>Pay Now:</td>
@@ -105,16 +105,16 @@ export default class AirportParkingDetailsSummary extends Component {
 
                     {/*coupon*/}
 
-                    <table className="ap-details__summary__table coupon">
+                    <table className="order-summary__table coupon">
                         <tbody>
                             <tr>
                                 <td>
-                                    <span className="ap-details__summary__coupon-btn" onClick={this.showCouponInput}>
+                                    <span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
                                         Have a Coupon Code?
                                     </span>
                                 </td>
                                 <td>
-                                    <label className={classnames('ap-details__summary__coupon-label', { 'visible': this.state.showCoupon })}>
+                                    <label className={classnames('order-summary__coupon-label', { 'visible': this.state.showCoupon })}>
                                         <input type="text"/>
                                     </label>
                                 </td>
@@ -124,7 +124,7 @@ export default class AirportParkingDetailsSummary extends Component {
 
                     {/*submit*/}
 
-                    <div className="ap-details__summary__submit">
+                    <div className="order-summary__submit">
                         <Link to={'/airport_parking_booking'} className="btn-custom">
                             BOOK NOW
                         </Link>

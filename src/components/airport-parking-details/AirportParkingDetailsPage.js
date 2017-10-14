@@ -4,7 +4,7 @@ import AirportParkingDetailsOverview from 'components/airport-parking-details/Ov
 import AirportParkingDetailsLocation from 'components/airport-parking-details/Location';
 import AirportParkingDetailsDetails from 'components/airport-parking-details/Details';
 import AirportParkingDetailsReviews from 'components/airport-parking-details/Reviews';
-import AirportParkingDetailsSummary from 'components/airport-parking-details/Summary';
+import OrderSummary from 'components/common/OrderSummary';
 
 
 
@@ -14,8 +14,8 @@ export default class AirportParkingDetailsPage extends Component {
 
         // jquery for fixed summary
 
-		let apdSummary = $('.ap-details__summary');
-		let apdSummaryTop = apdSummary.offset().top - 20;
+		let apdSummary = $('.order-summary');
+		let apdSummaryTop = apdSummary.offset().top - 30;
 
         $(window).scroll(() => {
 
@@ -24,7 +24,7 @@ export default class AirportParkingDetailsPage extends Component {
             if (wScrollTop >= apdSummaryTop) {
                 apdSummary.css({
                     'position': 'fixed',
-                    'top': '20px',
+                    'top': '30px',
                     'margin-top': '0'
                 });
             } else {
@@ -85,7 +85,7 @@ export default class AirportParkingDetailsPage extends Component {
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
 
                             {/*Summary*/}
-							<AirportParkingDetailsSummary />
+                            <OrderSummary />
 
 						</div>
 

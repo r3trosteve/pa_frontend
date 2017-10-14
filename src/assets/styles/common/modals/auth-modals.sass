@@ -11,7 +11,7 @@
     .modal-content
       border-radius: 6px
       background-color: white
-      box-shadow: 0 10px 24px 0 rgba(70, 134, 155, 0.14)
+      box-shadow: $shadow-popover
       border: solid 1px #e8f2f2
       padding: 50px 15px 18px
       position: relative
@@ -43,6 +43,8 @@
           margin-bottom: 35px
           img
             margin-bottom: 25px
+            width: 117px
+            height: 38px
           h4
             font-size: 24px
             font-weight: 600
@@ -176,22 +178,40 @@
   .modal-terms-privacy
     margin-top: 38px
 
+#forgot-pwd-modal
+  .modal-content
+    padding-bottom: 20px
+    p
+      margin-bottom: 30px
+      &.back-to
+        text-align: center
+        margin: 30px auto 0
+        i
+          margin-right: 8px
+          font-size: 22px
+          position: relative
+          top: 1px
+
 //responsiveness
 @media (max-width: 768px)
   .auth-modal
+
     .modal-dialog
       margin: 15px auto
+
     .modal-terms-privacy
       max-width: 180px!important
 
 @media (max-width: 400px)
   .auth-modal
+
     .modal-btn-orange, .modal-btn-white
       width: 100%!important
 
     .register-as
       display: flex
       flex-wrap: wrap
+      margin-top: 15px!important
       .radio-title
         width: 100%
         padding-bottom: 15px
@@ -200,6 +220,10 @@
 
     .modal-social-img
       padding: 0 5px!important
+
+  #forgot-pwd-modal .modal-content
+    p
+      text-align: left
 
 
 

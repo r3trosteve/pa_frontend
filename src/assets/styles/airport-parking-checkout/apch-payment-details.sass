@@ -100,11 +100,6 @@
           color: #cccccc
           opacity: 1
 
-      &:first-of-type
-        padding-right: 4px
-      &:last-of-type
-        padding-left: 4px
-
   &__terms
     opacity: 0.5
     font-family: 'Montserrat', sans-serif
@@ -113,7 +108,7 @@
     line-height: 1.33
     color: #526173
     text-align: center
-    padding: 10px 15px 20px
+    padding: 10px 15px 22px
     a
       font-family: 'Montserrat', sans-serif
       font-weight: 500
@@ -125,6 +120,14 @@
       line-height: 48px
       background-color: #09a248
       width: 100%
+      i
+        transition: all 0.3s
+        position: relative
+        left: 0
+      &:hover
+        i
+          left: 5px
+
 
 
 
