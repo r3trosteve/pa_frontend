@@ -2,9 +2,10 @@
 .ap-checkout
   padding: 110px 0 150px
   background: $white
-  min-height: calc(100vh - 40px)
+  min-height: calc(100vh - 198px)
 
   &__title
+    margin-top: 30px
     h4
       i
         margin-right: 8px
@@ -28,4 +29,7 @@
       td
         height: 65px
 
-
+//responsiveness
+@media (max-width: 767px)
+  .ap-checkout
+    padding: 40px 0 45px

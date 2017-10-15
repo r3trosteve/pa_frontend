@@ -71,7 +71,7 @@ export default class OrderSummary extends Component {
                                 <td>$8.00</td>
                             </tr>
                             <tr>
-                                <td> Service fee: <span>$5</span></td>
+                                <td>Service fee: <span>$5</span></td>
                                 <td>$5.00</td>
                             </tr>
                         </tbody>

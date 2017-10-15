@@ -140,57 +140,52 @@
               height: 100%
               display: block
 
+        .cta-buttons
+          max-width: 272px
+          margin: 30px auto 25px
+          position: relative
+          &:before, &:after
+            position: absolute
+            z-index: -1
+          &:before
+            content: ''
+            width: 222px
+            height: 1px
+            background: #eaeaea
+            left: 25px
+            right: 25px
+            top: 50%
+          &:after
+            content: 'or'
+            left: calc(50% - 32.5px)
+            top: calc(50% - 10px)
+            font-size: 14px
+            font-weight: 600
+            text-align: left
+            color: $blue
+            background: white
+            padding: 0 25px
+          a
+            display: block
+            line-height: 48px
+            &.modal-btn-white
+              margin-top: 60px
+
         .auth-modal-footer
           margin-top: 20px
 
 #register-login-modal
-
-  .cta-buttons
-    max-width: 272px
-    margin: 30px auto 25px
-    position: relative
-    &:before, &:after
-      position: absolute
-    &:before
-      content: ''
-      width: 222px
-      height: 1px
-      background: #eaeaea
-      left: 25px
-      right: 25px
-      top: 50%
-    &:after
-      content: 'or'
-      left: calc(50% - 32.5px)
-      top: calc(50% - 10px)
-      font-size: 14px
-      font-weight: 600
-      text-align: left
-      color: $blue
-      background: white
-      padding: 0 25px
-    a
-      display: block
-      line-height: 48px
-      &.modal-btn-white
-        margin-top: 60px
 
   .modal-terms-privacy
     margin-top: 38px
 
 #forgot-pwd-modal
   .modal-content
-    padding-bottom: 20px
-    p
+    p.forgot-pwd-text
       margin-bottom: 30px
-      &.back-to
-        text-align: center
-        margin: 30px auto 0
-        i
-          margin-right: 8px
-          font-size: 22px
-          position: relative
-          top: 1px
+    .cta-buttons
+      margin: 0 auto 34px
+
 
 //responsiveness
 @media (max-width: 768px)

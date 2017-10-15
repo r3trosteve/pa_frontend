@@ -5,7 +5,7 @@ import logoImg2x from 'assets/images/logo/logo@2x.png';
 import logoImg3x from 'assets/images/logo/logo@3x.png';
 import classnames from 'classnames';
 
-export default class LoginModal extends Component {
+export default class ForgotPwdModal extends Component {
 
     constructor() {
         super();
@@ -16,20 +16,6 @@ export default class LoginModal extends Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
-        if (this.state.errors[e.target.name]) {
-            let errors = Object.assign({}, this.state.errors);
-            delete errors[e.target.name];
-            this.setState({
-                [e.target.name]: e.target.value,
-                errors
-            });
-        } else {
-            this.setState({ [e.target.name]: e.target.value });
-        }
     }
 
     handleSubmit(e) {
@@ -69,11 +55,13 @@ export default class LoginModal extends Component {
                                 </h4>
                             </div>
 
+                            <p className="forgot-pwd-text">
+                                Enter the email address associated with your account,
+                                <br/>
+                                we'll send you an email with reset password link.
+                            </p>
+
                             <form onSubmit={this.handleSubmit}>
-                                <p>
-                                    Enter the email address associated with your account,
-                                    we'll send you an email with reset password link.
-                                </p>
 
                                 <label className={classnames('', { 'has-error': this.state.errors.email })}>
                                     Email
@@ -81,20 +69,26 @@ export default class LoginModal extends Component {
                                     <input type="email" onChange={this.handleChange}/>
                                 </label>
 
-                                <div className="modal-submit">
+                                {/*buttons*/}
+                                <div className="cta-buttons">
                                     <button type="submit" className="modal-btn-orange">
                                         Reset password
                                     </button>
-                                </div>
-
-                                <p className="back-to">
-                                    <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#login-modal">
-                                        <i className="fa fa-angle-left" aria-hidden="true"></i>
+                                    <a href="#" className="modal-btn-white" data-toggle="modal" data-target="#login-modal" data-dismiss="modal">
                                         Back to log in
                                     </a>
-                                </p>
+                                </div>
 
                             </form>
+
+                            <div className="modal-terms-privacy">
+                                <p>
+                                    Clicking Log in you accept
+                                    <a href="#"> Terms of use </a>
+                                    and
+                                    <a href="#"> Privacy policy </a>
+                                </p>
+                            </div>
 
                         </div>
                     </div>

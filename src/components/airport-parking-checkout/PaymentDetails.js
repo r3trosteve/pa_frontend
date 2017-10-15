@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 
 export default class AirportParkingCheckoutPaymentDetails extends Component {
+
+    maxMonthChange(e) {
+        let value = e.target.value;
+        if (value > 12) {
+            e.target.value = 12;
+        } else if (value < 1) {
+            e.target.value = 1;
+        }
+    }
+
     render() {
         return (
-            <div className="ap-checkout__payment-details">
+            <form className="ap-checkout__payment-details card-custom">
 
                 {/*notification*/}
 
@@ -69,25 +79,28 @@ export default class AirportParkingCheckoutPaymentDetails extends Component {
 
                     <div className="row">
 
-                        <div className="col-sm-8">
+                        <div className="col-xs-8">
                             <p className="label-title">
                                 End Date
                             </p>
                             <div className="row">
                                 <div className="col-xs-6">
                                     <label>
-                                        <input type="num" placeholder="mm" maxLength="2"/>
+                                        <input
+                                            onChange={this.maxMonthChange}
+                                            type="number" placeholder="mm" maxLength="2" max="12" min="1"
+                                        />
                                     </label>
                                 </div>
                                 <div className="col-xs-6">
                                     <label>
-                                        <input type="num" placeholder="yyyy" maxLength="4"/>
+                                        <input type="number" placeholder="yyyy" maxLength="4"/>
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="col-sm-4">
+                        <div className="col-xs-4">
                             <label>
                                 CVV
                                 <input type="num" maxLength="3"/>
@@ -101,7 +114,8 @@ export default class AirportParkingCheckoutPaymentDetails extends Component {
                     <p className="ap-checkout__payment-details__terms">
                         I have read and accept the
                         <a href="#"> terms of use</a>,
-                        rules of flight  and
+                        <a href="#"> rules of flight </a>
+                        and
                         <a href="#"> privacy policy</a>
                     </p>
 
@@ -116,7 +130,7 @@ export default class AirportParkingCheckoutPaymentDetails extends Component {
                 </div>
 
 
-            </div>
+            </form>
         );
     }
 }

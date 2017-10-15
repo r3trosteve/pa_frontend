@@ -105,10 +105,10 @@
     font-family: 'Montserrat', sans-serif
     font-size: 12px
     font-weight: 500
-    line-height: 1.33
+    line-height: 18px
     color: #526173
     text-align: center
-    padding: 10px 15px 22px
+    padding: 10px 0 22px
     a
       font-family: 'Montserrat', sans-serif
       font-weight: 500
@@ -127,6 +127,20 @@
       &:hover
         i
           left: 5px
+
+
+//responsiveness
+@media (max-width: 767px)
+  .ap-checkout__payment-details
+
+    &__title h3 span
+      float: none
+      display: block
+      margin-top: 3px
+
+    .row
+      .col-xs-6
+        padding-right: 0
 
 
 
