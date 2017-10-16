@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import RetinaImage from 'react-retina-image';
-import logoImg from 'assets/images/logo/logo.png';
-import logoImg2x from 'assets/images/logo/logo@2x.png';
-import logoImg3x from 'assets/images/logo/logo@3x.png';
-import carIcon from 'assets/images/svg/car.svg';
-import RegisterLoginModal from 'components/modals/RegisterLoginModal';
-import LoginModal from 'components/modals/LoginModal';
-import ForgotPwdModal from 'components/modals/ForgotPwdModal';
-import RegisterModal from 'components/modals/RegisterModal';
+import logoImg3x from '../../../assets/images/logo/logo@3x.png';
+import carIcon from '../../../assets/images/svg/car.svg';
+import RegisterLogin from '../../modals/RegisterLogin';
+import Login from '../../modals/Login';
+import Register from '../../modals/Register';
+import ForgotPassword from '../../modals/ForgotPassword';
 
 export default class Header extends Component {
 	render() {
@@ -25,7 +22,7 @@ export default class Header extends Component {
 							</button>
 
 							<NavLink exact to="/" className="navbar-brand">
-								<RetinaImage src={[ logoImg, logoImg2x, logoImg3x ]} alt="Logo" />
+								<img src={logoImg3x} alt="Logo" />
 							</NavLink>
 
 						</div>
@@ -58,10 +55,10 @@ export default class Header extends Component {
 
 				{/*modals*/}
 
-				<RegisterLoginModal />
-				<RegisterModal />
-				<LoginModal />
-				<ForgotPwdModal />
+				<RegisterLogin />
+				<Login />
+				<Register />
+				<ForgotPassword />
 
 			</header>
 		);

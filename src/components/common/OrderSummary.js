@@ -125,7 +125,7 @@ export default class OrderSummary extends Component {
                     {/*submit*/}
 
                     <div className="order-summary__submit">
-                        <Link to={'/airport_parking_booking'} className="btn-custom">
+                        <Link to={'/checkout'} className="btn-custom">
                             BOOK NOW
                         </Link>
                     </div>

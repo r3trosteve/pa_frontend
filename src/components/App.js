@@ -1,34 +1,32 @@
-import 'assets/styles/main.sass';
-import 'assets/js/custom';
-
 import React, { Component } from 'react';
-import Header from 'components/common/header/Header';
-import Main from 'components/Main';
-import Footer from 'components/common/footer/Footer';
+import { Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import routes from '../routes';
+import Header from './common/header/Header';
+import Footer from './common/footer/Footer';
 
 export default class App extends Component {
-	constructor() {
-		super();
-		this.state = { loading: true };
-	}
-
-	componentDidMount() {
-		setTimeout(() => {
-			this.setState({ loading: false });
-		}, 200);
-	}
-
 	render() {
-		if (!this.state.loading) {
-			return (
-				<div>
-					<Header />
-					<Main />
-					<Footer />
-				</div>
-			);
-		} else {
-			return null;
-		}
+		return (
+			<div>
+				
+				<Helmet
+					htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
+					titleTemplate="ParkingAccess | %s"
+					titleAttributes={{itemprop: "name", lang: "en"}}
+					meta={[
+						{name: "description", content: "ParkingAccess provides discounted rates with park sleep and fly packages"},
+						{name: "viewport", content: "width=device-width, initial-scale=1"},
+					]}
+				/>
+
+				<Header />
+				
+				{routes.map((route, i) => <Route key={i} {...route} />)}
+
+				<Footer />
+
+			</div>
+		);
 	}
 }

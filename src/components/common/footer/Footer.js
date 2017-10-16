@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import RetinaImage from 'react-retina-image';
-import logoImg from 'assets/images/logo/logo-dark.png';
-import logoImg2x from 'assets/images/logo/logo-dark@2x.png';
-import logoImg3x from 'assets/images/logo/logo-dark@3x.png';
-import BookTravel from 'components/common/BookTravel';
+import logoImg3x from '../../../assets/images/logo/logo-dark@3x.png';
+import BookTravel from '../BookTravel';
 
 export default class Footer extends Component {
 	render() {
@@ -19,7 +16,7 @@ export default class Footer extends Component {
 
 						<div className="col-md-2 footer__column">
 							<NavLink exact to="/">
-								<RetinaImage src={[ logoImg, logoImg2x, logoImg3x ]} alt="Logo" />
+								<img src={logoImg3x} alt="Logo" width={117} height={38} />
 							</NavLink>
 						</div>
 
