@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Form from './Form';
@@ -185,6 +186,8 @@ class RatesPage extends Component {
 
 		return (
 			<div className="airport-parking">
+
+				<Helmet title="Results" />
 
 				<div className="container airport-parking__container">
 
