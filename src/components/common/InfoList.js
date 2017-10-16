@@ -24,6 +24,6 @@ export default class InfoList extends Component {
 }
 
 InfoList.propTypes = {
-    distance: PropTypes.number.isRequired,
+    distance: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
 };
