@@ -13,7 +13,6 @@ export default class HomeOptions extends Component {
 	render() {
 		return (
 			<section className="home__options section-pad">
-
 				<div className="container home__option__container">
 
 					<div className="row home__options__row">
@@ -30,7 +29,7 @@ export default class HomeOptions extends Component {
 								<p>Air, Hotel, Car, Cruise & more</p>
 
 								<div className="home__options__card-images">
-                                    <img src={option113x} alt="booking.com" width={122} height={21} />
+									<img src={option113x} alt="booking.com" width={122} height={21} />
 									<img src={option123x} alt="Expedia" width={60} height={40} />
 									<img src={option133x} alt="hotels.com" width={51} height={30} />
 									<img src={option143x} alt="cruise.com" width={131} height={16} />
@@ -50,7 +49,7 @@ export default class HomeOptions extends Component {
 								<p>Enter your booking confirmations and get instant savings</p>
 
 								<div className="home__options__card-images">
-                                    <img src={option23x} alt="Receipt" width={46} height={46} />
+									<img src={option23x} alt="Receipt" width={46} height={46} />
 								</div>
 							</div>
 						</div>
@@ -67,15 +66,13 @@ export default class HomeOptions extends Component {
 								<p>Quickly link your Tripit or Concur accounts</p>
 
 								<div className="home__options__card-images">
-                                    <img src={option33x} alt="Tripit" width={95} height={46} />
+									<img src={option33x} alt="Tripit" width={95} height={46} />
 								</div>
 							</div>
 						</div>
-
 					</div>
-
+					
 				</div>
-
 			</section>
 		);
 	}

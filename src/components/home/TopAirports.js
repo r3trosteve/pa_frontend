@@ -13,7 +13,6 @@ export default class TopAirports extends Component {
 	render() {
 		return (
 			<section className="home__top-airports section-pad">
-
 				<div className="container home__top-airports__container">
 
 					<div className="home__top-airports__title">
@@ -27,7 +26,6 @@ export default class TopAirports extends Component {
 						{/*1*/}
 
 						<div className="col-md-3 col-sm-6 home__top-airports__column">
-
 							<a className="home__top-airports__card">
 								<img src={ta13x} alt="Atlanta" />
 								<div className="home__top-airports__card-overlay">
@@ -37,13 +35,11 @@ export default class TopAirports extends Component {
 									</h3>
 								</div>
 							</a>
-
 						</div>
 
 						{/*2*/}
 
 						<div className="col-md-3 col-sm-6 home__top-airports__column">
-
 							<a className="home__top-airports__card">
 								<img src={ta23x} alt="Newark" />
 								<div className="home__top-airports__card-overlay">
@@ -53,13 +49,11 @@ export default class TopAirports extends Component {
 									</h3>
 								</div>
 							</a>
-
 						</div>
 
 						{/*3*/}
 
 						<div className="col-md-3 col-sm-6 home__top-airports__column">
-
 							<a className="home__top-airports__card">
 								<img src={ta33x} alt="Laguardia" />
 								<div className="home__top-airports__card-overlay">
@@ -69,13 +63,11 @@ export default class TopAirports extends Component {
 									</h3>
 								</div>
 							</a>
-
 						</div>
 
 						{/*4*/}
 
 						<div className="col-md-3 col-sm-6 home__top-airports__column">
-
 							<a className="home__top-airports__card">
 								<img src={ta43x} alt="Seattle" />
 								<div className="home__top-airports__card-overlay">
@@ -85,21 +77,14 @@ export default class TopAirports extends Component {
 									</h3>
 								</div>
 							</a>
-
 						</div>
-
 					</div>
 
 					{/*END TOP*/}
 
-                    {/*LIST*/}
-                    
 					<AirportsList airports={this.props.airports} />
-                    
-					{/*END LIST*/}
 
 				</div>
-
 			</section>
 		);
 	}

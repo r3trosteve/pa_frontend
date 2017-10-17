@@ -7,6 +7,7 @@ export default class RegisterModal extends Component {
 
 	constructor() {
 		super();
+
 		this.state = {
 			name: '',
 			email: '',
@@ -24,12 +25,14 @@ export default class RegisterModal extends Component {
 
 	handleChange(e) {
 		if (this.state.errors[e.target.name]) {
+
 			let errors = Object.assign({}, this.state.errors);
 			delete errors[e.target.name];
 			this.setState({
 				[e.target.name]: e.target.value,
 				errors
 			});
+
 		} else {
 			this.setState({ [e.target.name]: e.target.value });
 		}
@@ -44,7 +47,8 @@ export default class RegisterModal extends Component {
 		if (this.state.email === '') errors.email = " can't be empty";
 		if (this.state.password === '') errors.password = " can't be empty";
 		if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
-		if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm) errors.passwordConfirm = " doesn't match password above";
+		if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm)
+			errors.passwordConfirm = " doesn't match password above";
 		this.setState({ errors });
 		const isValid = Object.keys(errors).length === 0;
 
@@ -65,26 +69,29 @@ export default class RegisterModal extends Component {
 
 	render() {
 		return (
-
-			<div className="modal auth-modal" id="register-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div
+				className="modal auth-modal"
+				id="register-modal"
+				tabIndex="-1"
+				role="dialog"
+				aria-labelledby="myModalLabel"
+				aria-hidden="true"
+			>
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-body text-center">
 							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
-								<i className="ion-ios-close"></i>
+								<i className="ion-ios-close" />
 							</button>
 
-                            {/*header*/}
-                            
+							{/*header*/}
+
 							<div className="header-modal">
 								<img src={logoImg3x} alt="Logo" />
-								<h4 className="title">
-									Register
-								</h4>
+								<h4 className="title">Register</h4>
 							</div>
 
 							<form onSubmit={this.handleSubmit}>
-
 								<label className={classnames('', { 'has-error': this.state.errors.name })}>
 									Name
 									<span className="error-text">{this.state.errors.name}</span>
@@ -111,22 +118,37 @@ export default class RegisterModal extends Component {
 
 								<div className="register-as">
 									<div className="radio-title">Register as:</div>
-									<label className={classnames('radio-label', { 'checked': this.state.travelerChecked })}>
-										<input type="radio" name="reg-as" onChange={this.changeChecked} checked={this.state.travelerChecked}/>
-										<span className="round"></span>
+									<label
+										className={classnames('radio-label', { checked: this.state.travelerChecked })}
+									>
+										<input
+											type="radio"
+											name="reg-as"
+											onChange={this.changeChecked}
+											checked={this.state.travelerChecked}
+										/>
+										<span className="round" />
 										Traveler
 									</label>
-									<label className={classnames('radio-label', { 'checked': this.state.parkingLotChecked })}>
-										<input type="radio" name="reg-as" onChange={this.changeChecked} checked={this.state.parkingLotChecked}/>
-										<span className="round"></span>
+									<label
+										className={classnames('radio-label', { checked: this.state.parkingLotChecked })}
+									>
+										<input
+											type="radio"
+											name="reg-as"
+											onChange={this.changeChecked}
+											checked={this.state.parkingLotChecked}
+										/>
+										<span className="round" />
 										Parking lot
 									</label>
 								</div>
 
 								<label>
-									<button type="submit" className="modal-btn-orange">Register</button>
+									<button type="submit" className="modal-btn-orange">
+										Register
+									</button>
 								</label>
-
 							</form>
 
 							<ModalFooter
@@ -134,13 +156,11 @@ export default class RegisterModal extends Component {
 								modalTarget="#login-modal"
 								linkText="Login"
 							/>
-
+							
 						</div>
 					</div>
 				</div>
 			</div>
-
 		);
 	}
-
 }

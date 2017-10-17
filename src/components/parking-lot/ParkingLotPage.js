@@ -6,86 +6,81 @@ import Details from './Details';
 import Reviews from './Reviews';
 import OrderSummary from '../common/OrderSummary';
 
-
 export default class ParkingLotPage extends Component {
+	componentDidMount() {
 
-    componentDidMount() {
-
-        // jquery for fixed summary
+		// jquery for fixed summary
 
 		let apdSummary = $('.order-summary');
 		let apdSummaryTop = apdSummary.offset().top - 30;
 
-        $(window).scroll(() => {
+		$(window).scroll(() => {
+			let wScrollTop = $(window).scrollTop();
 
-            let wScrollTop = $(window).scrollTop();
+			if (wScrollTop >= apdSummaryTop) {
+				apdSummary.css({
+					position: 'fixed',
+					top: '30px',
+					'margin-top': '0'
+				});
+			} else {
+				apdSummary.css({
+					position: 'relative',
+					'margin-top': '30px',
+					top: 0
+				});
+			}
+		});
 
-            if (wScrollTop >= apdSummaryTop) {
-                apdSummary.css({
-                    'position': 'fixed',
-                    'top': '30px',
-                    'margin-top': '0'
-                });
-            } else {
-                apdSummary.css({
-                    'position': 'relative',
-                    'margin-top': '30px',
-                    'top': 0
-                });
-            }
-        });
+		const dynamicWidth = () => {
+			let apdSummaryColumnW = $('.ap-details__column--summary').width();
+			apdSummary.css({
+				width: apdSummaryColumnW
+			});
+		};
 
-        const dynamicWidth = () => {
-            let apdSummaryColumnW = $('.ap-details__column--summary').width();
-            apdSummary.css({
-                'width': apdSummaryColumnW
-            });
-        };
+		dynamicWidth();
 
-        dynamicWidth();
+		$(window).resize(function() {
+			dynamicWidth();
+		});
 
-        $(window).resize(function () {
-            dynamicWidth();
-        });
-
-        // end
-
-    }
+		// end
+	}
 
 	render() {
 		return (
 			<div className="ap-details">
 				<div className="container ap-details__container">
+
 					<div className="row ap-details__row">
 
-                        {/*left column*/}
+						{/*left column*/}
 
 						<div className="col-md-7 ap-details__column">
 
 							<Info />
 
-                            <Overview />
+							<Overview />
 
 							<Location />
 
 							<Details />
 
 							<Reviews />
-
+                            
 						</div>
 
-                        {/*right column*/}
+						{/*right column*/}
 
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
-
-                            <OrderSummary />
-
+							<OrderSummary />
 						</div>
 
 					</div>
+
 				</div>
 			</div>
 		);
 	}
-
 }

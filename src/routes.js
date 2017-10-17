@@ -4,10 +4,10 @@ import ParkingLotPage from './components/parking-lot/ParkingLotPage';
 import CheckoutPage from './components/checkout/CheckoutPage';
 
 const routes = [
-  {
-    path: '/',
-    exact: true,
-    component: HomePage
+	{
+		path: '/',
+		exact: true,
+		component: HomePage
 	},
 	{
 		path: '/home',

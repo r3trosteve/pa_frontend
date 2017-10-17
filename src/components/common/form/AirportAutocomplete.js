@@ -8,9 +8,7 @@ function getSuggestionValue(suggestion) {
 }
 
 function renderSuggestion(suggestion) {
-	return (
-		<span>{suggestion.name}</span>
-	);
+	return <span>{suggestion.name}</span>;
 }
 
 export default class AirportAutocomplete extends Component {
@@ -28,11 +26,9 @@ export default class AirportAutocomplete extends Component {
 		return (
 			<label className={classnames('name-label', { 'has-error': this.props.errors.airportName })}>
 
-				<span className="label-title">
-					Airport
-				</span>
+				<span className="label-title">Airport</span>
 
-				<i className="fa fa-map-marker mobile-icon visible-xs" aria-hidden="true"></i>
+				<i className="fa fa-map-marker mobile-icon visible-xs" aria-hidden="true" />
 
 				<Autosuggest
 					suggestions={airportSuggestions}
@@ -46,16 +42,15 @@ export default class AirportAutocomplete extends Component {
 				/>
 
 				<span className="error-text">{this.props.errors.airportName}</span>
-
+				
 			</label>
 		);
-
 	}
 }
 
 AirportAutocomplete.propTypes = {
-    airportName: PropTypes.string.isRequired,
-    airportSuggestions: PropTypes.array.isRequired,
+	airportName: PropTypes.string.isRequired,
+	airportSuggestions: PropTypes.array.isRequired,
 	handleAirportChange: PropTypes.func.isRequired,
 	errors: PropTypes.object.isRequired,
 	getAirportSuggestions: PropTypes.func.isRequired,

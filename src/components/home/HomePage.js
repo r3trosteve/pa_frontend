@@ -13,18 +13,22 @@ class HomePage extends Component {
 	static fetchData(store) {
 		return fetchAirports();
 	}
-	
+
 	componentDidMount() {
 		this.props.dispatch(HomePage.fetchData());
 
-		$(window).scroll(function () {
+		// jquery parallax on home bg
+
+		$(window).scroll(function() {
 			let posYZero = 0;
 			let wScrollTop = $(window).scrollTop();
-		
+
 			$('.home__search').css({
-				'background-position-y': posYZero + wScrollTop/3
+				'background-position-y': posYZero + wScrollTop / 3
 			});
 		});
+
+		// end
 	}
 
 	render() {
@@ -32,16 +36,18 @@ class HomePage extends Component {
 			<div className="home">
 
 				<Helmet title="Home" />
-				
+
 				<Search airports={this.props.airports} />
+				
 				<Options />
+
 				<HowItWorks />
+
 				<TopAirports airports={this.props.airports} />
 
 			</div>
 		);
 	}
-
 }
 
 HomePage.propTypes = {
@@ -49,7 +55,7 @@ HomePage.propTypes = {
 	dispatch: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
 	airports: state.airports.items
 });
 

@@ -22,12 +22,14 @@ export default class Login extends Component {
 
 	handleChange(e) {
 		if (this.state.errors[e.target.name]) {
+
 			let errors = Object.assign({}, this.state.errors);
 			delete errors[e.target.name];
 			this.setState({
 				[e.target.name]: e.target.value,
 				errors
 			});
+
 		} else {
 			this.setState({ [e.target.name]: e.target.value });
 		}
@@ -52,26 +54,31 @@ export default class Login extends Component {
 	}
 
 	changeChecked() {
-		this.setState({checkboxChecked: !this.state.checkboxChecked});
+		this.setState({ checkboxChecked: !this.state.checkboxChecked });
 	}
 
 	render() {
 		return (
-
-			<div className="modal auth-modal" id="login-modal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div
+				className="modal auth-modal"
+				id="login-modal"
+				tabIndex="-1"
+				role="dialog"
+				aria-labelledby="myModalLabel"
+				aria-hidden="true"
+			>
 				<div className="modal-dialog">
 					<div className="modal-content">
 						<div className="modal-body text-center">
 							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
-								<i className="ion-ios-close"></i>
+								<i className="ion-ios-close" />
 							</button>
 
 							{/*header*/}
+
 							<div className="header-modal">
 								<img src={logoImg3x} alt="Logo" />
-								<h4 className="title">
-									Login
-								</h4>
+								<h4 className="title">Login</h4>
 							</div>
 
 							<form onSubmit={this.handleSubmit}>
@@ -80,7 +87,6 @@ export default class Login extends Component {
 									Username / Email
 									<span className="error-text">{this.state.errors.email}</span>
 									<input type="text" name="email" onChange={this.handleChange} />
-
 								</label>
 
 								<label className={classnames('', { 'has-error': this.state.errors.password })}>
@@ -90,17 +96,33 @@ export default class Login extends Component {
 								</label>
 
 								<div className="divider">
-									<label className={classnames('checkbox-label', { 'checked': this.state.checkboxChecked })}>
-										<input type="checkbox" checked={this.state.checkboxChecked} onClick={this.changeChecked}/>
+									<label
+										className={classnames('checkbox-label', {
+											checked: this.state.checkboxChecked
+										})}
+									>
+										<input
+											type="checkbox"
+											checked={this.state.checkboxChecked}
+											onClick={this.changeChecked}
+										/>
 										Remember me
+										
 									</label>
-									<a href="#" data-toggle="modal" data-dismiss="modal" data-target="#forgot-pwd-modal">
+									<a
+										href="#"
+										data-toggle="modal"
+										data-dismiss="modal"
+										data-target="#forgot-pwd-modal"
+									>
 										Forgot password?
 									</a>
 								</div>
 
 								<label>
-									<button type="submit" className="modal-btn-orange">Log in</button>
+									<button type="submit" className="modal-btn-orange">
+										Log in
+									</button>
 								</label>
 
 							</form>
@@ -115,8 +137,6 @@ export default class Login extends Component {
 					</div>
 				</div>
 			</div>
-
 		);
 	}
-
 }

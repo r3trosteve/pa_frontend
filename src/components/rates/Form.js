@@ -10,7 +10,6 @@ import { postSearch } from '../../modules/search';
 import { fetchRates } from '../../modules/rates';
 
 class Form extends Component {
-
 	constructor(props) {
 		super(props);
 
@@ -27,7 +26,7 @@ class Form extends Component {
 		this.getAirportSuggestions = this.getAirportSuggestions.bind(this);
 		this.clearAirportSuggestions = this.clearAirportSuggestions.bind(this);
 		this.handleAirportChange = this.handleAirportChange.bind(this);
-        this.handleAirportSelected = this.handleAirportSelected.bind(this);
+		this.handleAirportSelected = this.handleAirportSelected.bind(this);
 
 		this.handleCalendarPicker = this.handleCalendarPicker.bind(this);
 		this.clearCalendarPicker = this.clearCalendarPicker.bind(this);
@@ -59,7 +58,6 @@ class Form extends Component {
 	}
 
 	handleAirportChange(e, { newValue, method }) {
-
 		let errors = Object.assign({}, this.state.errors);
 		delete errors.airportName;
 
@@ -69,9 +67,9 @@ class Form extends Component {
 		});
 	}
 
-    handleAirportSelected(e, { suggestion }) {
-        this.setState({ airportId: suggestion.id });
-    }
+	handleAirportSelected(e, { suggestion }) {
+		this.setState({ airportId: suggestion.id });
+	}
 
 	// end
 
@@ -91,7 +89,7 @@ class Form extends Component {
 	clearCalendarPicker() {
 		this.setState({
 			startDate: '',
-			endDate: '',
+			endDate: ''
 		});
 	}
 
@@ -100,7 +98,7 @@ class Form extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		const { airportName, startDate, endDate  } = this.state;
+		const { airportName, startDate, endDate } = this.state;
 		let errors = {};
 
 		if (airportName === '') errors.airportName = 'Please enter airport name';
@@ -111,36 +109,33 @@ class Form extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-
 			let { airportId, startDate, endDate } = this.state;
 
-            startDate = startDate.format('YYYY-MM-DDTHH:mm');
-            endDate = endDate.format('YYYY-MM-DDTHH:mm');
+			startDate = startDate.format('YYYY-MM-DDTHH:mm');
+			endDate = endDate.format('YYYY-MM-DDTHH:mm');
 
-            this.setState({ loading: true });
+			this.setState({ loading: true });
 
-            this.props.postSearch({
-                airport_id: airportId,
-                arrive_at: startDate,
-                exit_at: endDate
-            })
-			.then(() => this.props.fetchRates(this.props.search.id))
-			.then(() => this.setState({
-				loading: false,
-			}))
-			.catch(err => err.response.json());
-				
+			this.props
+				.postSearch({
+					airport_id: airportId,
+					arrive_at: startDate,
+					exit_at: endDate
+				})
+				.then(() => this.props.fetchRates(this.props.search.id))
+				.then(() =>
+					this.setState({
+						loading: false
+					})
+				)
+				.catch((err) => err.response.json());
 		}
 	}
 
 	render() {
-
 		return (
-
 			<form onSubmit={this.handleSubmit} className="airport-parking__search-form">
-
 				<div className="search-form">
-
 					<AirportAutocomplete
 						airportName={this.state.airportName}
 						airportSuggestions={this.state.airportSuggestions}
@@ -160,40 +155,35 @@ class Form extends Component {
 					/>
 
 					<div className="submit">
-
 						<label>
-							{
-                                this.state.loading ?
-                                
-									<button
-										type="submit"
-										disabled={this.state.loading}
-										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
-									>
-										<i className="fa fa-spinner" aria-hidden="true"></i>
-										Updating...
-                                    </button> 
-
-                                    : <button
-										type="submit"
-										disabled={this.state.loading}
-										className={classnames('btn-custom btn-custom--big', { 'disabled': this.state.loading })}
-									>
-										Update
-									</button>
-
-							}
+							{this.state.loading ? (
+								<button
+									type="submit"
+									disabled={this.state.loading}
+									className={classnames('btn-custom btn-custom--big', {
+										disabled: this.state.loading
+									})}
+								>
+									<i className="fa fa-spinner" aria-hidden="true" />
+									Updating...
+								</button>
+							) : (
+								<button
+									type="submit"
+									disabled={this.state.loading}
+									className={classnames('btn-custom btn-custom--big', {
+										disabled: this.state.loading
+									})}
+								>
+									Update
+								</button>
+							)}
 						</label>
-
 					</div>
-
 				</div>
-
 			</form>
-
 		);
 	}
-
 }
 
 Form.propTypes = {
@@ -203,7 +193,7 @@ Form.propTypes = {
 	fetchRates: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
 	return {
 		search: state.search.data
 	};

@@ -8,7 +8,6 @@ export default class Rate extends Component {
 	render() {
 		return (
 			<div className={classnames('airport-parking__lot', { 'hidden-xs hidden-sm': this.props.activeMobileTabMap })}>
-
 				<div className="airport-parking__lot__content">
 
 					{/*row*/}
@@ -31,15 +30,18 @@ export default class Rate extends Component {
 								<h2>
 									{this.props.rate.parking_lot.name}
 									<span>${this.props.rate.price.total}</span>
-									</h2>
-								<p>{this.props.rate.parking_lot.location.address1} {this.props.rate.parking_lot.location.address2}</p>
+								</h2>
+								<p>
+									{this.props.rate.parking_lot.location.address1}{' '}
+									{this.props.rate.parking_lot.location.address2}
+								</p>
 							</div>
 
-                            {/*info list*/}
-                            
+							{/*info list*/}
+
 							<InfoList
 								distance={this.props.rate.distance.toFixed()}
-                                type={this.props.rate.name}
+								type={this.props.rate.name}
 								// shuttleFrequency={this.props.rate.shuttleFrequency}
 							/>
 
@@ -50,25 +52,27 @@ export default class Rate extends Component {
 						<div className="airport-parking__lot__column airport-parking__lot__column--price">
 
 							<div className="airport-parking__lot__price">
+
 								<span>${this.props.rate.price.total}</span>
+
 								<p className="cancellation">
-									<i className="ion-ios-checkmark"></i>
+									<i className="ion-ios-checkmark" />
 									Free Cancellation
 								</p>
+
 								<p className="taxes">Taxes and Fees included</p>
+
 								<Link to={'/parking-lot'} className="btn-custom">
 									View details
 								</Link>
+
 							</div>
 
 						</div>
-
 					</div>
-
 				</div>
 
 				{/*description*/}
-
 
 				<div className="airport-parking__lot__description hidden-xs">
 					<p>{this.props.rate.terminal_comment}</p>
@@ -77,16 +81,19 @@ export default class Rate extends Component {
 				{/*options*/}
 
 				<div className="airport-parking__lot__options hidden-xs">
+
 					{this.props.rate.parking_lot.services.map((option, index) => {
+
 						return (
 							<p key={index} className="airport-parking__lot__option-text">
-								<i className="ion-ios-checkmark"></i>
+								<i className="ion-ios-checkmark" />
 								{option}
 							</p>
 						);
-					})}
-				</div>
 
+					})}
+
+				</div>
 			</div>
 		);
 	}

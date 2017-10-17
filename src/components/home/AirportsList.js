@@ -28,13 +28,10 @@ export default class AirportsList extends Component {
 	}
 
 	render() {
-
 		return (
-
 			<div className="home__top-airports__list-section">
-
 				<div className="row home__top-airports__row home__top-airports__row--list-part hidden-sm hidden-xs">
-
+					
 					{/*1*/}
 
 					<div className="col-md-4 col-sm-4 home__top-airports__column">
@@ -58,29 +55,25 @@ export default class AirportsList extends Component {
 							{this.props.airports.slice(18, 25).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
-
 				</div>
 
 				{/*mobile*/}
 
 				<div className="row home__top-airports__row home__top-airports__row--list-part visible-sm visible-xs">
-
 					<div className="col-md-3 col-sm-6 home__top-airports__column">
 						<ul className="home__top-airports__list">
-
-							{
-								this.state.visible ?
-								this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport)) :
+							{this.state.visible ? (
+								this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport))
+							) : (
 								this.props.airports.slice(0, 10).map((airport, index) => this.showList(index, airport))
-							}
+							)}
 
-							<span onClick={this.showMore} className="btn-custom">{this.state.visible ? "Show less" : "Show more"}</span>
-
+							<span onClick={this.showMore} className="btn-custom">
+								{this.state.visible ? 'Show less' : 'Show more'}
+							</span>
 						</ul>
 					</div>
-
 				</div>
-
 			</div>
 		);
 	}

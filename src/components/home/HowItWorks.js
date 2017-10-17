@@ -12,7 +12,6 @@ export default class HowItWorks extends Component {
 	render() {
 		return (
 			<section className="home__how-it-works section-pad">
-
 				<div className="container home__how-it-works__container">
 
 					<div className="home__how-it-works__title">
@@ -25,11 +24,10 @@ export default class HowItWorks extends Component {
 						{/*left*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--small">
-
 							<div className="home__how-it-works__card">
 								<div className="home__how-it-works__card-images home__how-it-works__card-images--doubles">
 									<img src={hiw113x} alt="Guest" width={100} height={100} />
-									<img className="hidden-md" src={hiw123x} alt="Hotel"  width={100} height={100} />
+									<img className="hidden-md" src={hiw123x} alt="Hotel" width={100} height={100} />
 								</div>
 
 								<div className="home__how-it-works__card-description">
@@ -40,23 +38,21 @@ export default class HowItWorks extends Component {
 									</div>
 								</div>
 							</div>
-
 						</div>
 
 						{/*divider*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--arrow">
-							<i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+							<i className="fa fa-long-arrow-right" aria-hidden="true" />
 						</div>
 
 						{/*center*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--big">
-
 							<div className="home__how-it-works__card home__how-it-works__card--center">
 								<div className="home__how-it-works__card-images home__how-it-works__card-images--doubles">
-									<img src={hiw213x} alt="Parking"  width={100} height={100} />
-									<img src={hiw223x} alt="Cash"  width={100} height={100} />
+									<img src={hiw213x} alt="Parking" width={100} height={100} />
+									<img src={hiw223x} alt="Cash" width={100} height={100} />
 								</div>
 
 								<div className="home__how-it-works__card-description">
@@ -67,22 +63,20 @@ export default class HowItWorks extends Component {
 									</div>
 								</div>
 							</div>
-
 						</div>
 
 						{/*divider*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--arrow">
-							<i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+							<i className="fa fa-long-arrow-right" aria-hidden="true" />
 						</div>
 
 						{/*right*/}
 
 						<div className="home__how-it-works__column home__how-it-works__column--small">
-
 							<div className="home__how-it-works__card">
 								<div className="home__how-it-works__card-images">
-									<img src={hiw313x} alt="PayPal"  width={100} height={100} />
+									<img src={hiw313x} alt="PayPal" width={100} height={100} />
 								</div>
 
 								<div className="home__how-it-works__card-description">
@@ -91,13 +85,11 @@ export default class HowItWorks extends Component {
 									</div>
 								</div>
 							</div>
-
 						</div>
-
+						
 					</div>
 
 				</div>
-
 			</section>
 		);
 	}

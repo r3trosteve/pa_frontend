@@ -4,9 +4,9 @@ import search from './search';
 import rates from './rates';
 
 const rootReducer = combineReducers({
-  airports,
-  search,
-  rates
+	airports,
+	search,
+	rates
 });
 
 export default rootReducer;
