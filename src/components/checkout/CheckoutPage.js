@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
 import OrderSummary from '../common/OrderSummary';
@@ -7,6 +8,9 @@ export default class AirportParkingCheckoutPage extends Component {
 	render() {
 		return (
 			<div className="ap-checkout">
+
+				<Helmet title="Checkout" />
+
 				<div className="container ap-checkout__container">
 
 					<div className="row ap-checkout__row">
