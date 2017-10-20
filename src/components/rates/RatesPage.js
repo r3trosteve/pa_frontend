@@ -8,7 +8,7 @@ import GoogleMapReact from 'google-map-react';
 import GoogleMapMark from './GoogleMapMark';
 import classnames from 'classnames';
 import { fetchAirports } from '../../modules/airports';
-import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice, filterRatesByTypes } from '../../modules/rates';
+import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates';
 import { fetchSearch } from '../../modules/search';
 
 class RatesPage extends Component {
@@ -98,10 +98,7 @@ class RatesPage extends Component {
 							<div>
 								{rates.slice(0, 5).map(rate => {
 									return (
-										<span
-											key={rate.id}
-											onClick={() => this.props.dispatch(filterRatesByTypes(rates, rate.name))}
-										>
+										<span key={rate.id} onClick={() => alert('Not working yet, need real types')}>
 											{rate.name}
 										</span>
 									);

@@ -4,7 +4,7 @@ export const RATES_LOADED = '@ssr/rates/loaded';
 export const RATES_SORTED_BY_DISTANCE = '@ssr/rates/sorted-by-distance';
 export const RATES_SORTED_BY_LOW_PRICE = '@ssr/rates/sorted-by-low-price';
 export const RATES_SORTED_BY_HIGH_PRICE = '@ssr/rates/sorted-by-high-price';
-export const RATES_FILTERED_BY_TYPE = '@ssr/rates/filtered-by-type';
+// export const RATES_FILTERED_BY_TYPE = '@ssr/rates/filtered-by-type';
 
 const initialState = {
 	items: []
@@ -30,10 +30,10 @@ export default function reducer(state = initialState, action) {
                 items: action.items.slice().sort((a, b) => b.price.total - a.price.total)
             });
 
-		case RATES_FILTERED_BY_TYPE:
-			return Object.assign({}, state, {
-				items: action.items.filter((item => item.name === action.kind))
-			});
+		// case RATES_FILTERED_BY_TYPE:
+		// 	return Object.assign({}, state, {
+		// 		items: action.items.filter((item => item.name === action.kind))
+		// 	});
 
 		default:
 			return state;
@@ -80,10 +80,10 @@ export const sortRatesByHighPrice = (rates) => (dispatch) => {
     });
 };
 
-export const filterRatesByTypes = (rates, type) => (dispatch) => {
-    return dispatch({
-        type: RATES_FILTERED_BY_TYPE,
-        items: rates,
-		kind: type
-    });
-};
+// export const filterRatesByTypes = (rates, type) => (dispatch) => {
+//     return dispatch({
+//         type: RATES_FILTERED_BY_TYPE,
+//         items: rates,
+// 		kind: type
+//     });
+// };
