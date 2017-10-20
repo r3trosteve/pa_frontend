@@ -4,8 +4,8 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import Form from './Form';
 import Rate from './Rate';
-import GoogleMapReact from 'google-map-react';
-import GoogleMapMark from './GoogleMapMark';
+import Tabs from './Tabs';
+import GoogleMap from './GoogleMap';
 import classnames from 'classnames';
 import { fetchAirports } from '../../modules/airports';
 import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates';
@@ -13,198 +13,196 @@ import { fetchSearch } from '../../modules/search';
 
 class RatesPage extends Component {
 
-	constructor() {
+    constructor() {
         super();
-        
-		this.state = {
-			activeMobileTabList: true,
-			activeMobileTabMap: false,
-			ratesLoading: false,
-			mapLoading: false
+
+        this.state = {
+            activeMobileTabList: true,
+            activeMobileTabMap: false,
+            ratesLoading: false,
+            mapLoading: false
         };
-        
-		this.showLots = this.showLots.bind(this);
 
-		this.mapTabActive = this.mapTabActive.bind(this);
-		this.listTabActive = this.listTabActive.bind(this);
-	}
+        this.showLots = this.showLots.bind(this);
 
-	static fetchData(store, id) {
-		return fetchRates(id);
-	}
+        this.mapTabActive = this.mapTabActive.bind(this);
+        this.listTabActive = this.listTabActive.bind(this);
+    }
 
-	componentDidMount() {
-		this.props.dispatch(fetchAirports());
-		const searchId = this.props.match.params.id;
+    static fetchData(store, id) {
+        return fetchRates(id);
+    }
 
-		if (searchId) {
-			this.props.dispatch(fetchSearch(searchId));
-			this.props.dispatch(RatesPage.fetchData(null, searchId));
+    componentDidMount() {
+        this.props.dispatch(fetchAirports());
+        const searchId = this.props.match.params.id;
+
+        if (searchId) {
+            this.props.dispatch(fetchSearch(searchId));
+            this.props.dispatch(RatesPage.fetchData(null, searchId));
             this.setState({ ratesLoading: true });
-		}
+        }
 
-		setTimeout(() => {
-			this.setState({ mapLoading: true });
-		}, 500);
-	}
+        setTimeout(() => {
+            this.setState({ mapLoading: true });
+            fixedMapScroll();
+        }, 500);
 
-	mapTabActive() {
-		this.setState({ activeMobileTabList: false, activeMobileTabMap: true });
-	}
+        let fixedMapScroll = function () {
+            let wScrollTop = $(window).scrollTop();
+            if(wScrollTop > 110) {
+                $('.map-container').addClass('fixed-map');
+            } else {
+                $('.map-container').removeClass('fixed-map');
+            }
+        };
 
-	listTabActive() {
-		this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
-	}
+        $(window).scroll(() => {
+            let wScrollTop = $(window).scrollTop();
+            fixedMapScroll();
+        });
+    }
 
-	showLots(rates) {
-		return (
-			<section className="airport-parking__lot-section">
-				<div className="airport-parking__lot-section__row">
-					<div className="airport-parking__lot-section__column-big">
+    mapTabActive() {
+        this.setState({ activeMobileTabList: false, activeMobileTabMap: true });
+    }
 
-						<Form airports={this.props.airports} search={this.props.search} />
+    listTabActive() {
+        this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
+    }
 
-						{/*tabs*/}
+    showLots(rates) {
+        return (
+			<div className="rates__row">
 
-						<ul className="airport-parking__mobile-tabs visible-xs visible-sm">
-							<li
-								className={classnames('airport-parking__mobile-tabs__list', {
-									active: this.state.activeMobileTabList
-								})}
-								onClick={this.listTabActive}
-							>
-								<span>
-									<i className="fa fa-list" aria-hidden="true" />
-									List View
-								</span>
-							</li>
-							<li
-								className={classnames('airport-parking__mobile-tabs__map', {
-									active: this.state.activeMobileTabMap
-								})}
-								onClick={this.mapTabActive}
-							>
-								<span>
-									<i className="fa fa-map" aria-hidden="true" />
-									Map
-								</span>
-							</li>
-						</ul>
+                {/*LEFT COLUMN*/}
 
-						{/*sorting*/}
+				<div className="rates__column rates__column--content">
 
-						<div>
-							Filter Parking Types
-							<div>
-								{rates.slice(0, 5).map(rate => {
-									return (
-										<span key={rate.id} onClick={() => alert('Not working yet, need real types')}>
-											{rate.name}
-										</span>
-									);
-								})}
+					<Form airports={this.props.airports} />
+
+					{/*tabs*/}
+
+					<Tabs
+						listTabActive={this.listTabActive}
+						mapTabActive={this.mapTabActive}
+						activeMobileTabList={this.state.activeMobileTabList}
+						activeMobileTabMap={this.state.activeMobileTabMap}
+					/>
+
+					{/*items*/}
+
+					<div className={classnames('rates__items', { 'hidden-xs hidden-sm': this.state.activeMobileTabMap })}>
+
+                        {/*sorting*/}
+
+						<div className="rates__items-header">
+
+							<div className="rates__items-header__title">
+								<h3>Airport parking results</h3>
 							</div>
-						</div>
 
-						<div>
-							Sort By
-							<div>
-								<span onClick={() => alert('No rating provided for rates yet')}>
-									Best Rating
+                            {/*filters*/}
+
+							<div className="dropdown">
+								<span className="dropdown-toggle" data-toggle="dropdown">
+									Filter Parking Types
+									<i className="caret"></i>
 								</span>
-								<span onClick={() => this.props.dispatch(sortRatesByDistance(rates))}>
-									Closest to Airport
-								</span>
-								<span onClick={() => this.props.dispatch(sortRatesByLowPrice(rates))}>
-									Price: Low to High
-								</span>
-								<span onClick={() => this.props.dispatch(sortRatesByHighPrice(rates))}>
-									Price: High to Low
-								</span>
+								<ul className="dropdown-menu filters">
+                                    {rates.slice(0, 5).map(rate => {
+                                        return (
+											<li key={rate.id} onClick={() => alert('Not working yet, need real types')}>
+                                                {rate.name}
+											</li>
+                                        );
+                                    })}
+								</ul>
 							</div>
-						</div>
 
-                        {/*lots*/}
-                        
-						<div className="airport-parking__lot-section__lots-container">
-							{rates.map(rate => {
-								return (
-									<Rate
-										activeMobileTabMap={this.state.activeMobileTabMap}
-										key={rate.id}
-										rate={rate}
-									/>
-								);
-							})}
+                            {/*sorting*/}
+
+							<div className="dropdown">
+								<span className="dropdown-toggle" data-toggle="dropdown">
+									Sort by
+									<i className="caret"></i>
+								</span>
+								<ul className="dropdown-menu sorting">
+									<li onClick={() => alert('No rating provided for rates yet')}>
+										Best Rating
+									</li>
+									<li onClick={() => this.props.dispatch(sortRatesByDistance(rates))}>
+										Closest to Airport
+									</li>
+									<li onClick={() => this.props.dispatch(sortRatesByLowPrice(rates))}>
+										Price: Low to High
+									</li>
+									<li onClick={() => this.props.dispatch(sortRatesByHighPrice(rates))}>
+										Price: High to Low
+									</li>
+								</ul>
+							</div>
+
 						</div>
+                        {rates.map(rate => {
+                            return (
+								<Rate
+									key={rate.id}
+									rate={rate}
+								/>
+                            );
+                        })}
 					</div>
 
-					{/*map*/}
-
-					<div
-						className={classnames('airport-parking__lot-section__column-small', {
-							'mobile-map': this.state.activeMobileTabList
-						})}
-					>
-						{this.state.mapLoading ? (
-							<div className="map-container">
-
-								<GoogleMapReact
-									center={{
-										lat: parseFloat(rates[0].search.airport.location.latitude),
-										lng: parseFloat(rates[0].search.airport.location.longitude)
-									}}
-									zoom={7}
-								>
-									{rates.map(rate => {
-										return (
-											<GoogleMapMark
-												key={rate.id}
-												lat={rate.parking_lot.location.latitude}
-												lng={rate.parking_lot.location.longitude}
-												rate={rate}
-											/>
-										);
-									})}
-								</GoogleMapReact>
-
-							</div>
-						) : null}
-					</div>
 				</div>
-			</section>
-		);
-	}
 
-	render() {
-		return (
-			<div className="airport-parking">
+                {/*END LEFT COLUMN*/}
+
+                {/*RIGHT COLUMN - MAP*/}
+
+				<div className={classnames('rates__column rates__column--map', {'mobile-map': this.state.activeMobileTabList})}>
+
+                    {this.state.mapLoading ? (
+
+						<GoogleMap rates={rates}/>
+
+					) : null}
+
+				</div>
+
+                {/*END RIGHT COLUMN*/}
+
+			</div>
+        );
+    }
+
+    render() {
+        return (
+			<div className="rates">
 
 				<Helmet title="Results" />
 
-				<div className="container airport-parking__container">
-					{this.state.ratesLoading ? this.showLots(this.props.rates) : 'Loading...'}
-				</div>
-                
+				{this.state.ratesLoading ? this.showLots(this.props.rates) : 'Loading...'}
+
 			</div>
-		);
-	}
+        );
+    }
 }
 
 RatesPage.propTypes = {
-	dispatch: PropTypes.func.isRequired,
-	match: PropTypes.object.isRequired,
-	airports: PropTypes.array.isRequired,
-	search: PropTypes.object.isRequired,
-	rates: PropTypes.array
+    dispatch: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
+    airports: PropTypes.array.isRequired,
+    search: PropTypes.object.isRequired,
+    rates: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
-	return {
-		airports: state.airports.items,
-		search: state.search.data,
-		rates: state.rates.items
-	};
+    return {
+        airports: state.airports.items,
+        search: state.search.data,
+        rates: state.rates.items
+    };
 };
 
 export default connect(mapStateToProps)(RatesPage);

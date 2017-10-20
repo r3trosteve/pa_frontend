@@ -1,0 +1,234 @@
+
+.rates
+  padding: 110px 0 0
+  background: $white
+  min-height: calc(100vh)
+
+  &__row
+    display: flex
+    position: relative
+    background: white
+    min-height: 100vh
+    border-top: 1px solid rgba(83, 115, 143, 0.1)
+
+  &__column
+
+    &--content
+      width: 895px
+
+    &--map
+      flex-grow: 1
+      .map-container
+        width: 100%
+        height: calc(100vh)
+        &.fixed-map
+          position: fixed
+          top: 0
+          bottom: 0
+
+  &__map-price
+    font-size: 16px
+    color: white
+    position: relative
+    padding: 5px 0
+    min-width: 65px
+    border-radius: 2px
+    background: $orange
+    text-align: center
+    span
+      display: block
+      font-family: 'Montserrat', sans-serif
+      font-size: 16px
+      font-weight: 500
+      letter-spacing: 0.5px
+      i
+        position: absolute
+        bottom: -10px
+        color: $orange
+        left: 45%
+
+  &__items-header
+    border-top: 1px solid rgba(83, 115, 143, 0.1)
+    border-bottom: 1px solid rgba(83, 115, 143, 0.1)
+    background: $white
+    padding: 22px 25px
+    position: relative
+    text-align: right
+
+    &__title
+      position: absolute
+      left: 25px
+      top: calc(50% - 13px)
+      h3
+        font-family: 'Montserrat', sans-serif
+        font-size: 24px
+        font-weight: 300
+        text-align: left
+        color: $blue
+        text-transform: capitalize
+
+    .dropdown
+      display: inline-block
+      margin-left: 30px
+      span
+        font-family: 'Montserrat', sans-serif
+        color: $blue
+        cursor: pointer
+        transition: all 0.3s
+        font-size: 14px
+        text-transform: uppercase
+        i
+          margin-left: 5px
+        &:hover
+          color: $orange
+
+      .dropdown-menu
+        box-shadow: $shadow-popover
+        border-radius: 4px
+        border: 1px solid rgba(83, 115, 143, 0.1)
+        margin-top: 12px
+        animation: fade-in-dropdown 0.5s forwards
+        opacity: 0
+        transform: translateY(-30px)
+
+        &:before
+          top: -13px
+          border: 13px solid transparent
+          border-top: 0
+          border-bottom-color: rgba(16, 22, 32, 0.1)
+          right: calc(50% - 13px)
+          content: ""
+          display: inline-block
+          position: absolute
+          bottom: auto
+        &:after
+          top: -12px
+          border: 12px solid transparent
+          border-top: 0
+          border-bottom-color: white
+          right: calc(50% - 12px)
+          z-index: 3
+          content: ""
+          display: inline-block
+          position: absolute
+          bottom: auto
+
+
+        @keyframes fade-in-dropdown
+          to
+            opacity: 1
+            transform: translateY(0)
+
+        li
+          font-family: 'Montserrat', sans-serif
+          font-weight: 400
+          padding: 4px 15px
+          text-transform: uppercase
+          color: $blue
+          cursor: pointer
+          transition: all 0.3s
+          &:hover
+            color: $orange
+
+        &.sorting
+          left: -57px
+          width: 190px
+        &.filters
+          left: -25px
+          width: 220px
+
+
+
+
+//responsiveness
+
+@media (max-width: 1199px)
+  .rates
+    &__column
+
+      &--content
+        width: 650px
+
+@media (max-width: 991px)
+  .rates
+
+    &__row
+      max-width: 720px
+      margin: 0 auto
+      box-shadow: $shadow-main
+      min-height: 803px
+
+    &__items-header
+      border-top: none
+
+
+      .dropdown-menu.sorting
+        left: -90px!important
+        &:before
+          right: calc(32% - 13px)
+        &:after
+          right: calc(32% - 12px)
+
+      .dropdown-menu.filters
+        left: -25px
+        width: 220px
+
+    &__column
+
+      &--content
+        width: 100%
+
+      &--map
+        position: absolute
+        top: 303px
+        height: 500px
+        width: 100%
+        overflow: hidden
+        z-index: 1
+        .map-container.fixed-map
+          position: relative!important
+        &.mobile-map
+          z-index: -1
+
+    &__mobile-tabs
+      margin: 0 auto
+      border-bottom: 1px solid rgba(83, 115, 143, 0.1)
+      li
+        width: 50%
+        text-transform: uppercase
+        color: $blue
+        align-items: center
+        cursor: pointer
+        transition: all 0.3s
+        font-size: 15px
+        display: inline-block
+        line-height: 60px
+        span
+          display: block
+          text-align: center
+          margin: 0 auto
+          font-family: 'Montserrat', sans-serif
+          i
+            margin-right: 3px
+        &.active
+          background: $blue
+          color: white
+
+@media (max-width: 767px)
+  .rates
+    padding: 70px 15px 50px
+
+    &__items-header
+      text-align: left
+      padding: 15px
+
+      &__title
+        display: none
+
+      .dropdown
+        margin-left: 0
+        margin-right: 20px
+        span
+          font-size: 12px
+        li
+          font-size: 12px

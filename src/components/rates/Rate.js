@@ -7,26 +7,27 @@ import InfoList from '../common/InfoList';
 export default class Rate extends Component {
 	render() {
 		return (
-			<div className={classnames('airport-parking__lot', { 'hidden-xs hidden-sm': this.props.activeMobileTabMap })}>
-				<div className="airport-parking__lot__content">
+			<div className="rates__item">
+
+				<div className="rates__item__content">
 
 					{/*row*/}
 
-					<div className="airport-parking__lot__row">
+					<div className="rates__item__row">
 
 						{/*image*/}
 
-						<div className="airport-parking__lot__image">
+						<div className="rates__item__image">
 							<img src={this.props.rate.parking_lot.logo_url} alt={this.props.rate.parking_lot.name} />
 						</div>
 
 						{/*left*/}
 
-						<div className="airport-parking__lot__column airport-parking__lot__column--left">
+						<div className="rates__item__column rates__item__column--left">
 
 							{/*header*/}
 
-							<div className="airport-parking__lot__header">
+							<div className="rates__item__header">
 								<h2>
 									{this.props.rate.parking_lot.name}
 									<span>${this.props.rate.price.total}</span>
@@ -49,9 +50,9 @@ export default class Rate extends Component {
 
 						{/*right (price)*/}
 
-						<div className="airport-parking__lot__column airport-parking__lot__column--price">
+						<div className="rates__item__column rates__item__column--price">
 
-							<div className="airport-parking__lot__price">
+							<div className="rates__item__price">
 
 								<span>${this.props.rate.price.total}</span>
 
@@ -74,18 +75,18 @@ export default class Rate extends Component {
 
 				{/*description*/}
 
-				<div className="airport-parking__lot__description hidden-xs">
+				<div className="rates__item__description hidden-xs">
 					<p>{this.props.rate.terminal_comment}</p>
 				</div>
 
 				{/*options*/}
 
-				<div className="airport-parking__lot__options hidden-xs">
+				<div className="rates__item__options hidden-xs">
 
 					{this.props.rate.parking_lot.services.map((option, index) => {
 
 						return (
-							<p key={index} className="airport-parking__lot__option-text">
+							<p key={index} className="rates__item__option-text">
 								<i className="ion-ios-checkmark" />
 								{option}
 							</p>
@@ -100,6 +101,5 @@ export default class Rate extends Component {
 }
 
 Rate.propTypes = {
-	activeMobileTabMap: PropTypes.bool.isRequired,
 	rate: PropTypes.object.isRequired
 };

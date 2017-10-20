@@ -1,14 +1,16 @@
 
-.airport-parking__search-form
+.rates__search-form
   .search-form
     max-width: 920px
     margin-bottom: 0
-    box-shadow: $shadow-main
+    box-shadow: none
     input, span.end-date
       padding: 20px 25px 0
       border-radius: 0!important
     span.label-title
       left: 25px
+    span.error-text
+      left: 25px!important
     .date-label input
       border-radius: 0
     .react-autosuggest__suggestions-container--open span
@@ -25,9 +27,15 @@
 
 //responsiveness
 @media (max-width: 1200px)
-  .airport-parking__search-form
+  .rates__search-form
     .search-form
       @include search-form-sm
+      span.label-title
+        left: 15px
+      input, span.end-date
+        padding: 20px 15px 0
+      span.error-text
+        left: 15px!important
     .submit label button
       width: 100px!important
       height: 65px!important
@@ -37,7 +45,7 @@
         margin-bottom: 5px
 
 @media (max-width: 991px)
-  .airport-parking__search-form
+  .rates__search-form
     .search-form
       box-shadow: none
       border-bottom: 1px solid #f5f5f5!important
@@ -45,7 +53,7 @@
         border-bottom: none
 
 @media (max-width: 767px)
-  .airport-parking__search-form
+  .rates__search-form
     .search-form
       padding: 15px
       .react-autosuggest__suggestions-container--open span

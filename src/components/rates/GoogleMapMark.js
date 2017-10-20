@@ -40,8 +40,7 @@ export default class GoogleMapMark extends Component {
 
     render() {
         return (
-            <div className="airport-parking__map-price">
-
+            <div className="rates__map-price">
                 {this.state.isDetailsOpened ? this.showDetails : this.showMark() }
             </div>
         );

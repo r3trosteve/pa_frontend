@@ -134,7 +134,7 @@ class Form extends Component {
 
 	render() {
 		return (
-			<form onSubmit={this.handleSubmit} className="airport-parking__search-form">
+			<form onSubmit={this.handleSubmit} className="rates__search-form">
 				<div className="search-form">
 					<AirportAutocomplete
 						airportName={this.state.airportName}

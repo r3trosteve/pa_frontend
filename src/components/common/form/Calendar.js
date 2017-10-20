@@ -6,6 +6,23 @@ import DatetimeRangePicker from 'react-bootstrap-daterangepicker';
 import arrow from '../../../assets/images/svg/arrow-right.svg';
 
 export default class Calendar extends Component {
+
+	componentDidMount() {
+
+		$('.daterangepicker.dropdown-menu').mouseover(function () {
+			$('.date-label input').css({
+				'border-color': '#7099bc'
+			});
+        });
+
+        $('.daterangepicker.dropdown-menu').mouseleave(function () {
+            $('.date-label input').css({
+                'border-color': 'transparent'
+            });
+        });
+
+	}
+
 	render() {
 
 		// label is a format showing startDate and endDate in input

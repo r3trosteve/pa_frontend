@@ -1,10 +1,11 @@
 
-.airport-parking__lot
+.rates__item
   padding: 25px 25px 15px
   border-top: 1px solid rgba(83, 115, 143, 0.1)
+  background: white
 
-  &:first-of-type
-    border: none
+  &:nth-child(2)
+    border-top: none
 
   &__row
     display: flex
@@ -125,8 +126,8 @@
 
 
 //responsiveness
-@media (max-width: 992px)
-  .airport-parking__lot
+@media (max-width: 1199px)
+  .rates__item
     padding: 20px 15px 10px
 
     &__row
@@ -157,12 +158,12 @@
       p
         margin: 5px 0 0
 
-@media (max-width: 768px)
-  .airport-parking__lot
+@media (max-width: 767px)
+  .rates__item
     padding: 20px 15px
 
-@media (max-width: 650px)
-  .airport-parking__lot
+@media (max-width: 600px)
+  .rates__item
     &__header
       h2
         font-size: 16px

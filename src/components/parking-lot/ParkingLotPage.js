@@ -15,6 +15,7 @@ export default class ParkingLotPage extends Component {
 
 		let apdSummary = $('.order-summary');
 		let apdSummaryTop = apdSummary.offset().top - 30;
+		console.log(apdSummaryTop);
 
 		$(window).scroll(() => {
 			let wScrollTop = $(window).scrollTop();
@@ -32,19 +33,6 @@ export default class ParkingLotPage extends Component {
 					top: 0
 				});
 			}
-		});
-
-		const dynamicWidth = () => {
-			let apdSummaryColumnW = $('.ap-details__column--summary').width();
-			apdSummary.css({
-				width: apdSummaryColumnW
-			});
-		};
-
-		dynamicWidth();
-
-		$(window).resize(function() {
-			dynamicWidth();
 		});
 
 		// end

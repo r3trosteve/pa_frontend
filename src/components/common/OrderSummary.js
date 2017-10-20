@@ -53,9 +53,7 @@ export default class OrderSummary extends Component {
 								<td>06/15/2017 12:00 PM</td>
 							</tr>
 							<tr>
-								<td>
-									 Days of parking: <span>1 day</span>
-								</td>
+								<td>Days of parking: <span>1 day</span></td>
 								<td>Edit Times</td>
 							</tr>
 						</tbody>

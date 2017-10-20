@@ -3,7 +3,7 @@
   background-color: white
   box-shadow: $shadow-popover
   border: none
-  padding: 20px 25px
+  padding: 25px 25px 20px
   margin-right: 15px
   margin-top: 40px
   opacity: 0
@@ -37,9 +37,18 @@
     &.left
       table thead tr:first-child th:first-child
         padding: 0!important
+      .daterangepicker_input
+        &:before
+          content: 'CHECK-IN'
+          left: calc(50% - 45px)
+
     &.right
       table thead tr:first-child th:last-child
         padding: 0!important
+      .daterangepicker_input
+        &:before
+          content: 'CHECK-OUT'
+          left: calc(50% - 54px)
 
   .calendar-time
     padding: 0
@@ -61,8 +70,17 @@
           color: white
 
   .daterangepicker_input
-    padding: 0!important
+    padding: 40px 0 0!important
     margin-bottom: 20px
+    position: relative
+
+    &:before
+      position: absolute
+      top: 0
+      font-family: 'Montserrat', sans-serif
+      color: $blue
+      font-size: 18px
+      font-weight: 300
 
   .calendar-table
     padding: 0
@@ -132,7 +150,6 @@
             background: $white
             color:  #797979
             font-weight: 300
-            transition: all 0.3s!important
             &.off.disabled
               text-decoration: none
               color: $grey-light
