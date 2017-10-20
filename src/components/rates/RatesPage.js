@@ -5,24 +5,14 @@ import { connect } from 'react-redux';
 import Form from './Form';
 import Rate from './Rate';
 import GoogleMapReact from 'google-map-react';
+import GoogleMapMark from './GoogleMapMark';
 import classnames from 'classnames';
 import { fetchAirports } from '../../modules/airports';
-import { fetchRates } from '../../modules/rates';
+import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice, filterRatesByTypes } from '../../modules/rates';
 import { fetchSearch } from '../../modules/search';
 
-// google map mark
-
-const GoogleMapMark = (props) => (
-	<div className="airport-parking__map-price">
-		<span>
-			<i className="fa fa-caret-down" aria-hidden="true" />${props.price}
-		</span>
-	</div>
-);
-
-// end
-
 class RatesPage extends Component {
+
 	constructor() {
         super();
         
@@ -33,13 +23,10 @@ class RatesPage extends Component {
 			mapLoading: false
         };
         
-		// this.showNothingFound = this.showNothingFound.bind(this);
 		this.showLots = this.showLots.bind(this);
 
 		this.mapTabActive = this.mapTabActive.bind(this);
 		this.listTabActive = this.listTabActive.bind(this);
-
-		// this.loadMore = this.loadMore.bind(this);
 	}
 
 	static fetchData(store, id) {
@@ -48,30 +35,18 @@ class RatesPage extends Component {
 
 	componentDidMount() {
 		this.props.dispatch(fetchAirports());
-
 		const searchId = this.props.match.params.id;
 
 		if (searchId) {
-
 			this.props.dispatch(fetchSearch(searchId));
-
 			this.props.dispatch(RatesPage.fetchData(null, searchId));
-
             this.setState({ ratesLoading: true });
-            
 		}
 
 		setTimeout(() => {
 			this.setState({ mapLoading: true });
 		}, 500);
 	}
-
-	// loadMore() {
-	// 	const { paginator } = this.state;
-	// 	this.setState({
-	// 		paginator: paginator + 1
-	// 	});
-	// }
 
 	mapTabActive() {
 		this.setState({ activeMobileTabList: false, activeMobileTabMap: true });
@@ -81,21 +56,16 @@ class RatesPage extends Component {
 		this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
 	}
 
-	// showNothingFound() {
-	// 	return (
-	// 		<h2 className="airport-parking__nothing-found">
-	// 			<i className="fa fa-frown-o" aria-hidden="true" />
-	// 			Sorry, nothing was found...
-	// 		</h2>
-	// 	);
-	// }
-
 	showLots(rates) {
 		return (
 			<section className="airport-parking__lot-section">
 				<div className="airport-parking__lot-section__row">
 					<div className="airport-parking__lot-section__column-big">
-						<Form airports={this.props.airports} search={this.props.search} /> {/*tabs*/}
+
+						<Form airports={this.props.airports} search={this.props.search} />
+
+						{/*tabs*/}
+
 						<ul className="airport-parking__mobile-tabs visible-xs visible-sm">
 							<li
 								className={classnames('airport-parking__mobile-tabs__list', {
@@ -121,12 +91,52 @@ class RatesPage extends Component {
 							</li>
 						</ul>
 
+						{/*sorting*/}
+
+						<div>
+							Filter Parking Types
+							<div>
+								{rates.slice(0, 5).map(rate => {
+									return (
+										<span
+											key={rate.id}
+											onClick={() => this.props.dispatch(filterRatesByTypes(rates, rate.name))}
+										>
+											{rate.name}
+										</span>
+									);
+								})}
+							</div>
+						</div>
+
+						<div>
+							Sort By
+							<div>
+								<span onClick={() => alert('No rating provided for rates yet')}>
+									Best Rating
+								</span>
+								<span onClick={() => this.props.dispatch(sortRatesByDistance(rates))}>
+									Closest to Airport
+								</span>
+								<span onClick={() => this.props.dispatch(sortRatesByLowPrice(rates))}>
+									Price: Low to High
+								</span>
+								<span onClick={() => this.props.dispatch(sortRatesByHighPrice(rates))}>
+									Price: High to Low
+								</span>
+							</div>
+						</div>
+
                         {/*lots*/}
                         
 						<div className="airport-parking__lot-section__lots-container">
-							{rates.map((rate, index) => {
+							{rates.map(rate => {
 								return (
-									<Rate activeMobileTabMap={this.state.activeMobileTabMap} key={index} rate={rate} />
+									<Rate
+										activeMobileTabMap={this.state.activeMobileTabMap}
+										key={rate.id}
+										rate={rate}
+									/>
 								);
 							})}
 						</div>
@@ -149,13 +159,13 @@ class RatesPage extends Component {
 									}}
 									zoom={7}
 								>
-									{rates.map((rate, index) => {
+									{rates.map(rate => {
 										return (
 											<GoogleMapMark
-												key={index}
+												key={rate.id}
 												lat={rate.parking_lot.location.latitude}
 												lng={rate.parking_lot.location.longitude}
-												price={rate.price.total}
+												rate={rate}
 											/>
 										);
 									})}
@@ -193,7 +203,11 @@ RatesPage.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-	return { airports: state.airports.items, search: state.search.data, rates: state.rates.items };
+	return {
+		airports: state.airports.items,
+		search: state.search.data,
+		rates: state.rates.items
+	};
 };
 
 export default connect(mapStateToProps)(RatesPage);
