@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
-import { fetchAirports } from '../../modules/airports';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import Search from './Search';
 import Options from './Options';
 import HowItWorks from './HowItWorks';
 import TopAirports from './TopAirports';
 
+import { fetchAirports } from '../../modules/airports';
+
 class HomePage extends Component {
 
 	static fetchData(store) {
-		return fetchAirports();
-	}
+    return store.dispatch(fetchAirports());
+  }
 
 	componentDidMount() {
-		this.props.dispatch(HomePage.fetchData());
+		this.props.fetchAirports();
 
 		// jquery parallax on home bg
 
@@ -51,12 +54,10 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
-	airports: PropTypes.array.isRequired,
-	dispatch: PropTypes.func.isRequired
+	airports: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-	airports: state.airports.items
-});
+const mapStateToProps = (state) => ({ airports: state.airports.items });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchAirports }, dispatch);
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

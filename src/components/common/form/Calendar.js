@@ -60,6 +60,7 @@ export default class Calendar extends Component {
 						onCancel={this.props.clearCalendarPicker}
 						autoUpdateInput={false}
 						timePicker
+						timePickerIncrement={15}
 						minDate={moment()}
 						locale={locale}
 						showDropdowns
@@ -93,6 +94,7 @@ export default class Calendar extends Component {
 						onCancel={this.props.clearCalendarPicker}
 						autoUpdateInput={false}
 						timePicker
+						timePickerIncrement={15}
 						minDate={moment()}
 						locale={locale}
 						showDropdowns

@@ -10,8 +10,8 @@ export default class GoogleMap extends Component {
 
                 <GoogleMapReact
                     center={{
-                        lat: parseFloat(this.props.rates[0].search.airport.location.latitude),
-                        lng: parseFloat(this.props.rates[0].search.airport.location.longitude)
+                        lat: parseFloat(this.props.search.airport.location.latitude),
+                        lng: parseFloat(this.props.search.airport.location.longitude)
                     }}
                     zoom={7}
                 >
@@ -33,5 +33,6 @@ export default class GoogleMap extends Component {
 }
 
 GoogleMap.propTypes = {
-  rates: PropTypes.array.isRequired
+    search: PropTypes.object.isRequired,
+    rates: PropTypes.array.isRequired
 };

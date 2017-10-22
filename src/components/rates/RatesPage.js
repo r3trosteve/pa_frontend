@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { connect } from 'react-redux';
-import Form from './Form';
-import Rate from './Rate';
-import Tabs from './Tabs';
-import GoogleMap from './GoogleMap';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import Form from './Form';
+import RatesList from './RatesList';
+import Tabs from './Tabs';
+import Header from './Header';
+import GoogleMap from './GoogleMap';
+
 import { fetchAirports } from '../../modules/airports';
 import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates';
 import { fetchSearch } from '../../modules/search';
@@ -15,36 +19,33 @@ class RatesPage extends Component {
 
     constructor() {
         super();
-
+        
         this.state = {
             activeMobileTabList: true,
             activeMobileTabMap: false,
-            ratesLoading: false,
-            mapLoading: false
+            mapLoading: true
         };
-
-        this.showLots = this.showLots.bind(this);
 
         this.mapTabActive = this.mapTabActive.bind(this);
         this.listTabActive = this.listTabActive.bind(this);
     }
 
-    static fetchData(store, id) {
-        return fetchRates(id);
+	static fetchData(store, match) {
+        return store.dispatch(fetchRates(match.params.id));
     }
 
     componentDidMount() {
-        this.props.dispatch(fetchAirports());
-        const searchId = this.props.match.params.id;
+        this.props.fetchAirports();
 
-        if (searchId) {
-            this.props.dispatch(fetchSearch(searchId));
-            this.props.dispatch(RatesPage.fetchData(null, searchId));
-            this.setState({ ratesLoading: true });
+        if (this.props.match.params.id) {
+            this.props.fetchSearch(this.props.match.params.id);
+            this.props.fetchRates(this.props.match.params.id);
         }
 
+        // jquery
+
         setTimeout(() => {
-            this.setState({ mapLoading: true });
+            this.setState({ mapLoading: false });
             fixedMapScroll();
         }, 500);
 
@@ -61,6 +62,8 @@ class RatesPage extends Component {
             let wScrollTop = $(window).scrollTop();
             fixedMapScroll();
         });
+
+        // end
     }
 
     mapTabActive() {
@@ -71,138 +74,90 @@ class RatesPage extends Component {
         this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
     }
 
-    showLots(rates) {
-        return (
-			<div className="rates__row">
-
-                {/*LEFT COLUMN*/}
-
-				<div className="rates__column rates__column--content">
-
-					<Form airports={this.props.airports} />
-
-					{/*tabs*/}
-
-					<Tabs
-						listTabActive={this.listTabActive}
-						mapTabActive={this.mapTabActive}
-						activeMobileTabList={this.state.activeMobileTabList}
-						activeMobileTabMap={this.state.activeMobileTabMap}
-					/>
-
-					{/*items*/}
-
-					<div className={classnames('rates__items', { 'hidden-xs hidden-sm': this.state.activeMobileTabMap })}>
-
-                        {/*sorting*/}
-
-						<div className="rates__items-header">
-
-							<div className="rates__items-header__title">
-								<h3>Airport parking results</h3>
-							</div>
-
-                            {/*filters*/}
-
-							<div className="dropdown">
-								<span className="dropdown-toggle" data-toggle="dropdown">
-									Filter Parking Types
-									<i className="caret"></i>
-								</span>
-								<ul className="dropdown-menu filters">
-                                    {rates.slice(0, 5).map(rate => {
-                                        return (
-											<li key={rate.id} onClick={() => alert('Not working yet, need real types')}>
-                                                {rate.name}
-											</li>
-                                        );
-                                    })}
-								</ul>
-							</div>
-
-                            {/*sorting*/}
-
-							<div className="dropdown">
-								<span className="dropdown-toggle" data-toggle="dropdown">
-									Sort by
-									<i className="caret"></i>
-								</span>
-								<ul className="dropdown-menu sorting">
-									<li onClick={() => alert('No rating provided for rates yet')}>
-										Best Rating
-									</li>
-									<li onClick={() => this.props.dispatch(sortRatesByDistance(rates))}>
-										Closest to Airport
-									</li>
-									<li onClick={() => this.props.dispatch(sortRatesByLowPrice(rates))}>
-										Price: Low to High
-									</li>
-									<li onClick={() => this.props.dispatch(sortRatesByHighPrice(rates))}>
-										Price: High to Low
-									</li>
-								</ul>
-							</div>
-
-						</div>
-                        {rates.map(rate => {
-                            return (
-								<Rate
-									key={rate.id}
-									rate={rate}
-								/>
-                            );
-                        })}
-					</div>
-
-				</div>
-
-                {/*END LEFT COLUMN*/}
-
-                {/*RIGHT COLUMN - MAP*/}
-
-				<div className={classnames('rates__column rates__column--map', {'mobile-map': this.state.activeMobileTabList})}>
-
-                    {this.state.mapLoading ? (
-
-						<GoogleMap rates={rates}/>
-
-					) : null}
-
-				</div>
-
-                {/*END RIGHT COLUMN*/}
-
-			</div>
-        );
-    }
-
     render() {
         return (
 			<div className="rates">
 
 				<Helmet title="Results" />
 
-				{this.state.ratesLoading ? this.showLots(this.props.rates) : 'Loading...'}
+                <div className="rates__row">
 
+                    {/*LEFT COLUMN*/}
+
+                    <div className="rates__column rates__column--content">
+
+                        <Form airports={this.props.airports} search={this.props.search} />
+
+                        {/*tabs*/}
+
+                        <Tabs
+                            listTabActive={this.listTabActive}
+                            mapTabActive={this.mapTabActive}
+                            activeMobileTabList={this.state.activeMobileTabList}
+                            activeMobileTabMap={this.state.activeMobileTabMap}
+                        />
+
+                        <div className={classnames('rates__items', { 'hidden-xs hidden-sm': this.state.activeMobileTabMap })}>
+
+                            <Header
+                                rates={this.props.rates}
+                                sortRatesByDistance={this.props.sortRatesByDistance}
+                                sortRatesByLowPrice={this.props.sortRatesByLowPrice}
+                                sortRatesByHighPrice={this.props.sortRatesByHighPrice}
+                            />
+
+                            {/*rates*/}
+
+                            <RatesList rates={this.props.rates} />
+
+					    </div>
+                    </div>
+
+                    {/*END LEFT COLUMN*/}
+
+                    {/*RIGHT COLUMN - MAP*/}
+
+                    <div className={classnames('rates__column rates__column--map', {'mobile-map': this.state.activeMobileTabList})}>
+
+                        {!this.state.mapLoading ? (
+
+                            <GoogleMap
+                                search={this.props.search}
+                                rates={this.props.rates} 
+                            />
+
+                        ) : null}
+
+				    </div>
+
+                    {/*END RIGHT COLUMN*/}
+
+                </div>
 			</div>
         );
     }
 }
 
 RatesPage.propTypes = {
-    dispatch: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     airports: PropTypes.array.isRequired,
     search: PropTypes.object.isRequired,
     rates: PropTypes.array
 };
 
-const mapStateToProps = (state) => {
-    return {
-        airports: state.airports.items,
-        search: state.search.data,
-        rates: state.rates.items
-    };
-};
+const mapStateToProps = (state) => ({ 
+    airports: state.airports.items,
+    search: state.search.data,
+    rates: state.rates.items
+});
 
-export default connect(mapStateToProps)(RatesPage);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ 
+    fetchAirports,
+    fetchSearch,
+    fetchRates,
+    sortRatesByDistance,
+    sortRatesByHighPrice,
+    sortRatesByLowPrice
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(RatesPage);
