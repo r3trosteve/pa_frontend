@@ -2,6 +2,7 @@ import HomePage from './components/home/HomePage';
 import RatesPage from './components/rates/RatesPage';
 import ParkingLotPage from './components/parking-lot/ParkingLotPage';
 import CheckoutPage from './components/checkout/CheckoutPage';
+import ProfilePage from './components/auth/ProfilePage';
 
 const routes = [
 	{
@@ -24,6 +25,10 @@ const routes = [
 	{
 		path: '/checkout',
 		component: CheckoutPage
+	},
+	{
+		path: '/profile',
+		component: ProfilePage
 	}
 ];
 

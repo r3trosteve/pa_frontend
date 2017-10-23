@@ -2,8 +2,11 @@ import React, { Component } from 'react';
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import ModalFooter from './ModalFooter';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { Route, Redirect } from 'react-router-dom';
+import { authSignIn } from '../../modules/auth';
 
-export default class Login extends Component {
+class Login extends Component {
 
 	constructor() {
 		super();
@@ -12,7 +15,8 @@ export default class Login extends Component {
 			email: '',
 			password: '',
 			errors: {},
-			checkboxChecked: false
+			checkboxChecked: false,
+			redirect: false
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -46,10 +50,16 @@ export default class Login extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			const { email, password } = this.state;
+            const { email, password } = this.state;
 
-			// api request
-			alert('Auth request goes here');
+            // api request
+            this.props
+                .authSignIn({ email, password })
+                .then(() =>
+                    // this.setState({ redirect: true })
+					console.log('Signed in')
+                )
+                .catch((err) => err.response.json());
 		}
 	}
 
@@ -58,85 +68,110 @@ export default class Login extends Component {
 	}
 
 	render() {
-		return (
-			<div
-				className="modal auth-modal"
-				id="login-modal"
-				tabIndex="-1"
-				role="dialog"
-				aria-labelledby="myModalLabel"
-				aria-hidden="true"
-			>
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body text-center">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
-								<i className="ion-ios-close" />
-							</button>
+		console.log(this.props.auth);
 
-							{/*header*/}
+        if (this.state.redirect) {
+			return (
+				<Route
+					render={({staticContext}) => {
+                        if (staticContext) {
+                            staticContext.status = 302;
+                        }
+                        return <Redirect from={'/'} to={'/profile'}/>;
+                    }}
+				/>
+            );
 
-							<div className="header-modal">
-								<img src={logoImg3x} alt="Logo" />
-								<h4 className="title">Login</h4>
-							</div>
+        } else {
 
-							<form onSubmit={this.handleSubmit}>
+            return (
+				<div
+					className="modal auth-modal"
+					id="login-modal"
+					tabIndex="-1"
+					role="dialog"
+					aria-labelledby="myModalLabel"
+					aria-hidden="true"
+				>
+					<div className="modal-dialog">
+						<div className="modal-content">
+							<div className="modal-body text-center">
+								<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+									<i className="ion-ios-close"/>
+								</button>
 
-								<label className={classnames('', { 'has-error': this.state.errors.email })}>
-									Username / Email
-									<span className="error-text">{this.state.errors.email}</span>
-									<input type="text" name="email" onChange={this.handleChange} />
-								</label>
+                                {/*header*/}
 
-								<label className={classnames('', { 'has-error': this.state.errors.password })}>
-									Password
-									<span className="error-text">{this.state.errors.password}</span>
-									<input type="password" name="password" onChange={this.handleChange} />
-								</label>
-
-								<div className="divider">
-									<label
-										className={classnames('checkbox-label', {
-											checked: this.state.checkboxChecked
-										})}
-									>
-										<input
-											type="checkbox"
-											checked={this.state.checkboxChecked}
-											onClick={this.changeChecked}
-										/>
-										Remember me
-										
-									</label>
-									<a
-										href="#"
-										data-toggle="modal"
-										data-dismiss="modal"
-										data-target="#forgot-pwd-modal"
-									>
-										Forgot password?
-									</a>
+								<div className="header-modal">
+									<img src={logoImg3x} alt="Logo"/>
+									<h4 className="title">Login</h4>
 								</div>
 
-								<label>
-									<button type="submit" className="modal-btn-orange">
-										Log in
-									</button>
-								</label>
+								<form onSubmit={this.handleSubmit}>
 
-							</form>
+									<label className={classnames('', {'has-error': this.state.errors.email})}>
+										Username / Email
+										<span className="error-text">{this.state.errors.email}</span>
+										<input type="text" name="email" onChange={this.handleChange}/>
+									</label>
 
-							<ModalFooter
-								authText="Don't have an account?"
-								modalTarget="#register-modal"
-								linkText="Register"
-							/>
+									<label className={classnames('', {'has-error': this.state.errors.password})}>
+										Password
+										<span className="error-text">{this.state.errors.password}</span>
+										<input type="password" name="password" onChange={this.handleChange}/>
+									</label>
 
+									<div className="divider">
+										<label
+											className={classnames('checkbox-label', {
+                                                checked: this.state.checkboxChecked
+                                            })}
+										>
+											<input
+												type="checkbox"
+												checked={this.state.checkboxChecked}
+												onClick={this.changeChecked}
+											/>
+											Remember me
+
+										</label>
+										<a
+											href="#"
+											data-toggle="modal"
+											data-dismiss="modal"
+											data-target="#forgot-pwd-modal"
+										>
+											Forgot password?
+										</a>
+									</div>
+
+									<label>
+										<button type="submit" className="modal-btn-orange">
+											Log in
+										</button>
+									</label>
+
+								</form>
+
+								<ModalFooter
+									authText="Don't have an account?"
+									modalTarget="#register-modal"
+									linkText="Register"
+								/>
+
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		);
+            );
+        }
 	}
 }
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth.data
+    };
+};
+
+export default connect(mapStateToProps, { authSignIn })(Login);
