@@ -8,8 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import configureStore from '../src/configureStore';
 import App from '../src/components/App';
+import setAuthorizationToken from '../src/utils/auth';
+import jwt from 'jsonwebtoken';
+import { setCurrentUser } from '../src/modules/auth';
 
 const store = configureStore(window.__initialData__);
+
+if (localStorage.jwtToken) {
+	setAuthorizationToken(localStorage.jwtToken);
+	store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)));
+}
 
 const renderApp = Component => {
 	ReactDOM.hydrate(

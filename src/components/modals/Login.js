@@ -4,7 +4,7 @@ import ModalFooter from './ModalFooter';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { authSignIn } from '../../modules/auth';
+import { login } from '../../modules/auth';
 
 class Login extends Component {
 
@@ -54,10 +54,9 @@ class Login extends Component {
 
             // api request
             this.props
-                .authSignIn({ email, password })
+                .login({ email, password })
                 .then(() =>
-                    // this.setState({ redirect: true })
-					console.log('Signed in')
+                    this.setState({ redirect: true })
                 )
                 .catch((err) => err.response.json());
 		}
@@ -68,8 +67,6 @@ class Login extends Component {
 	}
 
 	render() {
-		console.log(this.props.auth);
-
         if (this.state.redirect) {
 			return (
 				<Route
@@ -168,10 +165,4 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
-    return {
-        auth: state.auth.data
-    };
-};
-
-export default connect(mapStateToProps, { authSignIn })(Login);
+export default connect(null, { login })(Login);

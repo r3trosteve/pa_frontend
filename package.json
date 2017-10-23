@@ -13,6 +13,7 @@
   "author": "Rustam K.",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.0",
     "bootstrap": "^3.3.7",
     "bootstrap-daterangepicker": "^2.1.25",
     "classnames": "^2.2.5",
@@ -20,6 +21,8 @@
     "google-map-react": "^0.24.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
+    "jsonwebtoken": "^8.1.0",
+    "lodash": "^4.17.4",
     "moment": "^2.19.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
