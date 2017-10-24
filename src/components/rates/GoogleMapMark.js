@@ -20,21 +20,21 @@ export default class GoogleMapMark extends Component {
     }
 
     showDetails() {
-        return (
-          <div>
-              <span>
-                  DETAILS
-              </span>
-          </div>
-        );
     }
 
     showMark() {
         return (
-            <span onClick={this.showDetails}>
-                <i className="fa fa-caret-down" aria-hidden="true" />
-                ${this.props.rate.price.total}
-            </span>
+            <div className="rates__map-price__info">
+                <div className="rates__map-price__details">
+                  <span>
+                      DETAILS
+                  </span>
+                </div>
+                <span onClick={this.showDetails}>
+                    <i className="fa fa-caret-down" aria-hidden="true" />
+                    ${this.props.rate.price.total}
+                </span>
+            </div>
         );
     }
 

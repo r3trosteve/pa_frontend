@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
             return {
                 isAuthenticated: !isEmpty(action.user),
                 user: action.user
-            } 
+            };
 
         default:
             return state;
@@ -28,8 +28,8 @@ export const setCurrentUser = (user) => {
     return {
         type: SET_CURRENT_USER,
         user: user
-    }
-}
+    };
+};
 
 export const login = (data) => (dispatch) => {
     return fetch('http://staging.back.parkingaccess.com/sign_in', {

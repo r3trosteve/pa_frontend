@@ -15,7 +15,6 @@ export default class ParkingLotPage extends Component {
 
 		let apdSummary = $('.order-summary');
 		let apdSummaryTop = apdSummary.offset().top - 30;
-		console.log(apdSummaryTop);
 
 		$(window).scroll(() => {
 			let wScrollTop = $(window).scrollTop();

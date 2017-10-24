@@ -25,6 +25,8 @@
           position: fixed
           top: 0
           bottom: 0
+        .gm-style-pbc
+          display: none!important
 
   &__map-price
     font-size: 16px
@@ -33,14 +35,15 @@
     padding: 5px 0
     min-width: 65px
     border-radius: 2px
-    background: $orange
     text-align: center
+    background: $orange
     span
       display: block
       font-family: 'Montserrat', sans-serif
       font-size: 16px
       font-weight: 500
       letter-spacing: 0.5px
+      cursor: pointer
       i
         position: absolute
         bottom: -10px
@@ -137,11 +140,7 @@
           left: -25px
           width: 220px
 
-
-
-
 //responsiveness
-
 @media (max-width: 1199px)
   .rates
     &__column
@@ -160,7 +159,6 @@
 
     &__items-header
       border-top: none
-
 
       .dropdown-menu.sorting
         left: -90px!important
