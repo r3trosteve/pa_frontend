@@ -60,7 +60,7 @@ class Header extends Component {
 								<li>
 									<a
 										href="#join"
-										className="navbar-join"
+										className="navbar-shadowed"
 										data-toggle="modal"
 										data-dismiss="modal"
 										data-target="#register-login-modal"

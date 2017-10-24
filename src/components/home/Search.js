@@ -7,6 +7,7 @@ export default class Search extends Component {
 	render() {
 		return (
 			<section className="home__search">
+
 				<div className="container home__search__container">
 
 					<div className="home__search__book-travel-container hidden-xs">

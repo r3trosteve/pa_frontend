@@ -32,11 +32,29 @@ class HomePage extends Component {
 		});
 
 		// end
+
+		// close mobile form
+
+		$('.home__close-search-form').click(function () {
+			$('.daterangepicker.dropdown-menu').hide();
+			$(this).hide();
+        });
+
+		$('.date-label').click(function () {
+            // $('.home__close-search-form').css('display', 'block!important');
+        });
+
+		// end
+
 	}
 
 	render() {
 		return (
 			<div className="home">
+
+				<i
+					className="ion-ios-close home__close-search-form">
+				</i>
 
 				<Helmet title="Home" />
 

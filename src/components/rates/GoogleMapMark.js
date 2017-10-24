@@ -1,47 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 export default class GoogleMapMark extends Component {
 
-    constructor() {
-        super();
+    componentDidMount() {
+        $('.rates__map-info__price').click(function () {
+            $('.rates__map-info__details').hide();
+            $(this).parent().find('.rates__map-info__details').show();
+        });
 
-        this.state = {
-          isDetailsOpened: false
-        };
+        $('.rates__map-info__details i.ion-ios-close').click(function () {
+            $(this).parent().hide();
+        });
 
-        this.handleShowDetails = this.handleShowDetails.bind(this);
-        this.showDetails = this.showDetails.bind(this);
-        this.showMark = this.showMark.bind(this);
-    }
-
-    handleShowDetails() {
-        this.setState({ isDetailsOpened: true });
-    }
-
-    showDetails() {
-    }
-
-    showMark() {
-        return (
-            <div className="rates__map-price__info">
-                <div className="rates__map-price__details">
-                  <span>
-                      DETAILS
-                  </span>
-                </div>
-                <span onClick={this.showDetails}>
-                    <i className="fa fa-caret-down" aria-hidden="true" />
-                    ${this.props.rate.price.total}
-                </span>
-            </div>
-        );
     }
 
     render() {
         return (
-            <div className="rates__map-price">
-                {this.state.isDetailsOpened ? this.showDetails : this.showMark() }
+            <div className="rates__map-info" >
+                <div className="rates__map-info__details">
+                    <i className="ion-ios-close"></i>
+                    <h2>{this.props.rate.parking_lot.name}</h2>
+                    <p className="text-bold">
+                        <span>1</span> mile(s)
+                        from <span>{this.props.rate.search.airport.code}</span>
+                    </p>
+                    <Link to="/parking-lot" className="btn-custom">View details</Link>
+                    <i className="fa fa-caret-down" aria-hidden="true" />
+                </div>
+                <span className="rates__map-info__price" onClick={this.handleShowDetails}>
+                    <i className="fa fa-caret-down" aria-hidden="true" />
+                    ${this.props.rate.price.total}
+                </span>
             </div>
         );
     }

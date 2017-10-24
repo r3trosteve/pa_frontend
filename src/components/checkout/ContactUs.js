@@ -13,17 +13,15 @@ export default class ContactUs extends Component {
 					</div>
 
 					<div className="ap-checkout__contact-us__description">
-						<div className="ap-checkout__contact-us__card">
-							<h4>Contact us:</h4>
-							<p>
-								Book online or call{' '}
-								<a href="tel:8008515863" className="text-mont-bold">
-									{' '}
-									800-851-5863
-								</a>{' '}
-								This call is free, 24 hours a day; 7 days a week.
-							</p>
-						</div>
+						<h4>Contact us:</h4>
+						<p>
+							Book online or call{' '}
+							<a href="tel:8008515863" className="text-mont-bold">
+								800-851-5863
+							</a>.
+							<br/>
+							This call is free 24 hours a day, 7 days a week.
+						</p>
 					</div>
                     
 				</div>
