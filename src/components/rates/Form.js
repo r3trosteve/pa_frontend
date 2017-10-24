@@ -6,10 +6,11 @@ import AirportAutocomplete from '../common/form/AirportAutocomplete';
 import Calendar from '../common/form/Calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { postSearch } from '../../modules/search';
+import { createSearch } from '../../modules/search';
 import { fetchRates } from '../../modules/rates';
+import { bindActionCreators } from 'redux';
 
-class Form extends Component {
+class Form2 extends Component {
 	constructor(props) {
 		super(props);
 
@@ -109,27 +110,31 @@ class Form extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			let { airportId, startDate, endDate } = this.state;
+            let { airportId, startDate, endDate } = this.state;
 
-			startDate = startDate.format('YYYY-MM-DDTHH:mm');
-			endDate = endDate.format('YYYY-MM-DDTHH:mm');
+            startDate = startDate.format('YYYY-MM-DDTHH:mm');
+            endDate = endDate.format('YYYY-MM-DDTHH:mm');
 
-			this.setState({ loading: true });
+            this.setState({ loading: true });
 
-			this.props
-				.postSearch({
-					airport_id: airportId,
-					arrive_at: startDate,
-					exit_at: endDate
-				})
-				.then(() => this.props.fetchRates(this.props.search.id))
-				.then(() =>
-					this.setState({
-						loading: false
-					})
-				)
-				.catch((err) => err.response.json());
+            this.props
+                .createSearch({
+                    airport_id: airportId,
+                    arrive_at: startDate,
+                    exit_at: endDate
+                })
+                .then(() => this.props.fetchRates(this.props.search.id))
+                .then(() =>
+                    this.setState({
+                        loading: false
+                    })
+                )
+                .catch((err) => err.response.json());
 		}
+
+        this.props.fetchRates(this.props.search.id)
+            .then(() => this.setState({ loading: false }))
+            .catch((err) => err.response.json());
 	}
 
 	render() {
@@ -186,10 +191,10 @@ class Form extends Component {
 	}
 }
 
-Form.propTypes = {
+Form2.propTypes = {
 	search: PropTypes.object.isRequired,
 	airports: PropTypes.array.isRequired,
-	postSearch: PropTypes.func.isRequired,
+	createSearch: PropTypes.func.isRequired,
 	fetchRates: PropTypes.func.isRequired
 };
 
@@ -199,4 +204,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, { postSearch, fetchRates })(Form);
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+    createSearch,
+    fetchRates,
+}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Form2);
+
+// export default connect(mapStateToProps, { createSearch, fetchRates })(Form);

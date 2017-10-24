@@ -60,7 +60,7 @@ export default class AirportsList extends Component {
 				{/*mobile*/}
 
 				<div className="row home__top-airports__row home__top-airports__row--list-part visible-sm visible-xs">
-					<div className="col-md-3 col-sm-6 home__top-airports__column">
+					<div className="col-md-12 home__top-airports__column text-center">
 						<ul className="home__top-airports__list">
 							{this.state.visible ? (
 								this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport))

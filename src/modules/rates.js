@@ -7,20 +7,20 @@ export const RATES_SORTED_BY_HIGH_PRICE = '@ssr/rates/sorted-by-high-price';
 // export const RATES_FILTERED_BY_TYPE = '@ssr/rates/filtered-by-type';
 
 const initialState = {
-	items: []
+    items: []
 };
 
 export default function reducer(state = initialState, action) {
-	switch (action.type) {
-		case RATES_LOADED:
-			return Object.assign({}, state, { items: action.items });
+    switch (action.type) {
+        case RATES_LOADED:
+            return Object.assign({}, state, { items: action.items });
 
-		case RATES_SORTED_BY_DISTANCE:
-			return Object.assign({}, state, {
-				items: action.items.slice().sort((a, b) => a.distance - b.distance)
-			});
+        case RATES_SORTED_BY_DISTANCE:
+            return Object.assign({}, state, {
+                items: action.items.slice().sort((a, b) => a.distance - b.distance)
+            });
 
-		case RATES_SORTED_BY_LOW_PRICE:
+        case RATES_SORTED_BY_LOW_PRICE:
             return Object.assign({}, state, {
                 items: action.items.slice().sort((a, b) => a.price.total - b.price.total)
             });
@@ -30,14 +30,14 @@ export default function reducer(state = initialState, action) {
                 items: action.items.slice().sort((a, b) => b.price.total - a.price.total)
             });
 
-		// case RATES_FILTERED_BY_TYPE:
-		// 	return Object.assign({}, state, {
-		// 		items: action.items.filter((item => item.name === action.kind))
-		// 	});
+        // case RATES_FILTERED_BY_TYPE:
+        // 	return Object.assign({}, state, {
+        // 		items: action.items.filter((item => item.name === action.kind))
+        // 	});
 
-		default:
-			return state;
-	}
+        default:
+            return state;
+    }
 }
 
 export const fetchRates = (id) => (dispatch) => {

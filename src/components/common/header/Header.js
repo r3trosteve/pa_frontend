@@ -6,8 +6,24 @@ import RegisterLogin from '../../modals/RegisterLogin';
 import Login from '../../modals/Login';
 import Register from '../../modals/Register';
 import ForgotPassword from '../../modals/ForgotPassword';
+import { connect } from 'react-redux';
+import { logout } from '../../../modules/auth';
+// import NonAuthLinks from './NonAuthLinks';
+// import AuthLinks from './AuthLinks';
 
-export default class Header extends Component {
+class Header extends Component {
+
+	constructor() {
+		super();
+
+		this.handleLogout = this.handleLogout.bind(this);
+	}
+
+    handleLogout(e) {
+        e.preventDefault();
+        this.props.logout();
+    }
+
 	render() {
 		return (
 			<header>
@@ -66,6 +82,14 @@ export default class Header extends Component {
 									<a href="tel:8008515863">800-851-5863</a>
 								</li>
 							</ul>
+
+							{/*{this.props.auth.isAuthenticated ?*/}
+								{/*<AuthLinks*/}
+									{/*handleLogout={this.handleLogout}*/}
+								{/*/> :*/}
+								{/*<NonAuthLinks />*/}
+							{/*}*/}
+
 						</div>
 					</div>
 					
@@ -84,4 +108,9 @@ export default class Header extends Component {
 			</header>
 		);
 	}
+
 }
+
+const mapStateToProps = (state) => ({ auth: state.auth });
+
+export default connect(mapStateToProps, { logout })(Header);

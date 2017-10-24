@@ -4,12 +4,13 @@ import classnames from 'classnames';
 import AirportAutocomplete from '../common/form/AirportAutocomplete';
 import Calendar from '../common/form/Calendar';
 import { getSuggestions } from '../../utils';
-import moment from 'moment';
+// import moment from 'moment';
 import { connect } from 'react-redux';
-import { postSearch } from '../../modules/search';
+import { createSearch } from '../../modules/search';
+// import { fetchRates } from '../../modules/rates';
 import { Route, Redirect } from 'react-router-dom';
 
-class Form extends Component {
+class Form1 extends Component {
 
 	constructor() {
 		super();
@@ -96,7 +97,7 @@ class Form extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		const { airportName, startDate, endDate } = this.state;
+		const { airportId, airportName, startDate, endDate } = this.state;
 		let errors = {};
 
 		if (airportName === '') errors.airportName = 'Please enter airport name';
@@ -107,40 +108,41 @@ class Form extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			let { airportId, startDate, endDate } = this.state;
 
-			startDate = startDate.format('YYYY-MM-DDTHH:mm');
-			endDate = endDate.format('YYYY-MM-DDTHH:mm');
+            let { airportId, startDate, endDate } = this.state;
 
-			this.setState({ loading: true });
+            startDate = startDate.format('YYYY-MM-DDTHH:mm');
+            endDate = endDate.format('YYYY-MM-DDTHH:mm');
 
-			this.props
-				.postSearch({
-					airport_id: airportId,
-					arrive_at: startDate,
-					exit_at: endDate
-				})
-				.then(() =>
-					this.setState({
-						loading: false,
-						redirect: true
-					})
-				)
-				.catch((err) => err.response.json());
+            this.setState({ loading: true });
+
+            this.props
+                .createSearch({
+                    airport_id: airportId,
+                    arrive_at: startDate,
+                    exit_at: endDate
+                })
+                .then(() =>
+                    this.setState({
+                        loading: false,
+                        redirect: true
+                    })
+                )
+                .catch((err) => err.response.json());
+
 		}
 	}
 
 	render() {
 		if (this.state.redirect) {
-			// return <Redirect to={`/rates/search/${this.props.search.id}`} />;
-
 			return (
+
 				<Route
 					render={({ staticContext }) => {
 						if (staticContext) {
 							staticContext.status = 302;
 						}
-						return <Redirect from={'/'} to={`/rates/search/${this.props.search.id}`} />;
+                        return <Redirect from="/" to={`/rates/search/${this.props.search.id}`} />;
 					}}
 				/>
 			);
@@ -216,16 +218,17 @@ class Form extends Component {
 	}
 }
 
-Form.propTypes = {
+Form1.propTypes = {
 	airports: PropTypes.array.isRequired,
-	postSearch: PropTypes.func.isRequired,
+	createSearch: PropTypes.func.isRequired,
 	search: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
 	return {
-		search: state.search.data
+		search: state.search.data,
+		// rates: state.rates.items
 	};
 };
 
-export default connect(mapStateToProps, { postSearch })(Form);
+export default connect(mapStateToProps, { createSearch })(Form1);

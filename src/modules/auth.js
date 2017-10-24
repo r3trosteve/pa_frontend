@@ -48,18 +48,18 @@ export const login = (data) => (dispatch) => {
         });
 };
 
-// export const logout = () => (dispatch) => {
-//     return dispatch => {
-//         localStorage.removeItem('jwtToken');
-//         setAuthorizationToken(false);
-//         dispatch(setCurrentUser({}));
-//     };
-// }
-
-export function logout() {
+export const logout = () => {
     return dispatch => {
         localStorage.removeItem('jwtToken');
         setAuthorizationToken(false);
         dispatch(setCurrentUser({}));
-    }
-}
+    };
+};
+
+// export function logout() {
+//     return dispatch => {
+//         localStorage.removeItem('jwtToken');
+//         setAuthorizationToken(false);
+//         dispatch(setCurrentUser({}));
+//     }
+// }

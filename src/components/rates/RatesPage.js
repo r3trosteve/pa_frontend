@@ -19,7 +19,7 @@ class RatesPage extends Component {
 
     constructor() {
         super();
-        
+
         this.state = {
             activeMobileTabList: true,
             activeMobileTabMap: false,
@@ -30,7 +30,7 @@ class RatesPage extends Component {
         this.listTabActive = this.listTabActive.bind(this);
     }
 
-	static fetchData(store, match) {
+    static fetchData(store, match) {
         return store.dispatch(fetchRates(match.params.id));
     }
 
@@ -76,9 +76,9 @@ class RatesPage extends Component {
 
     render() {
         return (
-			<div className="rates">
+            <div className="rates">
 
-				<Helmet title="Results" />
+                <Helmet title="Results" />
 
                 <div className="rates__row">
 
@@ -110,7 +110,7 @@ class RatesPage extends Component {
 
                             <RatesList rates={this.props.rates} />
 
-					    </div>
+                        </div>
                     </div>
 
                     {/*END LEFT COLUMN*/}
@@ -123,17 +123,17 @@ class RatesPage extends Component {
 
                             <GoogleMap
                                 search={this.props.search}
-                                rates={this.props.rates} 
+                                rates={this.props.rates}
                             />
 
                         ) : null}
 
-				    </div>
+                    </div>
 
                     {/*END RIGHT COLUMN*/}
 
                 </div>
-			</div>
+            </div>
         );
     }
 }
@@ -145,13 +145,13 @@ RatesPage.propTypes = {
     rates: PropTypes.array
 };
 
-const mapStateToProps = (state) => ({ 
+const mapStateToProps = (state) => ({
     airports: state.airports.items,
     search: state.search.data,
     rates: state.rates.items
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ 
+const mapDispatchToProps = (dispatch) => bindActionCreators({
     fetchAirports,
     fetchSearch,
     fetchRates,
