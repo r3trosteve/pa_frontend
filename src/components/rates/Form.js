@@ -135,11 +135,15 @@ class Form2 extends Component {
                 .catch((err) => err.response.json());
 		}
 
-        setTimeout(() => {
-            this.props.fetchRates(this.props.search.id)
-                .then(() => this.setState({ loading: false }))
-                .catch((err) => err.response.json());
-		}, 5000)
+        this.props.fetchRates(this.props.search.id)
+            .then(() => this.setState({ loading: false }))
+            .catch((err) => err.response.json());
+
+        // setTimeout(() => {
+         //    this.props.fetchRates(this.props.search.id)
+         //        .then(() => this.setState({ loading: false }))
+         //        .catch((err) => err.response.json());
+		// }, 5000)
 	}
 
 	render() {

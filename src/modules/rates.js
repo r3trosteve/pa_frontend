@@ -41,23 +41,47 @@ export default function reducer(state = initialState, action) {
 }
 
 export const fetchRates = (id) => (dispatch) => {
-    return fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}/rates`, {
-        method: 'get',
-        headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json; version=1'
-        }
-    })
-        .then((res) => {
-            return res.json();
+
+    let interval;
+
+    const promise = new Promise((resolve, reject) => {
+        interval = setInterval(() => {
+            fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}`, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json; version=1'
+                }
+            })
+                .then(res => res.json())
+                .then((data) => {
+                    if (data['airport_parking/search'].status === 'finished') {
+                        clearInterval(interval);
+                        resolve(data['airport_parking/search']);
+                    }
+                });
+        }, 1000);
+    });
+
+    promise.then(() => {
+        return fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}/rates`, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json; version=1'
+            }
         })
-        .then((rates) => {
-            dispatch({
-                type: RATES_LOADED,
-                items: rates['airport_parking/rates']
+            .then((res) => {
+                return res.json();
+            })
+            .then((rates) => {
+                dispatch({
+                    type: RATES_LOADED,
+                    items: rates['airport_parking/rates']
+                });
+                console.log(rates['airport_parking/rates']);
             });
-            console.log(rates['airport_parking/rates']);
-        });
+    });
 };
 
 export const sortRatesByDistance = (rates) => (dispatch) => {

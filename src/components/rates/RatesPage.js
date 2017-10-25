@@ -41,10 +41,12 @@ class RatesPage extends Component {
         if (this.props.match.params.id) {
             this.props.fetchSearch(this.props.match.params.id);
 
-            setTimeout(() => {
-                this.props.fetchRates(this.props.match.params.id);
-                this.setState({ ratesLoading: false });
-            }, 5000);
+            this.props.fetchRates(this.props.match.params.id);
+            this.setState({ ratesLoading: false });
+
+            // setTimeout(() => {
+            //
+            // }, 5000);
         }
 
         // jquery
