@@ -3,15 +3,21 @@ import { connect } from 'react-redux';
 
 class ProfilePage extends Component {
     render() {
+
         return (
-            <div style={{paddingTop: 100}}>
+            <div style={{paddingTop: 100, height: '100vh'}}>
 
-                <h1>Profile</h1>
+                <div className="container">
 
-                <div><pre>{JSON.stringify(this.props.auth, null, 2) }</pre></div>
+                    <h1>Profile</h1>
+
+                    <div><pre>{JSON.stringify(this.props.auth, null, 2) }</pre></div>
+
+                </div>
 
             </div>
         );
+
     }
 }
 

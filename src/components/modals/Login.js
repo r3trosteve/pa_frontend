@@ -56,9 +56,7 @@ class Login extends Component {
             // api request
             this.props
                 .login({ email, password })
-                .then(() =>
-                    this.setState({ redirect: true })
-                )
+				.then(() => this.setState({ redirect: true }))
                 .catch((err) => err.response.json());
 		}
 	}

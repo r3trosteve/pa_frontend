@@ -13,26 +13,26 @@ export default class ParkingLotPage extends Component {
 
 		// jquery for fixed summary
 
-		let apdSummary = $('.order-summary');
-		let apdSummaryTop = apdSummary.offset().top - 30;
-
-		$(window).scroll(() => {
-			let wScrollTop = $(window).scrollTop();
-
-			if (wScrollTop >= apdSummaryTop) {
-				apdSummary.css({
-					position: 'fixed',
-					top: '30px',
-					'margin-top': '0'
-				});
-			} else {
-				apdSummary.css({
-					position: 'relative',
-					'margin-top': '30px',
-					top: 0
-				});
-			}
-		});
+		// let apdSummary = $('.order-summary');
+		// let apdSummaryTop = apdSummary.offset().top - 30;
+        //
+		// $(window).scroll(() => {
+		// 	let wScrollTop = $(window).scrollTop();
+        //
+		// 	if (wScrollTop >= apdSummaryTop) {
+		// 		apdSummary.css({
+		// 			position: 'fixed',
+		// 			top: '30px',
+		// 			'margin-top': '0'
+		// 		});
+		// 	} else {
+		// 		apdSummary.css({
+		// 			position: 'relative',
+		// 			'margin-top': '30px',
+		// 			top: 0
+		// 		});
+		// 	}
+		// });
 
 		// end
 	}

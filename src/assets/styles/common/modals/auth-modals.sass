@@ -1,8 +1,11 @@
 .ReactModal__Overlay.ReactModal__Overlay--after-open
   background-color: rgba(247, 251, 251, 0.8)!important
+  z-index: 1000
+  overflow-y: auto
 
 .auth-modal
   outline: none!important
+  z-index: 1001
 
   .dialog
     max-width: 530px
@@ -192,7 +195,7 @@
 @media (max-width: 768px)
   .auth-modal
 
-    .modal-dialog
+    .dialog
       margin: 15px auto
 
     .modal-terms-privacy
@@ -217,7 +220,7 @@
     .modal-social-img
       padding: 0 5px!important
 
-  #forgot-pwd-modal .modal-content
+  #forgot-pwd-modal .content
     p
       text-align: left
 

@@ -23,7 +23,7 @@ export default class Header extends Component {
 
 						{this.props.rates.slice(0, 5).map((rate) => {
 							return (
-								<li key={rate.id} onClick={() => alert('Not working yet, need real types')}>
+								<li key={rate.id} onClick={() => alert('Not working yet')}>
 									{rate.name}
 								</li>
 							);
