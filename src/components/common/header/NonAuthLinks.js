@@ -1,29 +1,15 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class AuthLinks extends Component {
     render() {
         return (
             <ul className="nav navbar-nav navbar-right">
                 <li>
-                    <a
-                        href="#join"
-                        className="navbar-shadowed"
-                        data-toggle="modal"
-                        data-dismiss="modal"
-                        data-target="#register-login-modal"
-                    >
-                        Join
-                    </a>
+                    <Link to="#" onClick={this.props.openRegLogModal} className="navbar-shadowed">Join</Link>
                 </li>
                 <li>
-                    <a
-                        href="#login"
-                        data-toggle="modal"
-                        data-dismiss="modal"
-                        data-target="#login-modal"
-                    >
-                        Login
-                    </a>
+                    <Link to="#" onClick={this.props.openLogModal} >Login</Link>
                 </li>
                 <li>
                     <a href="tel:8008515863">800-851-5863</a>

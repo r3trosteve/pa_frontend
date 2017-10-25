@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { login } from '../../modules/auth';
+import Modal from 'react-modal';
 
 class Login extends Component {
 
@@ -82,24 +83,24 @@ class Login extends Component {
         } else {
 
             return (
-				<div
-					className="modal auth-modal"
-					id="login-modal"
-					tabIndex="-1"
-					role="dialog"
-					aria-labelledby="myModalLabel"
-					aria-hidden="true"
+
+				<Modal
+					className="auth-modal"
+					isOpen={this.props.isModalOpen}
+					onRequestClose={this.props.closeModal}
+					contentLabel="Modal"
 				>
-					<div className="modal-dialog">
-						<div className="modal-content">
-							<div className="modal-body text-center">
-								<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
-									<i className="ion-ios-close"/>
+					<div className="dialog">
+						<div className="content">
+							<div className="body text-center">
+
+								<button className="close" onClick={this.props.closeModal}>
+									<i className="ion-ios-close" />
 								</button>
 
                                 {/*header*/}
 
-								<div className="header-modal">
+								<div className="header">
 									<img src={logoImg3x} alt="Logo"/>
 									<h4 className="title">Login</h4>
 								</div>
@@ -134,9 +135,7 @@ class Login extends Component {
 										</label>
 										<a
 											href="#"
-											data-toggle="modal"
-											data-dismiss="modal"
-											data-target="#forgot-pwd-modal"
+											onClick={this.props.openForgPwdModal}
 										>
 											Forgot password?
 										</a>
@@ -159,7 +158,7 @@ class Login extends Component {
 							</div>
 						</div>
 					</div>
-				</div>
+				</Modal>
             );
         }
 	}

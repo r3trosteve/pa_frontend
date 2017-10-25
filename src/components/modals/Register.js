@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import ModalFooter from './ModalFooter';
 import classnames from 'classnames';
+import Modal from 'react-modal';
 
 export default class RegisterModal extends Component {
 
@@ -69,24 +70,24 @@ export default class RegisterModal extends Component {
 
 	render() {
 		return (
-			<div
-				className="modal auth-modal"
-				id="register-modal"
-				tabIndex="-1"
-				role="dialog"
-				aria-labelledby="myModalLabel"
-				aria-hidden="true"
+
+			<Modal
+				className="auth-modal"
+				isOpen={this.props.isModalOpen}
+				onRequestClose={this.props.closeModal}
+				contentLabel="Modal"
 			>
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body text-center">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+				<div className="dialog">
+					<div className="content">
+						<div className="body text-center">
+
+							<button className="close" onClick={this.props.closeModal}>
 								<i className="ion-ios-close" />
 							</button>
 
 							{/*header*/}
 
-							<div className="header-modal">
+							<div className="header">
 								<img src={logoImg3x} alt="Logo" />
 								<h4 className="title">Register</h4>
 							</div>
@@ -160,7 +161,7 @@ export default class RegisterModal extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</Modal>
 		);
 	}
 }

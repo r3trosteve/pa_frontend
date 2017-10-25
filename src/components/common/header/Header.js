@@ -8,21 +8,46 @@ import Register from '../../modals/Register';
 import ForgotPassword from '../../modals/ForgotPassword';
 import { connect } from 'react-redux';
 import { logout } from '../../../modules/auth';
-// import NonAuthLinks from './NonAuthLinks';
-// import AuthLinks from './AuthLinks';
+import NonAuthLinks from './NonAuthLinks';
+import AuthLinks from './AuthLinks';
 
 class Header extends Component {
 
 	constructor() {
 		super();
 
+		this.state = {
+            isRegLogModalOpen: false,
+            isLogModalOpen: false,
+            isRegModalOpen: false,
+            isForgPwdOpen: false
+		};
+
 		this.handleLogout = this.handleLogout.bind(this);
+
+        this.openRegLogModal = this.openRegLogModal.bind(this);
+        this.openLogModal = this.openLogModal.bind(this);
+        this.openRegModal = this.openRegModal.bind(this);
+        this.openForgPwdModal = this.openForgPwdModal.bind(this);
+        this.closeRegLogModal = this.closeRegLogModal.bind(this);
+        this.closeLogModal = this.closeLogModal.bind(this);
+        this.closeRegModal = this.closeRegModal.bind(this);
+        this.closeForgPwdModal = this.closeForgPwdModal.bind(this);
 	}
 
     handleLogout(e) {
         e.preventDefault();
         this.props.logout();
     }
+
+    openRegLogModal() { this.setState({ isRegLogModalOpen: true }); }
+    openLogModal() { this.setState({ isLogModalOpen: true }); }
+    openRegModal() { this.setState({ isRegModalOpen: true }); }
+    openForgPwdModal() { this.setState({ isForgPwdOpen: true }); }
+    closeRegLogModal() { this.setState({ isRegLogModalOpen: false }); }
+    closeLogModal() { this.setState({ isLogModalOpen: false }); }
+    closeRegModal() { this.setState({ isRegModalOpen: false }); }
+    closeForgPwdModal() { this.setState({ isForgPwdOpen: false }); }
 
 	render() {
 		return (
@@ -56,39 +81,15 @@ class Header extends Component {
 								</li>
 							</ul>
 
-							<ul className="nav navbar-nav navbar-right">
-								<li>
-									<a
-										href="#join"
-										className="navbar-shadowed"
-										data-toggle="modal"
-										data-dismiss="modal"
-										data-target="#register-login-modal"
-									>
-										Join
-									</a>
-								</li>
-								<li>
-									<a
-										href="#login"
-										data-toggle="modal"
-										data-dismiss="modal"
-										data-target="#login-modal"
-									>
-										Login
-									</a>
-								</li>
-								<li>
-									<a href="tel:8008515863">800-851-5863</a>
-								</li>
-							</ul>
-
-							{/*{this.props.auth.isAuthenticated ?*/}
-								{/*<AuthLinks*/}
-									{/*handleLogout={this.handleLogout}*/}
-								{/*/> :*/}
-								{/*<NonAuthLinks />*/}
-							{/*}*/}
+							{this.props.auth.isAuthenticated ?
+								<AuthLinks
+									handleLogout={this.handleLogout}
+								/> :
+								<NonAuthLinks
+									openRegLogModal={this.openRegLogModal}
+									openLogModal={this.openLogModal}
+								/>
+							}
 
 						</div>
 					</div>
@@ -97,13 +98,30 @@ class Header extends Component {
 
 				{/*modals*/}
 
-				<RegisterLogin />
+				<RegisterLogin
+					isModalOpen={this.state.isRegLogModalOpen}
+					closeModal={this.closeRegLogModal}
+					openLogModal={this.openLogModal}
+					openRegModal={this.openRegModal}
+				/>
 
-				<Login />
+				<Login
+					isModalOpen={this.state.isLogModalOpen}
+					closeModal={this.closeLogModal}
+					openRegModal={this.openRegModal}
+					openForgPwdModal={this.openForgPwdModal}
+				/>
 
-				<Register />
+				<Register
+					isModalOpen={this.state.isRegModalOpen}
+					closeModal={this.closeRegModal}
+				/>
 
-				<ForgotPassword />
+				<ForgotPassword
+					isModalOpen={this.state.isForgPwdOpen}
+					closeModal={this.closeForgPwdModal}
+					openLogModal={this.openLogModal}
+				/>
 
 			</header>
 		);

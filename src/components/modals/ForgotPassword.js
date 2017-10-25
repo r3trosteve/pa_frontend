@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import classnames from 'classnames';
+import Modal from 'react-modal';
 
 export default class ForgotPassword extends Component {
 
@@ -52,24 +53,24 @@ export default class ForgotPassword extends Component {
 
 	render() {
 		return (
-			<div
-				className="modal auth-modal"
-				id="forgot-pwd-modal"
-				tabIndex="-1"
-				role="dialog"
-				aria-labelledby="myModalLabel"
-				aria-hidden="true"
+
+			<Modal
+				className="auth-modal forgot-pwd-modal"
+				isOpen={this.props.isModalOpen}
+				onRequestClose={this.props.closeModal}
+				contentLabel="Modal"
 			>
-				<div className="modal-dialog">
-					<div className="modal-content">
-						<div className="modal-body text-center">
-							<button type="button" className="close" data-dismiss="modal" aria-hidden="true">
+				<div className="dialog">
+					<div className="content">
+						<div className="body text-center">
+
+							<button className="close" onClick={this.props.closeModal}>
 								<i className="ion-ios-close" />
 							</button>
 
 							{/*header*/}
 
-							<div className="header-modal">
+							<div className="header">
 								<img src={logoImg3x} alt="Logo" />
 								<h4 className="title">Reset Password</h4>
 							</div>
@@ -96,9 +97,7 @@ export default class ForgotPassword extends Component {
 									<a
 										href="#"
 										className="modal-btn-white"
-										data-toggle="modal"
-										data-target="#login-modal"
-										data-dismiss="modal"
+										onClick={this.props.closeModal}
 									>
 										Back to log in
 									</a>
@@ -116,7 +115,7 @@ export default class ForgotPassword extends Component {
 						</div>
 					</div>
 				</div>
-			</div>
+			</Modal>
 		);
 	}
 }

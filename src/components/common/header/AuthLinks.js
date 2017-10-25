@@ -5,15 +5,21 @@ import { Link } from 'react-router-dom';
 export default class AuthLinks extends Component {
     render() {
         return (
-            <ul>
+            <ul className="nav navbar-nav navbar-right">
                 <li>
-                    <Link to="/profile" className="navbar-shadowed">Username</Link>
+                    <span>
+                        <Link to="/profile" className="navbar-shadowed">Username</Link>
+                    </span>
                 </li>
                 <li>
-                    <a href="#" onClick={this.props.handleLogout}>Logout</a>
+                    <span>
+                        <a href="#" onClick={this.props.handleLogout}>Logout</a>
+                    </span>
                 </li>
                 <li>
-                    <a href="tel:8008515863">800-851-5863</a>
+                    <span>
+                        <a href="tel:8008515863">800-851-5863</a>
+                    </span>
                 </li>
             </ul>
         );

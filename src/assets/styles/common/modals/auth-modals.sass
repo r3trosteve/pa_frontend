@@ -1,20 +1,20 @@
-.modal-backdrop.in
-  background-color: rgba(247, 251, 251, 0.8)
-  opacity: 1
-.auth-modal
+.ReactModal__Overlay.ReactModal__Overlay--after-open
+  background-color: rgba(247, 251, 251, 0.8)!important
 
-  .modal-dialog
+.auth-modal
+  outline: none!important
+
+  .dialog
     max-width: 530px
     margin: 85px auto
     padding: 0 15px
 
-    .modal-content
+    .content
       border-radius: 6px
       background-color: white
       box-shadow: $shadow-popover
       border: solid 1px #e8f2f2
       padding: 50px 15px 18px
-      position: relative
       transform: translateY(-100px)
       opacity: 0
       animation: modal-fade-in-bottom 0.5s forwards
@@ -24,7 +24,8 @@
           transform: translateY(0)
           opacity: 1
 
-      .modal-body
+      .body
+        position: relative
         padding: 0
         .close
           position: absolute
@@ -39,7 +40,7 @@
           &:hover
             opacity: 1
 
-        .header-modal
+        .header
           margin-bottom: 35px
           img
             margin-bottom: 25px
@@ -174,17 +175,17 @@
         .auth-modal-footer
           margin-top: 20px
 
-#register-login-modal
+.register-login-modal
 
   .modal-terms-privacy
-    margin-top: 38px
+    margin-top: 38px!important
 
-#forgot-pwd-modal
-  .modal-content
+.forgot-pwd-modal
+  .content
     p.forgot-pwd-text
       margin-bottom: 30px
     .cta-buttons
-      margin: 0 auto 34px
+      margin: 0 auto 34px!important
 
 
 //responsiveness
