@@ -23,7 +23,8 @@ class RatesPage extends Component {
         this.state = {
             activeMobileTabList: true,
             activeMobileTabMap: false,
-            mapLoading: true
+            mapLoading: true,
+            ratesLoading: true
         };
 
         this.mapTabActive = this.mapTabActive.bind(this);
@@ -39,7 +40,11 @@ class RatesPage extends Component {
 
         if (this.props.match.params.id) {
             this.props.fetchSearch(this.props.match.params.id);
-            this.props.fetchRates(this.props.match.params.id);
+
+            setTimeout(() => {
+                this.props.fetchRates(this.props.match.params.id);
+                this.setState({ ratesLoading: false });
+            }, 5000);
         }
 
         // jquery
@@ -108,7 +113,10 @@ class RatesPage extends Component {
 
                             {/*rates*/}
 
-                            <RatesList rates={this.props.rates} />
+                            <RatesList
+                                rates={this.props.rates}
+                                ratesLoading={this.state.ratesLoading}
+                            />
 
                         </div>
                     </div>

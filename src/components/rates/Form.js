@@ -123,18 +123,23 @@ class Form2 extends Component {
                     arrive_at: startDate,
                     exit_at: endDate
                 })
-                .then(() => this.props.fetchRates(this.props.search.id))
-                .then(() =>
-                    this.setState({
-                        loading: false
-                    })
-                )
+                // .then(() => this.props.fetchRates(this.props.search.id))
+                // .then(() => setTimeout(() => {
+                //     this.props.fetchRates(this.props.search.id)
+                // }), 5000)
+                // .then(() =>
+                //     this.setState({
+                //         loading: false
+                //     })
+                // )
                 .catch((err) => err.response.json());
 		}
 
-        this.props.fetchRates(this.props.search.id)
-            .then(() => this.setState({ loading: false }))
-            .catch((err) => err.response.json());
+        setTimeout(() => {
+            this.props.fetchRates(this.props.search.id)
+                .then(() => this.setState({ loading: false }))
+                .catch((err) => err.response.json());
+		}, 5000)
 	}
 
 	render() {
