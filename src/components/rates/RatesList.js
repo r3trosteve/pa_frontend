@@ -5,18 +5,20 @@ import Rate from './Rate';
 export default class RatesList extends Component {
     render() {
 
-        if (this.props.ratesLoading) {
-            return <div><h4>Loading results...</h4></div>;
-        } else if (this.props.rates.length > 0) {
-            return (
-                <div>
-                    {this.props.rates.map(rate => {
-                        return <Rate key={rate.id} rate={rate} />;
-                    })}
-                </div>
-            );
+        if (this.props.isFetching) {
+            return <div><h2>Loading results...</h2></div>;
         } else {
-            return <div><h4>Sorry nothing was found...</h4></div>;
+            if (this.props.rates.length !== 0) {
+                return (
+                    <div>
+                        {this.props.rates.map(rate => {
+                            return <Rate key={rate.id} rate={rate} />;
+                        })}
+                    </div>
+                );
+            } else {
+                return <div><h2>Sorry, nothing was found...</h2></div>;
+            }
         }
 
     }
@@ -24,5 +26,6 @@ export default class RatesList extends Component {
 
 RatesList.propTypes = {
     rates: PropTypes.array.isRequired,
-    ratesLoading: PropTypes.bool.isRequired
+    isFetching: PropTypes.bool.isRequired,
+    // ratesUpdating: PropTypes.bool
 };

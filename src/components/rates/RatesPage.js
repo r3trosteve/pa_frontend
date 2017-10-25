@@ -24,11 +24,12 @@ class RatesPage extends Component {
             activeMobileTabList: true,
             activeMobileTabMap: false,
             mapLoading: true,
-            ratesLoading: true
+            ratesUpdating: false
         };
 
         this.mapTabActive = this.mapTabActive.bind(this);
         this.listTabActive = this.listTabActive.bind(this);
+        // this.handleRatesUpdating = this.handleRatesUpdating.bind(this);
     }
 
     static fetchData(store, match) {
@@ -40,13 +41,7 @@ class RatesPage extends Component {
 
         if (this.props.match.params.id) {
             this.props.fetchSearch(this.props.match.params.id);
-
             this.props.fetchRates(this.props.match.params.id);
-            this.setState({ ratesLoading: false });
-
-            // setTimeout(() => {
-            //
-            // }, 5000);
         }
 
         // jquery
@@ -69,7 +64,6 @@ class RatesPage extends Component {
             let wScrollTop = $(window).scrollTop();
             fixedMapScroll();
         });
-
         // end
     }
 
@@ -81,7 +75,15 @@ class RatesPage extends Component {
         this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
     }
 
+    // handleRatesUpdating() {
+    //     console.log('rates updating');
+    //     this.setState({
+    //         ratesUpdating: !this.state.ratesUpdating
+    //     });
+    // }
+
     render() {
+        console.log(this.props.ratesFetching);
         return (
             <div className="rates">
 
@@ -93,7 +95,11 @@ class RatesPage extends Component {
 
                     <div className="rates__column rates__column--content">
 
-                        <Form airports={this.props.airports} search={this.props.search} />
+                        <Form
+                            airports={this.props.airports}
+                            search={this.props.search}
+                            // handleRatesUpdating={this.handleRatesUpdating}
+                        />
 
                         {/*tabs*/}
 
@@ -117,7 +123,8 @@ class RatesPage extends Component {
 
                             <RatesList
                                 rates={this.props.rates}
-                                ratesLoading={this.state.ratesLoading}
+                                isFetching={this.props.ratesFetching}
+                                ratesUpdating={this.state.ratesUpdating}
                             />
 
                         </div>
@@ -158,7 +165,8 @@ RatesPage.propTypes = {
 const mapStateToProps = (state) => ({
     airports: state.airports.items,
     search: state.search.data,
-    rates: state.rates.items
+    rates: state.rates.items,
+    ratesFetching: state.rates.isFetching
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({

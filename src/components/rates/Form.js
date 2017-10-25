@@ -117,33 +117,20 @@ class Form2 extends Component {
 
             this.setState({ loading: true });
 
-            this.props
-                .createSearch({
-                    airport_id: airportId,
-                    arrive_at: startDate,
-                    exit_at: endDate
-                })
-                // .then(() => this.props.fetchRates(this.props.search.id))
-                // .then(() => setTimeout(() => {
-                //     this.props.fetchRates(this.props.search.id)
-                // }), 5000)
-                // .then(() =>
-                //     this.setState({
-                //         loading: false
-                //     })
-                // )
+            // this.props.handleRatesUpdating();
+
+            const searchData = {
+                airport_id: airportId,
+                arrive_at: startDate,
+                exit_at: endDate
+			};
+
+            this.props.createSearch(searchData)
+                .then(() => this.props.fetchRates(this.props.search.id))
+                .then(() => this.setState({ loading: false }))
+				// .then(() => this.props.handleRatesUpdating())
                 .catch((err) => err.response.json());
 		}
-
-        this.props.fetchRates(this.props.search.id)
-            .then(() => this.setState({ loading: false }))
-            .catch((err) => err.response.json());
-
-        // setTimeout(() => {
-         //    this.props.fetchRates(this.props.search.id)
-         //        .then(() => this.setState({ loading: false }))
-         //        .catch((err) => err.response.json());
-		// }, 5000)
 	}
 
 	render() {
@@ -204,7 +191,8 @@ Form2.propTypes = {
 	search: PropTypes.object.isRequired,
 	airports: PropTypes.array.isRequired,
 	createSearch: PropTypes.func.isRequired,
-	fetchRates: PropTypes.func.isRequired
+	fetchRates: PropTypes.func.isRequired,
+    // handleRatesUpdating: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {

@@ -1,19 +1,20 @@
 import 'isomorphic-fetch';
 
-export const RATES_LOADED = '@ssr/rates/loaded';
+export const RATES_LOADED_SUCCESS = 'RATES_LOADED_SUCCESS';
 export const RATES_SORTED_BY_DISTANCE = '@ssr/rates/sorted-by-distance';
 export const RATES_SORTED_BY_LOW_PRICE = '@ssr/rates/sorted-by-low-price';
 export const RATES_SORTED_BY_HIGH_PRICE = '@ssr/rates/sorted-by-high-price';
 // export const RATES_FILTERED_BY_TYPE = '@ssr/rates/filtered-by-type';
 
 const initialState = {
+    isFetching: true,
     items: []
 };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case RATES_LOADED:
-            return Object.assign({}, state, { items: action.items });
+        case RATES_LOADED_SUCCESS:
+            return Object.assign({}, state, { items: action.items, isFetching: false });
 
         case RATES_SORTED_BY_DISTANCE:
             return Object.assign({}, state, {
@@ -71,12 +72,10 @@ export const fetchRates = (id) => (dispatch) => {
                 'Accept': 'application/json; version=1'
             }
         })
-            .then((res) => {
-                return res.json();
-            })
+            .then(res => res.json())
             .then((rates) => {
                 dispatch({
-                    type: RATES_LOADED,
+                    type: RATES_LOADED_SUCCESS,
                     items: rates['airport_parking/rates']
                 });
                 console.log(rates['airport_parking/rates']);
