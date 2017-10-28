@@ -1,7 +1,7 @@
 // import 'isomorphic-fetch';
 
 export const CREATE_SEARCH = 'CREATE_SEARCH';
-export const LOAD_SEARCH = '@ssr/search/get';
+export const LOAD_SEARCH = 'LOAD_SEARCH';
 
 const initialState = {
     data: {}

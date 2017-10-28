@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 
-export const AIRPORTS_LOADED = '@ssr/airports/loaded';
+export const AIRPORTS_LOADED = 'AIRPORTS_LOADED';
 
 const initialState = {
 	items: []

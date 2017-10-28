@@ -1,10 +1,10 @@
 import 'isomorphic-fetch';
 
+export const RATES_LOADED_START = 'RATES_LOADED_START';
 export const RATES_LOADED_SUCCESS = 'RATES_LOADED_SUCCESS';
-export const RATES_SORTED_BY_DISTANCE = '@ssr/rates/sorted-by-distance';
-export const RATES_SORTED_BY_LOW_PRICE = '@ssr/rates/sorted-by-low-price';
-export const RATES_SORTED_BY_HIGH_PRICE = '@ssr/rates/sorted-by-high-price';
-// export const RATES_FILTERED_BY_TYPE = '@ssr/rates/filtered-by-type';
+export const RATES_SORTED_BY_DISTANCE = 'RATES_SORTED_BY_DISTANCE';
+export const RATES_SORTED_BY_LOW_PRICE = 'RATES_SORTED_BY_LOW_PRICE';
+export const RATES_SORTED_BY_HIGH_PRICE = 'RATES_SORTED_BY_HIGH_PRICE';
 
 const initialState = {
     isFetching: true,
@@ -13,6 +13,9 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
+        case RATES_LOADED_START:
+            return Object.assign({}, state, { isFetching: true });
+
         case RATES_LOADED_SUCCESS:
             return Object.assign({}, state, { items: action.items, isFetching: false });
 
@@ -30,11 +33,6 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 items: action.items.slice().sort((a, b) => b.price.total - a.price.total)
             });
-
-        // case RATES_FILTERED_BY_TYPE:
-        // 	return Object.assign({}, state, {
-        // 		items: action.items.filter((item => item.name === action.kind))
-        // 	});
 
         default:
             return state;
@@ -64,8 +62,11 @@ export const fetchRates = (id) => (dispatch) => {
         }, 1000);
     });
 
+    dispatch({ type: RATES_LOADED_START });
+
     promise.then(() => {
-        return fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}/rates`, {
+
+        fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}/rates`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -103,11 +104,3 @@ export const sortRatesByHighPrice = (rates) => (dispatch) => {
         items: rates
     });
 };
-
-// export const filterRatesByTypes = (rates, type) => (dispatch) => {
-//     return dispatch({
-//         type: RATES_FILTERED_BY_TYPE,
-//         items: rates,
-// 		kind: type
-//     });
-// };

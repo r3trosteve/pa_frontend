@@ -3,7 +3,7 @@ import setAuthorizationToken from '../utils/auth';
 import jwt from 'jsonwebtoken';
 import isEmpty from 'lodash/isEmpty';
 
-export const SET_CURRENT_USER = '@ssr/auth/set-current-user';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
 const initialState = {
     isAuthenticated: false,

@@ -83,7 +83,6 @@ class RatesPage extends Component {
     // }
 
     render() {
-        console.log(this.props.ratesFetching);
         return (
             <div className="rates">
 
