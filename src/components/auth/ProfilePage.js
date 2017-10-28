@@ -11,8 +11,6 @@ class ProfilePage extends Component {
 
                     <h1>Profile</h1>
 
-                    <div><pre>{JSON.stringify(this.props.auth, null, 2) }</pre></div>
-
                 </div>
 
             </div>

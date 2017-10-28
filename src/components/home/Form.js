@@ -97,6 +97,8 @@ class Form1 extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
+		$(window).scrollTop(0);
+
 		const { airportId, airportName, startDate, endDate } = this.state;
 		let errors = {};
 

@@ -75,13 +75,6 @@ class RatesPage extends Component {
         this.setState({ activeMobileTabList: true, activeMobileTabMap: false });
     }
 
-    // handleRatesUpdating() {
-    //     console.log('rates updating');
-    //     this.setState({
-    //         ratesUpdating: !this.state.ratesUpdating
-    //     });
-    // }
-
     render() {
         return (
             <div className="rates">
@@ -100,7 +93,7 @@ class RatesPage extends Component {
                             // handleRatesUpdating={this.handleRatesUpdating}
                         />
 
-                        {/*tabs*/}
+                        {/*Tabs*/}
 
                         <Tabs
                             listTabActive={this.listTabActive}
@@ -109,7 +102,11 @@ class RatesPage extends Component {
                             activeMobileTabMap={this.state.activeMobileTabMap}
                         />
 
+                        {/*Items*/}
+
                         <div className={classnames('rates__items', { 'hidden-xs hidden-sm': this.state.activeMobileTabMap })}>
+
+                            {/*header*/}
 
                             <Header
                                 rates={this.props.rates}
@@ -130,6 +127,7 @@ class RatesPage extends Component {
                     </div>
 
                     {/*END LEFT COLUMN*/}
+
 
                     {/*RIGHT COLUMN - MAP*/}
 

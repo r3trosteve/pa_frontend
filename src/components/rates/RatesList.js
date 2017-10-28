@@ -6,11 +6,18 @@ export default class RatesList extends Component {
     render() {
 
         if (this.props.isFetching) {
-            return <div><h2>Loading results...</h2></div>;
+            return (
+                <div className="rates__loading">
+                    <div className="rates__loading__card">
+                        <i className="fa fa-spinner" aria-hidden="true"></i>
+                        Loading results
+                    </div>
+                </div>
+            );
         } else {
             if (this.props.rates.length !== 0) {
                 return (
-                    <div>
+                    <div className="rates__items-container">
                         {this.props.rates.map(rate => {
                             return <Rate key={rate.id} rate={rate} />;
                         })}

@@ -4,6 +4,34 @@
   background: $white
   min-height: calc(100vh)
 
+  &__loading
+    padding-top: 25px
+    text-align: center
+
+    &__card
+      display: inline-block
+      padding: 20px 25px
+      margin: 0 auto
+      font-family: 'Montserrat', sans-serif
+      font-size: 26px
+      color: $orange
+      text-transform: uppercase
+      font-weight: 300
+      animation: change-colors 10s infinite
+      i
+        animation: rotate-loading 1s infinite
+        margin-right: 10px
+      @keyframes change-colors
+        25%
+          color: $red
+        50%
+          color: $orange-light
+        75%
+          color: $red
+        to
+          color: $orange
+
+
   &__row
     display: flex
     position: relative
@@ -29,195 +57,57 @@
         .gm-style-pbc
           display: none!important
 
+  &__items-container
+    animation: fade-in-top-rates 0.7s forwards
+    opacity: 0
+    transform: translateY(50px)
+    @keyframes fade-in-top-rates
+      to
+        opacity: 1
+        transform: translateY(0)
 
 
-  &__map-info
-    position: relative
-    i
-      position: absolute
-    &__details
-      min-width: 300px
-      background: white
-      border-radius: 4px
-      box-shadow: $shadow-main
-      padding: 35px 15px 20px
-      text-align: center
-      position: absolute
-      bottom: 45px
-      left: -113px
-      display: none
-      z-index: 10
-      cursor: default!important
 
-      i
-        &.ion-ios-close
-          right: 10px
-          top: 2px
-          font-size: 25px
-          color: $orange
-          cursor: pointer
-          opacity: 0.8
-          transition: all 0.3s
-          &:hover
-            opacity: 1
-        &.fa
-          bottom: -25px
-          color: white
-          left: 45%
-          font-size: 40px
+  //mobile tabs
 
-      h2
-        font-size: 18px
-        text-transform: capitalize
-        font-family: 'Montserrat', sans-serif
-        color: $blue
-        margin-bottom: 10px
-        position: relative
-      a.btn-custom
-        padding: 10px
-        display: block
-        margin-top: 10px
-      p
-        font-weight: 400
-
-    &__price
-      font-size: 16px
-      color: white
-      position: relative
-      padding: 5px 0
-      min-width: 65px
-      border-radius: 2px
-      text-align: center
-      background: $orange
-      display: block
-      font-family: 'Montserrat', sans-serif
-      font-weight: 500
-      letter-spacing: 0.5px
-      cursor: pointer
-      i.fa
-        bottom: -10px
-        color: $orange
-        left: 45%
-
-  &__items-header
-    border-top: 1px solid rgba(83, 115, 143, 0.1)
+  &__mobile-tabs
+    margin: 0 auto
     border-bottom: 1px solid rgba(83, 115, 143, 0.1)
-    background: $white
-    padding: 22px 25px
-    position: relative
-    text-align: right
-
-    &__title
-      position: absolute
-      left: 25px
-      top: calc(50% - 13px)
-      h3
-        font-family: 'Montserrat', sans-serif
-        font-size: 24px
-        font-weight: 300
-        text-align: left
-        color: $blue
-        text-transform: capitalize
-
-    .dropdown
+    li
+      width: 50%
+      text-transform: uppercase
+      color: $blue
+      align-items: center
+      cursor: pointer
+      transition: all 0.3s
+      font-size: 15px
       display: inline-block
-      margin-left: 30px
+      line-height: 60px
       span
+        display: block
+        text-align: center
+        margin: 0 auto
         font-family: 'Montserrat', sans-serif
-        color: $blue
-        cursor: pointer
-        transition: all 0.3s
-        font-size: 14px
-        text-transform: uppercase
         i
-          margin-left: 5px
-        &:hover
-          color: $orange
-
-      .dropdown-menu
-        box-shadow: $shadow-popover
-        border-radius: 4px
-        border: 1px solid rgba(83, 115, 143, 0.1)
-        margin-top: 12px
-        animation: fade-in-dropdown 0.5s forwards
-        opacity: 0
-        transform: translateY(-30px)
-
-        &:before
-          top: -13px
-          border: 13px solid transparent
-          border-top: 0
-          border-bottom-color: rgba(16, 22, 32, 0.1)
-          right: calc(50% - 13px)
-          content: ""
-          display: inline-block
-          position: absolute
-          bottom: auto
-        &:after
-          top: -12px
-          border: 12px solid transparent
-          border-top: 0
-          border-bottom-color: white
-          right: calc(50% - 12px)
-          z-index: 3
-          content: ""
-          display: inline-block
-          position: absolute
-          bottom: auto
-
-        @keyframes fade-in-dropdown
-          to
-            opacity: 1
-            transform: translateY(0)
-
-        li
-          font-family: 'Montserrat', sans-serif
-          font-weight: 400
-          padding: 4px 15px
-          text-transform: uppercase
-          color: $blue
-          cursor: pointer
-          transition: all 0.3s
-          &:hover
-            color: $orange
-
-        &.sorting
-          left: -57px
-          width: 190px
-        &.filters
-          left: -25px
-          width: 220px
+          margin-right: 3px
+      &.active
+        background: $blue
+        color: white
 
 //responsiveness
 @media (max-width: 1199px)
-  .rates
-    &__column
-
-      &--content
-        width: 650px
+  .rates__column--content
+    width: 650px
 
 @media (max-width: 991px)
   .rates
+    padding: 110px 0 50px
 
     &__row
       max-width: 720px
       margin: 0 auto
       box-shadow: $shadow-main
-      min-height: 803px
-
-    &__items-header
-      border-top: none
-
-      .dropdown-menu.sorting
-        left: -90px!important
-        &:before
-          right: calc(32% - 13px)
-        &:after
-          right: calc(32% - 12px)
-
-      .dropdown-menu.filters
-        left: -25px
-        width: 220px
+      min-height: 627px
 
     &__column
 
@@ -226,7 +116,7 @@
 
       &--map
         position: absolute
-        top: 303px
+        top: 126px
         height: 500px
         width: 100%
         overflow: hidden
@@ -236,45 +126,12 @@
         &.mobile-map
           z-index: -1
 
-    &__mobile-tabs
-      margin: 0 auto
-      border-bottom: 1px solid rgba(83, 115, 143, 0.1)
-      li
-        width: 50%
-        text-transform: uppercase
-        color: $blue
-        align-items: center
-        cursor: pointer
-        transition: all 0.3s
-        font-size: 15px
-        display: inline-block
-        line-height: 60px
-        span
-          display: block
-          text-align: center
-          margin: 0 auto
-          font-family: 'Montserrat', sans-serif
-          i
-            margin-right: 3px
-        &.active
-          background: $blue
-          color: white
-
 @media (max-width: 767px)
   .rates
     padding: 70px 15px 50px
 
-    &__items-header
-      text-align: left
-      padding: 15px
+    &__row
+      min-height: 803px
 
-      &__title
-        display: none
-
-      .dropdown
-        margin-left: 0
-        margin-right: 20px
-        span
-          font-size: 12px
-        li
-          font-size: 12px
+    &__column--map
+      top: 302px
