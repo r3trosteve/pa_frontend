@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import supportImg from '../../assets/images/checkout/support.png';
-import { update } from '../../modules/auth';
-import classnames from 'classnames';
+import { updateProfile, updatePassword } from '../../modules/auth';
+import ProfileForm from './ProfileForm';
+import PasswordForm from './PasswordForm';
 
 class ProfilePage extends Component {
 
@@ -12,11 +14,14 @@ class ProfilePage extends Component {
         this.state = {
             name: '',
             email: '',
+            password: '',
+            confirmPassword: '',
             errors: {}
         };
 
-        this.handleProfileChange = this.handleProfileChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
+        this.handlePasswordUpdate = this.handlePasswordUpdate.bind(this);
     }
 
     componentWillMount() {
@@ -33,31 +38,67 @@ class ProfilePage extends Component {
         });
     }
 
-    handleProfileChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+    handleChange(e) {
+        if (this.state.errors[e.target.name]) {
+
+            let errors = Object.assign({}, this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            });
+
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
     }
 
     handleProfileUpdate(e) {
         e.preventDefault();
 
         const { name, email } = this.state;
-        this.props.update({ name, email });
+        let errors = {};
+
+        if (this.state.name === '') { errors.name = "Name can't be empty"; }
+        if (this.state.email === '') { errors.email = "Email can't be empty"; }
+
+        this.setState({ errors });
+
+        const isValid = Object.keys(errors).length === 0;
+
+        if (isValid) {
+            // api request
+            this.props.updateProfile({ name, email });
+        }
+    }
+
+    handlePasswordUpdate(e) {
+        e.preventDefault();
+
+        const { password, confirmPassword } = this.state;
+        let errors = {};
+
+        if (this.state.password === '') { errors.password = "Password can't be empty"; }
+
+        if (this.state.confirmPassword !== '' && this.state.password === this.state.confirmPassword) {
+            this.props.updatePassword({ password });
+        } else {
+            errors.confirmPassword = "Passwords don't match";
+        }
+
+        this.setState({ errors });
     }
 
     render() {
 
         if (this.props.auth.isAuthenticated) {
 
-            console.log(this.props.auth.user);
-
             return (
                 <div className="profile">
 
-                    <div className="container profile__container">
+                    <Helmet title="Profile" />
 
-                        {/*<div><pre>{JSON.stringify(this.props.auth, null, 2)}</pre></div>*/}
+                    <div className="container profile__container">
 
                         <div className="profile__row row">
                             <div className="col-md-7 profile__column">
@@ -92,31 +133,21 @@ class ProfilePage extends Component {
 
                                     <div className="profile__card__item">
 
-                                        <form onSubmit={this.handleProfileUpdate}>
+                                        <ProfileForm
+                                            handleProfileUpdate={this.handleProfileUpdate}
+                                            handleChange={this.handleChange}
+                                            errors={this.state.errors}
+                                            name={this.state.name}
+                                            email={this.state.email}
+                                        />
 
-                                            <label>
-                                                <input
-                                                    type="name"
-                                                    name="name"
-                                                    placeholder="Name"
-                                                    value={this.state.name}
-                                                    onChange={this.handleProfileChange}
-                                                />
-                                            </label>
-
-                                            <label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    placeholder="Email"
-                                                    value={this.state.email}
-                                                    onChange={this.handleProfileChange}
-                                                />
-                                            </label>
-
-                                            <button type="submit">Submit</button>
-
-                                        </form>
+                                        <PasswordForm
+                                            handlePasswordUpdate={this.handlePasswordUpdate}
+                                            handleChange={this.handleChange}
+                                            errors={this.state.errors}
+                                            password={this.state.password}
+                                            confirmPassword={this.state.confirmPassword}
+                                        />
 
                                     </div>
 
@@ -130,7 +161,9 @@ class ProfilePage extends Component {
                                 </div>
 
                             </div>
+
                             <div className="col-md-5 profile__column"></div>
+
                         </div>
 
                     </div>
@@ -142,9 +175,12 @@ class ProfilePage extends Component {
 
             return (
                 <div className="profile">
+
+                    <Helmet title="Profile" />
+
                     <div className="container profile__container">
                         <h2>
-                            You need to login to view this page.
+                            You need to be logged in to access this page.
                         </h2>
                     </div>
                 </div>
@@ -157,4 +193,4 @@ class ProfilePage extends Component {
 
 const mapStateToProps = (state) => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { update })(ProfilePage);
+export default connect(mapStateToProps, { updateProfile, updatePassword })(ProfilePage);
