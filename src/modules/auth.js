@@ -128,6 +128,19 @@ export const updatePassword = (data) => (dispatch) => {
         });
 };
 
+export const resetPassoword = (data) => (dispatch) => {
+    console.log(JSON.stringify(data));
+    return fetch('http://staging.back.parkingaccess.com/password_reset', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        }
+    })
+        .then(res => res.json());
+};
+
 export const logout = () => {
     return dispatch => {
         localStorage.removeItem('jwtToken');
