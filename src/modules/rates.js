@@ -79,7 +79,6 @@ export const fetchRates = (id) => (dispatch) => {
                     type: RATES_LOADED_SUCCESS,
                     items: rates['airport_parking/rates']
                 });
-                console.log(rates['airport_parking/rates']);
             });
     });
 };

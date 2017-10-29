@@ -10,6 +10,8 @@ class ProfilePage extends Component {
 
                 <div className="container profile__container">
 
+                    <div><pre>{JSON.stringify(this.props.auth, null, 2)}</pre></div>
+
                     <div className="profile__row row">
                         <div className="col-md-7 profile__column">
 

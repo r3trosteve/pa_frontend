@@ -1,9 +1,9 @@
 import 'isomorphic-fetch';
-import setAuthorizationToken from '../utils/auth';
 import jwt from 'jsonwebtoken';
 import isEmpty from 'lodash/isEmpty';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const USER_LOGOUT = 'USER_LOGOUT';
 
 const initialState = {
     isAuthenticated: false,
@@ -19,16 +19,32 @@ export default function reducer(state = initialState, action) {
                 user: action.user
             };
 
+        case USER_LOGOUT:
+            return {
+                isAuthenticated: false
+            };
+
         default:
             return state;
     }
 }
 
-export const setCurrentUser = (user) => {
-    return {
-        type: SET_CURRENT_USER,
-        user: user
-    };
+export const setCurrentUser = (token) => (dispatch) => {
+    fetch('http://staging.back.parkingaccess.com/profile', {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1',
+            'Access-Token': token
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            dispatch({
+               type: SET_CURRENT_USER,
+               user: data.user
+            });
+        });
 };
 
 export const login = (data) => (dispatch) => {
@@ -37,29 +53,21 @@ export const login = (data) => (dispatch) => {
         body: JSON.stringify(data),
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json; version=1'
+            'Accept': 'application/json; version=1'
         }
     })
         .then((res) => {
             const token = res.headers.get('Access-Token');
             localStorage.setItem('jwtToken', token);
-            setAuthorizationToken(token);
-            dispatch(setCurrentUser(jwt.decode(token)));
+            dispatch(setCurrentUser(token));
         });
 };
 
 export const logout = () => {
     return dispatch => {
         localStorage.removeItem('jwtToken');
-        setAuthorizationToken(false);
-        dispatch(setCurrentUser({}));
+        dispatch({
+            type: USER_LOGOUT
+        });
     };
 };
-
-// export function logout() {
-//     return dispatch => {
-//         localStorage.removeItem('jwtToken');
-//         setAuthorizationToken(false);
-//         dispatch(setCurrentUser({}));
-//     }
-// }
