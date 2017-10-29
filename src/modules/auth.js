@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import isEmpty from 'lodash/isEmpty';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGOUT = 'USER_LOGOUT';
 
 const initialState = {
@@ -61,6 +62,18 @@ export const login = (data) => (dispatch) => {
             localStorage.setItem('jwtToken', token);
             dispatch(setCurrentUser(token));
         });
+};
+
+export const signup = (data) => (dispatch) => {
+    return fetch('http://staging.back.parkingaccess.com/sign_up', {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        }
+    })
+        .then(res => res.json());
 };
 
 export const logout = () => {

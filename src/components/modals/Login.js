@@ -3,7 +3,6 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import ModalFooter from './ModalFooter';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
 import { login } from '../../modules/auth';
 import Modal from 'react-modal';
 
@@ -53,8 +52,7 @@ class Login extends Component {
             const { email, password } = this.state;
 
             // api request
-            this.props
-                .login({ email, password })
+            this.props.login({ email, password })
 				.then(this.props.closeModal())
                 .catch((err) => err.response.json());
 		}

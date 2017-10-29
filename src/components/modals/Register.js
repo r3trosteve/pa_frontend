@@ -3,8 +3,10 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import ModalFooter from './ModalFooter';
 import classnames from 'classnames';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import { signup } from '../../modules/auth';
 
-export default class RegisterModal extends Component {
+class Register extends Component {
 
 	constructor() {
 		super();
@@ -16,12 +18,19 @@ export default class RegisterModal extends Component {
 			passwordConfirm: '',
 			errors: {},
 			travelerChecked: true,
-			parkingLotChecked: false
+			parkingLotChecked: false,
+			isSignedUp: false
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.changeChecked = this.changeChecked.bind(this);
+		this.handleOpenlogModal = this.handleOpenlogModal.bind(this);
+	}
+
+	handleOpenlogModal() {
+		this.props.closeModal();
+        this.props.openLogModal();
 	}
 
 	handleChange(e) {
@@ -54,10 +63,13 @@ export default class RegisterModal extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			const { email, password } = this.state;
+			const { name, email, password } = this.state;
 
 			// api request
-			alert('Auth request goes here');
+            this.props.signup({ name, email, password })
+                // .then(this.props.closeModal())
+				.then(() => this.setState({ isSignedUp: true }))
+                .catch((err) => err.response.json());
 		}
 	}
 
@@ -69,101 +81,143 @@ export default class RegisterModal extends Component {
 	}
 
 	render() {
-		return (
 
-			<Modal
-				className="auth-modal"
-				isOpen={this.props.isModalOpen}
-				onRequestClose={this.props.closeModal}
-				contentLabel="Modal"
-			>
-				<div className="dialog">
-					<div className="content">
-						<div className="body text-center">
+		if (this.state.isSignedUp) {
 
-							<button className="close" onClick={this.props.closeModal}>
-								<i className="ion-ios-close" />
-							</button>
+			return (
 
-							{/*header*/}
+				<Modal
+					className="auth-modal"
+					isOpen={this.props.isModalOpen}
+					onRequestClose={this.props.closeModal}
+					contentLabel="Modal"
+				>
+					<div className="dialog">
+						<div className="content">
+							<div className="body text-center">
 
-							<div className="header">
-								<img src={logoImg3x} alt="Logo" />
-								<h4 className="title">Register</h4>
-							</div>
+								<button className="close" onClick={this.props.closeModal}>
+									<i className="ion-ios-close" />
+								</button>
 
-							<form onSubmit={this.handleSubmit}>
-								<label className={classnames('', { 'has-error': this.state.errors.name })}>
-									Name
-									<span className="error-text">{this.state.errors.name}</span>
-									<input type="text" name="name" onChange={this.handleChange} />
-								</label>
+                                {/*header*/}
 
-								<label className={classnames('', { 'has-error': this.state.errors.email })}>
-									Email
-									<span className="error-text">{this.state.errors.email}</span>
-									<input type="email" name="email" onChange={this.handleChange} />
-								</label>
-
-								<label className={classnames('', { 'has-error': this.state.errors.password })}>
-									Password
-									<span className="error-text">{this.state.errors.password}</span>
-									<input type="password" name="password" onChange={this.handleChange} />
-								</label>
-
-								<label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
-									Confirm password
-									<span className="error-text">{this.state.errors.passwordConfirm}</span>
-									<input type="password" name="passwordConfirm" onChange={this.handleChange} />
-								</label>
-
-								<div className="register-as">
-									<div className="radio-title">Register as:</div>
-									<label
-										className={classnames('radio-label', { checked: this.state.travelerChecked })}
-									>
-										<input
-											type="radio"
-											name="reg-as"
-											onChange={this.changeChecked}
-											checked={this.state.travelerChecked}
-										/>
-										<span className="round" />
-										Traveler
-									</label>
-									<label
-										className={classnames('radio-label', { checked: this.state.parkingLotChecked })}
-									>
-										<input
-											type="radio"
-											name="reg-as"
-											onChange={this.changeChecked}
-											checked={this.state.parkingLotChecked}
-										/>
-										<span className="round" />
-										Parking lot
-									</label>
+								<div className="header">
+									<img src={logoImg3x} alt="Logo" />
+									<h4 className="title">Thank you for signing up</h4>
 								</div>
 
-								<label>
-									<button type="submit" className="modal-btn-orange">
-										Register
-									</button>
-								</label>
-							</form>
+								<a href="#" onClick={this.handleOpenlogModal}>Log in to start</a>
 
-							<ModalFooter
-								authText="Already have an account?"
-								modalTarget="#login-modal"
-								linkText="Login"
-								openNextModal={this.props.openLogModal}
-								closeModal={this.props.closeModal}
-							/>
-							
+							</div>
 						</div>
 					</div>
-				</div>
-			</Modal>
-		);
+				</Modal>
+
+			);
+
+		} else {
+
+            return (
+
+				<Modal
+					className="auth-modal"
+					isOpen={this.props.isModalOpen}
+					onRequestClose={this.props.closeModal}
+					contentLabel="Modal"
+				>
+					<div className="dialog">
+						<div className="content">
+							<div className="body text-center">
+
+								<button className="close" onClick={this.props.closeModal}>
+									<i className="ion-ios-close" />
+								</button>
+
+                                {/*header*/}
+
+								<div className="header">
+									<img src={logoImg3x} alt="Logo" />
+									<h4 className="title">Register</h4>
+								</div>
+
+								<form onSubmit={this.handleSubmit}>
+									<label className={classnames('', { 'has-error': this.state.errors.name })}>
+										Name
+										<span className="error-text">{this.state.errors.name}</span>
+										<input type="text" name="name" onChange={this.handleChange} />
+									</label>
+
+									<label className={classnames('', { 'has-error': this.state.errors.email })}>
+										Email
+										<span className="error-text">{this.state.errors.email}</span>
+										<input type="email" name="email" onChange={this.handleChange} />
+									</label>
+
+									<label className={classnames('', { 'has-error': this.state.errors.password })}>
+										Password
+										<span className="error-text">{this.state.errors.password}</span>
+										<input type="password" name="password" onChange={this.handleChange} />
+									</label>
+
+									<label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
+										Confirm password
+										<span className="error-text">{this.state.errors.passwordConfirm}</span>
+										<input type="password" name="passwordConfirm" onChange={this.handleChange} />
+									</label>
+
+									<div className="register-as">
+										<div className="radio-title">Register as:</div>
+										<label
+											className={classnames('radio-label', { checked: this.state.travelerChecked })}
+										>
+											<input
+												type="radio"
+												name="reg-as"
+												onChange={this.changeChecked}
+												checked={this.state.travelerChecked}
+											/>
+											<span className="round" />
+											Traveler
+										</label>
+										<label
+											className={classnames('radio-label', { checked: this.state.parkingLotChecked })}
+										>
+											<input
+												type="radio"
+												name="reg-as"
+												onChange={this.changeChecked}
+												checked={this.state.parkingLotChecked}
+											/>
+											<span className="round" />
+											Parking lot
+										</label>
+									</div>
+
+									<label>
+										<button type="submit" className="modal-btn-orange">
+											Register
+										</button>
+									</label>
+								</form>
+
+								<ModalFooter
+									authText="Already have an account?"
+									modalTarget="#login-modal"
+									linkText="Login"
+									openNextModal={this.props.openLogModal}
+									closeModal={this.props.closeModal}
+								/>
+
+							</div>
+						</div>
+					</div>
+				</Modal>
+            );
+
+		}
+
 	}
 }
+
+export default connect(null, { signup })(Register);

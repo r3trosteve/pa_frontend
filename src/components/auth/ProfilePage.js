@@ -68,14 +68,13 @@ class ProfilePage extends Component {
         } else {
 
             return (
-                <Route
-                    render={({ staticContext }) => {
-                        if (staticContext) {
-                            staticContext.status = 302;
-                        }
-                        return <Redirect from="/profile" to="/" />;
-                    }}
-                />
+                <div className="profile">
+                    <div className="container profile__container">
+                        <h2>
+                            You need to login to view this page.
+                        </h2>
+                    </div>
+                </div>
             );
 
         }
