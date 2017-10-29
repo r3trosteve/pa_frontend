@@ -2,8 +2,9 @@ import HomePage from './components/home/HomePage';
 import RatesPage from './components/rates/RatesPage';
 import ParkingLotPage from './components/parking-lot/ParkingLotPage';
 import CheckoutPage from './components/checkout/CheckoutPage';
-import ProfilePage from './components/auth/ProfilePage';
+import ProfilePage from './components/profile/ProfilePage';
 import NotFoundPage from './components/notofund/NotFoundPage';
+import NewPasswordPage from './components/profile/NewPasswordPage';
 
 const routes = [
 	{
@@ -34,7 +35,11 @@ const routes = [
 	// {
 	// 	path: '*',
 	// 	component: NotFoundPage
-	// }
+	// },
+	{
+		path: '/new-password',
+		component: NewPasswordPage
+	}
 ];
 
 export default routes;

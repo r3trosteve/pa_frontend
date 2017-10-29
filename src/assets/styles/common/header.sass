@@ -61,35 +61,37 @@ nav.navbar.navbar-default
 
 // Responsiveness
 
-//@media (max-width: 1199px)
-//  nav.navbar.navbar-default
-//
-//    ul.nav.navbar-nav:not(.navbar-right)
-//      padding-left: 0
-//
-//@media (max-width: 991px)
-//  nav.navbar.navbar-default
-//    .container
-//      width: 100%
-//
-//    .navbar-header
-//      a.navbar-brand img
-//        width: 100px
-//
-//    ul.nav.navbar-nav
-//      li
-//        padding: 18px 0
-//        a
-//          padding: 10px 17px
-//          font-size: 12px
-//          i
-//            font-size: 20px
-//            top: 10px
-//          &.navbar-join
-//            padding: 10px 17px
-//      &:not(.navbar-right)
-//        li a
-//          padding-left: 18px
+@media (max-width: 1199px)
+  nav.navbar.navbar-default
+
+    ul.nav.navbar-nav:not(.navbar-right)
+      padding-left: 0
+
+@media (max-width: 991px)
+  nav.navbar.navbar-default
+    .container
+      width: 100%
+
+    .navbar-header
+      a.navbar-brand img
+        width: 100px
+
+    ul.nav.navbar-nav
+      li
+        padding: 21px 0
+        a
+          padding: 10px 17px
+          font-size: 12px
+
+          &.navbar-join
+            padding: 10px 17px
+
+        &:first-child a
+          padding-left: 30px!important
+
+      &:not(.navbar-right)
+        li a
+          padding-left: 18px
 
 @media (max-width: 767px)
   nav.navbar.navbar-default

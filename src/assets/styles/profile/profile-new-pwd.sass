@@ -1,0 +1,39 @@
+
+.profile__new-password
+  padding: 110px 0 50px
+  background: $white
+  min-height: calc(100vh)
+
+  &__card
+    max-width: 500px
+    margin: 0 auto
+    padding: 50px 15px 38px
+    box-shadow: $shadow-main
+    background: white
+    border-radius: 6px
+
+    &__header
+      text-align: center
+      margin-bottom: 35px
+      h4
+        font-size: 24px
+        font-weight: 600
+        color: $blue
+      img
+        width: 117px
+        height: 38px
+        margin-bottom: 25px
+
+  &__form
+    max-width: 272px
+    margin: 0 auto
+
+    button
+      width: 100%
+      height: 48px
+
+//responsiveness
+@media (max-width: 767px)
+  .profile__new-password
+    padding: 70px 0 50px
+    min-height: 0
