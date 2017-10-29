@@ -4,6 +4,17 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import Modal from 'react-modal';
 
 export default class RegisterLoginModal extends Component {
+
+	handleOpenLogModal() {
+        this.props.openLogModal();
+        this.props.closeModal();
+	}
+
+    handleOpenRegModal() {
+        this.props.openRegModal();
+        this.props.closeModal();
+    }
+
 	render() {
 		return (
 
@@ -41,14 +52,14 @@ export default class RegisterLoginModal extends Component {
 								<a
 									href="#"
 									className="modal-btn-orange"
-									onClick={this.props.openRegModal}
+									onClick={this.handleOpenRegModal.bind(this)}
 								>
 									Register
 								</a>
 								<a
 									href="#"
 									className="modal-btn-white"
-									onClick={this.props.openLogModal}
+									onClick={this.handleOpenLogModal.bind(this)}
 								>
 									Log in
 								</a>

@@ -156,6 +156,8 @@ export default class RegisterModal extends Component {
 								authText="Already have an account?"
 								modalTarget="#login-modal"
 								linkText="Login"
+								openNextModal={this.props.openLogModal}
+								closeModal={this.props.closeModal}
 							/>
 							
 						</div>

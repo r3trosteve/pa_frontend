@@ -115,6 +115,7 @@ class Header extends Component {
 				<Register
 					isModalOpen={this.state.isRegModalOpen}
 					closeModal={this.closeRegModal}
+					openLogModal={this.openLogModal}
 				/>
 
 				<ForgotPassword

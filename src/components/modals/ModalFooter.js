@@ -10,37 +10,43 @@ import tripit3x from '../../assets/images/modals/tripit/tripit@3x.png';
 // end
 
 export default class ModalFooter extends Component {
+
+	handleOpenNextModal() {
+		this.props.openNextModal();
+		this.props.closeModal();
+	}
+
 	render() {
 		return (
 			<div className="auth-modal-footer">
 
-				<p>Or login with:</p>
+				{/*<p>Or login with:</p>*/}
 
-				<div className="modal-social">
+				{/*<div className="modal-social">*/}
 
-					<div className="modal-social-img">
-						<img src={fb3x} alt="Facebook" />
-					</div>
-					<div className="modal-social-img">
-						<img src={gp3x} alt="Google Plus" />
-					</div>
-					<div className="modal-social-img">
-						<img src={tw3x} alt="Twitter" />
-					</div>
-					<div className="modal-social-img">
-						<img src={concur3x} alt="Concur" />
-					</div>
-					<div className="modal-social-img">
-						<img src={tripit3x} alt="TripIt" />
-					</div>
+					{/*<div className="modal-social-img">*/}
+						{/*<img src={fb3x} alt="Facebook" />*/}
+					{/*</div>*/}
+					{/*<div className="modal-social-img">*/}
+						{/*<img src={gp3x} alt="Google Plus" />*/}
+					{/*</div>*/}
+					{/*<div className="modal-social-img">*/}
+						{/*<img src={tw3x} alt="Twitter" />*/}
+					{/*</div>*/}
+					{/*<div className="modal-social-img">*/}
+						{/*<img src={concur3x} alt="Concur" />*/}
+					{/*</div>*/}
+					{/*<div className="modal-social-img">*/}
+						{/*<img src={tripit3x} alt="TripIt" />*/}
+					{/*</div>*/}
 
-				</div>
+				{/*</div>*/}
 
 				<p>
 
 					{this.props.authText}
 
-					<a href="#" data-toggle="modal" data-dismiss="modal" data-target={this.props.modalTarget}>
+					<a href="#" onClick={this.handleOpenNextModal.bind(this)}>
 						{' '}
 						{this.props.linkText}{' '}
 					</a>

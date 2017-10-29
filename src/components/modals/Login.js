@@ -151,6 +151,8 @@ class Login extends Component {
 									authText="Don't have an account?"
 									modalTarget="#register-modal"
 									linkText="Register"
+									openNextModal={this.props.openRegModal}
+									closeModal={this.props.closeModal}
 								/>
 
 							</div>
