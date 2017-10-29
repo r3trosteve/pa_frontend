@@ -22,7 +22,7 @@ export default function serverRenderer({ clientStats, serverStats }) {
 
 			let fetchData = route.component.fetchData;
 
-			return fetchData instanceof Function ? fetchData(store, match) : Promise.resolve(null)
+			return fetchData instanceof Function ? fetchData(store, match) : Promise.resolve(null);
 
 		});
 
@@ -49,12 +49,13 @@ export default function serverRenderer({ clientStats, serverStats }) {
 				return res.redirect(302, context.url);
 			}
 
-			res.status(200).send(template({ 
-				markup, 
-				helmet, 
-				initialData 
+			res.status(200).send(template({
+				markup,
+				helmet,
+				initialData
 			}));
 		});
 
-	}
+	};
+
 }

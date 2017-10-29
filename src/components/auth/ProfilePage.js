@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import supportImg from '../../assets/images/checkout/support.png';
-import { Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 class ProfilePage extends Component {
     render() {
@@ -67,15 +67,16 @@ class ProfilePage extends Component {
 
         } else {
 
-            return <Redirect from="/profile" to="/" />;
-
-            // return (
-            //     <div className="profile">
-            //         <div className="container profile__container">
-            //             <h2>You must login to view this page.</h2>
-            //         </div>
-            //     </div>
-            // );
+            return (
+                <Route
+                    render={({ staticContext }) => {
+                        if (staticContext) {
+                            staticContext.status = 302;
+                        }
+                        return <Redirect from="/profile" to="/" />;
+                    }}
+                />
+            );
 
         }
 
