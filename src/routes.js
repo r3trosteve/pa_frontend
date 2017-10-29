@@ -3,6 +3,7 @@ import RatesPage from './components/rates/RatesPage';
 import ParkingLotPage from './components/parking-lot/ParkingLotPage';
 import CheckoutPage from './components/checkout/CheckoutPage';
 import ProfilePage from './components/auth/ProfilePage';
+import NotFoundPage from './components/notofund/NotFoundPage';
 
 const routes = [
 	{
@@ -29,6 +30,10 @@ const routes = [
 	{
 		path: '/profile',
 		component: ProfilePage
+	},
+	{
+		path: '*',
+		component: NotFoundPage
 	}
 ];
 

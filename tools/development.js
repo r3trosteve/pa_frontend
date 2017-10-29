@@ -19,6 +19,7 @@ app.use(webpackDevMiddleware(compiler, {
 		aggregateTimeout: 300,
 		poll: true
 	},
+    historyApiFallback: true
 }));
 
 app.use(webpackHotMiddleware(compiler.compilers.find(compiler => compiler.name === 'client')));

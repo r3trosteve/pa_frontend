@@ -8,7 +8,7 @@ export default class AuthLinks extends Component {
             <ul className="nav navbar-nav navbar-right">
                 <li>
                     <span>
-                        <Link to="/profile" className="navbar-shadowed">Username</Link>
+                        <Link to="/profile" className="navbar-shadowed">Hello, {this.props.user.name}</Link>
                     </span>
                 </li>
                 <li>
@@ -27,5 +27,6 @@ export default class AuthLinks extends Component {
 }
 
 AuthLinks.propTypes = {
+    user: PropTypes.object.isRequired,
     handleLogout: PropTypes.func.isRequired
 };

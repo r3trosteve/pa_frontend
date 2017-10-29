@@ -84,6 +84,7 @@ class Header extends Component {
 							{this.props.auth.isAuthenticated ?
 								<AuthLinks
 									handleLogout={this.handleLogout}
+									user={this.props.auth.user}
 								/> :
 								<NonAuthLinks
 									openRegLogModal={this.openRegLogModal}

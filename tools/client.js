@@ -14,7 +14,7 @@ import { setCurrentUser } from '../src/modules/auth';
 const store = configureStore(window.__initialData__);
 
 if (localStorage.jwtToken) {
-	store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken), localStorage.jwtToken));
+	store.dispatch(setCurrentUser(localStorage.jwtToken));
 }
 
 const renderApp = Component => {
