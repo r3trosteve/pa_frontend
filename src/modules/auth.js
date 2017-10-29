@@ -5,6 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGOUT = 'USER_LOGOUT';
+export const USER_UPDATE = 'USER_UPDATE';
 
 const initialState = {
     isAuthenticated: false,
@@ -15,6 +16,12 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
 
         case SET_CURRENT_USER:
+            return {
+                isAuthenticated: !isEmpty(action.user),
+                user: action.user
+            };
+
+        case USER_UPDATE:
             return {
                 isAuthenticated: !isEmpty(action.user),
                 user: action.user
@@ -74,6 +81,27 @@ export const signup = (data) => (dispatch) => {
         }
     })
         .then(res => res.json());
+};
+
+export const update = (data) => (dispatch) => {
+
+    fetch('http://staging.back.parkingaccess.com/profile', {
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1',
+            'Access-token': localStorage.jwtToken
+        }
+    })
+        .then(res => res.json())
+        .then(data => {
+            dispatch({
+                type: USER_UPDATE,
+                user: data.user
+            });
+        });
+
 };
 
 export const logout = () => {

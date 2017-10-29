@@ -1,12 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import supportImg from '../../assets/images/checkout/support.png';
-import { Route, Redirect } from 'react-router-dom';
+import { update } from '../../modules/auth';
+import classnames from 'classnames';
 
 class ProfilePage extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            name: '',
+            email: '',
+            errors: {}
+        };
+
+        this.handleProfileChange = this.handleProfileChange.bind(this);
+        this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
+    }
+
+    componentWillMount() {
+        this.setState({
+            name: this.props.auth.user.name,
+            email: this.props.auth.user.email
+        });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            name: nextProps.auth.user.name,
+            email: nextProps.auth.user.email
+        });
+    }
+
+    handleProfileChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleProfileUpdate(e) {
+        e.preventDefault();
+
+        const { name, email } = this.state;
+        this.props.update({ name, email });
+    }
+
     render() {
 
         if (this.props.auth.isAuthenticated) {
+
+            console.log(this.props.auth.user);
 
             return (
                 <div className="profile">
@@ -45,12 +89,41 @@ class ProfilePage extends Component {
                                         </div>
 
                                     </div>
+
+                                    <div className="profile__card__item">
+
+                                        <form onSubmit={this.handleProfileUpdate}>
+
+                                            <label>
+                                                <input
+                                                    type="name"
+                                                    name="name"
+                                                    placeholder="Name"
+                                                    value={this.state.name}
+                                                    onChange={this.handleProfileChange}
+                                                />
+                                            </label>
+
+                                            <label>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    placeholder="Email"
+                                                    value={this.state.email}
+                                                    onChange={this.handleProfileChange}
+                                                />
+                                            </label>
+
+                                            <button type="submit">Submit</button>
+
+                                        </form>
+
+                                    </div>
+
                                     <div className="profile__card__item">
 
                                     </div>
-                                    <div className="profile__card__item">
 
-                                    </div>
                                     <div className="profile__card__item">
 
                                     </div>
@@ -84,4 +157,4 @@ class ProfilePage extends Component {
 
 const mapStateToProps = (state) => ({ auth: state.auth });
 
-export default connect(mapStateToProps)(ProfilePage);
+export default connect(mapStateToProps, { update })(ProfilePage);

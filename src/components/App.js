@@ -4,8 +4,9 @@ import { Helmet } from 'react-helmet';
 import routes from '../routes';
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
+import {withRouter} from 'react-router-dom';
 
-export default class App extends Component {
+class App extends Component {
 	render() {
 		return (
 			<div>
@@ -20,7 +21,7 @@ export default class App extends Component {
 					]}
 				/>
 
-				<Header />
+				<Header currentPathname={this.props.location.pathname} />
 				
 				{routes.map((route, i) => <Route key={i} {...route} />)}
 
@@ -30,3 +31,5 @@ export default class App extends Component {
 		);
 	}
 }
+
+export default withRouter(App);
