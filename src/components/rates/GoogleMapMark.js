@@ -27,7 +27,7 @@ export default class GoogleMapMark extends Component {
                         <span>1</span> mile(s)
                         from <span>{this.props.rate.search.airport.code}</span>
                     </p>
-                    <Link to="/parking-lot" className="btn-custom">View details</Link>
+                    <Link to={`/airport-parking/rates/${this.props.rate.id}`} className="btn-custom">View details</Link>
                     <i className="fa fa-caret-down" aria-hidden="true" />
                 </div>
                 <span className="rates__map-info__price" onClick={this.handleShowDetails}>
