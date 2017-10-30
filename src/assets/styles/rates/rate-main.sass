@@ -20,7 +20,9 @@
 
   &__loading
     text-align: center
-    padding: 250px 15px 50px
+    padding: 0 15px
+    img
+      margin-top: calc(50% - 150px)
 
 
   &__row
@@ -93,6 +95,9 @@
 @media (max-width: 991px)
   .rates
     padding: 110px 0 50px
+
+    &__loading img
+        margin-top: 142px
 
     &__row
       max-width: 720px
