@@ -3,13 +3,18 @@ import ReactStars from 'react-stars';
 
 export default class Info extends Component {
 	render() {
+
+		const rate = this.props.rate;
+
 		return (
 			<div className="ap-details__info card-custom">
 
 				{/*title*/}
 
 				<div className="ap-details__info__title">
-					<h3 className="title-normal-bold">Hilton Atlanta Airport</h3>
+					<h3 className="title-normal-bold">
+						{rate.parking_lot && rate.parking_lot.name}
+					</h3>
 				</div>
 
 				<div className="ap-details__info__rating">
@@ -24,7 +29,11 @@ export default class Info extends Component {
 						half={true}
 					/>
 					<p>
-						{' '}|<span>(41</span> reviews) | 3889 Herschel Rd, College Park
+						{' '}
+						|<span>(41</span> reviews)
+						| {rate.parking_lot && rate.parking_lot.location.address1}
+						{' '}
+                        {rate.parking_lot && rate.parking_lot.location.address2}
 					</p>
 				</div>
 
@@ -35,20 +44,20 @@ export default class Info extends Component {
 					<li className="info-list__item text-bold">
 						<i className="fa fa-map" aria-hidden="true" />
 						Distance from airport:
-						<span>3 mile(s)</span>
+						<span>{rate.distance && rate.distance.toFixed()} mile(s)</span>
 					</li>
                     
 					<li className="info-list__item text-bold">
 						<i className="fa fa-car" aria-hidden="true" />
 						Parking type:
-						<span>Self-park</span>
+						<span>{rate.name && rate.name}</span>
 					</li>
 
-					<li className="info-list__item text-bold">
-						<i className="fa fa-clock-o" aria-hidden="true" />
-						Shuttle frequency:
-						<span>5 to 10 Minutes</span>
-					</li>
+					{/*<li className="info-list__item text-bold">*/}
+						{/*<i className="fa fa-clock-o" aria-hidden="true" />*/}
+						{/*Shuttle frequency:*/}
+						{/*<span>5 to 10 Minutes</span>*/}
+					{/*</li>*/}
 
 				</ul>
 			</div>

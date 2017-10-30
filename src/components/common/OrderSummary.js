@@ -21,6 +21,9 @@ export default class OrderSummary extends Component {
 	}
 
 	render() {
+
+		const rate = this.props.rate;
+
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
 
@@ -46,14 +49,23 @@ export default class OrderSummary extends Component {
 						<tbody>
 							<tr>
 								<td>Check-in:</td>
-								<td>06/14/2017 12:00 PM</td>
+								<td>
+									{rate.search && rate.search.arrive_at}
+								</td>
 							</tr>
 							<tr>
 								<td>Check-out:</td>
-								<td>06/15/2017 12:00 PM</td>
+								<td>
+                                    {rate.search && rate.search.exit_at}
+								</td>
 							</tr>
 							<tr>
-								<td>Days of parking: <span>1 day</span></td>
+								<td>Days of parking:
+									<span>
+										{rate.search && rate.search.days}
+									</span>
+								</td>
+
 								<td>Edit Times</td>
 							</tr>
 						</tbody>
@@ -65,15 +77,16 @@ export default class OrderSummary extends Component {
 						<tbody>
 							<tr>
 								<td>
-									Price per day: <span>$8</span>
+									Price per day:
+									<span> ${rate.price && rate.price.daily_rate}</span>
 								</td>
-								<td>$8.00</td>
+								<td> ${rate.price && rate.price.daily_rate}</td>
 							</tr>
 							<tr>
 								<td>
-									Service fee: <span>$5</span>
+									Service fee: <span> ${rate.price && rate.price.service_fee}</span>
 								</td>
-								<td>$5.00</td>
+								<td> ${rate.price && rate.price.service_fee}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -84,7 +97,7 @@ export default class OrderSummary extends Component {
 						<tbody>
 							<tr>
 								<td className="total">Total:</td>
-								<td className="total">$13.00</td>
+								<td className="total"> ${rate.price && rate.price.total}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -95,11 +108,11 @@ export default class OrderSummary extends Component {
 						<tbody>
 							<tr>
 								<td>Pay Now:</td>
-								<td>$13.00</td>
+								<td> ${rate.price && rate.price.pay_now}</td>
 							</tr>
 							<tr>
 								<td>Due at Parking Lot:</td>
-								<td>$0.00</td>
+								<td> ${rate.price && rate.price.due_at_parking_lot}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -130,9 +143,12 @@ export default class OrderSummary extends Component {
 					{/*submit*/}
 
 					<div className="order-summary__submit">
-						<Link to={'/checkout'} className="btn-custom">
+						{/*<Link to={'/checkout'} className="btn-custom">*/}
+							{/*BOOK NOW*/}
+						{/*</Link>*/}
+						<a href="#" onClick={() => alert('No checkout yet')} className="btn-custom">
 							BOOK NOW
-						</Link>
+						</a>
 					</div>
                     
 				</form>

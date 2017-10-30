@@ -6,14 +6,25 @@ import Location from './Location';
 import Details from './Details';
 import Reviews from './Reviews';
 import OrderSummary from '../common/OrderSummary';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchRate } from '../../modules/parking-lot';
 
-export default class ParkingLotPage extends Component {
+class ParkingLotPage extends Component {
+
+    static fetchData(store, match) {
+        return store.dispatch(fetchRate(match.params.id));
+    }
+
+    componentDidMount() {
+        this.props.fetchRate(this.props.match.params.id);
+    }
 
 	render() {
 		return (
 			<div className="ap-details">
 
-				<Helmet title="Parking Lot" />
+				<Helmet title={this.props.rate.parking_lot && this.props.rate.parking_lot.name} />
 
 				<div className="container ap-details__container">
 
@@ -23,11 +34,11 @@ export default class ParkingLotPage extends Component {
 
 						<div className="col-md-7 ap-details__column">
 
-							<Info />
+							<Info rate={this.props.rate} />
 
 							<Overview />
 
-							<Location />
+							<Location rate={this.props.rate} />
 
 							<Details />
 
@@ -38,7 +49,7 @@ export default class ParkingLotPage extends Component {
 						{/*right column*/}
 
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
-							<OrderSummary />
+							<OrderSummary rate={this.props.rate} />
 						</div>
 
 					</div>
@@ -48,3 +59,7 @@ export default class ParkingLotPage extends Component {
 		);
 	}
 }
+const mapStateToProps = (state) => ({ rate: state.rate.item });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchRate }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);

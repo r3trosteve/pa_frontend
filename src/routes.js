@@ -21,7 +21,7 @@ const routes = [
 		component: RatesPage
 	},
 	{
-		path: '/parking-lot',
+		path: '/airport-parking/rates/:id',
 		component: ParkingLotPage
 	},
 	{
