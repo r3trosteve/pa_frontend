@@ -87,7 +87,7 @@ class Register extends Component {
 			return (
 
 				<Modal
-					className="auth-modal"
+					className="auth-modal register-modal"
 					isOpen={this.props.isModalOpen}
 					onRequestClose={this.props.closeModal}
 					contentLabel="Modal"
@@ -104,10 +104,10 @@ class Register extends Component {
 
 								<div className="header">
 									<img src={logoImg3x} alt="Logo" />
-									<h4 className="title">Thank you for signing up</h4>
+									<h4 className="title">Thank you for signing up!</h4>
 								</div>
 
-								<a href="#" onClick={this.handleOpenlogModal}>Log in to start</a>
+								<a href="#" className="modal-btn-white" onClick={this.handleOpenlogModal}>Log in to start</a>
 
 							</div>
 						</div>

@@ -64,6 +64,13 @@ class RatesPage extends Component {
             let wScrollTop = $(window).scrollTop();
             fixedMapScroll();
         });
+
+        $('.dropdown li').click(function () {
+           $(this).parent().find('.active').removeClass('active');
+           $(this).addClass('active');
+        });
+
+
         // end
     }
 

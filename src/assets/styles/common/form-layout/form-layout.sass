@@ -28,7 +28,8 @@ label
   color: $blue
   margin-bottom: 13px
   position: relative
-  input:not([type='checkbox']), input:not([type='radio'])
+
+  input:not([type='checkbox']), input:not([type='radio']), select
     width: 100%
     height: 40px
     border-radius: 4px
@@ -101,6 +102,12 @@ label
     &.checked:after
       opacity: 1
       transform: scale(1)
+
+  &.select-label
+    i
+      position: absolute
+      right: 16px
+      top: 36px
 
   &.has-error
     color: $red

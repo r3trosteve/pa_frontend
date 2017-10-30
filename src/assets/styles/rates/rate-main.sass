@@ -4,32 +4,23 @@
   background: $white
   min-height: calc(100vh)
 
-  &__loading
-    padding-top: 25px
+  &__nothing-found
+    padding: 50px 15px
     text-align: center
+    font-family: 'Montserrat', sans-serif
+    color: $orange
+    font-size: 26px
+    font-weight: 300
+    text-transform: uppercase
+    animation: fade-in-top-rates 0.7s forwards
+    opacity: 0
+    transform: translateY(30px)
+    i
+      display: block
 
-    &__card
-      display: inline-block
-      padding: 20px 25px
-      margin: 0 auto
-      font-family: 'Montserrat', sans-serif
-      font-size: 26px
-      color: $orange
-      text-transform: uppercase
-      font-weight: 300
-      animation: change-colors 10s infinite
-      i
-        animation: rotate-loading 1s infinite
-        margin-right: 10px
-      @keyframes change-colors
-        25%
-          color: $red
-        50%
-          color: $orange-light
-        75%
-          color: $red
-        to
-          color: $orange
+  &__loading
+    text-align: center
+    padding: 250px 15px 50px
 
 
   &__row

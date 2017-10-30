@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import preloader from '../../assets/images/preloader/loader.gif';
 import Rate from './Rate';
 
 export default class RatesList extends Component {
@@ -8,10 +9,7 @@ export default class RatesList extends Component {
         if (this.props.isFetching) {
             return (
                 <div className="rates__loading">
-                    <div className="rates__loading__card">
-                        <i className="fa fa-spinner" aria-hidden="true"></i>
-                        Loading results
-                    </div>
+                    <img src={preloader} alt="preloader"/>
                 </div>
             );
         } else {
@@ -24,7 +22,9 @@ export default class RatesList extends Component {
                     </div>
                 );
             } else {
-                return <div><h2>Sorry, nothing was found...</h2></div>;
+                return <div className="rates__nothing-found">
+                    Sorry, nothing was found...
+                </div>;
             }
         }
 

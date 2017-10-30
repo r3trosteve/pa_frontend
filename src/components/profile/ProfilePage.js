@@ -3,8 +3,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import supportImg from '../../assets/images/checkout/support.png';
 import { updateProfile, updatePassword } from '../../modules/auth';
-import ProfileForm from './ProfileForm';
-import PasswordForm from './PasswordForm';
+import ProfileItems from "./Items";
 
 class ProfilePage extends Component {
 
@@ -29,6 +28,7 @@ class ProfilePage extends Component {
             name: this.props.auth.user.name,
             email: this.props.auth.user.email
         });
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -101,7 +101,7 @@ class ProfilePage extends Component {
                     <div className="container profile__container">
 
                         <div className="profile__row row">
-                            <div className="col-md-7 profile__column">
+                            <div className="col-lg-7 col-md-8 profile__column">
 
                                 <div className="profile__card card-custom card-custom--no-pad">
 
@@ -109,8 +109,8 @@ class ProfilePage extends Component {
 
                                     <div className="profile__card-header">
 
-                                        <div className="profile__card-header__img">
-                                            <img src={supportImg} alt="Support" />
+                                        <div className="profile__card-header__img hidden-xs">
+                                            <img src={supportImg} alt="Support"/>
                                         </div>
 
                                         <div className="profile__card-header__name">
@@ -121,48 +121,21 @@ class ProfilePage extends Component {
 
                                     {/*item 1*/}
 
-                                    <div className="profile__item profile__update">
+                                    <ProfileItems
+                                        user={this.props.auth.user}
+                                        handleProfileUpdate={this.handleProfileUpdate}
+                                        handleChange={this.handleChange}
+                                        errors={this.state.errors}
+                                        name={this.state.name}
+                                        email={this.state.email}
+                                        handlePasswordUpdate={this.handlePasswordUpdate}
+                                        password={this.state.password}
+                                        confirmPassword={this.state.confirmPassword}
+                                    />
 
-                                        <div className="profile__item-header">
-                                            <h2 className="title-normal-bold">Update your account settings</h2>
-                                            <p className="text-big">Change your email address, password, and other settings.</p>
-                                            <i className="ion-chevron-down"></i>
-                                        </div>
-
-                                    </div>
-
-                                    <div className="profile__card__item">
-
-                                        <ProfileForm
-                                            handleProfileUpdate={this.handleProfileUpdate}
-                                            handleChange={this.handleChange}
-                                            errors={this.state.errors}
-                                            name={this.state.name}
-                                            email={this.state.email}
-                                        />
-
-                                        <PasswordForm
-                                            handlePasswordUpdate={this.handlePasswordUpdate}
-                                            handleChange={this.handleChange}
-                                            errors={this.state.errors}
-                                            password={this.state.password}
-                                            confirmPassword={this.state.confirmPassword}
-                                        />
-
-                                    </div>
-
-                                    <div className="profile__card__item">
-
-                                    </div>
-
-                                    <div className="profile__card__item">
-
-                                    </div>
                                 </div>
 
                             </div>
-
-                            <div className="col-md-5 profile__column"></div>
 
                         </div>
 
@@ -179,8 +152,9 @@ class ProfilePage extends Component {
                     <Helmet title="Profile" />
 
                     <div className="container profile__container">
-                        <h2>
-                            You need to be logged in to access this page.
+                        <h2 className="profile__not-logged-in text-center title-normal-mont">
+                            <i className="ion-ios-locked"></i>
+                             You need to be logged in to access this page.
                         </h2>
                     </div>
                 </div>
