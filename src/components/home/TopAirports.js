@@ -16,7 +16,7 @@ export default class TopAirports extends Component {
 				<div className="container home__top-airports__container">
 
 					<div className="home__top-airports__title">
-						<h2>Top Airports</h2>
+						<h2 className="title-upper-bold">Top Airports</h2>
 					</div>
 
 					{/*TOP*/}

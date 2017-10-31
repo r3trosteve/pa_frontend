@@ -1,10 +1,6 @@
 p, h1, h2, h3, h4, h5, h6
   margin: 0
 
-//p, h1, h2, h3, h4, h5, h6
-//  margin-top: inherit
-//  margin-bottom: inherit
-
 
 // titles
 .title-big
@@ -14,7 +10,14 @@ p, h1, h2, h3, h4, h5, h6
   letter-spacing: 1px
   font-weight: 600
 
-.title-normal, .title-normal-bold, .title-normal-mont
+.section-title
+  font-size: 34px
+  line-height: 1.47
+  font-family: 'Montserrat', sans-serif
+  font-weight: 500
+
+.title-normal, .title-normal-bold,
+.title-normal-mont, .title-normal-bold-upper
   font-size: 24px
   color: $blue
 
@@ -25,9 +28,12 @@ p, h1, h2, h3, h4, h5, h6
 .title-normal
   font-weight: 300
 
-.title-normal-bold
+.title-normal-bold, .title-normal-bold-upper
   font-weight: 600
   line-height: 30px
+
+.title-normal-bold-upper
+  text-transform: uppercase
 
 .title-small-upper
   font-size: 14px
@@ -38,6 +44,12 @@ p, h1, h2, h3, h4, h5, h6
   font-family: 'Montserrat', sans-serif
   font-weight: 500
   color: $blue
+
+.title-upper-bold
+  font-size: 29px
+  font-weight: bold
+  color: $blue
+  text-transform: uppercase
 
 //text
 .text-normal, .text-bold, .text-mont-bold, .text-normal-upper, .text-big
@@ -67,3 +79,6 @@ p, h1, h2, h3, h4, h5, h6
 //responsiveness
 @media (max-width: 767px)
   .title-normal, .title-normal-bold
+
+  .section-title
+    font-size: 18px

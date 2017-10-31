@@ -5,6 +5,7 @@ import CheckoutPage from './components/checkout/CheckoutPage';
 import ProfilePage from './components/profile/ProfilePage';
 import NotFoundPage from './components/notofund/NotFoundPage';
 import NewPasswordPage from './components/profile/NewPasswordPage';
+import AirportPage from './components/airport/AirportPage';
 
 const routes = [
 	{
@@ -39,6 +40,10 @@ const routes = [
 	{
 		path: '/new-password',
 		component: NewPasswordPage
+	},
+	{
+		path: '/airport',
+		component: AirportPage
 	}
 ];
 

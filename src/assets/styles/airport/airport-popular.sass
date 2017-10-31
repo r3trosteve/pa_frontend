@@ -1,0 +1,21 @@
+
+.airport__popular
+  h4
+    color: $blue
+  &__column--right
+    p
+      color: $blue
+      margin-top: 30px
+
+//responsiveness
+@media (max-width: 991px)
+  .airport__popular__column--right
+    padding-top: 30px
+
+
+@media (max-width: 767px)
+  .airport__popular
+
+    .airport__card:first-of-type
+      margin-top: 25px!important
+

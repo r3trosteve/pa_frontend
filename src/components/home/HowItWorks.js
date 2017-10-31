@@ -15,7 +15,10 @@ export default class HowItWorks extends Component {
 				<div className="container home__how-it-works__container">
 
 					<div className="home__how-it-works__title">
-						<h2>Book your Travel as you Normally do and Earn Cash back and FREE Airport Parking</h2>
+						<h2 className="section-title">
+							Book your Travel as you Normally
+							do and Earn Cash back and FREE Airport Parking
+						</h2>
 						<h4>How it Works</h4>
 					</div>
 

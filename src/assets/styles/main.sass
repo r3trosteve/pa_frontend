@@ -1,7 +1,5 @@
 @import '../../../node_modules/bootstrap/dist/css/bootstrap.css'
-
 @import '../../../node_modules/bootstrap-daterangepicker/daterangepicker.css'
-
 @import 'fonts'
 
 // Variables
@@ -64,17 +62,27 @@
 @import 'airport-parking-details/apd-reviews'
 // end
 
-//Airport parking checkout
+// Airport parking checkout
 @import 'airport-parking-checkout/apch-main'
 @import 'airport-parking-checkout/apch-payment-details'
 @import 'airport-parking-checkout/apch-contact-us'
-//end
+// end
 
-//Profile
+// Profile
 @import 'profile/profile-main'
 @import 'profile/profile-item-info'
 @import 'profile/profile-new-pwd'
-//end
+// end
+
+// Airport
+@import 'airport/airport-main'
+@import 'airport/airport-form'
+@import 'airport/airport-benefits'
+@import 'airport/airport-popular'
+@import 'airport/airport-lots'
+@import 'airport/airport-hotels'
+@import 'airport/airport-seo'
+// end
 
 
 *
@@ -92,14 +100,16 @@ a
   text-decoration: none!important
   outline: none!important
 
-
 ul
   list-style: none
   padding: 0
   margin: 0
 
-// buttons
+.section-pad
+  padding: 80px 0
 
+
+// buttons
 button
   &:disabled
     &:hover
@@ -128,10 +138,6 @@ button
 
 //end
 
-@keyframes rotate-loading
-  to
-    transform: rotate(360deg)
-
 //cards
 .card-custom
   margin-top: 30px
@@ -145,6 +151,11 @@ button
 
 
 //responsiveness
+
+@media (max-width: 991px)
+  .section-pad
+    padding: 35px 0
+
 @media (max-width: 767px)
   .btn-custom
     width: 100%!important

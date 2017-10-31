@@ -23,7 +23,7 @@ export default class HomeOptions extends Component {
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>01.</span>
-									<h4>Book your travel</h4>
+									<h4 className="title-upper-bold">Book your travel</h4>
 								</div>
 
 								<p>Air, Hotel, Car, Cruise & more</p>
@@ -43,7 +43,7 @@ export default class HomeOptions extends Component {
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>02.</span>
-									<h4>Book airport parking</h4>
+									<h4 className="title-upper-bold">Book airport parking</h4>
 								</div>
 
 								<p>Enter your booking confirmations and get instant savings</p>
@@ -60,7 +60,7 @@ export default class HomeOptions extends Component {
 							<div className="home__options__card">
 								<div className="home__options__card-title">
 									<span>03.</span>
-									<h4>Expense and track</h4>
+									<h4 className="title-upper-bold">Expense and track</h4>
 								</div>
 
 								<p>Quickly link your Tripit or Concur accounts</p>
