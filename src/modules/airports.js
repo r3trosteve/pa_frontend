@@ -20,13 +20,12 @@ export const fetchAirports = () => (dispatch) => {
 	return fetch('http://staging.back.parkingaccess.com/airports', {
 		method: 'get',
 		headers: {
-			Accept: 'application/json; version=1'
+            'Content-Type': 'application/json',
+			'Accept': 'application/json; version=1'
 		}
 	})
-		.then((res) => {
-			return res.json();
-		})
-		.then((airports) => {
+        .then(res => res.json())
+		.then(airports => {
 			dispatch({
 				type: AIRPORTS_LOADED,
 				items: airports.airports

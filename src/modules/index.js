@@ -1,16 +1,18 @@
 import { combineReducers } from 'redux';
 import airports from './airports';
+import airport from './airport';
 import search from './search';
 import rates from './rates';
 import auth from './auth';
-import rate from './parking-lot';
+import parking_lot from './parking-lot';
 
 const rootReducer = combineReducers({
 	airports,
+	airport,
 	search,
 	rates,
 	auth,
-	rate
+    parking_lot
 });
 
 export default rootReducer;

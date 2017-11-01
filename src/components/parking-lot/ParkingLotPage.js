@@ -8,16 +8,16 @@ import Reviews from './Reviews';
 import OrderSummary from '../common/OrderSummary';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchRate } from '../../modules/parking-lot';
+import { fetchParkingLot } from '../../modules/parking-lot';
 
 class ParkingLotPage extends Component {
 
     static fetchData(store, match) {
-        return store.dispatch(fetchRate(match.params.id));
+        return store.dispatch(fetchParkingLot(match.params.id));
     }
 
     componentDidMount() {
-        this.props.fetchRate(this.props.match.params.id);
+        this.props.fetchParkingLot(this.props.match.params.id);
     }
 
 	render() {
@@ -59,7 +59,8 @@ class ParkingLotPage extends Component {
 		);
 	}
 }
-const mapStateToProps = (state) => ({ rate: state.rate.item });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchRate }, dispatch);
+
+const mapStateToProps = (state) => ({ rate: state.parking_lot.item });
+const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchParkingLot }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);

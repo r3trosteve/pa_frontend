@@ -22,7 +22,7 @@ const routes = [
 		component: RatesPage
 	},
 	{
-		path: '/airport-parking/rates/:id',
+		path: '/airport-parking/:id',
 		component: ParkingLotPage
 	},
 	{
@@ -42,7 +42,7 @@ const routes = [
 		component: NewPasswordPage
 	},
 	{
-		path: '/airport',
+		path: '/airport/:id',
 		component: AirportPage
 	}
 ];

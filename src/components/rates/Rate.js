@@ -63,7 +63,7 @@ export default class Rate extends Component {
 
 								<p className="taxes">Taxes and Fees included</p>
 
-								<Link to={`/airport-parking/rates/${this.props.rate.id}`} className="btn-custom">
+								<Link to={`/airport-parking/${this.props.rate.id}`} className="btn-custom">
 									View details
 								</Link>
 

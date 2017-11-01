@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default class AirportsList extends Component {
 
@@ -22,7 +22,7 @@ export default class AirportsList extends Component {
 	showList(index, airport) {
 		return (
 			<li key={index} className="home__top-airports__list-item">
-				<a href="#">{airport.name}</a>
+				<Link to={`airport/${airport.id}`}>{airport.name}</Link>
 			</li>
 		);
 	}
