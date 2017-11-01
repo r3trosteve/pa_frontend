@@ -5,6 +5,7 @@ import search from './search';
 import rates from './rates';
 import auth from './auth';
 import parking_lot from './parking-lot';
+import reservations from './reservations';
 
 const rootReducer = combineReducers({
 	airports,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
 	search,
 	rates,
 	auth,
-    parking_lot
+    parking_lot,
+    reservations
 });
 
 export default rootReducer;

@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
-import OrderSummary from '../common/OrderSummary';
+// import OrderSummary from '../common/OrderSummary';
+import { connect } from 'react-redux';
+import { loadReservation } from '../../modules/reservations';
 
-export default class AirportParkingCheckoutPage extends Component {
+class AirportParkingCheckoutPage extends Component {
+
+    componentDidMount() {
+        this.props.loadReservation(this.props.match.params.id);
+    }
+
 	render() {
 		return (
 			<div className="ap-checkout">
 
 				<Helmet title="Checkout" />
+
+				<div><pre>{JSON.stringify(this.props.reservation, null, 2) }</pre></div>
 
 				<div className="container ap-checkout__container">
 
@@ -20,7 +29,7 @@ export default class AirportParkingCheckoutPage extends Component {
 						<div className="col-md-5 col-md-push-7 ap-checkout__column ap-checkout__column--summary">
 							<ContactUs />
 
-							<OrderSummary />
+							{/*<OrderSummary />*/}
 						</div>
 
 						{/*left*/}
@@ -47,3 +56,7 @@ export default class AirportParkingCheckoutPage extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({ reservation: state.reservations.data });
+
+export default connect(mapStateToProps, { loadReservation })(AirportParkingCheckoutPage);

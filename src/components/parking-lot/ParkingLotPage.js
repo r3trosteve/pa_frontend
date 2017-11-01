@@ -5,7 +5,7 @@ import Overview from './Overview';
 import Location from './Location';
 import Details from './Details';
 import Reviews from './Reviews';
-import OrderSummary from '../common/OrderSummary';
+import OrderSummary from './OrderSummary';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchParkingLot } from '../../modules/parking-lot';
