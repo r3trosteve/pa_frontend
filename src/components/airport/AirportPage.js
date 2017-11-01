@@ -7,6 +7,7 @@ import AirportPageBenefits from './Benefits';
 import AirportPagePopularLots from './Popular';
 import AirportPageAllLots from './Lots';
 import AirportPageHotels from './Hotels';
+import Form from '../common/form/Form';
 
 
 class AirportPage extends Component {
@@ -24,6 +25,12 @@ class AirportPage extends Component {
           <div className="airport">
 
               <Helmet title={this.props.airport && this.props.airport.name} />
+
+              <br />
+              <br />
+              <br />
+
+              <Form />
 
               <AirportPageBenefits />
               <AirportPagePopularLots />

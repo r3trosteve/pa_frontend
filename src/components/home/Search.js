@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import BookTravel from '../common/BookTravel';
-import Form from './Form';
+import Form from '../common/form/Form';
 
 export default class Search extends Component {
 	render() {
@@ -25,14 +24,10 @@ export default class Search extends Component {
 						</h4>
 					</div>
 
-					<Form airports={this.props.airports} />
+					<Form />
 					
 				</div>
 			</section>
 		);
 	}
 }
-
-Search.propTypes = {
-	airports: PropTypes.array.isRequired
-};

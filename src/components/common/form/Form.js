@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import AirportAutocomplete from '../common/form/AirportAutocomplete';
-import Calendar from '../common/form/Calendar';
-import { getSuggestions } from '../../utils';
-// import moment from 'moment';
+import AirportAutocomplete from './AirportAutocomplete';
+import Calendar from './Calendar';
+import { getSuggestions } from '../../../utils/index';
 import { connect } from 'react-redux';
-import { createSearch } from '../../modules/search';
-// import { fetchRates } from '../../modules/rates';
+import { createSearch } from '../../../modules/search';
+import { fetchAirports } from '../../../modules/airports';
 import { Route, Redirect } from 'react-router-dom';
 
 class Form1 extends Component {
@@ -39,6 +38,8 @@ class Form1 extends Component {
 	}
 
 	componentDidMount() {
+        this.props.fetchAirports();
+
 		$('#search-form-tooltip').tooltip();
 	}
 
@@ -229,8 +230,8 @@ Form1.propTypes = {
 const mapStateToProps = (state) => {
 	return {
 		search: state.search.data,
-		// rates: state.rates.items
+		airports: state.airports.items
 	};
 };
 
-export default connect(mapStateToProps, { createSearch })(Form1);
+export default connect(mapStateToProps, { createSearch, fetchAirports })(Form1);

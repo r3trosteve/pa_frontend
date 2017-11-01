@@ -58,7 +58,7 @@ class HomePage extends Component {
 
 				<Helmet title="Home" />
 
-				<Search airports={this.props.airports} />
+				<Search />
 				
 				<Options />
 
