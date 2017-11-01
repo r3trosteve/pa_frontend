@@ -3,7 +3,7 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import classnames from 'classnames';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import { resetPassoword } from '../../modules/auth';
+import { resetPasswordRequest } from '../../modules/auth';
 
 class ForgotPassword extends Component {
 
@@ -47,7 +47,7 @@ class ForgotPassword extends Component {
 
 		if (isValid) {
 			// api request
-			this.props.resetPassoword({ email: this.state.email });
+			this.props.resetPasswordRequest({ email: this.state.email });
 		}
 	}
 
@@ -120,4 +120,4 @@ class ForgotPassword extends Component {
 	}
 }
 
-export default connect(null, { resetPassoword })(ForgotPassword);
+export default connect(null, { resetPasswordRequest })(ForgotPassword);

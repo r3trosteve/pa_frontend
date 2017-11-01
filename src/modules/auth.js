@@ -7,6 +7,8 @@ export const USER_SIGNUP = 'USER_SIGNUP';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_PROFILE_UPDATE = 'USER_UPDATE';
 export const USER_PASSWORD_UPDATE = 'USER_PASSWORD_UPDATE';
+export const RESET_PASSWORD = 'RESET_PASSWORD';
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
 
 const initialState = {
     isAuthenticated: false,
@@ -123,13 +125,12 @@ export const updatePassword = (data) => (dispatch) => {
         .then(data => {
             dispatch({
                 type: USER_PASSWORD_UPDATE,
-                user: data.user // temporary
+                user: data.user
             });
         });
 };
 
-export const resetPassoword = (data) => (dispatch) => {
-    console.log(JSON.stringify(data));
+export const resetPasswordRequest = (data) => (dispatch) => {
     return fetch('http://staging.back.parkingaccess.com/password_reset', {
         method: 'post',
         body: JSON.stringify(data),
@@ -138,7 +139,19 @@ export const resetPassoword = (data) => (dispatch) => {
             'Accept': 'application/json; version=1'
         }
     })
-        .then(res => res.json());
+        .then(() => dispatch({  type: RESET_PASSWORD_REQUEST }));
+};
+
+export const resetPassword = (data) => (dispatch) => {
+    return fetch('http://staging.back.parkingaccess.com/password_reset', {
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        }
+    })
+        .then(() => dispatch({  type: RESET_PASSWORD }));
 };
 
 export const logout = () => {
