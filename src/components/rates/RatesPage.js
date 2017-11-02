@@ -11,9 +11,9 @@ import Tabs from './Tabs';
 import Header from './Header';
 import GoogleMap from './GoogleMap';
 
-import { fetchAirports } from '../../modules/airports';
-import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates';
-import { fetchSearch } from '../../modules/search';
+import { fetchAirports } from '../../modules/airports/airports';
+import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates/rates';
+import { fetchSearch } from '../../modules/search/search';
 
 class RatesPage extends Component {
 

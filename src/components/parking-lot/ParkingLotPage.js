@@ -11,16 +11,16 @@ import Details from './Details';
 import Reviews from './Reviews';
 import OrderSummary from './OrderSummary';
 
-import { fetchParkingLot } from '../../modules/parking-lot';
+import { fetchRate } from '../../modules/rates/rate';
 
 class ParkingLotPage extends Component {
 
     static fetchData(store, match) {
-        return store.dispatch(fetchParkingLot(match.params.id));
+        return store.dispatch(fetchRate(match.params.id));
     }
 
     componentDidMount() {
-        this.props.fetchParkingLot(this.props.match.params.id);
+        this.props.fetchRate(this.props.match.params.id);
     }
 
 	render() {
@@ -64,12 +64,12 @@ class ParkingLotPage extends Component {
 }
 
 ParkingLotPage.propTypes = {
-    fetchParkingLot: PropTypes.func.isRequired,
+    fetchRate: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     rate: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({ rate: state.parking_lot.item });
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchParkingLot }, dispatch);
+const mapStateToProps = state => ({ rate: state.rate.item });
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchRate }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);

@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 
-export const AIRPORTS_LOADED = 'AIRPORTS_LOADED';
+export const AIRPORTS_FETCHED = 'AIRPORTS_FETCHED';
 
 const initialState = {
 	items: []
@@ -8,7 +8,7 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
-		case AIRPORTS_LOADED:
+		case AIRPORTS_FETCHED:
 			return Object.assign({}, state, { items: action.items });
 
 		default:
@@ -16,19 +16,19 @@ export default function reducer(state = initialState, action) {
 	}
 }
 
-export const fetchAirports = () => (dispatch) => {
+export const fetchAirports = () => dispatch => {
 	return fetch('http://staging.back.parkingaccess.com/airports', {
 		method: 'get',
 		headers: {
             'Content-Type': 'application/json',
-			'Accept': 'application/json; version=1'
+            'Accept': 'application/json; version=1'
 		}
 	})
         .then(res => res.json())
-		.then(airports => {
+		.then(data => {
 			dispatch({
-				type: AIRPORTS_LOADED,
-				items: airports.airports
+				type: AIRPORTS_FETCHED,
+				items: data.airports
 			});
 		});
 };

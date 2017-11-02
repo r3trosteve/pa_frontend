@@ -8,7 +8,7 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
 import ModalFooter from './ModalFooter';
 
-import { signup } from '../../modules/auth';
+import { signup } from '../../modules/auth/auth';
 
 class Register extends Component {
 

@@ -8,7 +8,7 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
 import ModalFooter from './ModalFooter';
 
-import { login } from '../../modules/auth';
+import { login } from '../../modules/auth/auth';
 
 
 class Login extends Component {

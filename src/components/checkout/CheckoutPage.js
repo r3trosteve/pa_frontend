@@ -7,7 +7,7 @@ import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
 // import OrderSummary from '../common/OrderSummary';
 
-import { loadReservation } from '../../modules/reservations';
+import { fetchReservation } from '../../modules/reservations/reservation';
 
 class AirportParkingCheckoutPage extends Component {
 
@@ -68,4 +68,4 @@ AirportParkingCheckoutPage.propTypes = {
 
 const mapStateToProps = state => ({ reservation: state.reservations.data });
 
-export default connect(mapStateToProps, { loadReservation })(AirportParkingCheckoutPage);
+export default connect(mapStateToProps, { loadReservation: fetchReservation })(AirportParkingCheckoutPage);

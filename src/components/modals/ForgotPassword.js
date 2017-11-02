@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
-import { resetPasswordRequest } from '../../modules/auth';
+import { resetPasswordRequest } from '../../modules/auth/auth';
 
 class ForgotPassword extends Component {
 

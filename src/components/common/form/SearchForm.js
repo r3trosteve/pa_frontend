@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import AirportAutocomplete from './AirportAutocomplete';
 import Calendar from './Calendar';
-import { fetchAirports } from '../../../modules/airports';
+
+import { fetchAirports } from '../../../modules/airports/airports';
 import { getSuggestions } from '../../../utils/index';
-import { createSearch } from '../../../modules/search';
+import { createSearch } from '../../../modules/search/search';
 
 class SearchForm extends Component {
 

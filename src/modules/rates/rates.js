@@ -1,7 +1,14 @@
 import 'isomorphic-fetch';
 
-export const RATES_LOADED_START = 'RATES_LOADED_START';
-export const RATES_LOADED_SUCCESS = 'RATES_LOADED_SUCCESS';
+const baseUrl = 'http://staging.back.parkingaccess.com/airport_parking/searches/';
+
+const headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json; version=1'
+};
+
+export const RATES_FETCH_START = 'RATES_FETCH_START';
+export const RATES_FETCHED = 'RATES_FETCHED';
 export const RATES_SORTED_BY_DISTANCE = 'RATES_SORTED_BY_DISTANCE';
 export const RATES_SORTED_BY_LOW_PRICE = 'RATES_SORTED_BY_LOW_PRICE';
 export const RATES_SORTED_BY_HIGH_PRICE = 'RATES_SORTED_BY_HIGH_PRICE';
@@ -13,10 +20,10 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case RATES_LOADED_START:
+        case RATES_FETCH_START:
             return Object.assign({}, state, { isFetching: true });
 
-        case RATES_LOADED_SUCCESS:
+        case RATES_FETCHED:
             return Object.assign({}, state, { items: action.items, isFetching: false });
 
         case RATES_SORTED_BY_DISTANCE:
@@ -45,12 +52,9 @@ export const fetchRates = (id) => (dispatch) => {
 
     const promise = new Promise((resolve, reject) => {
         interval = setInterval(() => {
-            fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}`, {
+            fetch(baseUrl + id, {
                 method: 'get',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json; version=1'
-                }
+                headers
             })
                 .then(res => res.json())
                 .then((data) => {
@@ -62,42 +66,39 @@ export const fetchRates = (id) => (dispatch) => {
         }, 1000);
     });
 
-    dispatch({ type: RATES_LOADED_START });
+    dispatch({ type: RATES_FETCH_START });
 
     promise.then(() => {
 
-        fetch(`http://staging.back.parkingaccess.com/airport_parking/searches/${id}/rates`, {
+        fetch(`${baseUrl + id}/rates`, {
             method: 'get',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json; version=1'
-            }
+            headers
         })
             .then(res => res.json())
-            .then((rates) => {
+            .then(data => {
                 dispatch({
-                    type: RATES_LOADED_SUCCESS,
-                    items: rates['airport_parking/rates']
+                    type: RATES_FETCHED,
+                    items: data['airport_parking/rates']
                 });
             });
     });
 };
 
-export const sortRatesByDistance = (rates) => (dispatch) => {
+export const sortRatesByDistance = rates => dispatch => {
     return dispatch({
         type: RATES_SORTED_BY_DISTANCE,
         items: rates
     });
 };
 
-export const sortRatesByLowPrice = (rates) => (dispatch) => {
+export const sortRatesByLowPrice = rates => dispatch => {
     return dispatch({
         type: RATES_SORTED_BY_LOW_PRICE,
         items: rates
     });
 };
 
-export const sortRatesByHighPrice = (rates) => (dispatch) => {
+export const sortRatesByHighPrice = rates => dispatch => {
     return dispatch({
         type: RATES_SORTED_BY_HIGH_PRICE,
         items: rates

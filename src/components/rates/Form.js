@@ -8,8 +8,8 @@ import AirportAutocomplete from '../common/form/AirportAutocomplete';
 import Calendar from '../common/form/Calendar';
 
 import { getSuggestions } from '../../utils';
-import { createSearch } from '../../modules/search';
-import { fetchRates } from '../../modules/rates';
+import { createSearch } from '../../modules/search/search';
+import { fetchRates } from '../../modules/rates/rates';
 import { bindActionCreators } from 'redux';
 
 class Form extends Component {

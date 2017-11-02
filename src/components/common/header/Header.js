@@ -13,7 +13,7 @@ import ForgotPassword from '../../modals/ForgotPassword';
 import NonAuthLinks from './NonAuthLinks';
 import AuthLinks from './AuthLinks';
 
-import { logout } from '../../../modules/auth';
+import { logout } from '../../../modules/auth/auth';
 
 class Header extends Component {
 

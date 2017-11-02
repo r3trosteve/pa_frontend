@@ -6,7 +6,7 @@ import 'url-search-params-polyfill';
 
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
-import { resetPassword } from '../../modules/auth';
+import { resetPassword } from '../../modules/auth/auth';
 
 class NewPasswordPage extends Component {
 

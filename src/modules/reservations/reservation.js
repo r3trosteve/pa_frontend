@@ -1,18 +1,20 @@
 import 'isomorphic-fetch';
 
-export const CREATE_RESERVATION = 'CREATE_RESERVATION';
-export const LOAD_RESERVATION = 'LOAD_RESERVATION';
+const baseUrl = 'http://staging.back.parkingaccess.com/reservations';
+
+export const RESERVATION_CREATED = 'RESERVATION_CREATED';
+export const RESERVATION_FETCHED = 'RESERVATION_FETCHED';
 
 const initialState = {
-    data: []
+    data: {}
 };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case CREATE_RESERVATION:
+        case RESERVATION_CREATED:
             return Object.assign({}, state, { data: action.data });
 
-        case LOAD_RESERVATION:
+        case RESERVATION_FETCHED:
             return Object.assign({}, state, { data: action.data });
 
         default:
@@ -20,8 +22,8 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-export const createReservation = (data) => (dispatch) => {
-    return fetch('http://staging.back.parkingaccess.com/reservations', {
+export const createReservation = data => dispatch => {
+    return fetch(baseUrl, {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
@@ -33,15 +35,14 @@ export const createReservation = (data) => (dispatch) => {
         .then(res => res.json())
         .then(data => {
             dispatch({
-                type: CREATE_RESERVATION,
+                type: RESERVATION_CREATED,
                 data: data['reservation']
             });
-            console.log(data['reservation'])
         });
 };
 
-export const loadReservation = (id) => (dispatch) => {
-    return fetch(`http://staging.back.parkingaccess.com/reservations/${id}`, {
+export const fetchReservation = id => dispatch => {
+    return fetch(baseUrl + id, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ export const loadReservation = (id) => (dispatch) => {
         .then(res => res.json())
         .then(data => {
             dispatch({
-                type: LOAD_RESERVATION,
+                type: RESERVATION_FETCHED,
                 data: data
             });
         });

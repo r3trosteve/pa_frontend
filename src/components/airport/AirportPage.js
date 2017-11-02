@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchAirport } from '../../modules/airport';
+
 import AirportPageBenefits from './Benefits';
 import AirportPagePopularLots from './Popular';
 import AirportPageAllLots from './Lots';
 import AirportPageHotels from './Hotels';
 import Form from '../common/form/SearchForm';
 
+import { fetchAirport } from '../../modules/airports/airport';
 
 class AirportPage extends Component {
 
@@ -42,7 +44,12 @@ class AirportPage extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ airport: state.airport.item });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchAirport }, dispatch);
+AirportPage.propTypes = {
+    fetchAirport: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({ airport: state.airport.item });
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchAirport }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AirportPage);

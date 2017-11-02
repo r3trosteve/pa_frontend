@@ -7,7 +7,7 @@ import supportImg from '../../assets/images/checkout/support.png';
 
 import ProfileItems from "./Items";
 
-import { updateProfile, updatePassword } from '../../modules/auth';
+import { updateProfile, updatePassword } from '../../modules/auth/auth';
 
 class ProfilePage extends Component {
 

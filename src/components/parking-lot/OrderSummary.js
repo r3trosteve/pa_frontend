@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { createReservation } from '../../modules/reservations';
+import { createReservation } from '../../modules/reservations/reservation';
 
 class OrderSummary extends Component {
 
@@ -193,7 +193,7 @@ OrderSummary.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        reservation: state.reservations.data
+        reservation: state.reservation.data
     };
 };
 

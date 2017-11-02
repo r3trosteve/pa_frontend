@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import configureStore from '../src/configureStore';
 import App from '../src/components/App';
 import jwt from 'jsonwebtoken';
-import { setCurrentUser } from '../src/modules/auth';
+import { setCurrentUser } from '../src/modules/auth/auth';
 
 const store = configureStore(window.__initialData__);
 

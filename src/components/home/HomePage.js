@@ -9,7 +9,7 @@ import Options from './Options';
 import HowItWorks from './HowItWorks';
 import TopAirports from './TopAirports';
 
-import { fetchAirports } from '../../modules/airports';
+import { fetchAirports } from '../../modules/airports/airports';
 
 class HomePage extends Component {
 
