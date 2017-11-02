@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+
 import BookTravel from '../common/BookTravel';
-import Form from '../common/form/Form';
+import Form from '../common/form/SearchForm';
 
 export default class Search extends Component {
 	render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactStars from 'react-stars';
-import AirportPageSeo from './Seo';
 
+import AirportPageSeo from './Seo';
 
 export default class AirportPageHotels extends Component {
     render() {
@@ -104,8 +104,8 @@ export default class AirportPageHotels extends Component {
                     </div>
 
                     {/*SEO*/}
-                    <AirportPageSeo />
 
+                    <AirportPageSeo />
 
                 </div>
 

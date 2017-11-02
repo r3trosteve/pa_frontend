@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 
 export default class Location extends Component {
@@ -33,3 +34,7 @@ export default class Location extends Component {
 		);
 	}
 }
+
+Location.propTypes = {
+	rate: PropTypes.object.isRequired
+};

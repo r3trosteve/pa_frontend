@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import supportImg from '../../assets/images/checkout/support.png';
 
 export default class ContactUs extends Component {

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 
-// import images
 import hiw113x from '../../assets/images/home/how-it-works/hiw-11@3x.png';
 import hiw123x from '../../assets/images/home/how-it-works/hiw-12@3x.png';
 import hiw213x from '../../assets/images/home/how-it-works/hiw-21@3x.png';
 import hiw223x from '../../assets/images/home/how-it-works/hiw-22@3x.png';
 import hiw313x from '../../assets/images/home/how-it-works/hiw-31@3x.png';
-// end
 
 export default class HowItWorks extends Component {
 	render() {

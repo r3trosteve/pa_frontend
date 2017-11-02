@@ -29,7 +29,6 @@ class RatesPage extends Component {
 
         this.mapTabActive = this.mapTabActive.bind(this);
         this.listTabActive = this.listTabActive.bind(this);
-        // this.handleRatesUpdating = this.handleRatesUpdating.bind(this);
     }
 
     static fetchData(store, match) {
@@ -44,16 +43,17 @@ class RatesPage extends Component {
             this.props.fetchRates(this.props.match.params.id);
         }
 
-        // jquery
+        // jq to load google map properly
 
         setTimeout(() => {
             this.setState({ mapLoading: false });
             fixedMapScroll();
         }, 500);
 
-        let fixedMapScroll = function () {
-            let wScrollTop = $(window).scrollTop();
-            if(wScrollTop > 110) {
+        let fixedMapScroll = () => {
+            const wScrollTop = $(window).scrollTop();
+
+            if (wScrollTop > 110) {
                 $('.map-container').addClass('fixed-map');
             } else {
                 $('.map-container').removeClass('fixed-map');
@@ -61,7 +61,6 @@ class RatesPage extends Component {
         };
 
         $(window).scroll(() => {
-            let wScrollTop = $(window).scrollTop();
             fixedMapScroll();
         });
 
@@ -69,7 +68,6 @@ class RatesPage extends Component {
            $(this).parent().find('.active').removeClass('active');
            $(this).addClass('active');
         });
-
 
         // end
     }
@@ -97,7 +95,6 @@ class RatesPage extends Component {
                         <Form
                             airports={this.props.airports}
                             search={this.props.search}
-                            // handleRatesUpdating={this.handleRatesUpdating}
                         />
 
                         {/*Tabs*/}
@@ -140,14 +137,14 @@ class RatesPage extends Component {
 
                     <div className={classnames('rates__column rates__column--map', {'mobile-map': this.state.activeMobileTabList})}>
 
-                        {!this.state.mapLoading ? (
-
-                            <GoogleMap
-                                search={this.props.search}
-                                rates={this.props.rates}
-                            />
-
-                        ) : null}
+                        {
+                            !this.state.mapLoading ?
+                                ( <GoogleMap
+                                    search={this.props.search}
+                                    rates={this.props.rates}
+                                /> ) :
+                                null
+                        }
 
                     </div>
 
@@ -162,18 +159,24 @@ class RatesPage extends Component {
 RatesPage.propTypes = {
     match: PropTypes.object.isRequired,
     airports: PropTypes.array.isRequired,
+    fetchSearch: PropTypes.func.isRequired,
     search: PropTypes.object.isRequired,
-    rates: PropTypes.array
+    fetchRates: PropTypes.func.isRequired,
+    rates: PropTypes.array,
+    ratesFetching: PropTypes.bool.isRequired,
+    sortRatesByDistance: PropTypes.func.isRequired,
+    sortRatesByLowPrice: PropTypes.func.isRequired,
+    sortRatesByHighPrice: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     airports: state.airports.items,
     search: state.search.data,
     rates: state.rates.items,
     ratesFetching: state.rates.isFetching
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
+const mapDispatchToProps = dispatch => bindActionCreators({
     fetchAirports,
     fetchSearch,
     fetchRates,

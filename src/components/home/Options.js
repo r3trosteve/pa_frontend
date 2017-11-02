@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-// import images
 import option113x from '../../assets/images/home/options/o-11@3x.png';
 import option123x from '../../assets/images/home/options/o-12@3x.png';
 import option133x from '../../assets/images/home/options/o-13@3x.png';
 import option143x from '../../assets/images/home/options/o-14@3x.png';
 import option23x from '../../assets/images/home/options/o-2@3x.png';
 import option33x from '../../assets/images/home/options/o-3@3x.png';
-// end
 
 export default class HomeOptions extends Component {
 	render() {

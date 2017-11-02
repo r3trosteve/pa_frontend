@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import AverageRating from './AverageRating';
 
 export default class Overview extends Component {

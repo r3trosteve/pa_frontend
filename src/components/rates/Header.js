@@ -21,13 +21,15 @@ export default class Header extends Component {
 
 					<ul className="dropdown-menu filters">
 
-						{this.props.rates.slice(0, 5).map((rate) => {
-							return (
-								<li key={rate.id} onClick={() => alert('Not working yet')}>
-									{rate.name}
-								</li>
-							);
-						})}
+						{
+							this.props.rates.slice(0, 5).map((rate) => {
+								return (
+									<li key={rate.id} onClick={() => alert('Not working yet')}>
+										{rate.name}
+									</li>
+								);
+							})
+						}
 
 					</ul>
 

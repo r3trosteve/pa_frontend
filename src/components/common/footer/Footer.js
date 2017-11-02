@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import logoImg3x from '../../../assets/images/logo/logo-dark@3x.png';
+
 import BookTravel from '../BookTravel';
 
 export default class Footer extends Component {

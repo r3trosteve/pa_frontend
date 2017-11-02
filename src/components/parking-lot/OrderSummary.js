@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
 import { createReservation } from '../../modules/reservations';
 
 class OrderSummary extends Component {
@@ -183,7 +185,13 @@ class OrderSummary extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+OrderSummary.propTypes = {
+	rate: PropTypes.object.isRequired,
+    createReservation: PropTypes.func.isRequired,
+    reservation: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => {
     return {
         reservation: state.reservations.data
     };

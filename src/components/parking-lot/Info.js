@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 
 export default class Info extends Component {
@@ -64,3 +65,7 @@ export default class Info extends Component {
 		);
 	}
 }
+
+Info.propTypes = {
+    rate: PropTypes.object.isRequired
+};

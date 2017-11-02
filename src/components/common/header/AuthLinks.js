@@ -5,6 +5,12 @@ import {withRouter} from 'react-router-dom';
 
 class AuthLinks extends Component {
 
+    constructor() {
+        super();
+
+        this.handleProfileLogout = this.handleProfileLogout.bind(this);
+    }
+
     handleProfileLogout(e) {
         this.props.history.push('/');
         this.props.handleLogout(e);
@@ -20,9 +26,11 @@ class AuthLinks extends Component {
                 </li>
                 <li>
                     <span>
-                        {this.props.currentPathname === '/profile' ?
-                            <a href="#" onClick={this.handleProfileLogout.bind(this)}>Logout</a> :
-                            <a href="#" onClick={this.props.handleLogout}>Logout</a>}
+                        {
+                            this.props.currentPathname === '/profile' ?
+                                <a href="#" onClick={this.handleProfileLogout}>Logout</a> :
+                                <a href="#" onClick={this.props.handleLogout}>Logout</a>
+                        }
                     </span>
                 </li>
                 <li>
@@ -37,7 +45,9 @@ class AuthLinks extends Component {
 
 AuthLinks.propTypes = {
     user: PropTypes.object.isRequired,
-    handleLogout: PropTypes.func.isRequired
+    handleLogout: PropTypes.func.isRequired,
+    currentPathname: PropTypes.string.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default withRouter(AuthLinks);

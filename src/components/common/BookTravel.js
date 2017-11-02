@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import planeIcon from '../../assets/images/svg/plane.svg';
 import bedIcon from '../../assets/images/svg/bed2.svg';
 import carIcon from '../../assets/images/svg/car2.svg';
@@ -16,15 +17,19 @@ export default class BookTravel extends Component {
 						<li className="book-travel__list-item">
 							<img src={planeIcon} alt="Plane" />
 						</li>
+
 						<li className="book-travel__list-item">
 							<img src={bedIcon} alt="Bed" />
 						</li>
+
 						<li className="book-travel__list-item">
 							<img src={carIcon} alt="Car" />
 						</li>
+
 						<li className="book-travel__list-item">
 							<img src={trainIcon} alt="Train" />
 						</li>
+
 						<li className="book-travel__list-item">
 							<p className="book-travel__text">Book travel & Earn Cash</p>
 						</li>

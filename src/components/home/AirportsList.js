@@ -61,16 +61,19 @@ export default class AirportsList extends Component {
 
 				<div className="row home__top-airports__row home__top-airports__row--list-part visible-sm visible-xs">
 					<div className="col-md-12 home__top-airports__column text-center">
+
 						<ul className="home__top-airports__list">
-							{this.state.visible ? (
-								this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport))
-							) : (
-								this.props.airports.slice(0, 10).map((airport, index) => this.showList(index, airport))
-							)}
+
+							{
+								this.state.visible ?
+									this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport)) :
+									this.props.airports.slice(0, 10).map((airport, index) => this.showList(index, airport))
+							}
 
 							<span onClick={this.showMore} className="btn-custom">
 								{this.state.visible ? 'Show less' : 'Show more'}
 							</span>
+
 						</ul>
 					</div>
 				</div>

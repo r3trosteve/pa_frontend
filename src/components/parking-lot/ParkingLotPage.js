@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import Info from './Info';
 import Overview from './Overview';
 import Location from './Location';
 import Details from './Details';
 import Reviews from './Reviews';
 import OrderSummary from './OrderSummary';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+
 import { fetchParkingLot } from '../../modules/parking-lot';
 
 class ParkingLotPage extends Component {
@@ -60,7 +63,13 @@ class ParkingLotPage extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({ rate: state.parking_lot.item });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchParkingLot }, dispatch);
+ParkingLotPage.propTypes = {
+    fetchParkingLot: PropTypes.func.isRequired,
+    match: PropTypes.object.isRequired,
+    rate: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({ rate: state.parking_lot.item });
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchParkingLot }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);

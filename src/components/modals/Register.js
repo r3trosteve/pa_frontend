@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import logoImg3x from '../../assets/images/logo/logo@3x.png';
-import ModalFooter from './ModalFooter';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
+
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
+import ModalFooter from './ModalFooter';
+
 import { signup } from '../../modules/auth';
 
 class Register extends Component {
@@ -51,23 +55,23 @@ class Register extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		// validation
 		let errors = {};
+
 		if (this.state.name === '') errors.name = " can't be empty";
 		if (this.state.email === '') errors.email = " can't be empty";
 		if (this.state.password === '') errors.password = " can't be empty";
 		if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
 		if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm)
 			errors.passwordConfirm = " doesn't match password above";
+
 		this.setState({ errors });
+
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
 			const { name, email, password } = this.state;
 
-			// api request
             this.props.signup({ name, email, password })
-                // .then(this.props.closeModal())
 				.then(() => this.setState({ isSignedUp: true }))
                 .catch((err) => err.response.json());
 		}
@@ -142,6 +146,7 @@ class Register extends Component {
 								</div>
 
 								<form onSubmit={this.handleSubmit}>
+
 									<label className={classnames('', { 'has-error': this.state.errors.name })}>
 										Name
 										<span className="error-text">{this.state.errors.name}</span>
@@ -199,6 +204,7 @@ class Register extends Component {
 											Register
 										</button>
 									</label>
+
 								</form>
 
 								<ModalFooter
@@ -219,5 +225,11 @@ class Register extends Component {
 
 	}
 }
+
+Register.propTypes = {
+    closeModal: PropTypes.func.isRequired,
+    openLogModal: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired
+};
 
 export default connect(null, { signup })(Register);

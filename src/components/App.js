@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import {withRouter} from 'react-router-dom';
+
 import routes from '../routes';
+
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
-import {withRouter} from 'react-router-dom';
 
 class App extends Component {
 	render() {
@@ -31,5 +34,9 @@ class App extends Component {
 		);
 	}
 }
+
+App.propTypes = {
+	location: PropTypes.object.isRequired
+};
 
 export default withRouter(App);

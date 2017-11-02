@@ -25,3 +25,10 @@ export default class Tabs extends Component {
         );
     }
 }
+
+Tabs.propTypes = {
+    activeMobileTabList: PropTypes.bool.isRequired,
+    activeMobileTabMap: PropTypes.bool.isRequired,
+    listTabActive: PropTypes.func.isRequired,
+    mapTabActive: PropTypes.func.isRequired
+};

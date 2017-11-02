@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getSuggestions } from '../../utils';
-import AirportAutocomplete from '../common/form/AirportAutocomplete';
-import Calendar from '../common/form/Calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
+
+import AirportAutocomplete from '../common/form/AirportAutocomplete';
+import Calendar from '../common/form/Calendar';
+
+import { getSuggestions } from '../../utils';
 import { createSearch } from '../../modules/search';
 import { fetchRates } from '../../modules/rates';
 import { bindActionCreators } from 'redux';
 
-class Form2 extends Component {
+class Form extends Component {
 	constructor(props) {
 		super(props);
 
@@ -97,6 +99,7 @@ class Form2 extends Component {
 	// end
 
 	handleSubmit(e) {
+
 		e.preventDefault();
 
 		const { airportName, startDate, endDate } = this.state;
@@ -110,14 +113,13 @@ class Form2 extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
+
             let { airportId, startDate, endDate } = this.state;
 
             startDate = startDate.format('YYYY-MM-DDTHH:mm');
             endDate = endDate.format('YYYY-MM-DDTHH:mm');
 
             this.setState({ loading: true });
-
-            // this.props.handleRatesUpdating();
 
             const searchData = {
                 airport_id: airportId,
@@ -128,15 +130,17 @@ class Form2 extends Component {
             this.props.createSearch(searchData)
                 .then(() => this.props.fetchRates(this.props.search.id))
                 .then(() => this.setState({ loading: false }))
-				// .then(() => this.props.handleRatesUpdating())
                 .catch((err) => err.response.json());
+
 		}
+
 	}
 
 	render() {
 		return (
 			<form onSubmit={this.handleSubmit} className="rates__search-form">
 				<div className="search-form">
+
 					<AirportAutocomplete
 						airportName={this.state.airportName}
 						airportSuggestions={this.state.airportSuggestions}
@@ -156,30 +160,36 @@ class Form2 extends Component {
 					/>
 
 					<div className="submit">
+
 						<label>
-							{this.state.loading ? (
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', {
-										disabled: this.state.loading
-									})}
-								>
-									<i className="fa fa-spinner" aria-hidden="true" />
-									Updating...
-								</button>
-							) : (
-								<button
-									type="submit"
-									disabled={this.state.loading}
-									className={classnames('btn-custom btn-custom--big', {
-										disabled: this.state.loading
-									})}
-								>
-									Update
-								</button>
-							)}
+							{
+								this.state.loading ?
+									(
+										<button
+											type="submit"
+											disabled={this.state.loading}
+											className={classnames('btn-custom btn-custom--big', {
+                                                disabled: this.state.loading
+                                            })}
+										>
+											<i className="fa fa-spinner" aria-hidden="true" />
+											Updating...
+										</button>
+									) :
+									(
+										<button
+											type="submit"
+											disabled={this.state.loading}
+											className={classnames('btn-custom btn-custom--big', {
+                                                disabled: this.state.loading
+                                            })}
+										>
+											Update
+										</button>
+									)
+							}
 						</label>
+
 					</div>
 				</div>
 			</form>
@@ -187,25 +197,22 @@ class Form2 extends Component {
 	}
 }
 
-Form2.propTypes = {
+Form.propTypes = {
 	search: PropTypes.object.isRequired,
 	airports: PropTypes.array.isRequired,
 	createSearch: PropTypes.func.isRequired,
-	fetchRates: PropTypes.func.isRequired,
-    // handleRatesUpdating: PropTypes.func.isRequired
+	fetchRates: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		search: state.search.data
 	};
 };
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
+const mapDispatchToProps = dispatch => bindActionCreators({
     createSearch,
     fetchRates,
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form2);
-
-// export default connect(mapStateToProps, { createSearch, fetchRates })(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

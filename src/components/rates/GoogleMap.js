@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
+
 import GoogleMapMark from './GoogleMapMark';
 
 export default class GoogleMap extends Component {

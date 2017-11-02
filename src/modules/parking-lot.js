@@ -3,7 +3,7 @@ import 'isomorphic-fetch';
 export const PARKING_LOT_LOADED = 'PARKING_LOT_LOADED';
 
 const initialState = {
-    item: []
+    item: {}
 };
 
 export default function reducer(state = initialState, action) {

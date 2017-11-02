@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import logoImg3x from '../../assets/images/logo/logo@3x.png';
 import Modal from 'react-modal';
 
-export default class RegisterLoginModal extends Component {
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
+export default class RegisterLogin extends Component {
+
+	constructor() {
+		super();
+
+		this.handleOpenRegModal = this.handleOpenRegModal.bind(this);
+		this.handleOpenLogModal = this.handleOpenLogModal.bind(this);
+    }
 
 	handleOpenLogModal() {
         this.props.openLogModal();
@@ -52,14 +60,14 @@ export default class RegisterLoginModal extends Component {
 								<a
 									href="#"
 									className="modal-btn-orange"
-									onClick={this.handleOpenRegModal.bind(this)}
+									onClick={this.handleOpenRegModal}
 								>
 									Register
 								</a>
 								<a
 									href="#"
 									className="modal-btn-white"
-									onClick={this.handleOpenLogModal.bind(this)}
+									onClick={this.handleOpenLogModal}
 								>
 									Log in
 								</a>
@@ -83,3 +91,10 @@ export default class RegisterLoginModal extends Component {
 		);
 	}
 }
+
+RegisterLogin.propTypes = {
+    openLogModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    openRegModal: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired
+};

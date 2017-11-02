@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
+import { connect } from 'react-redux';
+
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
 // import OrderSummary from '../common/OrderSummary';
-import { connect } from 'react-redux';
+
 import { loadReservation } from '../../modules/reservations';
 
 class AirportParkingCheckoutPage extends Component {
@@ -57,6 +60,12 @@ class AirportParkingCheckoutPage extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({ reservation: state.reservations.data });
+AirportParkingCheckoutPage.propTypes = {
+    match: PropTypes.object.isRequired,
+    loadReservation: PropTypes.func.isRequired,
+    reservation: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({ reservation: state.reservations.data });
 
 export default connect(mapStateToProps, { loadReservation })(AirportParkingCheckoutPage);

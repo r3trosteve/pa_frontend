@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import logoImg3x from '../../assets/images/logo/logo@3x.png';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
-import { resetPassword } from '../../modules/auth';
 import 'url-search-params-polyfill';
+
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
+import { resetPassword } from '../../modules/auth';
 
 class NewPasswordPage extends Component {
 
@@ -27,7 +30,6 @@ class NewPasswordPage extends Component {
         if (search.length > 0) {
             const params = new URLSearchParams(search);
             const token = params.get('perishable_token');
-            console.log('token', token);
             this.setState({ token });
         }
     }
@@ -116,5 +118,10 @@ class NewPasswordPage extends Component {
     }
 
 }
+
+NewPasswordPage.propTypes = {
+    location: PropTypes.object.isRequired,
+    resetPassword: PropTypes.func.isRequired
+};
 
 export default connect(null, { resetPassword })(NewPasswordPage);

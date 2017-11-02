@@ -7,7 +7,7 @@ import AirportPageBenefits from './Benefits';
 import AirportPagePopularLots from './Popular';
 import AirportPageAllLots from './Lots';
 import AirportPageHotels from './Hotels';
-import Form from '../common/form/Form';
+import Form from '../common/form/SearchForm';
 
 
 class AirportPage extends Component {

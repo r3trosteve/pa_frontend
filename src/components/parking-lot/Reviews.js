@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactStars from 'react-stars';
+
 import AverageRating from './AverageRating';
 
 export default class Reviews extends Component {

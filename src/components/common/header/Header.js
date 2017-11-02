@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import logoImg3x from '../../../assets/images/logo/logo@3x.png';
 import carIcon from '../../../assets/images/svg/car.svg';
+
 import RegisterLogin from '../../modals/RegisterLogin';
 import Login from '../../modals/Login';
 import Register from '../../modals/Register';
 import ForgotPassword from '../../modals/ForgotPassword';
-import { connect } from 'react-redux';
-import { logout } from '../../../modules/auth';
 import NonAuthLinks from './NonAuthLinks';
 import AuthLinks from './AuthLinks';
+
+import { logout } from '../../../modules/auth';
 
 class Header extends Component {
 
@@ -56,7 +60,9 @@ class Header extends Component {
 				<nav className="navbar navbar-default" role="navigation">
 
 					<div className="container">
+
 						<div className="navbar-header">
+
 							<button
 								type="button"
 								className="navbar-toggle"
@@ -69,9 +75,11 @@ class Header extends Component {
 							<NavLink exact to="/" className="navbar-brand">
 								<img src={logoImg3x} alt="Logo" />
 							</NavLink>
+
 						</div>
 
 						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
 							<ul className="nav navbar-nav">
 								<li>
 									<NavLink exact to="/">
@@ -81,16 +89,17 @@ class Header extends Component {
 								</li>
 							</ul>
 
-							{this.props.auth.isAuthenticated ?
-								<AuthLinks
-									handleLogout={this.handleLogout}
-									user={this.props.auth.user}
-									currentPathname={this.props.currentPathname}
-								/> :
-								<NonAuthLinks
-									openRegLogModal={this.openRegLogModal}
-									openLogModal={this.openLogModal}
-								/>
+							{
+								this.props.auth.isAuthenticated ?
+									<AuthLinks
+										handleLogout={this.handleLogout}
+										user={this.props.auth.user}
+										currentPathname={this.props.currentPathname}
+									/> :
+									<NonAuthLinks
+										openRegLogModal={this.openRegLogModal}
+										openLogModal={this.openLogModal}
+									/>
 							}
 
 						</div>
@@ -131,6 +140,12 @@ class Header extends Component {
 	}
 
 }
+
+Header.propTypes = {
+    auth: PropTypes.object,
+    currentPathname: PropTypes.string.isRequired,
+    logout: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state) => ({ auth: state.auth });
 

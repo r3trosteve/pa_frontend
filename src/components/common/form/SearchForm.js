@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import AirportAutocomplete from './AirportAutocomplete';
 import Calendar from './Calendar';
-import { getSuggestions } from '../../../utils/index';
-import { connect } from 'react-redux';
-import { createSearch } from '../../../modules/search';
 import { fetchAirports } from '../../../modules/airports';
-import { Route, Redirect } from 'react-router-dom';
+import { getSuggestions } from '../../../utils/index';
+import { createSearch } from '../../../modules/search';
 
-class Form1 extends Component {
+class SearchForm extends Component {
 
 	constructor() {
 		super();
@@ -40,7 +40,7 @@ class Form1 extends Component {
 	componentDidMount() {
         this.props.fetchAirports();
 
-		$('#search-form-tooltip').tooltip();
+		$('#search-form-tooltip').tooltip(); // jq for help tooltip
 	}
 
 	// airport autocomplete functions
@@ -98,9 +98,9 @@ class Form1 extends Component {
 	handleSubmit(e) {
 		e.preventDefault();
 
-		$(window).scrollTop(0);
+		$(window).scrollTop(0); // jq to load page on top
 
-		const { airportId, airportName, startDate, endDate } = this.state;
+        let { airportId, airportName, startDate, endDate } = this.state;
 		let errors = {};
 
 		if (airportName === '') errors.airportName = 'Please enter airport name';
@@ -112,15 +112,14 @@ class Form1 extends Component {
 
 		if (isValid) {
 
-            let { airportId, startDate, endDate } = this.state;
+            // let { airportId, startDate, endDate } = this.state;
 
             startDate = startDate.format('YYYY-MM-DDTHH:mm');
             endDate = endDate.format('YYYY-MM-DDTHH:mm');
 
             this.setState({ loading: true });
 
-            this.props
-                .createSearch({
+            this.props.createSearch({
                     airport_id: airportId,
                     arrive_at: startDate,
                     exit_at: endDate
@@ -221,17 +220,17 @@ class Form1 extends Component {
 	}
 }
 
-Form1.propTypes = {
+SearchForm.propTypes = {
 	airports: PropTypes.array.isRequired,
 	createSearch: PropTypes.func.isRequired,
 	search: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		search: state.search.data,
 		airports: state.airports.items
 	};
 };
 
-export default connect(mapStateToProps, { createSearch, fetchAirports })(Form1);
+export default connect(mapStateToProps, { createSearch, fetchAirports })(SearchForm);

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import logoImg3x from '../../assets/images/logo/logo@3x.png';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
+
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
 import { resetPasswordRequest } from '../../modules/auth';
 
 class ForgotPassword extends Component {
@@ -46,7 +49,6 @@ class ForgotPassword extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			// api request
 			this.props.resetPasswordRequest({ email: this.state.email });
 		}
 	}
@@ -119,5 +121,11 @@ class ForgotPassword extends Component {
 		);
 	}
 }
+
+ForgotPassword.propTypes = {
+    resetPasswordRequest: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
+    closeModal: PropTypes.func.isRequired
+};
 
 export default connect(null, { resetPasswordRequest })(ForgotPassword);

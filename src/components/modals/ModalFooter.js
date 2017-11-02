@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-// import images
 import fb3x from '../../assets/images/modals/facebook/fb@3x.png';
 import gp3x from '../../assets/images/modals/google-plus/gp@3x.png';
 import tw3x from '../../assets/images/modals/twitter/tw@3x.png';
 import concur3x from '../../assets/images/modals/concur/concur@3x.png';
 import tripit3x from '../../assets/images/modals/tripit/tripit@3x.png';
-// end
 
 export default class ModalFooter extends Component {
+
+	constructor() {
+		super();
+
+		this.handleOpenNextModal = this.handleOpenNextModal.bind(this);
+	}
 
 	handleOpenNextModal() {
 		this.props.openNextModal();
@@ -46,7 +50,7 @@ export default class ModalFooter extends Component {
 
 					{this.props.authText}
 
-					<a href="#" onClick={this.handleOpenNextModal.bind(this)}>
+					<a href="#" onClick={this.handleOpenNextModal}>
 						{' '}
 						{this.props.linkText}{' '}
 					</a>
@@ -71,5 +75,7 @@ export default class ModalFooter extends Component {
 ModalFooter.propTypes = {
 	authText: PropTypes.string.isRequired,
 	modalTarget: PropTypes.string.isRequired,
-	linkText: PropTypes.string.isRequired
+	linkText: PropTypes.string.isRequired,
+    openNextModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired
 };

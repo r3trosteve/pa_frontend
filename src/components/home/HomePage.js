@@ -20,11 +20,11 @@ class HomePage extends Component {
 	componentDidMount() {
 		this.props.fetchAirports();
 
-		// jquery parallax on home bg
+		// jq parallax on home bg
 
-		$(window).scroll(function() {
-			let posYZero = 0;
-			let wScrollTop = $(window).scrollTop();
+		$(window).scroll(() => {
+			const posYZero = 0;
+            const wScrollTop = $(window).scrollTop();
 
 			$('.home__search').css({
 				'background-position-y': posYZero + wScrollTop / 3
@@ -35,13 +35,9 @@ class HomePage extends Component {
 
 		// close mobile form
 
-		$('.home__close-search-form').click(function () {
+		$('.home__close-search-form').click(() => {
 			$('.daterangepicker.dropdown-menu').hide();
 			$(this).hide();
-        });
-
-		$('.date-label').click(function () {
-            // $('.home__close-search-form').css('display', 'block!important');
         });
 
 		// end
@@ -52,11 +48,9 @@ class HomePage extends Component {
 		return (
 			<div className="home">
 
-				<i
-					className="ion-ios-close home__close-search-form">
-				</i>
-
 				<Helmet title="Home" />
+
+				<i className="ion-ios-close home__close-search-form"></i>
 
 				<Search />
 				
@@ -75,7 +69,7 @@ HomePage.propTypes = {
 	airports: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({ airports: state.airports.items });
-const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchAirports }, dispatch);
+const mapStateToProps = state => ({ airports: state.airports.items });
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchAirports }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

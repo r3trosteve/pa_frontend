@@ -6,6 +6,9 @@ import classnames from 'classnames';
 export default class GoogleMapMark extends Component {
 
     componentDidMount() {
+
+        // jq to open/close google map marker
+
         $('.rates__map-info__price').click(function () {
             $('.rates__map-info__details').hide();
             $(this).parent().find('.rates__map-info__details').show();
@@ -15,25 +18,36 @@ export default class GoogleMapMark extends Component {
             $(this).parent().hide();
         });
 
+        // end
+
     }
 
     render() {
         return (
             <div className="rates__map-info" >
+
                 <div className="rates__map-info__details">
-                    <i className="ion-ios-close"></i>
+
+                    <i className="ion-ios-close" />
+
                     <h2>{this.props.rate.parking_lot.name}</h2>
+
                     <p className="text-bold">
                         <span>1</span> mile(s)
-                        from <span>{this.props.rate.search.airport.code}</span>
+                        from <span>airport</span>
                     </p>
+
                     <Link to={`/airport-parking/${this.props.rate.id}`} className="btn-custom">View details</Link>
+
                     <i className="fa fa-caret-down" aria-hidden="true" />
+
                 </div>
-                <span className="rates__map-info__price" onClick={this.handleShowDetails}>
+
+                <span className="rates__map-info__price">
                     <i className="fa fa-caret-down" aria-hidden="true" />
                     ${this.props.rate.price.total}
                 </span>
+
             </div>
         );
     }

@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 export default class ProfileUpdate extends Component {
 
     componentDidMount() {
-        $('.profile__items-info__edit').click(function () {
+
+        // jq to open/close items
+
+        $('.profile__items-info__edit').click(function() {
             $(this).parent().parent().find('.profile__items-info__body').toggleClass('active');
             $(this).text(function(i, text){
                 return text === "Edit" ? "Close" : "Edit";
             });
             $(this).parent().find('p').toggle();
         });
+
+        // end
     }
 
     render() {
@@ -105,7 +111,7 @@ export default class ProfileUpdate extends Component {
                                         <option value="Canada">Canada</option>
                                         <option value="UK">United Kingdom</option>
                                     </select>
-                                    <i className="ion-arrow-down-b"></i>
+                                    <i className="ion-arrow-down-b" />
                                 </label>
                             </div>
                         </div>
@@ -215,3 +221,15 @@ export default class ProfileUpdate extends Component {
         );
     }
 }
+
+ProfileUpdate.propTypes = {
+    user: PropTypes.object.isRequired,
+    handleProfileUpdate: PropTypes.func.isRequired,
+    handlePasswordUpdate: PropTypes.func.isRequired,
+    confirmPassword: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    errors: PropTypes.object.isRequired
+};

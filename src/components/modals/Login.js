@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import logoImg3x from '../../assets/images/logo/logo@3x.png';
-import ModalFooter from './ModalFooter';
-import classnames from 'classnames';
-import { connect } from 'react-redux';
-import { login } from '../../modules/auth';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
+import { connect } from 'react-redux';
+import classnames from 'classnames';
+
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
+import ModalFooter from './ModalFooter';
+
+import { login } from '../../modules/auth';
+
 
 class Login extends Component {
 
@@ -39,23 +44,26 @@ class Login extends Component {
 	}
 
 	handleSubmit(e) {
+
 		e.preventDefault();
 
-		// validation
 		let errors = {};
+
 		if (this.state.email === '') errors.email = " can't be empty";
 		if (this.state.password === '') errors.password = " can't be empty";
+
 		this.setState({ errors });
+
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
             const { email, password } = this.state;
 
-            // api request
             this.props.login({ email, password })
 				.then(this.props.closeModal())
                 .catch((err) => err.response.json());
 		}
+
 	}
 
 	changeChecked() {
@@ -100,6 +108,7 @@ class Login extends Component {
 								</label>
 
 								<div className="divider">
+
 									<label
 										className={classnames('checkbox-label', {
 											checked: this.state.checkboxChecked
@@ -113,12 +122,14 @@ class Login extends Component {
 										Remember me
 
 									</label>
+
 									<a
 										href="#"
 										onClick={this.props.openForgPwdModal}
 									>
 										Forgot password?
 									</a>
+
 								</div>
 
 								<label>
@@ -144,5 +155,13 @@ class Login extends Component {
 		);
 	}
 }
+
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    isModalOpen: PropTypes.bool.isRequired,
+    openForgPwdModal: PropTypes.func.isRequired,
+    openRegModal: PropTypes.func.isRequired
+};
 
 export default connect(null, { login })(Login);

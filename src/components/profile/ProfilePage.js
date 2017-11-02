@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+
 import supportImg from '../../assets/images/checkout/support.png';
-import { updateProfile, updatePassword } from '../../modules/auth';
+
 import ProfileItems from "./Items";
+
+import { updateProfile, updatePassword } from '../../modules/auth';
 
 class ProfilePage extends Component {
 
@@ -67,7 +71,6 @@ class ProfilePage extends Component {
         const isValid = Object.keys(errors).length === 0;
 
         if (isValid) {
-            // api request
             this.props.updateProfile({ name, email });
         }
     }
@@ -153,7 +156,7 @@ class ProfilePage extends Component {
 
                     <div className="container profile__container">
                         <h2 className="profile__not-logged-in text-center title-normal-mont">
-                            <i className="ion-ios-locked"></i>
+                            <i className="ion-ios-locked" />
                              You need to be logged in to access this page.
                         </h2>
                     </div>
@@ -165,6 +168,12 @@ class ProfilePage extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ auth: state.auth });
+ProfilePage.propTypes = {
+    auth: PropTypes.object.isRequired,
+    updateProfile: PropTypes.func.isRequired,
+    updatePassword: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({ auth: state.auth });
 
 export default connect(mapStateToProps, { updateProfile, updatePassword })(ProfilePage);

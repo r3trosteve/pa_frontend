@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
+
 import InfoList from '../common/InfoList';
 
 export default class Rate extends Component {
@@ -33,7 +34,8 @@ export default class Rate extends Component {
 									<span>${this.props.rate.price.total}</span>
 								</h2>
 								<p>
-									{this.props.rate.parking_lot.location.address1}{' '}
+									{this.props.rate.parking_lot.location.address1}
+									{' '}
 									{this.props.rate.parking_lot.location.address2}
 								</p>
 							</div>

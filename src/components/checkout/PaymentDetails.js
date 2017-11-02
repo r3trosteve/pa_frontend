@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 export default class PaymentDetails extends Component {
 
 	maxMonthChange(e) {
-		let value = e.target.value;
+		const value = e.target.value;
+
 		if (value > 12) {
 			e.target.value = 12;
 		} else if (value < 1) {

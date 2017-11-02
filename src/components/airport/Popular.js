@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReactStars from 'react-stars';
 
-
 export default class AirportPagePopularLots extends Component {
     render() {
         return (
