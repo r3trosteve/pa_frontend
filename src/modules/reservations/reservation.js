@@ -1,6 +1,6 @@
 import 'isomorphic-fetch';
 
-const baseUrl = 'http://staging.back.parkingaccess.com/reservations';
+const baseUrl = 'http://staging.back.parkingaccess.com/reservations/';
 
 export const RESERVATION_CREATED = 'RESERVATION_CREATED';
 export const RESERVATION_FETCHED = 'RESERVATION_FETCHED';

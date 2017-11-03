@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { createReservation } from '../../modules/reservations/reservation';
 
@@ -70,7 +71,7 @@ class OrderSummary extends Component {
                         {/*title*/}
 
 						<div className="order-summary__title">
-							<h4>Hilton Atlanta Airport</h4>
+							<h4>{rate.search && rate.search.airport.name}</h4>
 						</div>
 
                         {/*1*/}
@@ -80,19 +81,21 @@ class OrderSummary extends Component {
 							<tr>
 								<td>Check-in:</td>
 								<td>
-                                    {rate.search && rate.search.arrive_at}
+                                    {moment(rate.search && rate.search.arrive_at).format('MM/DD/YYYY hh:mm A')}
 								</td>
 							</tr>
 							<tr>
 								<td>Check-out:</td>
 								<td>
-                                    {rate.search && rate.search.exit_at}
+                                    {moment(rate.search && rate.search.exit_at).format('MM/DD/YYYY hh:mm A')}
 								</td>
 							</tr>
 							<tr>
 								<td>Days of parking:
 									<span>
-										{rate.search && rate.search.days}
+										{' '}
+										{rate.search && rate.search.days === null ?
+											0 : rate.search && rate.search.days}
 									</span>
 								</td>
 
@@ -173,7 +176,10 @@ class OrderSummary extends Component {
                         {/*submit*/}
 
 						<div className="order-summary__submit">
-							<button type="submit" className="btn-custom">Submit</button>
+							{this.props.auth && this.props.auth.isAuthenticated ?
+									<button type="submit" className="btn-custom">Submit</button> :
+									<p>You must be logged in to book</p>
+							}
 						</div>
 
 					</form>
@@ -188,12 +194,14 @@ class OrderSummary extends Component {
 OrderSummary.propTypes = {
 	rate: PropTypes.object.isRequired,
     createReservation: PropTypes.func.isRequired,
-    reservation: PropTypes.object.isRequired
+    reservation: PropTypes.object.isRequired,
+	auth: PropTypes.object
 };
 
 const mapStateToProps = state => {
     return {
-        reservation: state.reservation.data
+        reservation: state.reservation.data,
+		auth: state.auth
     };
 };
 

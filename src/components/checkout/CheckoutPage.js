@@ -66,6 +66,6 @@ AirportParkingCheckoutPage.propTypes = {
     reservation: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({ reservation: state.reservations.data });
+const mapStateToProps = state => ({ reservation: state.reservation.data });
 
 export default connect(mapStateToProps, { loadReservation: fetchReservation })(AirportParkingCheckoutPage);
