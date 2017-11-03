@@ -20,6 +20,11 @@ class AirportPage extends Component {
     }
 
     componentDidMount() {
+
+        $(document).ready(() => {
+            $(window).scrollTop(0); // jq to load page on top
+        });
+
         this.props.fetchAirport(this.props.match.params.id);
 
         // jq parallax on airport bg
