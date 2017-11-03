@@ -131,31 +131,31 @@ export default class OrderSummary extends Component {
 
 					<table className="order-summary__table coupon">
 						<tbody>
-						<tr>
-							<td>
-								<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
-									Have a Coupon Code?
-								</span>
-							</td>
-							<td>
-								<label
-									className={classnames('order-summary__coupon-label', {
-										visible: this.state.showCoupon
-									})}
-								>
-									<input type="text" />
-								</label>
-							</td>
-						</tr>
+							<tr>
+								<td>
+									<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
+										Have a Coupon Code?
+									</span>
+								</td>
+								<td>
+									<label
+										className={classnames('order-summary__coupon-label', {
+											visible: this.state.showCoupon
+										})}
+									>
+										<input type="text" />
+									</label>
+								</td>
+							</tr>
 						</tbody>
 					</table>
 
 					{/*submit*/}
 
 					<div className="order-summary__submit">
-						<a href="#" onClick={() => alert('No checkout yet')} className="btn-custom">
+						<button onClick={() => alert('No checkout yet')} className="btn-custom">
 							Check out
-						</a>
+						</button>
 					</div>
 
 				</form>

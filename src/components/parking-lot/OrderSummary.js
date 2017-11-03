@@ -155,22 +155,22 @@ class OrderSummary extends Component {
 
 						<table className="order-summary__table coupon">
 							<tbody>
-							<tr>
-								<td>
-									<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
-										Have a Coupon Code?
-									</span>
-								</td>
-								<td>
-									<label
-										className={classnames('order-summary__coupon-label', {
-                                            visible: this.state.showCoupon
-                                        })}
-									>
-										<input type="text" />
-									</label>
-								</td>
-							</tr>
+								<tr>
+									<td>
+										<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
+											Have a Coupon Code?
+										</span>
+									</td>
+									<td>
+										<label
+											className={classnames('order-summary__coupon-label', {
+												visible: this.state.showCoupon
+											})}
+										>
+											<input type="text" />
+										</label>
+									</td>
+								</tr>
 							</tbody>
 						</table>
 
@@ -179,7 +179,7 @@ class OrderSummary extends Component {
 						<div className="order-summary__submit">
 							{this.props.auth && this.props.auth.isAuthenticated ?
 									<button type="submit" className="btn-custom">Submit</button> :
-									<p>
+									<p className="order-summary__submit__not-logged-in">
 										Please
 										<a href="#" onClick={this.props.openLogModal}> log in </a>
 										to book this parking
