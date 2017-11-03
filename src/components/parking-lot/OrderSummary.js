@@ -178,7 +178,11 @@ class OrderSummary extends Component {
 						<div className="order-summary__submit">
 							{this.props.auth && this.props.auth.isAuthenticated ?
 									<button type="submit" className="btn-custom">Submit</button> :
-									<p>You must be logged in to book</p>
+									<p>
+										Please
+										<a href="#" onClick={this.props.openLogModal}> log in </a>
+										to book this parking
+									</p>
 							}
 						</div>
 

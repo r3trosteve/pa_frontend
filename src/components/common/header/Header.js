@@ -22,7 +22,7 @@ class Header extends Component {
 
 		this.state = {
             isRegLogModalOpen: false,
-            isLogModalOpen: false,
+            // isLogModalOpen: false,
             isRegModalOpen: false,
             isForgPwdOpen: false
 		};
@@ -30,11 +30,11 @@ class Header extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 
         this.openRegLogModal = this.openRegLogModal.bind(this);
-        this.openLogModal = this.openLogModal.bind(this);
+        // this.openLogModal = this.openLogModal.bind(this);
         this.openRegModal = this.openRegModal.bind(this);
         this.openForgPwdModal = this.openForgPwdModal.bind(this);
         this.closeRegLogModal = this.closeRegLogModal.bind(this);
-        this.closeLogModal = this.closeLogModal.bind(this);
+        // this.closeLogModal = this.closeLogModal.bind(this);
         this.closeRegModal = this.closeRegModal.bind(this);
         this.closeForgPwdModal = this.closeForgPwdModal.bind(this);
 	}
@@ -45,11 +45,11 @@ class Header extends Component {
     }
 
     openRegLogModal() { this.setState({ isRegLogModalOpen: true }); }
-    openLogModal() { this.setState({ isLogModalOpen: true }); }
+    // openLogModal() { this.setState({ isLogModalOpen: true }); }
     openRegModal() { this.setState({ isRegModalOpen: true }); }
     openForgPwdModal() { this.setState({ isForgPwdOpen: true }); }
     closeRegLogModal() { this.setState({ isRegLogModalOpen: false }); }
-    closeLogModal() { this.setState({ isLogModalOpen: false }); }
+    // closeLogModal() { this.setState({ isLogModalOpen: false }); }
     closeRegModal() { this.setState({ isRegModalOpen: false }); }
     closeForgPwdModal() { this.setState({ isForgPwdOpen: false }); }
 
@@ -98,7 +98,7 @@ class Header extends Component {
 									/> :
 									<NonAuthLinks
 										openRegLogModal={this.openRegLogModal}
-										openLogModal={this.openLogModal}
+										openLogModal={this.props.openLogModal}
 									/>
 							}
 
@@ -112,13 +112,13 @@ class Header extends Component {
 				<RegisterLogin
 					isModalOpen={this.state.isRegLogModalOpen}
 					closeModal={this.closeRegLogModal}
-					openLogModal={this.openLogModal}
+					openLogModal={this.props.openLogModal}
 					openRegModal={this.openRegModal}
 				/>
 
 				<Login
-					isModalOpen={this.state.isLogModalOpen}
-					closeModal={this.closeLogModal}
+					isModalOpen={this.props.isLogModalOpen}
+					closeModal={this.props.closeLogModal}
 					openRegModal={this.openRegModal}
 					openForgPwdModal={this.openForgPwdModal}
 				/>
@@ -126,13 +126,13 @@ class Header extends Component {
 				<Register
 					isModalOpen={this.state.isRegModalOpen}
 					closeModal={this.closeRegModal}
-					openLogModal={this.openLogModal}
+					openLogModal={this.props.openLogModal}
 				/>
 
 				<ForgotPassword
 					isModalOpen={this.state.isForgPwdOpen}
 					closeModal={this.closeForgPwdModal}
-					openLogModal={this.openLogModal}
+					openLogModal={this.props.openLogModal}
 				/>
 
 			</header>

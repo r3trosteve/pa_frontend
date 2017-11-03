@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
+import { PropsRoute } from 'react-router-with-props';
 import { Helmet } from 'react-helmet';
 import {withRouter} from 'react-router-dom';
 
@@ -9,7 +10,30 @@ import routes from '../routes';
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
 
+import HomePage from './home/HomePage';
+import RatesPage from './rates/RatesPage';
+import ParkingLotPage from './parking-lot/ParkingLotPage';
+import CheckoutPage from './checkout/CheckoutPage';
+import ProfilePage from './profile/ProfilePage';
+import NewPasswordPage from './profile/NewPasswordPage';
+import AirportPage from './airport/AirportPage';
+
 class App extends Component {
+
+    constructor() {
+		super();
+
+        this.state = {
+            isLogModalOpen: false,
+        };
+
+        this.openLogModal = this.openLogModal.bind(this);
+        this.closeLogModal = this.closeLogModal.bind(this);
+	}
+
+    openLogModal() { this.setState({ isLogModalOpen: true }); }
+    closeLogModal() { this.setState({ isLogModalOpen: false }); }
+
 	render() {
 		return (
 			<div>
@@ -24,9 +48,31 @@ class App extends Component {
 					]}
 				/>
 
-				<Header currentPathname={this.props.location.pathname} />
+				<Header
+					currentPathname={this.props.location.pathname}
+					isLogModalOpen={this.state.isLogModalOpen}
+					openLogModal={this.openLogModal}
+					closeLogModal={this.closeLogModal}
+				/>
 				
-				{routes.map((route, i) => <Route key={i} {...route} />)}
+				{/*{routes.map((route, i) => <Route key={i} {...route} />)}*/}
+
+				<Switch>
+					<Route exact path="/" component={HomePage} />
+					<Route path="/home" component={HomePage} />
+					<Route path="/rates/search/:id" component={RatesPage} />
+
+					<PropsRoute
+						path="/airport-parking/:id"
+						component={ParkingLotPage}
+						openLogModal={this.openLogModal}
+					/>
+
+					<Route path="/reservation/:id" component={CheckoutPage} />
+					<Route path="/profile" component={ProfilePage} />
+					<Route path="/new-password" component={NewPasswordPage} />
+					<Route path="/airport/:id" component={AirportPage} />
+				</Switch>
 
 				<Footer />
 

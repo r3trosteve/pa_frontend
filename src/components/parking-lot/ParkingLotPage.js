@@ -52,7 +52,10 @@ class ParkingLotPage extends Component {
 						{/*right column*/}
 
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
-							<OrderSummary rate={this.props.rate} />
+							<OrderSummary
+								rate={this.props.rate}
+								openLogModal={this.props.openLogModal}
+							/>
 						</div>
 
 					</div>
