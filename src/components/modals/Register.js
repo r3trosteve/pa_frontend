@@ -12,83 +12,86 @@ import { signup } from '../../modules/auth/auth';
 
 class Register extends Component {
 
-	constructor() {
-		super();
+    constructor() {
+        super();
 
-		this.state = {
-			name: '',
-			email: '',
-			password: '',
-			passwordConfirm: '',
-			errors: {},
-			travelerChecked: true,
-			parkingLotChecked: false,
-			isSignedUp: false
-		};
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            errors: {},
+            travelerChecked: true,
+            parkingLotChecked: false,
+            isSignedUp: false
+        };
 
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-		this.changeChecked = this.changeChecked.bind(this);
-		this.handleOpenlogModal = this.handleOpenlogModal.bind(this);
-	}
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.changeChecked = this.changeChecked.bind(this);
+        this.handleOpenlogModal = this.handleOpenlogModal.bind(this);
+    }
 
-	handleOpenlogModal() {
-		this.props.closeModal();
+    handleOpenlogModal() {
+        this.props.closeModal();
         this.props.openLogModal();
-	}
+    }
 
-	handleChange(e) {
-		if (this.state.errors[e.target.name]) {
+    handleChange(e) {
+        if (this.state.errors[e.target.name]) {
 
-			let errors = Object.assign({}, this.state.errors);
-			delete errors[e.target.name];
-			this.setState({
-				[e.target.name]: e.target.value,
-				errors
-			});
+            let errors = Object.assign({}, this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            });
 
-		} else {
-			this.setState({ [e.target.name]: e.target.value });
-		}
-	}
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
+    }
 
-	handleSubmit(e) {
-		e.preventDefault();
+    handleSubmit(e) {
+        e.preventDefault();
 
-		let errors = {};
+        let errors = {};
 
-		if (this.state.name === '') errors.name = " can't be empty";
-		if (this.state.email === '') errors.email = " can't be empty";
-		if (this.state.password === '') errors.password = " can't be empty";
-		if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
-		if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm)
-			errors.passwordConfirm = " doesn't match password above";
+        if (this.state.name === '') errors.name = " can't be empty";
+        if (this.state.email === '') errors.email = " can't be empty";
+        if (this.state.password === '') errors.password = " can't be empty";
+        if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
+        if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm)
+            errors.passwordConfirm = " doesn't match password above";
 
-		this.setState({ errors });
+        this.setState({ errors });
 
-		const isValid = Object.keys(errors).length === 0;
+        const isValid = Object.keys(errors).length === 0;
 
-		if (isValid) {
-			const { name, email, password } = this.state;
+        if (isValid) {
+            const { name, email, password } = this.state;
 
             this.props.signup({ name, email, password })
-				.then(() => this.setState({ isSignedUp: true }))
-                .catch((err) => err.response.json());
-		}
-	}
+                .then(() => {
+                    if (!this.props.auth.error) {
+                        this.setState({ isSignedUp: true });
+                    }
+                });
+        }
+    }
 
-	changeChecked() {
-		this.setState({
-			travelerChecked: !this.state.travelerChecked,
-			parkingLotChecked: !this.state.parkingLotChecked
-		});
-	}
+    changeChecked() {
+        this.setState({
+            travelerChecked: !this.state.travelerChecked,
+            parkingLotChecked: !this.state.parkingLotChecked
+        });
+    }
 
-	render() {
+    render() {
 
-		if (this.state.isSignedUp) {
+        if (this.state.isSignedUp) {
 
-			return (
+            return (
 
 				<Modal
 					className="auth-modal register-modal"
@@ -118,9 +121,9 @@ class Register extends Component {
 					</div>
 				</Modal>
 
-			);
+            );
 
-		} else {
+        } else {
 
             return (
 
@@ -146,6 +149,15 @@ class Register extends Component {
 								</div>
 
 								<form onSubmit={this.handleSubmit}>
+
+                                    {
+                                        this.props.auth.error ?
+                                            (
+												<div className="alert alert-danger">
+													<p>{this.props.auth.error}</p>
+												</div>
+                                            ) : null
+                                    }
 
 									<label className={classnames('', { 'has-error': this.state.errors.name })}>
 										Name
@@ -204,7 +216,6 @@ class Register extends Component {
 											Register
 										</button>
 									</label>
-
 								</form>
 
 								<ModalFooter
@@ -221,15 +232,18 @@ class Register extends Component {
 				</Modal>
             );
 
-		}
+        }
 
-	}
+    }
 }
 
 Register.propTypes = {
+    signup: PropTypes.func.isRequired,
     closeModal: PropTypes.func.isRequired,
     openLogModal: PropTypes.func.isRequired,
     isModalOpen: PropTypes.bool.isRequired
 };
 
-export default connect(null, { signup })(Register);
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(mapStateToProps, { signup })(Register);

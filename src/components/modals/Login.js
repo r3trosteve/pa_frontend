@@ -60,8 +60,15 @@ class Login extends Component {
             const { email, password } = this.state;
 
             this.props.login({ email, password })
-				.then(this.props.closeModal())
-                .catch((err) => err.response.json());
+				.then(() => {
+					if (!this.props.auth.error) {
+                        this.props.closeModal();
+                        this.setState({
+                            email: '',
+                            password: ''
+                        });
+					}
+				});
 		}
 
 	}
@@ -94,6 +101,15 @@ class Login extends Component {
 							</div>
 
 							<form onSubmit={this.handleSubmit}>
+
+                                {
+                                    this.props.auth.error ?
+                                        (
+											<div className="alert alert-danger">
+												<p>{this.props.auth.error}</p>
+											</div>
+                                        ) : null
+                                }
 
 								<label className={classnames('', {'has-error': this.state.errors.email})}>
 									Username / Email
@@ -161,7 +177,10 @@ Login.propTypes = {
     closeModal: PropTypes.func.isRequired,
     isModalOpen: PropTypes.bool.isRequired,
     openForgPwdModal: PropTypes.func.isRequired,
-    openRegModal: PropTypes.func.isRequired
+    openRegModal: PropTypes.func.isRequired,
+	auth: PropTypes.object
 };
 
-export default connect(null, { login })(Login);
+const mapStateToProps = state => ({ auth: state.auth });
+
+export default connect(mapStateToProps, { login })(Login);
