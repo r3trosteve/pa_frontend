@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
-import supportImg from '../../assets/images/checkout/support.png';
+import userImg from '../../assets/images/user.png';
 
 import ProfileItems from "./Items";
 
@@ -113,7 +113,7 @@ class ProfilePage extends Component {
                                     <div className="profile__card-header">
 
                                         <div className="profile__card-header__img hidden-xs">
-                                            <img src={supportImg} alt="Support"/>
+                                            <img src={userImg} alt="User"/>
                                         </div>
 
                                         <div className="profile__card-header__name">

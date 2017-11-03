@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import supportImg from '../../assets/images/checkout/support.png';
+import userImg from '../../assets/images/user.png';
 
 export default class ContactUs extends Component {
 	render() {
@@ -10,7 +10,7 @@ export default class ContactUs extends Component {
 				<div className="ap-checkout__contact-us__row">
 
 					<div className="ap-checkout__contact-us__image">
-						<img src={supportImg} alt="Support" />
+						<img src={userImg} alt="Support" />
 					</div>
 
 					<div className="ap-checkout__contact-us__description">
