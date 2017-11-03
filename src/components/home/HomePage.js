@@ -14,8 +14,8 @@ import { fetchAirports } from '../../modules/airports/airports';
 class HomePage extends Component {
 
 	static fetchData(store) {
-    return store.dispatch(fetchAirports());
-  }
+		return store.dispatch(fetchAirports());
+	}
 
 	componentDidMount() {
 		this.props.fetchAirports();

@@ -9,6 +9,7 @@ import AirportPagePopularLots from './Popular';
 import AirportPageAllLots from './Lots';
 import AirportPageHotels from './Hotels';
 import Form from '../common/form/SearchForm';
+import BookTravel from '../common/BookTravel';
 
 import { fetchAirport } from '../../modules/airports/airport';
 
@@ -20,6 +21,19 @@ class AirportPage extends Component {
 
     componentDidMount() {
         this.props.fetchAirport(this.props.match.params.id);
+
+        // jq parallax on airport bg
+
+        $(window).scroll(() => {
+            const posYZero = 0;
+            const wScrollTop = $(window).scrollTop();
+
+            $('.airport__form').css({
+                'background-position-y': posYZero + wScrollTop / 3
+            });
+        });
+
+        // end
     }
 
     render() {
@@ -28,11 +42,13 @@ class AirportPage extends Component {
 
               <Helmet title={this.props.airport && this.props.airport.name} />
 
-              <br />
-              <br />
-              <br />
-
-              <Form />
+              <div className="airport__form">
+                  <div className="container airport__form__container text-center">
+                      <BookTravel />
+                      <h1 className="title-big">{this.props.airport && this.props.airport.name}</h1>
+                      <Form />
+                  </div>
+              </div>
 
               <AirportPageBenefits />
               <AirportPagePopularLots />
