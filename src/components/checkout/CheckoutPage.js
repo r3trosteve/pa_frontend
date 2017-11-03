@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
-// import OrderSummary from '../common/OrderSummary';
+import OrderSummary from './OrderSummary';
 
 import { fetchReservation } from '../../modules/reservations/reservation';
 
 class AirportParkingCheckoutPage extends Component {
 
+    // static fetchData(store, match) {
+    //     return store.dispatch(fetchReservation(match.params.id));
+    // }
+
     componentDidMount() {
-        this.props.loadReservation(this.props.match.params.id);
+        this.props.fetchReservation(this.props.match.params.id);
     }
 
 	render() {
@@ -21,7 +26,7 @@ class AirportParkingCheckoutPage extends Component {
 
 				<Helmet title="Checkout" />
 
-				<div><pre>{JSON.stringify(this.props.reservation, null, 2) }</pre></div>
+				{/*<div><pre>{JSON.stringify(this.props.reservation, null, 2) }</pre></div>*/}
 
 				<div className="container ap-checkout__container">
 
@@ -32,7 +37,7 @@ class AirportParkingCheckoutPage extends Component {
 						<div className="col-md-5 col-md-push-7 ap-checkout__column ap-checkout__column--summary">
 							<ContactUs />
 
-							{/*<OrderSummary />*/}
+							<OrderSummary reservation={this.props.reservation} />
 						</div>
 
 						{/*left*/}
@@ -62,10 +67,11 @@ class AirportParkingCheckoutPage extends Component {
 
 AirportParkingCheckoutPage.propTypes = {
     match: PropTypes.object.isRequired,
-    loadReservation: PropTypes.func.isRequired,
+    fetchReservation: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({ reservation: state.reservation.data });
+const mapStateToProps = state => ({ reservation: state.reservation.item });
+// const mapDispatchToProps = dispatch => bindActionCreators({ fetchReservation }, dispatch);
 
-export default connect(mapStateToProps, { loadReservation: fetchReservation })(AirportParkingCheckoutPage);
+export default connect(mapStateToProps, { fetchReservation })(AirportParkingCheckoutPage);

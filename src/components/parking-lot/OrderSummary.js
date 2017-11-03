@@ -93,9 +93,10 @@ class OrderSummary extends Component {
 							<tr>
 								<td>Days of parking:
 									<span>
-										{' '}
-										{rate.search && rate.search.days === null ?
-											0 : rate.search && rate.search.days}
+										{rate.search && rate.search.days}
+										{/*{' '}*/}
+										{/*{rate.search && rate.search.days === null ?*/}
+											{/*0 : rate.search && rate.search.days}*/}
 									</span>
 								</td>
 
@@ -204,7 +205,7 @@ OrderSummary.propTypes = {
 
 const mapStateToProps = state => {
     return {
-        reservation: state.reservation.data,
+        reservation: state.reservation.item,
 		auth: state.auth
     };
 };

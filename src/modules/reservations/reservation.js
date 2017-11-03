@@ -6,16 +6,16 @@ export const RESERVATION_CREATED = 'RESERVATION_CREATED';
 export const RESERVATION_FETCHED = 'RESERVATION_FETCHED';
 
 const initialState = {
-    data: {}
+    item: {}
 };
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case RESERVATION_CREATED:
-            return Object.assign({}, state, { data: action.data });
+            return Object.assign({}, state, { item: action.item });
 
         case RESERVATION_FETCHED:
-            return Object.assign({}, state, { data: action.data });
+            return Object.assign({}, state, { item: action.item });
 
         default:
             return state;
@@ -36,7 +36,7 @@ export const createReservation = data => dispatch => {
         .then(data => {
             dispatch({
                 type: RESERVATION_CREATED,
-                data: data['reservation']
+                item: data['reservation']
             });
         });
 };
@@ -54,7 +54,7 @@ export const fetchReservation = id => dispatch => {
         .then(data => {
             dispatch({
                 type: RESERVATION_FETCHED,
-                data: data
+                item: data['reservation']
             });
         });
 };
