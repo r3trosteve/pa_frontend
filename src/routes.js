@@ -43,7 +43,7 @@ const routes = [
 		component: NewPasswordPage
 	},
 	{
-		path: '/airport/:id',
+		path: '/airports/:id',
 		component: AirportPage
 	},
     {

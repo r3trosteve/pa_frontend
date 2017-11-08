@@ -22,7 +22,7 @@ export default class AirportsList extends Component {
 	showList(index, airport) {
 		return (
 			<li key={index} className="home__top-airports__list-item">
-				<Link to={`airport/${airport.id}`}>{airport.name}</Link>
+				<Link to={`airports/${airport.id}`}>{airport.name}</Link>
 			</li>
 		);
 	}

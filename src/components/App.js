@@ -71,7 +71,7 @@ class App extends Component {
 					<Route path="/reservation/:id" component={CheckoutPage} />
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
-					<Route path="/airport/:id" component={AirportPage} />
+					<Route path="/airports/:id" component={AirportPage} />
 					<Route path="/airports" component={AirportsPage} />
 
 				</Switch>

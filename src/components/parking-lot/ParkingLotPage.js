@@ -42,7 +42,7 @@ class ParkingLotPage extends Component {
 							<Link to="/airports">Airports</Link>
 						</li>
 						<li>
-							<Link to={`/airport/${this.props.rate.search && this.props.rate.search.airport_id}`}>
+							<Link to={`/airports/${this.props.rate.search && this.props.rate.search.airport_id}`}>
                                 {this.props.rate.search && this.props.rate.search.airport.name}
 							</Link>
 						</li>

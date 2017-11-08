@@ -31,7 +31,7 @@ class AirportsPage extends Component {
                   {this.props.airports.map(airport => {
                       return (
                           <li key={airport.id}>
-                              <Link to={`/airport/${airport.id}`}>
+                              <Link to={`/airports/${airport.id}`}>
                                   {airport.name}
                               </Link>
                           </li>
@@ -46,6 +46,7 @@ class AirportsPage extends Component {
 
 AirportsPage.propTypes = {
     fetchAirports: PropTypes.func.isRequired,
+    airport: PropTypes.object.isRequired,
     airports: PropTypes.array.isRequired
 };
 
