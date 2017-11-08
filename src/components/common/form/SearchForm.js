@@ -39,6 +39,13 @@ class SearchForm extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+    componentWillReceiveProps(nextProps) {
+		this.setState({
+			airportId: nextProps.airportId || '',
+			airportName: nextProps.airportName || '',
+		});
+    }
+
 	componentDidMount() {
         this.props.fetchAirports();
 
