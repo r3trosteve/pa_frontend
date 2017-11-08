@@ -5,8 +5,6 @@ import { PropsRoute } from 'react-router-with-props';
 import { Helmet } from 'react-helmet';
 import {withRouter} from 'react-router-dom';
 
-import routes from '../routes';
-
 import Header from './common/header/Header';
 import Footer from './common/footer/Footer';
 
@@ -17,6 +15,7 @@ import CheckoutPage from './checkout/CheckoutPage';
 import ProfilePage from './profile/ProfilePage';
 import NewPasswordPage from './profile/NewPasswordPage';
 import AirportPage from './airport/AirportPage';
+import AirportsPage from './airports/AirportsPage';
 
 class App extends Component {
 
@@ -58,6 +57,7 @@ class App extends Component {
 				{/*{routes.map((route, i) => <Route key={i} {...route} />)}*/}
 
 				<Switch>
+
 					<Route exact path="/" component={HomePage} />
 					<Route path="/home" component={HomePage} />
 					<Route path="/rates/search/:id" component={RatesPage} />
@@ -72,6 +72,8 @@ class App extends Component {
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
 					<Route path="/airport/:id" component={AirportPage} />
+					<Route path="/airports" component={AirportsPage} />
+
 				</Switch>
 
 				<Footer />

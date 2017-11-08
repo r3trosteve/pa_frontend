@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import Info from './Info';
 import Overview from './Overview';
@@ -30,6 +31,27 @@ class ParkingLotPage extends Component {
 				<Helmet title={this.props.rate.parking_lot && this.props.rate.parking_lot.name} />
 
 				<div className="container ap-details__container">
+
+					{/*breadcrumbs*/}
+
+					<ul>
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/airports">Airports</Link>
+						</li>
+						<li>
+							<Link to={`/airport/${this.props.rate.search && this.props.rate.search.airport_id}`}>
+                                {this.props.rate.search && this.props.rate.search.airport.name}
+							</Link>
+						</li>
+						<li>
+							<Link to="#">
+								{this.props.rate.parking_lot && this.props.rate.parking_lot.name}
+							</Link>
+						</li>
+					</ul>
 
 					<div className="row ap-details__row">
 

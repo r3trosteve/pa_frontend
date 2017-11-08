@@ -50,7 +50,7 @@ class HomePage extends Component {
 
 				<Helmet title="Home" />
 
-				<i className="ion-ios-close home__close-search-form"></i>
+				<i className="ion-ios-close home__close-search-form" />
 
 				<Search />
 				
@@ -66,6 +66,7 @@ class HomePage extends Component {
 }
 
 HomePage.propTypes = {
+    fetchAirports: PropTypes.func.isRequired,
 	airports: PropTypes.array.isRequired
 };
 

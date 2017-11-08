@@ -6,6 +6,7 @@ import ProfilePage from './components/profile/ProfilePage';
 import NotFoundPage from './components/notofund/NotFoundPage';
 import NewPasswordPage from './components/profile/NewPasswordPage';
 import AirportPage from './components/airport/AirportPage';
+import AirportsPage from './components/airports/AirportsPage';
 
 const routes = [
 	{
@@ -44,7 +45,11 @@ const routes = [
 	{
 		path: '/airport/:id',
 		component: AirportPage
-	}
+	},
+    {
+        path: '/airports',
+        component: AirportsPage
+    }
 ];
 
 export default routes;
