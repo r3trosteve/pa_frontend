@@ -91,7 +91,8 @@ class ParkingLotPage extends Component {
 ParkingLotPage.propTypes = {
     fetchRate: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
-    rate: PropTypes.object.isRequired
+    rate: PropTypes.object.isRequired,
+    openLogModal: PropTypes.func
 };
 
 const mapStateToProps = state => ({ rate: state.rate.item });

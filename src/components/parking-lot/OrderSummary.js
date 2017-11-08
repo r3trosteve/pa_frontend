@@ -5,6 +5,8 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
+import EditFormModal from './EditFormModal';
+
 import { createReservation } from '../../modules/reservations/reservation';
 
 class OrderSummary extends Component {
@@ -14,12 +16,23 @@ class OrderSummary extends Component {
 
 		this.state = {
 			showCoupon: false,
-			redirect: false
+			redirect: false,
+            isEditFormModal: false
 		};
 
+		this.openEditFormModal = this.openEditFormModal.bind(this);
+		this.closeEditFormModal = this.closeEditFormModal.bind(this);
 		this.showCouponInput = this.showCouponInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	openEditFormModal() {
+		this.setState({ isEditFormModal: true });
+	}
+
+    closeEditFormModal() {
+        this.setState({ isEditFormModal: false });
+    }
 
 	showCouponInput() {
 		this.setState({
@@ -100,7 +113,9 @@ class OrderSummary extends Component {
 									</span>
 								</td>
 
-								<td>Edit Times</td>
+								<td>
+									<a href="#" onClick={this.openEditFormModal}>Edit Search</a>
+								</td>
 							</tr>
 							</tbody>
 						</table>
@@ -188,6 +203,15 @@ class OrderSummary extends Component {
 						</div>
 
 					</form>
+
+					{/*edit form modal*/}
+
+					<EditFormModal
+						isModalOpen={this.state.isEditFormModal}
+						closeModal={this.closeEditFormModal}
+						search={rate && rate.search}
+					/>
+
 				</div>
             );
 
@@ -200,7 +224,8 @@ OrderSummary.propTypes = {
 	rate: PropTypes.object.isRequired,
     createReservation: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
-	auth: PropTypes.object
+	auth: PropTypes.object,
+    openLogModal: PropTypes.func
 };
 
 const mapStateToProps = state => {

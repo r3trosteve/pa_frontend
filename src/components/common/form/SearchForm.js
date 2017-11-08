@@ -43,6 +43,8 @@ class SearchForm extends Component {
 		this.setState({
 			airportId: nextProps.airportId || '',
 			airportName: nextProps.airportName || '',
+			startDate: nextProps.startDate || '',
+			endDate: nextProps.endDate || ''
 		});
     }
 

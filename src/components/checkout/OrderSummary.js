@@ -76,7 +76,7 @@ export default class OrderSummary extends Component {
 								</span>
 							</td>
 
-							<td>Edit Times</td>
+							{/*<td>Edit Times</td>*/}
 						</tr>
 						</tbody>
 					</table>

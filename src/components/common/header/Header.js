@@ -30,11 +30,9 @@ class Header extends Component {
 		this.handleLogout = this.handleLogout.bind(this);
 
         this.openRegLogModal = this.openRegLogModal.bind(this);
-        // this.openLogModal = this.openLogModal.bind(this);
         this.openRegModal = this.openRegModal.bind(this);
         this.openForgPwdModal = this.openForgPwdModal.bind(this);
         this.closeRegLogModal = this.closeRegLogModal.bind(this);
-        // this.closeLogModal = this.closeLogModal.bind(this);
         this.closeRegModal = this.closeRegModal.bind(this);
         this.closeForgPwdModal = this.closeForgPwdModal.bind(this);
 	}
@@ -45,11 +43,9 @@ class Header extends Component {
     }
 
     openRegLogModal() { this.setState({ isRegLogModalOpen: true }); }
-    // openLogModal() { this.setState({ isLogModalOpen: true }); }
     openRegModal() { this.setState({ isRegModalOpen: true }); }
     openForgPwdModal() { this.setState({ isForgPwdOpen: true }); }
     closeRegLogModal() { this.setState({ isRegLogModalOpen: false }); }
-    // closeLogModal() { this.setState({ isLogModalOpen: false }); }
     closeRegModal() { this.setState({ isRegModalOpen: false }); }
     closeForgPwdModal() { this.setState({ isForgPwdOpen: false }); }
 
@@ -144,7 +140,10 @@ class Header extends Component {
 Header.propTypes = {
     auth: PropTypes.object,
     currentPathname: PropTypes.string.isRequired,
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    isLogModalOpen: PropTypes.bool.isRequired,
+    openLogModal: PropTypes.func.isRequired,
+    closeLogModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({ auth: state.auth });
