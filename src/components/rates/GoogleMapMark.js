@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import classnames from 'classnames';
 
 export default class GoogleMapMark extends Component {
 

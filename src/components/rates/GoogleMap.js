@@ -4,18 +4,38 @@ import GoogleMapReact from 'google-map-react';
 
 import GoogleMapMark from './GoogleMapMark';
 
+const AirportMapMark = () => {
+    return (
+        <div className="rates__map-info" >
+            <span className="rates__map-info__price">
+                <i className="fa fa-plane" aria-hidden="true" />
+            </span>
+        </div>
+    );
+};
+
 export default class GoogleMap extends Component {
     render() {
+
+        const airportLat = parseFloat(this.props.search.airport.location.latitude);
+        const airportLng = parseFloat(this.props.search.airport.location.longitude);
+
         return (
             <div className="map-container">
 
                 <GoogleMapReact
                     center={{
-                        lat: parseFloat(this.props.search.airport.location.latitude),
-                        lng: parseFloat(this.props.search.airport.location.longitude)
+                        lat: airportLat,
+                        lng: airportLng
                     }}
-                    zoom={7}
+                    zoom={11}
                 >
+
+                    <AirportMapMark
+                        lat={airportLat}
+                        lng={airportLng}
+                    />
+
                     {this.props.rates.map(rate => {
                         return (
                             <GoogleMapMark
