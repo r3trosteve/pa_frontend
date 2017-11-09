@@ -21,7 +21,7 @@ export default class AirportsList extends Component {
 
 	showList(index, airport) {
 		return (
-			<li key={index} className="home__top-airports__list-item">
+			<li key={index} className="airports-list__list-item">
 				<Link to={`airports/${airport.id}`}>{airport.name}</Link>
 			</li>
 		);
@@ -29,29 +29,29 @@ export default class AirportsList extends Component {
 
 	render() {
 		return (
-			<div className="home__top-airports__list-section">
-				<div className="row home__top-airports__row home__top-airports__row--list-part hidden-sm hidden-xs">
+			<div className="airports-list">
+				<div className="row airports-list__row hidden-sm hidden-xs">
 					
 					{/*1*/}
 
-					<div className="col-md-4 col-sm-4 home__top-airports__column">
-						<ul className="home__top-airports__list">
+					<div className="col-md-4 col-sm-4 airports-list__column">
+						<ul className="airports-list__list">
 							{this.props.airports.slice(0, 9).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
 					{/*2*/}
 
-					<div className="col-md-4 col-sm-4 home__top-airports__column">
-						<ul className="home__top-airports__list">
+					<div className="col-md-4 col-sm-4 airports-list__column">
+						<ul className="airports-list__list">
 							{this.props.airports.slice(9, 18).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
 					{/*3*/}
 
-					<div className="col-md-4 col-sm-4 home__top-airports__column">
-						<ul className="home__top-airports__list">
+					<div className="col-md-4 col-sm-4 airports-list__column">
+						<ul className="airports-list__list">
 							{this.props.airports.slice(18, 25).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
@@ -59,10 +59,10 @@ export default class AirportsList extends Component {
 
 				{/*mobile*/}
 
-				<div className="row home__top-airports__row home__top-airports__row--list-part visible-sm visible-xs">
-					<div className="col-md-12 home__top-airports__column text-center">
+				<div className="row airports-list__row visible-sm visible-xs">
+					<div className="col-md-12 airports-list__column text-center">
 
-						<ul className="home__top-airports__list">
+						<ul className="airports-list__list">
 
 							{
 								this.state.visible ?
@@ -75,6 +75,7 @@ export default class AirportsList extends Component {
 							</span>
 
 						</ul>
+
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,8 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import AirportsList from '../home/AirportsList';
+import BookTravel from '../common/BookTravel';
 
 import Form from '../common/form/SearchForm';
 
@@ -21,25 +23,37 @@ class AirportsPage extends Component {
 
     render() {
         return (
-          <div>
+            <div className="airports">
 
-              <Helmet title="Airports" />
+                <Helmet title="Airports" />
 
-              <Form />
+                {/*Form*/}
 
-              <ul>
-                  {this.props.airports.map(airport => {
-                      return (
-                          <li key={airport.id}>
-                              <Link to={`/airports/${airport.id}`}>
-                                  {airport.name}
-                              </Link>
-                          </li>
-                      );
-                  })}
-              </ul>
+                <div className="airports__form">
 
-          </div>
+                    <div className="container airports__form__container text-center">
+
+                        <BookTravel />
+
+                        <h1 className="title-big">All Airports</h1>
+
+                        <Form />
+
+                    </div>
+
+                </div>
+
+                {/*List section*/}
+
+                <div className="airports__list-section section-pad">
+
+                    <div className="container airports__container">
+                        <AirportsList airports={this.props.airports} />
+                    </div>
+
+                </div>
+
+            </div>
         );
     }
 }

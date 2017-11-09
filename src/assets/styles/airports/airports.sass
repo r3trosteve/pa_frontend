@@ -1,0 +1,27 @@
+
+.airports
+  min-height: calc(100vh - 198px)
+
+  &__form
+    padding: 95px 0 55px
+    background: url('../images/airport-page/bg/bg-copy@3x.png') no-repeat center/cover
+    h1
+      color: $blue
+      margin: 40px auto 55px
+
+  &__list-section
+    background: white
+
+    .airports-list .row
+      box-shadow: none
+      background: none
+      margin: 0
+      padding: 0
+
+//responsiveness
+@media (max-width: 767px)
+  .airports
+    &__form
+      padding: 68px 0 20px
+      h1
+        margin: 20px auto
