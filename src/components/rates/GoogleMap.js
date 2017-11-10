@@ -7,8 +7,9 @@ import GoogleMapMark from './GoogleMapMark';
 const AirportMapMark = () => {
     return (
         <div className="rates__map-info" >
-            <span className="rates__map-info__price">
+            <span className="rates__map-info__plane">
                 <i className="fa fa-plane" aria-hidden="true" />
+                <i className="fa fa-caret-down" aria-hidden="true" />
             </span>
         </div>
     );
@@ -28,7 +29,7 @@ export default class GoogleMap extends Component {
                         lat: airportLat,
                         lng: airportLng
                     }}
-                    zoom={12}
+                    zoom={11}
                 >
 
                     <AirportMapMark

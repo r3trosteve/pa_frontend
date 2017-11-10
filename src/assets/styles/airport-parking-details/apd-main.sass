@@ -1,8 +1,41 @@
 
 .ap-details
-  padding: 80px 0 150px
+  padding: 110px 0 150px
   background: $white
   min-height: calc(100vh - 198px)
+
+  .breadcrumb
+    margin-top: 25px
+    display: block
+
+  &__navigation
+    height: 60px
+    margin-top: 30px
+
+    &__card
+      display: flex
+      z-index: 1000
+      &.sticky
+        position: fixed
+        margin-top: 0
+        top: 0
+        box-shadow: $shadow-popover
+
+    &__item
+      flex-grow: 1
+      text-align: center
+      border-bottom: 3px solid transparent
+      padding: 20px 0 17px
+      a
+        font-family: 'Montserrat', sans-serif
+        font-size: 15px
+        font-weight: 500
+        color: $blue
+        text-transform: uppercase
+        &:hover
+          color: $orange
+      &.active
+        border-bottom: 3px solid $orange
 
   &__column
 
@@ -45,3 +78,8 @@
 @media (max-width: 767px)
   .ap-details
     padding: 40px 0 50px
+    .breadcrumb
+      margin-top: 30px!important
+
+    &__navigation a
+      font-size: 12px!important

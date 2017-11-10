@@ -22,6 +22,43 @@ class ParkingLotPage extends Component {
 
     componentDidMount() {
         this.props.fetchRate(this.props.match.params.id);
+
+        // jquery
+
+		setTimeout(function () {
+
+            let stickyContainers = function () {
+                let wScrollTop = $(window).scrollTop();
+                let apdNavCard = $('.ap-details__navigation__card');
+                let apdNavTop =  195;
+                let apdColumnLeftW = $('.ap-details__column--left').width();
+
+                if (wScrollTop >= apdNavTop) {
+                    apdNavCard.addClass('sticky');
+                    apdNavCard.css({
+                        'width': apdColumnLeftW,
+                    });
+                } else {
+                    apdNavCard.removeClass('sticky');
+                }
+            };
+
+            stickyContainers();
+
+            $(window).scroll(function () {
+                stickyContainers();
+            });
+
+            $(window).resize(function () {
+                let apdColumnLeftW = $('.ap-details__column--left').width();
+                $('.ap-details__navigation__card').css({
+					'width': apdColumnLeftW
+				});
+            });
+
+        }, 300);
+
+
     }
 
 	render() {
@@ -32,32 +69,52 @@ class ParkingLotPage extends Component {
 
 				<div className="container ap-details__container">
 
-					{/*breadcrumbs*/}
-
-					<ul>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-						<li>
-							<Link to="/airports">Airports</Link>
-						</li>
-						<li>
-							<Link to={`/airports/${this.props.rate.search && this.props.rate.search.airport_id}`}>
-                                {this.props.rate.search && this.props.rate.search.airport.name}
-							</Link>
-						</li>
-						<li>
-							<Link to="#">
-								{this.props.rate.parking_lot && this.props.rate.parking_lot.name}
-							</Link>
-						</li>
-					</ul>
-
 					<div className="row ap-details__row">
 
 						{/*left column*/}
 
-						<div className="col-md-7 ap-details__column">
+						<div className="col-md-7 ap-details__column ap-details__column--left">
+
+                            {/*breadcrumbs*/}
+
+							<ul className="breadcrumb">
+								<li>
+									<Link to="/"><i className="fa fa-home" aria-hidden="true"></i> Home</Link>
+								</li>
+								<li>
+									<Link to="/airports">Airports</Link>
+								</li>
+								<li>
+									<Link to={`/airports/${this.props.rate.search && this.props.rate.search.airport_id}`}>
+                                        {this.props.rate.search && this.props.rate.search.airport.name}
+									</Link>
+								</li>
+								<li>
+									<Link to="#">
+                                        {this.props.rate.parking_lot && this.props.rate.parking_lot.name}
+									</Link>
+								</li>
+							</ul>
+
+							<div className="ap-details__navigation">
+
+								<div className="ap-details__navigation__card card-custom card-custom--no-pad">
+
+									<div className="ap-details__navigation__item">
+										<a href="#">Overview</a>
+									</div>
+									<div className="ap-details__navigation__item">
+										<a href="#">Location</a>
+									</div>
+									<div className="ap-details__navigation__item">
+										<a href="#">Details</a>
+									</div>
+									<div className="ap-details__navigation__item">
+										<a href="#">Reviews</a>
+									</div>
+
+								</div>
+							</div>
 
 							<Info rate={this.props.rate} />
 

@@ -96,7 +96,7 @@
               &:hover
                 color: $orange
 
-        form
+        form:not(.home__search-form)
           max-width: 272px
           margin: 0 auto
 
@@ -186,7 +186,6 @@
     margin-bottom: 25px
 
 .register-login-modal
-
   .modal-terms-privacy
     margin-top: 38px!important
 
@@ -197,9 +196,16 @@
     .cta-buttons
       margin: 0 auto 34px!important
 
+.edit-form-modal .dialog
+  max-width: 900px
+  .content
+    background: $blue-bg
+    .search-form
+      box-shadow: none
+      border: 1px solid rgba(83, 115, 143, 0.1)
 
 //responsiveness
-@media (max-width: 768px)
+@media (max-width: 767px)
   .auth-modal
 
     .dialog
@@ -207,6 +213,12 @@
 
     .modal-terms-privacy
       max-width: 180px!important
+
+  .edit-form-modal .dialog
+    .search-form
+      border: none!important
+      input
+        border: 1px solid #dedede
 
 @media (max-width: 400px)
   .auth-modal

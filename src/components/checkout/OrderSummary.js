@@ -67,7 +67,8 @@ export default class OrderSummary extends Component {
 							</td>
 						</tr>
 						<tr>
-							<td>Days of parking:
+							<td>
+								Days of parking:
 								<span>
                                     {reservation.rate && reservation.rate.search.days}
 									{/*{' '}*/}
@@ -75,8 +76,8 @@ export default class OrderSummary extends Component {
 										{/*0 : reservation.rate.search && reservation.rate.search.days}*/}
 								</span>
 							</td>
+							<td></td>
 
-							{/*<td>Edit Times</td>*/}
 						</tr>
 						</tbody>
 					</table>
