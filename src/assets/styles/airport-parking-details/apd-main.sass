@@ -4,9 +4,17 @@
   background: $white
   min-height: calc(100vh - 198px)
 
+  .card-custom h3
+    margin-bottom: 20px
+
   .breadcrumb
     margin-top: 25px
-    display: block
+
+  .sticky
+    position: fixed
+    margin-top: 0
+    top: 0
+    box-shadow: $shadow-popover
 
   &__navigation
     height: 60px
@@ -15,32 +23,32 @@
     &__card
       display: flex
       z-index: 1000
-      &.sticky
-        position: fixed
-        margin-top: 0
-        top: 0
-        box-shadow: $shadow-popover
 
     &__item
       flex-grow: 1
       text-align: center
       border-bottom: 3px solid transparent
-      padding: 20px 0 17px
       a
-        font-family: 'Montserrat', sans-serif
         font-size: 15px
-        font-weight: 500
+        padding: 20px 0 17px!important
+        font-weight: 600
         color: $blue
         text-transform: uppercase
-        &:hover
+        &:hover, &:active, &:focus
           color: $orange
+          background: none!important
       &.active
-        border-bottom: 3px solid $orange
+        border-color: $orange
+        a
+          color: $orange
+
 
   &__column
 
     &--summary
       position: relative
+      h3
+        margin: 0!important
 
   //average rating
 

@@ -22,13 +22,11 @@ class Register extends Component {
             passwordConfirm: '',
             errors: {},
             travelerChecked: true,
-            parkingLotChecked: false,
             isSignedUp: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.changeChecked = this.changeChecked.bind(this);
         this.handleOpenlogModal = this.handleOpenlogModal.bind(this);
     }
 
@@ -78,13 +76,6 @@ class Register extends Component {
                     }
                 });
         }
-    }
-
-    changeChecked() {
-        this.setState({
-            travelerChecked: !this.state.travelerChecked,
-            parkingLotChecked: !this.state.parkingLotChecked
-        });
     }
 
     render() {
@@ -182,34 +173,6 @@ class Register extends Component {
 										<span className="error-text">{this.state.errors.passwordConfirm}</span>
 										<input type="password" name="passwordConfirm" onChange={this.handleChange} />
 									</label>
-
-									<div className="register-as">
-										<div className="radio-title">Register as:</div>
-										<label
-											className={classnames('radio-label', { checked: this.state.travelerChecked })}
-										>
-											<input
-												type="radio"
-												name="reg-as"
-												onChange={this.changeChecked}
-												checked={this.state.travelerChecked}
-											/>
-											<span className="round" />
-											Traveler
-										</label>
-										<label
-											className={classnames('radio-label', { checked: this.state.parkingLotChecked })}
-										>
-											<input
-												type="radio"
-												name="reg-as"
-												onChange={this.changeChecked}
-												checked={this.state.parkingLotChecked}
-											/>
-											<span className="round" />
-											Parking lot
-										</label>
-									</div>
 
 									<label>
 										<button type="submit" className="modal-btn-orange">

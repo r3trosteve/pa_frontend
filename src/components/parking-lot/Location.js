@@ -8,7 +8,7 @@ export default class Location extends Component {
 		const rate = this.props.rate;
 
 		return (
-			<div className="ap-details__location card-custom">
+			<div className="ap-details__location card-custom" id="apd-location">
 
 				<div className="ap-details__location__title">
 					<h3 className="title-normal">Location</h3>

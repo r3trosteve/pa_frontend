@@ -1,9 +1,26 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export default class AirportPageSeo extends Component {
     render() {
         return (
             <div className="airport__seo">
+                {/*breadcrumbs*/}
+
+                <ul className="breadcrumb">
+                    <li>
+                        <Link to="/"><i className="fa fa-home" aria-hidden="true"></i> Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/airports">Airports</Link>
+                    </li>
+                    <li className="current-page">
+                        <Link to={`/airports/${this.props.airport.id}`}>
+                            {this.props.airport.name}
+                        </Link>
+                    </li>
+                </ul>
 
                 <div className="airport__seo__item">
                     <h6 className="text-mont-bold">The Disney World Airport</h6>
@@ -56,3 +73,7 @@ export default class AirportPageSeo extends Component {
         );
     }
 }
+
+AirportPageSeo.propTypes = {
+    airport: PropTypes.object.isRequired
+};

@@ -100,20 +100,10 @@
           max-width: 272px
           margin: 0 auto
 
-          .checkbox-label, .register-as
+          .checkbox-label
             font-size: 12px
             font-weight: 600
             color: rgba(64, 64, 64, 0.5)
-
-        .register-as
-          display: flex
-          margin: 20px 0
-          .radio-title
-            width: 350px
-            text-align: left
-          label
-            font-size: 12px
-            padding-left: 28px
 
         .divider
           margin-top: 1px
@@ -199,10 +189,11 @@
 .edit-form-modal .dialog
   max-width: 900px
   .content
-    background: $blue-bg
     .search-form
       box-shadow: none
-      border: 1px solid rgba(83, 115, 143, 0.1)
+      border: 1px solid $grey-light
+      .name-label:after
+        background: $grey-light
 
 //responsiveness
 @media (max-width: 767px)

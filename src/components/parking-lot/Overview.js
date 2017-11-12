@@ -5,7 +5,7 @@ import AverageRating from './AverageRating';
 export default class Overview extends Component {
 	render() {
 		return (
-			<div className="ap-details__overview card-custom">
+			<div className="ap-details__overview card-custom" id="apd-overview">
 
 				{/*title*/}
 

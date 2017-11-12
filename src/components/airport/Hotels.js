@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 
 import AirportPageSeo from './Seo';
@@ -105,7 +106,7 @@ export default class AirportPageHotels extends Component {
 
                     {/*SEO*/}
 
-                    <AirportPageSeo />
+                    <AirportPageSeo airport={this.props.airport} />
 
                 </div>
 
@@ -113,3 +114,7 @@ export default class AirportPageHotels extends Component {
         );
     }
 }
+
+AirportPageHotels.propTypes = {
+  airport: PropTypes.object.isRequired
+};

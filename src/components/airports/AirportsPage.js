@@ -19,6 +19,20 @@ class AirportsPage extends Component {
 
     componentDidMount() {
         this.props.fetchAirports();
+
+        $(window).scrollTop(0); // jq to load page on top
+
+        // jq parallax on home bg
+
+        $(window).scroll(() => {
+            const posYZero = 0;
+            const wScrollTop = $(window).scrollTop();
+
+            $('.airports__form').css({
+                'background-position-y': posYZero + wScrollTop / 3
+            });
+        });
+
     }
 
     render() {

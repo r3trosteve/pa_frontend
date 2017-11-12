@@ -20,6 +20,8 @@ class HomePage extends Component {
 	componentDidMount() {
 		this.props.fetchAirports();
 
+        $(window).scrollTop(0); // jq to load page on top
+
 		// jq parallax on home bg
 
 		$(window).scroll(() => {
