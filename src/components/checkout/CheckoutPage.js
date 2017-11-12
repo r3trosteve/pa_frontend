@@ -17,6 +17,8 @@ class AirportParkingCheckoutPage extends Component {
     // }
 
     componentDidMount() {
+        $(window).scrollTop(0); // jq to load page on top
+
         this.props.fetchReservation(this.props.match.params.id);
     }
 
