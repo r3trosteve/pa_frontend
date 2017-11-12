@@ -23,6 +23,8 @@ class ParkingLotPage extends Component {
     componentDidMount() {
         this.props.fetchRate(this.props.match.params.id);
 
+        $(window).scrollTop(0); // jq to load page on top
+
         // jquery
 
         $('body').scrollspy({

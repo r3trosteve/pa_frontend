@@ -9,6 +9,8 @@ export default class Calendar extends Component {
 
 	componentDidMount() {
 
+		// jq to show border above calendar
+
 		$('.daterangepicker.dropdown-menu').mouseover(function () {
 			$('.date-label input').css({
 				'border-color': '#7099bc'
@@ -20,6 +22,21 @@ export default class Calendar extends Component {
                 'border-color': 'transparent'
             });
         });
+
+        // end
+
+        // jq close btn for calendar
+
+        let calendarDropdown = $('.daterangepicker.dropdown-menu');
+
+        calendarDropdown.append('<i class="ion-ios-close close-calendar-dropdown"></i>');
+        $('.ion-ios-close.close-calendar-dropdown').click(function () {
+            calendarDropdown.css({
+                'display': 'none'
+            });
+        });
+
+        // end
 
 	}
 

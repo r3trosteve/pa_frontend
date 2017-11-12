@@ -35,15 +35,6 @@ class HomePage extends Component {
 
 		// end
 
-		let calendarDropdown = $('.daterangepicker.dropdown-menu');
-
-        calendarDropdown.append('<i class="ion-ios-close close-calendar-dropdown"></i>');
-		$('.ion-ios-close.close-calendar-dropdown').click(function () {
-            calendarDropdown.css({
-				'display': 'none'
-			});
-        });
-
 	}
 
 	render() {
