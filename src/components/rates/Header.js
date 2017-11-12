@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Header extends Component {
+
+    componentWillUpdate() {
+        if (!this.props.isFetching) {
+            // jq for header active links
+            $('.dropdown-menu li').click(function () {
+                $(this).parent().find('.active').removeClass('active');
+                $(this).addClass('active');
+            });
+            // end
+		}
+	}
+
 	render() {
 		return (
 			<div className="rates__items-header">
@@ -65,6 +77,7 @@ export default class Header extends Component {
 
 Header.propTypes = {
 	rates: PropTypes.array.isRequired,
+    isFetching: PropTypes.bool.isRequired,
 	sortRatesByDistance: PropTypes.func.isRequired,
 	sortRatesByLowPrice: PropTypes.func.isRequired,
 	sortRatesByHighPrice: PropTypes.func.isRequired,

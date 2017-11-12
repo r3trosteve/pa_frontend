@@ -64,11 +64,6 @@ class RatesPage extends Component {
             fixedMapScroll();
         });
 
-        $('.dropdown li').click(function () {
-           $(this).parent().find('.active').removeClass('active');
-           $(this).addClass('active');
-        });
-
         // end
     }
 
@@ -114,6 +109,7 @@ class RatesPage extends Component {
 
                             <Header
                                 rates={this.props.rates}
+                                isFetching={this.props.ratesFetching}
                                 filteredRates={this.props.filteredRates}
                                 filterRates={this.props.filterRates}
                                 sortRatesByDistance={this.props.sortRatesByDistance}

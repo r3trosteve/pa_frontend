@@ -17,7 +17,8 @@ class OrderSummary extends Component {
 		this.state = {
 			showCoupon: false,
 			redirect: false,
-            isEditFormModal: false
+            isEditFormModal: false,
+			loading: false
 		};
 
 		this.openEditFormModal = this.openEditFormModal.bind(this);
@@ -43,10 +44,12 @@ class OrderSummary extends Component {
     handleSubmit(e) {
 		e.preventDefault();
 
+		this.setState({ loading: true });
+
 		const id = this.props.rate.id;
 
 		this.props.createReservation({ rate_id: id })
-			.then(() => this.setState({ redirect: true }));
+			.then(() => this.setState({ redirect: true, loading: false }));
 	}
 
 	render() {
@@ -193,12 +196,24 @@ class OrderSummary extends Component {
 
 						<div className="order-summary__submit">
 							{this.props.auth && this.props.auth.isAuthenticated ?
-									<button type="submit" className="btn-custom">Submit</button> :
+								(
+									<button
+										type="submit"
+										disabled={this.state.loading}
+										className={classnames('btn-custom', { disabled: this.state.loading })}
+									>
+										{
+											!this.state.loading ? 'Proceed to checkout' : 'Proceeding to checkout...'
+										}
+									</button>
+								) :
+								(
 									<p className="order-summary__submit__not-logged-in">
 										Please
 										<a href="#" onClick={this.props.openLogModal}> log in </a>
 										to book this parking
 									</p>
+								)
 							}
 						</div>
 
