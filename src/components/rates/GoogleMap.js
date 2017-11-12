@@ -3,17 +3,7 @@ import PropTypes from 'prop-types';
 import GoogleMapReact from 'google-map-react';
 
 import GoogleMapMark from './GoogleMapMark';
-
-const AirportMapMark = () => {
-    return (
-        <div className="rates__map-info" >
-            <span className="rates__map-info__plane">
-                <i className="fa fa-plane" aria-hidden="true" />
-                <i className="fa fa-caret-down" aria-hidden="true" />
-            </span>
-        </div>
-    );
-};
+import AirportMapMark from '../common/map/AirportMapMark';
 
 export default class GoogleMap extends Component {
     render() {
@@ -29,7 +19,7 @@ export default class GoogleMap extends Component {
                         lat: airportLat,
                         lng: airportLng
                     }}
-                    zoom={13}
+                    zoom={12}
                 >
 
                     <AirportMapMark

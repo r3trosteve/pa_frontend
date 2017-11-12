@@ -8,12 +8,12 @@ export default class GoogleMapMark extends Component {
 
         // jq to open/close google map marker
 
-        $('.rates__map-info__price').click(function () {
-            $('.rates__map-info__details').hide();
-            $(this).parent().find('.rates__map-info__details').show();
+        $('.map-info__price').click(function () {
+            $('.map-info__details').hide();
+            $(this).parent().find('.map-info__details').show();
         });
 
-        $('.rates__map-info__details i.ion-ios-close').click(function () {
+        $('.map-info__details i.ion-ios-close').click(function () {
             $(this).parent().hide();
         });
 
@@ -23,9 +23,9 @@ export default class GoogleMapMark extends Component {
 
     render() {
         return (
-            <div className="rates__map-info" >
+            <div className="map-info" >
 
-                <div className="rates__map-info__details">
+                <div className="map-info__details">
 
                     <i className="ion-ios-close" />
 
@@ -42,7 +42,7 @@ export default class GoogleMapMark extends Component {
 
                 </div>
 
-                <span className="rates__map-info__price">
+                <span className="map-info__price">
                     <i className="fa fa-caret-down" aria-hidden="true" />
                     ${this.props.rate.price.total}
                 </span>
