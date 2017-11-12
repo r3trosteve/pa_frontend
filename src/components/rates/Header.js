@@ -21,15 +21,20 @@ export default class Header extends Component {
 
 					<ul className="dropdown-menu filters">
 
-						{
-							this.props.rates.slice(0, 5).map((rate) => {
-								return (
-									<li key={rate.id} onClick={() => alert('Not working yet')}>
-										{rate.name}
+						<li onClick={() => this.props.filterRates(this.props.rates, '')}>Show All</li>
+
+                        {
+                            this.props.rates.slice(0, 5).map((rate) => {
+                                return (
+									<li
+										key={rate.id}
+										onClick={() => this.props.filterRates(this.props.rates, rate.name)}
+									>
+                                        {rate.name}
 									</li>
-								);
-							})
-						}
+                                );
+                            })
+                        }
 
 					</ul>
 
@@ -46,9 +51,9 @@ export default class Header extends Component {
 
 					<ul className="dropdown-menu sorting">
 						<li onClick={() => alert('No rating provided for rates yet')}>Best Rating</li>
-						<li onClick={() => this.props.sortRatesByDistance(this.props.rates)}>Closest to Airport</li>
-						<li onClick={() => this.props.sortRatesByLowPrice(this.props.rates)}>Price: Low to High</li>
-						<li onClick={() => this.props.sortRatesByHighPrice(this.props.rates)}>Price: High to Low</li>
+						<li onClick={() => this.props.sortRatesByDistance(this.props.filteredRates)}>Closest to Airport</li>
+						<li onClick={() => this.props.sortRatesByLowPrice(this.props.filteredRates)}>Price: Low to High</li>
+						<li onClick={() => this.props.sortRatesByHighPrice(this.props.filteredRates)}>Price: High to Low</li>
 					</ul>
 
 				</div>
@@ -62,5 +67,7 @@ Header.propTypes = {
 	rates: PropTypes.array.isRequired,
 	sortRatesByDistance: PropTypes.func.isRequired,
 	sortRatesByLowPrice: PropTypes.func.isRequired,
-	sortRatesByHighPrice: PropTypes.func.isRequired
+	sortRatesByHighPrice: PropTypes.func.isRequired,
+	filterRates: PropTypes.func.isRequired,
+    filteredRates: PropTypes.array.isRequired
 };

@@ -12,7 +12,7 @@ import Header from './Header';
 import GoogleMap from './GoogleMap';
 
 import { fetchAirports } from '../../modules/airports/airports';
-import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice } from '../../modules/rates/rates';
+import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice, filterRates } from '../../modules/rates/rates';
 import { fetchSearch } from '../../modules/search/search';
 
 class RatesPage extends Component {
@@ -114,6 +114,8 @@ class RatesPage extends Component {
 
                             <Header
                                 rates={this.props.rates}
+                                filteredRates={this.props.filteredRates}
+                                filterRates={this.props.filterRates}
                                 sortRatesByDistance={this.props.sortRatesByDistance}
                                 sortRatesByLowPrice={this.props.sortRatesByLowPrice}
                                 sortRatesByHighPrice={this.props.sortRatesByHighPrice}
@@ -122,7 +124,7 @@ class RatesPage extends Component {
                             {/*rates*/}
 
                             <RatesList
-                                rates={this.props.rates}
+                                rates={this.props.filteredRates}
                                 isFetching={this.props.ratesFetching}
                                 ratesUpdating={this.state.ratesUpdating}
                             />
@@ -166,14 +168,17 @@ RatesPage.propTypes = {
     ratesFetching: PropTypes.bool.isRequired,
     sortRatesByDistance: PropTypes.func.isRequired,
     sortRatesByLowPrice: PropTypes.func.isRequired,
-    sortRatesByHighPrice: PropTypes.func.isRequired
+    sortRatesByHighPrice: PropTypes.func.isRequired,
+    filterRates: PropTypes.func.isRequired,
+    filteredRates: PropTypes.array.isRequired
 };
 
 const mapStateToProps = state => ({
     airports: state.airports.items,
     search: state.search.data,
     rates: state.rates.items,
-    ratesFetching: state.rates.isFetching
+    ratesFetching: state.rates.isFetching,
+    filteredRates: state.rates.filteredItems
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -182,7 +187,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     fetchRates,
     sortRatesByDistance,
     sortRatesByHighPrice,
-    sortRatesByLowPrice
+    sortRatesByLowPrice,
+    filterRates
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RatesPage);

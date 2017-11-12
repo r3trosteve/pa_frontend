@@ -12,10 +12,13 @@ export const RATES_FETCHED = 'RATES_FETCHED';
 export const RATES_SORTED_BY_DISTANCE = 'RATES_SORTED_BY_DISTANCE';
 export const RATES_SORTED_BY_LOW_PRICE = 'RATES_SORTED_BY_LOW_PRICE';
 export const RATES_SORTED_BY_HIGH_PRICE = 'RATES_SORTED_BY_HIGH_PRICE';
+export const RATES_UNFILTERED = 'RATES_UNFILTERED';
+export const RATES_FILTERED = 'RATES_FILTERED';
 
 const initialState = {
     isFetching: true,
-    items: []
+    items: [],
+    filteredItems: []
 };
 
 export default function reducer(state = initialState, action) {
@@ -24,21 +27,31 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { isFetching: true });
 
         case RATES_FETCHED:
-            return Object.assign({}, state, { items: action.items, isFetching: false });
+            return Object.assign({}, state, { items: action.items, filteredItems: action.items, isFetching: false });
+
+        case RATES_UNFILTERED:
+            return Object.assign({}, state, {
+                filteredItems: action.items
+            });
+
+        case RATES_FILTERED:
+            return Object.assign({}, state, {
+                filteredItems: action.items.filter(item => item.name === action.kind)
+            });
 
         case RATES_SORTED_BY_DISTANCE:
             return Object.assign({}, state, {
-                items: action.items.slice().sort((a, b) => a.distance - b.distance)
+                filteredItems: action.items.slice().sort((a, b) => a.distance - b.distance)
             });
 
         case RATES_SORTED_BY_LOW_PRICE:
             return Object.assign({}, state, {
-                items: action.items.slice().sort((a, b) => a.price.total - b.price.total)
+                filteredItems: action.items.slice().sort((a, b) => a.price.total - b.price.total)
             });
 
         case RATES_SORTED_BY_HIGH_PRICE:
             return Object.assign({}, state, {
-                items: action.items.slice().sort((a, b) => b.price.total - a.price.total)
+                filteredItems: action.items.slice().sort((a, b) => b.price.total - a.price.total)
             });
 
         default:
@@ -82,6 +95,21 @@ export const fetchRates = (id) => (dispatch) => {
                 });
             });
     });
+};
+
+export const filterRates = (rates, kind) => dispatch => {
+    if (kind !== '') {
+        return dispatch({
+            type: RATES_FILTERED,
+            items: rates,
+            kind
+        });
+    } else {
+        return dispatch({
+            type: RATES_UNFILTERED,
+            items: rates
+        });
+    }
 };
 
 export const sortRatesByDistance = rates => dispatch => {
