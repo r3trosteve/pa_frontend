@@ -29,7 +29,7 @@ export default class GoogleMap extends Component {
                         lat: airportLat,
                         lng: airportLng
                     }}
-                    zoom={11}
+                    zoom={13}
                 >
 
                     <AirportMapMark
