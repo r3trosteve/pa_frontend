@@ -35,14 +35,14 @@ class HomePage extends Component {
 
 		// end
 
-		// close mobile form
+		let calendarDropdown = $('.daterangepicker.dropdown-menu');
 
-		$('.home__close-search-form').click(() => {
-			$('.daterangepicker.dropdown-menu').hide();
-			$(this).hide();
+        calendarDropdown.append('<i class="ion-ios-close close-calendar-dropdown"></i>');
+		$('.ion-ios-close.close-calendar-dropdown').click(function () {
+            calendarDropdown.css({
+				'display': 'none'
+			});
         });
-
-		// end
 
 	}
 
@@ -50,9 +50,9 @@ class HomePage extends Component {
 		return (
 			<div className="home">
 
-				<Helmet title="Home" />
 
-				<i className="ion-ios-close home__close-search-form" />
+
+				<Helmet title="Home" />
 
 				<Search />
 				
