@@ -18,14 +18,33 @@ class OrderSummary extends Component {
 			showCoupon: false,
 			redirect: false,
             isEditFormModal: false,
-			loading: false
+			loading: false,
+			nonAuthProceedClicked: false,
 		};
 
 		this.openEditFormModal = this.openEditFormModal.bind(this);
 		this.closeEditFormModal = this.closeEditFormModal.bind(this);
 		this.showCouponInput = this.showCouponInput.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleNonAuthProceed = this.handleNonAuthProceed.bind(this);
 	}
+
+    handleNonAuthProceed(e) {
+		e.preventDefault();
+
+        this.props.openLogModal();
+
+        this.setState({ nonAuthProceedClicked: true });
+	}
+
+    componentWillUpdate(nextProps, nextState) {
+        if (nextProps.auth.isAuthenticated === true && nextState.nonAuthProceedClicked === true) {
+
+            setTimeout(() => {
+                $('.order-summary__submit button').trigger('click');
+			}, 300);
+        }
+    }
 
 	openEditFormModal() {
 		this.setState({ isEditFormModal: true });
@@ -218,7 +237,7 @@ class OrderSummary extends Component {
 									</button>
 								) :
 								(
-									<a className="btn-custom" onClick={this.props.openLogModal}>
+									<a className="btn-custom" onClick={this.handleNonAuthProceed}>
 										Proceed to checkout
 									</a>
 								)
