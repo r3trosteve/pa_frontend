@@ -43,7 +43,7 @@ export default class Rate extends Component {
 							{/*info list*/}
 
 							<InfoList
-								distance={this.props.rate.distance.toFixed()}
+								distance={this.props.rate.distance.toFixed(1)}
 								type={this.props.rate.name}
 								// shuttleFrequency={this.props.rate.shuttleFrequency}
 							/>

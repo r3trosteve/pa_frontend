@@ -45,7 +45,7 @@ export default class Info extends Component {
 					<li className="info-list__item text-bold">
 						<i className="fa fa-map" aria-hidden="true" />
 						Distance from airport:
-						<span>{rate.distance && rate.distance.toFixed()} mile(s)</span>
+						<span>{rate.distance && rate.distance.toFixed(1)} mile(s)</span>
 					</li>
                     
 					<li className="info-list__item text-bold">

@@ -74,6 +74,8 @@ class OrderSummary extends Component {
             return (
 				<div className="order-summary card-custom card-custom--no-pad">
 
+					<div><pre>{JSON.stringify(rate.price, null, 2) }</pre></div>
+
                     {/*header*/}
 
 					<div className="order-summary__header">
@@ -171,26 +173,26 @@ class OrderSummary extends Component {
 
                         {/*coupon*/}
 
-						<table className="order-summary__table coupon">
-							<tbody>
-								<tr>
-									<td>
-										<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
-											Have a Coupon Code?
-										</span>
-									</td>
-									<td>
-										<label
-											className={classnames('order-summary__coupon-label', {
-												visible: this.state.showCoupon
-											})}
-										>
-											<input type="text" />
-										</label>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+						{/*<table className="order-summary__table coupon">*/}
+							{/*<tbody>*/}
+								{/*<tr>*/}
+									{/*<td>*/}
+										{/*<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>*/}
+											{/*Have a Coupon Code?*/}
+										{/*</span>*/}
+									{/*</td>*/}
+									{/*<td>*/}
+										{/*<label*/}
+											{/*className={classnames('order-summary__coupon-label', {*/}
+												{/*visible: this.state.showCoupon*/}
+											{/*})}*/}
+										{/*>*/}
+											{/*<input type="text" />*/}
+										{/*</label>*/}
+									{/*</td>*/}
+								{/*</tr>*/}
+							{/*</tbody>*/}
+						{/*</table>*/}
 
                         {/*submit*/}
 
