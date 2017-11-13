@@ -1,130 +1,100 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class PaymentDetails extends Component {
 
-	maxMonthChange(e) {
-		const value = e.target.value;
+	constructor() {
+		super();
 
-		if (value > 12) {
-			e.target.value = 12;
-		} else if (value < 1) {
-			e.target.value = 1;
-		}
+		this.state = {
+			iframeShown: false
+		};
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+    handleSubmit(e) {
+		e.preventDefault();
+
+		const id = this.props.reservation && this.props.reservation.id;
+
+        this.props.requestCheckout(id)
+			.then(() => this.setState({ iframeShown: true }));
 	}
 
 	render() {
 		return (
-			<form className="ap-checkout__payment-details card-custom">
+			<div>
 
-				{/*notification*/}
+				<form onSubmit={this.handleSubmit} className="ap-checkout__payment-details card-custom">
 
-				{/*<div*/}
-				{/*className="ap-checkout__payment-details__notification big">*/}
-				{/*If you don't book now, this amazing deal could be gone.*/}
-				{/*</div>*/}
+                    {/*title*/}
 
-				{/*title*/}
-
-				<div className="ap-checkout__payment-details__title">
-					<h3 className="title-normal">
-						<i className="fa fa-lock" aria-hidden="true" />
-						Payment details
-						<span>your reservation is safe and secure</span>
-					</h3>
-				</div>
-
-				{/*notification*/}
-
-				{/*<div className="ap-checkout__payment-details__notification small">*/}
-				{/*Hurry, that’s the cheapest room at the Seascape Resort & Spa!*/}
-				{/*</div>*/}
-
-				{/*inputs*/}
-
-				<div className="ap-checkout__payment-details__inputs">
-					{/*radio header*/}
-
-					<div className="ap-checkout__payment-details__inputs__header">
-						<label>
-							<input type="radio" name="card" checked />
-							<span>
-								<b className="text-mont-bold">Credit & Debit cards</b>
-								Transiction fee may apply
-							</span>
-						</label>
-						<div className="ap-checkout__payment-details__inputs-header__img" />
+					<div className="ap-checkout__payment-details__title">
+						<h3 className="title-normal">
+							<i className="fa fa-lock" aria-hidden="true" />
+							Payment details
+							<span>your reservation is safe and secure</span>
+						</h3>
 					</div>
 
-					{/*inputs body*/}
+                    {/*inputs*/}
 
-					<div className="row">
-						<div className="col-md-6">
-							<label>
-								Cardholder Name<input type="text" />
-							</label>
-						</div>
+					<div className="ap-checkout__payment-details__inputs">
 
-						<div className="col-md-6">
-							<label>
-								Card Number
-								<input type="num" />
-								<span className="cards-image" />
-							</label>
-						</div>
-					</div>
+                        {/*inputs body*/}
 
-					<div className="row">
-						<div className="col-xs-8">
-							<p className="label-title">End Date</p>
-							<div className="row">
-								<div className="col-xs-6">
-									<label>
-										<input
-											onChange={this.maxMonthChange}
-											type="number"
-											placeholder="mm"
-											maxLength="2"
-											max="12"
-											min="1"
-										/>
-									</label>
-								</div>
-								<div className="col-xs-6">
-									<label>
-										<input type="number" placeholder="yyyy" maxLength="4" />
-									</label>
-								</div>
+						<div className="row">
+							<div className="col-md-6">
+								<label>
+									Name<input type="text" />
+								</label>
+							</div>
+
+							<div className="col-md-6">
+								<label>
+									Phone Number<input type="text" />
+								</label>
 							</div>
 						</div>
 
-						<div className="col-xs-4">
-							<label>
-								CVV
-								<input type="num" maxLength="3" />
-							</label>
+                        {/*t&c*/}
+
+						<p className="ap-checkout__payment-details__terms">
+							I have read and accept the
+							<a href="#"> terms of use</a>,
+							<a href="#"> rules of flight </a>
+							and
+							<a href="#"> privacy policy</a>
+						</p>
+
+                        {/*submit*/}
+
+						<div className="ap-checkout__payment-details__submit">
+							<button type="submit" className="btn-custom">
+								Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
+							</button>
 						</div>
 					</div>
 
-					{/*t&c*/}
+				</form>
 
-					<p className="ap-checkout__payment-details__terms">
-						I have read and accept the
-						<a href="#"> terms of use</a>,
-						<a href="#"> rules of flight </a>
-						and
-						<a href="#"> privacy policy</a>
-					</p>
+				{
+					this.state.iframeShown ?
+						(
+							<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="100%" align="left">
+								Your browser does not support iframes!
+							</iframe>
+						) : null
+				}
 
-					{/*submit*/}
-
-					<div className="ap-checkout__payment-details__submit">
-						<button type="submit" className="btn-custom">
-							Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
-						</button>
-					</div>
-				</div>
-                
-			</form>
+			</div>
 		);
 	}
 }
+
+PaymentDetails.propTypes = {
+	requestCheckout: PropTypes.func.isRequired,
+    reservation: PropTypes.object.isRequired,
+    checkout: PropTypes.object.isRequired
+};

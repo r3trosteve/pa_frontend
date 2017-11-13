@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
 import OrderSummary from './OrderSummary';
 
 import { fetchReservation } from '../../modules/reservations/reservation';
+import { requestCheckout } from '../../modules/checkout/checkout';
 
 class AirportParkingCheckoutPage extends Component {
-
-    // static fetchData(store, match) {
-    //     return store.dispatch(fetchReservation(match.params.id));
-    // }
 
     componentDidMount() {
         $(window).scrollTop(0); // jq to load page on top
@@ -28,7 +24,7 @@ class AirportParkingCheckoutPage extends Component {
 
 				<Helmet title="Checkout" />
 
-				{/*<div><pre>{JSON.stringify(this.props.reservation, null, 2) }</pre></div>*/}
+				{/*<div><pre>{JSON.stringify(this.props.checkout, null, 2) }</pre></div>*/}
 
 				<div className="container ap-checkout__container">
 
@@ -53,10 +49,16 @@ class AirportParkingCheckoutPage extends Component {
 									<i className="fa fa-lock" aria-hidden="true" />
 									Secure booking (only takes 2-3 minutes)
 								</h4>
-								<h2 className="title-normal-mont">Seascape Resort & Spa</h2>
+								<h2 className="title-normal-mont">
+                                    {this.props.reservation.rate && this.props.reservation.rate.parking_lot.name}
+								</h2>
 							</div>
 
-							<PaymentDetails />
+							<PaymentDetails
+								requestCheckout={this.props.requestCheckout}
+								reservation={this.props.reservation}
+								checkout={this.props.checkout}
+							/>
 
 						</div>
 					</div>
@@ -70,10 +72,14 @@ class AirportParkingCheckoutPage extends Component {
 AirportParkingCheckoutPage.propTypes = {
     match: PropTypes.object.isRequired,
     fetchReservation: PropTypes.func.isRequired,
-    reservation: PropTypes.object.isRequired
+    reservation: PropTypes.object.isRequired,
+    requestCheckout: PropTypes.func.isRequired,
+	checkout: PropTypes.object
 };
 
-const mapStateToProps = state => ({ reservation: state.reservation.item });
-// const mapDispatchToProps = dispatch => bindActionCreators({ fetchReservation }, dispatch);
+const mapStateToProps = state => ({
+	reservation: state.reservation.item,
+	checkout: state.checkout.item
+});
 
-export default connect(mapStateToProps, { fetchReservation })(AirportParkingCheckoutPage);
+export default connect(mapStateToProps, { fetchReservation, requestCheckout })(AirportParkingCheckoutPage);
