@@ -27,7 +27,7 @@ const routes = [
 		component: ParkingLotPage
 	},
 	{
-		path: '/reservation/:id',
+		path: '/checkout/:id',
 		component: CheckoutPage
 	},
 	{

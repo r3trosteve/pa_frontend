@@ -81,7 +81,7 @@ class OrderSummary extends Component {
                         if (staticContext) {
                             staticContext.status = 302;
                         }
-                        return <Redirect from="/" to={`/reservation/${this.props.reservation.id}`} />;
+                        return <Redirect from="/" to={`/checkout/${this.props.reservation.id}`} />;
                     }}
 				/>
 			);

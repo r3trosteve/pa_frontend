@@ -68,7 +68,7 @@ class App extends Component {
 						openLogModal={this.openLogModal}
 					/>
 
-					<Route path="/reservation/:id" component={CheckoutPage} />
+					<Route path="/checkout/:id" component={CheckoutPage} />
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
 					<Route path="/airports/:id" component={AirportPage} />
