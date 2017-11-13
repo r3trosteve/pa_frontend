@@ -40,7 +40,7 @@ class Form extends Component {
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			airportId: nextProps.search.airport_id || '',
-			airportName: nextProps.search.airport.name || '',
+			airportName: nextProps.search.airport && nextProps.search.airport.name || '',
 			startDate: moment(nextProps.search.arrive_at) || '',
 			endDate: moment(nextProps.search.exit_at) || ''
 		});

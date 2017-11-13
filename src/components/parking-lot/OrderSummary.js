@@ -224,23 +224,31 @@ class OrderSummary extends Component {
                         {/*submit*/}
 
 						<div className="order-summary__submit">
-							{this.props.auth && this.props.auth.isAuthenticated ?
-								(
-									<button
-										type="submit"
-										disabled={this.state.loading}
-										className={classnames('btn-custom', { disabled: this.state.loading })}
-									>
-										{
-											!this.state.loading ? 'Proceed to checkout' : 'Proceeding to checkout...'
-										}
-									</button>
-								) :
-								(
-									<a className="btn-custom" onClick={this.handleNonAuthProceed}>
-										Proceed to checkout
-									</a>
-								)
+							{
+								this.props.auth && this.props.auth.isAuthenticated ?
+									(
+                                        this.state.loading ?
+											<button
+												type="submit"
+												disabled={this.state.loading}
+												className={classnames('btn-custom', { disabled: this.state.loading })}
+											>
+												<i className="fa fa-spinner" aria-hidden="true" />
+												Please wait...
+											</button> :
+											<button
+												type="submit"
+												disabled={this.state.loading}
+												className={classnames('btn-custom', { disabled: this.state.loading })}
+											>
+												Proceed to checkout
+											</button>
+									) :
+									(
+										<a className="btn-custom" onClick={this.handleNonAuthProceed}>
+											Proceed to checkout
+										</a>
+									)
 							}
 						</div>
 
