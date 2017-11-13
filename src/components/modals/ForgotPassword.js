@@ -15,7 +15,8 @@ class ForgotPassword extends Component {
 
 		this.state = {
 			email: '',
-			errors: {}
+			errors: {},
+			isNewPwdRequseted: false
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -27,6 +28,7 @@ class ForgotPassword extends Component {
 
 			let errors = Object.assign({}, this.state.errors);
 			delete errors[e.target.name];
+
 			this.setState({
 				[e.target.name]: e.target.value,
 				errors
@@ -49,7 +51,8 @@ class ForgotPassword extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			this.props.resetPasswordRequest({ email: this.state.email });
+			this.props.resetPasswordRequest({ email: this.state.email })
+				.then(() => this.setState({ isNewPwdRequseted: true }));
 		}
 	}
 
@@ -84,6 +87,16 @@ class ForgotPassword extends Component {
 							</p>
 
 							<form onSubmit={this.handleSubmit}>
+
+                                {
+                                    this.state.isNewPwdRequseted ?
+                                        (
+											<div className="alert alert-success">
+												<p>Please check your email. We sent you an email with reset password link.</p>
+											</div>
+                                        ) : null
+                                }
+
 								<label className={classnames('', { 'has-error': this.state.errors.email })}>
 									Email
 									<span className="error-text">{this.state.errors.email}</span>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import 'url-search-params-polyfill';
+import { Route, Redirect } from 'react-router-dom';
 
 import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
@@ -18,6 +19,7 @@ class NewPasswordPage extends Component {
             passwordConfirm: '',
             errors: {},
             token: '',
+            redirect: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -66,55 +68,71 @@ class NewPasswordPage extends Component {
             const { token, password } = this.state;
 
             // api request
-            this.props.resetPassword({
-                perishable_token: token,
-                password: password
-            });
+            this.props.resetPassword({ perishable_token: token, password: password })
+                .then(() => this.setState({ redirect: true }));
         }
     }
 
     render() {
-        return (
-            <div className="profile__new-password">
-                <div className="container profile__new-password__container">
-                    <div className="profile__new-password__card">
-                        <div className="profile__new-password__card__header">
-                            <img src={logoImg3x} alt="Logo"/>
-                            <h4 className="title">Enter new password</h4>
+
+        if (this.state.redirect) {
+
+            return (
+                <Route
+                    render={({ staticContext }) => {
+                        if (staticContext) {
+                            staticContext.status = 302;
+                        }
+                        return <Redirect from="/" to="/" />;
+                    }}
+                />
+            );
+
+        } else {
+
+            return (
+                <div className="profile__new-password">
+                    <div className="container profile__new-password__container">
+                        <div className="profile__new-password__card">
+                            <div className="profile__new-password__card__header">
+                                <img src={logoImg3x} alt="Logo"/>
+                                <h4 className="title">Enter new password</h4>
+                            </div>
+
+                            <form onSubmit={this.handleSubmit} className="profile__new-password__form">
+
+                                <label className={classnames('', { 'has-error': this.state.errors.password })}>
+                                    Enter new password
+                                    <span className="error-text">{this.state.errors.password}</span>
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+
+                                <label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
+                                    Confirm new password
+                                    <span className="error-text">{this.state.errors.passwordConfirm}</span>
+                                    <input
+                                        type="password"
+                                        name="passwordConfirm"
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+
+                                <button type="submit" className="btn-custom">
+                                    Submit
+                                </button>
+
+                            </form>
+
                         </div>
-
-                        <form onSubmit={this.handleSubmit} className="profile__new-password__form">
-
-                            <label className={classnames('', { 'has-error': this.state.errors.password })}>
-                                Enter new password
-                                <span className="error-text">{this.state.errors.password}</span>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-
-                            <label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
-                                Confirm new password
-                                <span className="error-text">{this.state.errors.passwordConfirm}</span>
-                                <input
-                                    type="password"
-                                    name="passwordConfirm"
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-
-                            <button type="submit" className="btn-custom">
-                                Submit
-                            </button>
-
-                        </form>
-
                     </div>
                 </div>
-            </div>
-        );
+            );
+
+        }
     }
 
 }
