@@ -74,8 +74,6 @@ class OrderSummary extends Component {
             return (
 				<div className="order-summary card-custom card-custom--no-pad">
 
-					<div><pre>{JSON.stringify(rate.price, null, 2) }</pre></div>
-
                     {/*header*/}
 
 					<div className="order-summary__header">
@@ -132,16 +130,16 @@ class OrderSummary extends Component {
 							<tr>
 								<td>
 									Price per day:
-									<span> ${rate.price && rate.price.daily_rate}</span>
+									{/*<span> ${rate.price && rate.price.daily_rate}</span>*/}
 								</td>
 								<td> ${rate.price && rate.price.daily_rate}</td>
 							</tr>
-							<tr>
-								<td>
-									Service fee: <span> ${rate.price && rate.price.service_fee}</span>
-								</td>
-								<td> ${rate.price && rate.price.service_fee}</td>
-							</tr>
+							{/*<tr>*/}
+								{/*<td>*/}
+									{/*Service fee: <span> ${rate.price && rate.price.service_fee}</span>*/}
+								{/*</td>*/}
+								{/*<td> ${rate.price && rate.price.service_fee}</td>*/}
+							{/*</tr>*/}
 							</tbody>
 						</table>
 
@@ -158,18 +156,18 @@ class OrderSummary extends Component {
 
                         {/*4*/}
 
-						<table className="order-summary__table">
-							<tbody>
-							<tr>
-								<td>Pay Now:</td>
-								<td> ${rate.price && rate.price.pay_now}</td>
-							</tr>
-							<tr>
-								<td>Due at Parking Lot:</td>
-								<td> ${rate.price && rate.price.due_at_parking_lot}</td>
-							</tr>
-							</tbody>
-						</table>
+						{/*<table className="order-summary__table">*/}
+							{/*<tbody>*/}
+							{/*<tr>*/}
+								{/*<td>Pay Now:</td>*/}
+								{/*<td> ${rate.price && rate.price.pay_now}</td>*/}
+							{/*</tr>*/}
+							{/*<tr>*/}
+								{/*<td>Due at Parking Lot:</td>*/}
+								{/*<td> ${rate.price && rate.price.due_at_parking_lot}</td>*/}
+							{/*</tr>*/}
+							{/*</tbody>*/}
+						{/*</table>*/}
 
                         {/*coupon*/}
 
@@ -210,11 +208,9 @@ class OrderSummary extends Component {
 									</button>
 								) :
 								(
-									<p className="order-summary__submit__not-logged-in">
-										Please
-										<a href="#" onClick={this.props.openLogModal}> log in </a>
-										to book this parking
-									</p>
+									<a className="btn-custom" onClick={this.props.openLogModal}>
+										Proceed to checkout
+									</a>
 								)
 							}
 						</div>

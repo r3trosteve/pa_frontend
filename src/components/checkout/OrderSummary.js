@@ -34,10 +34,6 @@ export default class OrderSummary extends Component {
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
 
-				<div><pre>{reservation && JSON.stringify(reservation.price_details, null, 2) }</pre></div>
-
-				<div><pre>{reservation.rate && JSON.stringify(reservation.rate.price, null, 2) }</pre></div>
-
 				{/*header*/}
 
 				<div className="order-summary__header">
@@ -51,7 +47,17 @@ export default class OrderSummary extends Component {
 					{/*title*/}
 
 					<div className="order-summary__title">
-						<h4>{reservation.rate && reservation.rate.search.airport.name}</h4>
+						<h4>{reservation.rate && reservation.rate.parking_lot.name}</h4>
+						<p>
+							{reservation.rate && reservation.rate.parking_lot.location.address1}
+                            { reservation.rate && reservation.rate.parking_lot.location.address2},
+							{' '}
+                            {reservation.rate && reservation.rate.parking_lot.location.city},
+							{' '}
+                            {reservation.rate && reservation.rate.parking_lot.location.state},
+							{' '}
+                            {reservation.rate && reservation.rate.parking_lot.location.zip_code}
+						</p>
 					</div>
 
 					{/*1*/}
@@ -93,15 +99,46 @@ export default class OrderSummary extends Component {
 						<tr>
 							<td>
 								Price per day:
-								<span> ${reservation.rate && reservation.rate.price.daily_rate}</span>
 							</td>
 							<td> ${reservation.rate && reservation.rate.price.daily_rate}</td>
 						</tr>
+						</tbody>
+					</table>
+
+                    {/*/!*3*!/*/}
+
+					<table className="order-summary__table">
+						<tbody>
 						<tr>
 							<td>
-								Service fee: <span> ${reservation.rate && reservation.rate.price.service_fee}</span>
+								Parking fee:
 							</td>
-							<td> ${reservation.rate && reservation.rate.price.service_fee}</td>
+							<td> ${reservation.price_details && reservation.price_details[0].amount}</td>
+						</tr>
+						<tr>
+							<td>
+								Coupon discount:
+							</td>
+							<td> $0</td>
+						</tr>
+						</tbody>
+					</table>
+
+                    {/*/!*4*!/*/}
+
+					<table className="order-summary__table">
+						<tbody>
+						<tr>
+							<td>
+								{reservation.price_details && reservation.price_details[1].name}:
+							</td>
+							<td> ${reservation.price_details && reservation.price_details[1].amount}</td>
+						</tr>
+						<tr>
+							<td>
+                                Service fee:
+							</td>
+							<td> ${reservation.price_details && reservation.price_details[2].amount}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -113,21 +150,6 @@ export default class OrderSummary extends Component {
 						<tr>
 							<td className="total">Total:</td>
 							<td className="total"> ${reservation.rate && reservation.rate.price.total}</td>
-						</tr>
-						</tbody>
-					</table>
-
-					{/*/!*4*!/*/}
-
-					<table className="order-summary__table">
-						<tbody>
-						<tr>
-							<td>Pay Now:</td>
-							<td> ${reservation.rate && reservation.rate.price.pay_now}</td>
-						</tr>
-						<tr>
-							<td>Due at Parking Lot:</td>
-							<td> ${reservation.rate && reservation.rate.price.due_at_parking_lot}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -157,11 +179,11 @@ export default class OrderSummary extends Component {
 
 					{/*submit*/}
 
-					<div className="order-summary__submit">
-						<button onClick={() => alert('No checkout yet')} className="btn-custom">
-							Check out
-						</button>
-					</div>
+					{/*<div className="order-summary__submit">*/}
+						{/*<button onClick={() => alert('No checkout yet')} className="btn-custom">*/}
+							{/*Check out*/}
+						{/*</button>*/}
+					{/*</div>*/}
 
 				</form>
 			</div>
