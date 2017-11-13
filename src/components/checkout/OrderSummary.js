@@ -111,7 +111,7 @@ export default class OrderSummary extends Component {
 						<tbody>
 						<tr>
 							<td>
-								Parking fee:
+								Subtotal:
 							</td>
 							<td> ${reservation.price_details && reservation.price_details[0].amount}</td>
 						</tr>

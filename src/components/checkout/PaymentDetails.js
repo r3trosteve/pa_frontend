@@ -7,7 +7,8 @@ export default class PaymentDetails extends Component {
 		super();
 
 		this.state = {
-			iframeShown: false
+			iframeShown: false,
+			loading: false
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,10 +17,12 @@ export default class PaymentDetails extends Component {
     handleSubmit(e) {
 		e.preventDefault();
 
+		this.setState({ loading: true });
+
 		const id = this.props.reservation && this.props.reservation.id;
 
         this.props.requestCheckout(id)
-			.then(() => this.setState({ iframeShown: true }));
+			.then(() => this.setState({ loading: false, iframeShown: true }));
 	}
 
 	render() {
@@ -71,9 +74,21 @@ export default class PaymentDetails extends Component {
                         {/*submit*/}
 
 						<div className="ap-checkout__payment-details__submit">
-							<button type="submit" className="btn-custom">
-								Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
-							</button>
+
+							{
+								this.state.loading ?
+									(
+										<button type="submit" className="btn-custom">
+											<i className="fa fa-spinner" aria-hidden="true" /> Please wait...
+										</button>
+									) :
+									(
+										<button type="submit" className="btn-custom">
+											Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
+										</button>
+									)
+							}
+
 						</div>
 					</div>
 
