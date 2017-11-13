@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import userImg from '../../assets/images/user.png';
 
 import ProfileItems from "./Items";
+import Private from '../profile/Private';
 
 import { updateProfile, updatePassword } from '../../modules/auth/auth';
 
@@ -29,16 +30,15 @@ class ProfilePage extends Component {
 
     componentWillMount() {
         this.setState({
-            name: this.props.auth.user.name,
-            email: this.props.auth.user.email
+            name: this.props.auth.user && this.props.auth.user.name,
+            email: this.props.auth.user && this.props.auth.user.email
         });
-
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            name: nextProps.auth.user.name,
-            email: nextProps.auth.user.email
+            name: nextProps.auth.user && nextProps.auth.user.name,
+            email: nextProps.auth.user && nextProps.auth.user.email
         });
     }
 
@@ -149,19 +149,7 @@ class ProfilePage extends Component {
 
         } else {
 
-            return (
-                <div className="profile">
-
-                    <Helmet title="Profile" />
-
-                    <div className="container profile__container">
-                        <h2 className="profile__not-logged-in text-center title-normal-mont">
-                            <i className="ion-ios-locked" />
-                             You need to be logged in to access this page.
-                        </h2>
-                    </div>
-                </div>
-            );
+            return <Private title={"Profile"} />;
 
         }
 

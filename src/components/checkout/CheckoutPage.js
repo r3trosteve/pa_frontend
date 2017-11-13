@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import PaymentDetails from './PaymentDetails';
 import ContactUs from './ContactUs';
 import OrderSummary from './OrderSummary';
+import Private from '../profile/Private';
 
 import { fetchReservation } from '../../modules/reservations/reservation';
 import { requestCheckout } from '../../modules/checkout/checkout';
@@ -80,19 +81,7 @@ class AirportParkingCheckoutPage extends Component {
 
 		} else {
 
-			return (
-				<div className="profile">
-
-					<Helmet title="Checkout" />
-
-					<div className="container profile__container">
-						<h2 className="profile__not-logged-in text-center title-normal-mont">
-							<i className="ion-ios-locked" />
-							You need to be logged in to access this page.
-						</h2>
-					</div>
-				</div>
-			);
+			return <Private title={"Checkout"} />;
 
 		}
 	}
