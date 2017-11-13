@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
 export default class NotFoundPage extends Component {
     render() {
@@ -10,7 +11,11 @@ export default class NotFoundPage extends Component {
                 }
                 return (
                     <div>
-                        <h1>404 Not Found</h1>
+
+                        <Helmet title="404 Page Not Found" />
+
+                        <h1>404 Page Not Found</h1>
+
                     </div>
                 );
             }}/>

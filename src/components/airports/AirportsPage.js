@@ -74,7 +74,6 @@ class AirportsPage extends Component {
 
 AirportsPage.propTypes = {
     fetchAirports: PropTypes.func.isRequired,
-    airport: PropTypes.object.isRequired,
     airports: PropTypes.array.isRequired
 };
 

@@ -16,6 +16,7 @@ import ProfilePage from './profile/ProfilePage';
 import NewPasswordPage from './profile/NewPasswordPage';
 import AirportPage from './airport/AirportPage';
 import AirportsPage from './airports/AirportsPage';
+import NotFoundPage from './notofund/NotFoundPage';
 
 class App extends Component {
 
@@ -73,6 +74,8 @@ class App extends Component {
 					<Route path="/new-password" component={NewPasswordPage} />
 					<Route path="/airports/:id" component={AirportPage} />
 					<Route path="/airports" component={AirportsPage} />
+
+					<Route path="*" component={NotFoundPage} />
 
 				</Switch>
 

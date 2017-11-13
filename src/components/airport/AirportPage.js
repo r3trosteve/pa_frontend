@@ -72,7 +72,8 @@ class AirportPage extends Component {
 
 AirportPage.propTypes = {
     fetchAirport: PropTypes.func.isRequired,
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    airport: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({ airport: state.airport.item });

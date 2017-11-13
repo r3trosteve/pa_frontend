@@ -27,17 +27,13 @@ const routes = [
 		component: ParkingLotPage
 	},
 	{
-		path: '/checkout/:id',
+		path: '/che/:id',
 		component: CheckoutPage
 	},
 	{
 		path: '/profile',
 		component: ProfilePage
 	},
-	// {
-	// 	path: '*',
-	// 	component: NotFoundPage
-	// },
 	{
 		path: '/new-password',
 		component: NewPasswordPage
@@ -49,6 +45,10 @@ const routes = [
     {
         path: '/airports',
         component: AirportsPage
+    },
+    {
+        path: '*',
+        component: NotFoundPage
     }
 ];
 
