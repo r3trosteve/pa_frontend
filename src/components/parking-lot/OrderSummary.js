@@ -87,7 +87,17 @@ class OrderSummary extends Component {
                         {/*title*/}
 
 						<div className="order-summary__title">
-							<h4>{rate.search && rate.search.airport.name}</h4>
+							<h4>{rate.parking_lot && rate.parking_lot.name}</h4>
+							<p>
+                                {rate.parking_lot && rate.parking_lot.location.address1}
+                                { rate.parking_lot && rate.parking_lot.location.address2},
+                                {' '}
+                                {rate.parking_lot && rate.parking_lot.location.city},
+                                {' '}
+                                {rate.parking_lot && rate.parking_lot.location.state},
+                                {' '}
+                                {rate.parking_lot && rate.parking_lot.location.zip_code}
+							</p>
 						</div>
 
                         {/*1*/}
