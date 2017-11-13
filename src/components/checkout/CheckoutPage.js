@@ -15,57 +15,86 @@ class AirportParkingCheckoutPage extends Component {
     componentDidMount() {
         $(window).scrollTop(0); // jq to load page on top
 
-        this.props.fetchReservation(this.props.match.params.id);
+        if (this.props.auth.isAuthenticated) {
+            this.props.fetchReservation(this.props.match.params.id);
+        }
     }
 
+    componentWillUpdate(nextProps) {
+		if (nextProps.auth.isAuthenticated) {
+			nextProps.fetchReservation(this.props.match.params.id);
+		}
+	}
+
 	render() {
-		return (
-			<div className="ap-checkout">
 
-				<Helmet title="Checkout" />
+        if (this.props.auth.isAuthenticated) {
 
-				{/*<div><pre>{JSON.stringify(this.props.checkout, null, 2) }</pre></div>*/}
+            return (
+				<div className="ap-checkout">
 
-				<div className="container ap-checkout__container">
+					<Helmet title="Checkout" />
 
-					<div className="row ap-checkout__row">
+                    {/*<div><pre>{JSON.stringify(this.props.checkout, null, 2) }</pre></div>*/}
 
-						{/*right*/}
+					<div className="container ap-checkout__container">
 
-						<div className="col-md-5 col-md-push-7 ap-checkout__column ap-checkout__column--summary">
-							<ContactUs />
+						<div className="row ap-checkout__row">
 
-							<OrderSummary reservation={this.props.reservation} />
-						</div>
+                            {/*right*/}
 
-						{/*left*/}
+							<div className="col-md-5 col-md-push-7 ap-checkout__column ap-checkout__column--summary">
+								<ContactUs />
 
-						<div className="col-md-7 col-md-pull-5 ap-checkout__column ap-checkout__column--left">
-                            
-							{/*title*/}
-
-							<div className="ap-checkout__title">
-								<h4 className="title-small-mont hidden-xs">
-									<i className="fa fa-lock" aria-hidden="true" />
-									Secure booking (only takes 2-3 minutes)
-								</h4>
-								<h2 className="title-normal-mont">
-                                    {this.props.reservation.rate && this.props.reservation.rate.parking_lot.name}
-								</h2>
+								<OrderSummary reservation={this.props.reservation} />
 							</div>
 
-							<PaymentDetails
-								requestCheckout={this.props.requestCheckout}
-								reservation={this.props.reservation}
-								checkout={this.props.checkout}
-							/>
+                            {/*left*/}
 
+							<div className="col-md-7 col-md-pull-5 ap-checkout__column ap-checkout__column--left">
+
+                                {/*title*/}
+
+								<div className="ap-checkout__title">
+									<h4 className="title-small-mont hidden-xs">
+										<i className="fa fa-lock" aria-hidden="true" />
+										Secure booking (only takes 2-3 minutes)
+									</h4>
+									<h2 className="title-normal-mont">
+                                        {this.props.reservation.rate && this.props.reservation.rate.parking_lot.name}
+									</h2>
+								</div>
+
+								<PaymentDetails
+									requestCheckout={this.props.requestCheckout}
+									reservation={this.props.reservation}
+									checkout={this.props.checkout}
+								/>
+
+							</div>
 						</div>
-					</div>
 
+					</div>
 				</div>
-			</div>
-		);
+            );
+
+		} else {
+
+			return (
+				<div className="profile">
+
+					<Helmet title="Checkout" />
+
+					<div className="container profile__container">
+						<h2 className="profile__not-logged-in text-center title-normal-mont">
+							<i className="ion-ios-locked" />
+							You need to be logged in to access this page.
+						</h2>
+					</div>
+				</div>
+			);
+
+		}
 	}
 }
 
@@ -74,12 +103,14 @@ AirportParkingCheckoutPage.propTypes = {
     fetchReservation: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
     requestCheckout: PropTypes.func.isRequired,
-	checkout: PropTypes.object
+	checkout: PropTypes.object,
+	auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
 	reservation: state.reservation.item,
-	checkout: state.checkout.item
+	checkout: state.checkout.item,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, { fetchReservation, requestCheckout })(AirportParkingCheckoutPage);

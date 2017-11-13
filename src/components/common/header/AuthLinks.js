@@ -27,7 +27,7 @@ class AuthLinks extends Component {
                 <li>
                     <span>
                         {
-                            this.props.currentPathname === '/profile' ?
+                            this.props.currentPathname === '/profile' || this.props.currentPathname.match(/\/checkout\/*/) ?
                                 <a href="#" onClick={this.handleProfileLogout}>Logout</a> :
                                 <a href="#" onClick={this.props.handleLogout}>Logout</a>
                         }
