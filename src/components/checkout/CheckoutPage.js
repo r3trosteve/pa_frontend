@@ -42,17 +42,9 @@ class AirportParkingCheckoutPage extends Component {
 
 						<div className="row ap-checkout__row">
 
-                            {/*right*/}
-
-							<div className="col-md-5 col-md-push-7 ap-checkout__column ap-checkout__column--summary">
-								<ContactUs />
-
-								<OrderSummary reservation={this.props.reservation} />
-							</div>
-
                             {/*left*/}
 
-							<div className="col-md-7 col-md-pull-5 ap-checkout__column ap-checkout__column--left">
+							<div className="col-md-7 ap-checkout__column ap-checkout__column--left">
 
                                 {/*title*/}
 
@@ -75,6 +67,15 @@ class AirportParkingCheckoutPage extends Component {
 								/>
 
 							</div>
+
+                            {/*right*/}
+
+							<div className="col-md-5 ap-checkout__column ap-checkout__column--summary">
+								<ContactUs />
+
+								<OrderSummary reservation={this.props.reservation} />
+							</div>
+
 						</div>
 
 					</div>

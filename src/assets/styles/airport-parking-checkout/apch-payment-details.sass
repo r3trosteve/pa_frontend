@@ -14,7 +14,7 @@
         float: right
         display: inline-block
         padding-top: 5px
-        font-weight: 400
+        font-weight: 500
 
   &__notification
     text-align: center
@@ -101,7 +101,7 @@
           opacity: 1
 
   &__terms
-    opacity: 0.5
+    opacity: 0.7
     font-family: 'Montserrat', sans-serif
     font-size: 12px
     font-weight: 500
@@ -124,9 +124,36 @@
         transition: all 0.3s
         position: relative
         left: 0
+        &.fa-spinner
+          animation: rotate-loading 0.5s infinite
       &:hover
-        i
+        i.fa-chevron-right
           left: 5px
+
+  &__pnf-payment
+    margin-top: 30px
+    iframe
+      border: none
+      overflow: hidden
+
+  &__success
+    margin-top: 20px
+    padding: 15px 20px
+    background: $white
+    border: 1px solid $white-dark
+    border-radius: 4px
+    h4
+      color: #09a248
+      font-weight: 400
+      margin-bottom: 20px
+      font-family: 'Montserrat', sans-serif
+    p
+      margin-top: 10px
+      text-transform: uppercase
+      b
+        font-family: 'Montserrat', sans-serif
+        margin-left: 3px
+        font-weight: 700
 
 
 //responsiveness

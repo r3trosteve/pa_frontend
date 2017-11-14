@@ -62,7 +62,7 @@ export default class Details extends Component {
 
 					{/*right*/}
 
-					<div className="col-sm-7 ap-details__details__column text-right">
+					<div className="col-sm-7 ap-details__details__column">
 
 						<p className="text-mont-bold">Additional Info</p>
 

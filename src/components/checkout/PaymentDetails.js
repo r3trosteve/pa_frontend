@@ -39,98 +39,111 @@ export default class PaymentDetails extends Component {
 	render() {
 
 		return (
-			<div>
 
-				<form onSubmit={this.handleSubmit} className="ap-checkout__payment-details card-custom">
+			<form onSubmit={this.handleSubmit} className="ap-checkout__payment-details card-custom">
 
-                    {/*title*/}
+				{/*title*/}
 
-					<div className="ap-checkout__payment-details__title">
-						<h3 className="title-normal">
-							<i className="fa fa-lock" aria-hidden="true" />
-							Payment details
-							<span>your reservation is safe and secure</span>
-						</h3>
-					</div>
+				<div className="ap-checkout__payment-details__title">
+					<h3 className="title-normal">
+						<i className="fa fa-lock" aria-hidden="true" />
+						Payment details
+						<span>your reservation is safe and secure</span>
+					</h3>
+				</div>
 
-                    {/*inputs*/}
+				{/*inputs*/}
 
-					<div className="ap-checkout__payment-details__inputs">
+				<div className="ap-checkout__payment-details__inputs">
 
-                        {/*inputs body*/}
+					{/*inputs body*/}
 
-						<div className="row">
-							<div className="col-md-6">
-								<label>
-									Name<input type="text" />
-								</label>
-							</div>
-
-							<div className="col-md-6">
-								<label>
-									Phone Number<input type="text" />
-								</label>
-							</div>
+					<div className="row">
+						<div className="col-md-6">
+							<label>
+								Name
+								<input type="text" />
+							</label>
 						</div>
 
-                        {/*t&c*/}
-
-						<p className="ap-checkout__payment-details__terms">
-							I have read and accept the
-							<a href="#"> terms of use</a>,
-							<a href="#"> rules of flight </a>
-							and
-							<a href="#"> privacy policy</a>
-						</p>
-
-                        {/*submit*/}
-
-						<div className="ap-checkout__payment-details__submit">
-
-                            {
-                                this.state.loading ?
-                                    (
-										<button type="submit" className="btn-custom">
-											<i className="fa fa-spinner" aria-hidden="true" /> Please wait...
-										</button>
-                                    ) :
-                                    (
-										<button
-											type="submit"
-											className="btn-custom"
-											disabled={this.state.isReservationPaid}
-										>
-											Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
-										</button>
-                                    )
-                            }
-
+						<div className="col-md-6">
+							<label>
+								Email
+								<input type="email" />
+							</label>
 						</div>
 					</div>
 
-				</form>
+					<div className="row">
+						<div className="col-md-6">
+							<label>
+								Phone Number
+								<input type="tel" />
+							</label>
+						</div>
+					</div>
+
+					{/*t&c*/}
+
+					<p className="ap-checkout__payment-details__terms">
+						I have read and accept the
+						<a href="#"> terms of use</a>,
+						<a href="#"> rules of flight </a>
+						and
+						<a href="#"> privacy policy</a>
+					</p>
+
+					{/*submit*/}
+
+					<div className="ap-checkout__payment-details__submit">
+
+						{
+							this.state.loading ?
+								(
+									<button type="submit" className="btn-custom" disabled>
+										<i className="fa fa-spinner" aria-hidden="true" />
+										Please wait...
+									</button>
+								) :
+								(
+									<button
+										type="submit"
+										className="btn-custom"
+										disabled={this.state.isReservationPaid}
+									>
+										Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
+									</button>
+								)
+						}
+
+					</div>
+				</div>
 
                 {
                     this.state.isReservationPaid ?
                         (
-							<div>
-								<h4>Your reservation was successfully paid!</h4>
-								<p>Reservation Id: <b>{this.props.paidReservation && this.props.paidReservation.id}</b></p>
-								<p>Status: <b>{this.props.paidReservation && this.props.paidReservation.status}</b></p>
+							<div className="ap-checkout__payment-details__success">
+								<h4 className="title-normal">Your reservation was successfully paid!</h4>
+								<p className="title-small-mont">Reservation Id: <b>{this.props.paidReservation && this.props.paidReservation.id}</b></p>
+								<p className="title-small-mont">Status: <b>{this.props.paidReservation && this.props.paidReservation.status}</b></p>
 							</div>
                         ) : null
                 }
 
-				{
-					this.state.iframeShown && !this.state.isReservationPaid ?
-						(
-							<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="500" align="left">
-								Your browser does not support iframes!
-							</iframe>
-						) : null
-				}
+                {
+                    this.state.iframeShown && !this.state.isReservationPaid ?
+                        (
 
-			</div>
+							<div className="ap-checkout__payment-details__pnf-payment">
+								<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="512" align="left">
+									Your browser does not support iframes!
+								</iframe>
+							</div>
+
+                        ) : null
+                }
+
+			</form>
 		);
 	}
 }
