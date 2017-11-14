@@ -23,12 +23,16 @@ export default class SubmitButton extends Component {
                                     disabled={this.props.loading}
                                     className={classnames('btn-custom', { disabled: this.props.loading })}
                                 >
-                                    Proceed to checkout
+                                    <span className="hidden-xs">Proceed to checkout</span>
+                                    <span className="m-text">Park here</span>
+                                    <span className="m-price">${this.props.rate.price && this.props.rate.price.total}</span>
                                 </button>
                         ) :
                         (
                             <a className="btn-custom" onClick={this.props.handleNonAuthProceed}>
-                                Proceed to checkout
+                                <span className="hidden-xs">Proceed to checkout</span>
+                                <span className="m-text">Park here</span>
+                                <span className="m-price">${this.props.rate.price && this.props.rate.price.total}</span>
                             </a>
                         )
                 }
@@ -40,5 +44,6 @@ export default class SubmitButton extends Component {
 SubmitButton.propTypes = {
     auth: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
-    handleNonAuthProceed: PropTypes.func.isRequired
+    handleNonAuthProceed: PropTypes.func.isRequired,
+    rate: PropTypes.object.isRequired
 };

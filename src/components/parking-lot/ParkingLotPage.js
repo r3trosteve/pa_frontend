@@ -147,6 +147,9 @@ class ParkingLotPage extends Component {
 									<li className="ap-details__navigation__item">
 										<a href="#apd-reviews">Reviews</a>
 									</li>
+									<li className="ap-details__navigation__item visible-xs">
+										<a href="#summary">Summary</a>
+									</li>
 
 								</ul>
 							</div>

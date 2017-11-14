@@ -13,9 +13,9 @@ export default class Info extends Component {
 				{/*title*/}
 
 				<div className="ap-details__info__title">
-					<h3 className="title-normal-bold">
+					<h1 className="title-normal-bold">
 						{rate.parking_lot && rate.parking_lot.name}
-					</h3>
+					</h1>
 				</div>
 
 				<div className="ap-details__info__rating">

@@ -47,7 +47,9 @@ class AirportsPage extends Component {
 
                     <div className="container airports__form__container text-center">
 
-                        <BookTravel />
+                        <div className="airports__book-travel hidden-xs">
+                            <BookTravel />
+                        </div>
 
                         <h1 className="title-big">All Airports</h1>
 

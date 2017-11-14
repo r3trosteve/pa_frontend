@@ -8,7 +8,7 @@ import trainIcon from '../../assets/images/svg/train.svg';
 export default class BookTravel extends Component {
 	render() {
 		return (
-			<div className="book-travel hidden-xs">
+			<div className="book-travel">
 
 				<a href="#" className="book-travel__link">
 

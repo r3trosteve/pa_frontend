@@ -82,7 +82,11 @@ class App extends Component {
 
 				</Switch>
 
-				<Footer />
+				{
+					!this.props.location.pathname.match(/\/rates\/search\/*/) ?
+						<Footer /> :
+						null
+				}
 
 			</div>
 		);

@@ -92,7 +92,7 @@ class OrderSummary extends Component {
             const rate = this.props.rate;
 
             return (
-				<div className="order-summary card-custom card-custom--no-pad">
+				<div className="order-summary card-custom card-custom--no-pad" id="summary">
 
                     {/*header*/}
 
@@ -184,6 +184,7 @@ class OrderSummary extends Component {
 							loading={this.state.loading}
 							handleNonAuthProceed={this.handleNonAuthProceed}
 							onClick={this.handleSubmit}
+							rate={rate}
 						/>
 
 					</form>
