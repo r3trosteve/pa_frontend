@@ -49,7 +49,7 @@ export default class Calendar extends Component {
 		let label = '';
 		let start = (startDate && startDate.format('MM/DD/YYYY hh:mm A')) || '';
 		let end = (endDate && endDate.format('MM/DD/YYYY hh:mm A')) || '';
-		label = start + '  ⟶  ' + end;
+		label = start + '  -  ' + end;
 		if (start === end) {
 			label = start;
 		}
@@ -119,7 +119,7 @@ export default class Calendar extends Component {
 						<input
 							type="text"
 							name="startDate"
-							placeholder="Parking Check-in  ⟶  Parking Check-out"
+							placeholder="Parking Check-in  -  Parking Check-out"
 							readOnly
 							className="airport-date"
 							value={label}

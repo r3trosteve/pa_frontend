@@ -45,8 +45,9 @@ class App extends Component {
 					titleAttributes={{itemprop: "name", lang: "en"}}
 					meta={[
 						{name: "description", content: "ParkingAccess provides discounted rates with park sleep and fly packages"},
-						{name: "viewport", content: "width=device-width, initial-scale=1"},
-					]}
+						{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"},
+
+                    ]}
 				/>
 
 				<Header
