@@ -7,6 +7,7 @@ import NotFoundPage from './components/notofund/NotFoundPage';
 import NewPasswordPage from './components/profile/NewPasswordPage';
 import AirportPage from './components/airport/AirportPage';
 import AirportsPage from './components/airports/AirportsPage';
+import ReservatinPage from './components/reservation/ResrvationPage';
 
 const routes = [
 	{
@@ -46,6 +47,10 @@ const routes = [
         path: '/airports',
         component: AirportsPage
     },
+	{
+		path: '/reservation',
+		component: ReservatinPage
+	},
     {
         path: '*',
         component: NotFoundPage
