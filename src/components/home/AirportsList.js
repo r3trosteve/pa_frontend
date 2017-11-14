@@ -36,7 +36,7 @@ export default class AirportsList extends Component {
 
 					<div className="col-md-4 col-sm-4 airports-list__column">
 						<ul className="airports-list__list">
-							{this.props.airports.slice(0, 9).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(0, 36).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
@@ -44,7 +44,7 @@ export default class AirportsList extends Component {
 
 					<div className="col-md-4 col-sm-4 airports-list__column">
 						<ul className="airports-list__list">
-							{this.props.airports.slice(9, 18).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(36, 71).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 
@@ -52,7 +52,7 @@ export default class AirportsList extends Component {
 
 					<div className="col-md-4 col-sm-4 airports-list__column">
 						<ul className="airports-list__list">
-							{this.props.airports.slice(18, 25).map((airport, index) => this.showList(index, airport))}
+							{this.props.airports.slice(71, 120).map((airport, index) => this.showList(index, airport))}
 						</ul>
 					</div>
 				</div>

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import EditFormModal from './EditFormModal';
+import SubmitButton from './SubmitButton';
 
 import { createReservation } from '../../modules/reservations/reservation';
 
@@ -159,16 +160,9 @@ class OrderSummary extends Component {
 							<tr>
 								<td>
 									Price per day:
-									{/*<span> ${rate.price && rate.price.daily_rate}</span>*/}
 								</td>
 								<td> ${rate.price && rate.price.daily_rate}</td>
 							</tr>
-							{/*<tr>*/}
-								{/*<td>*/}
-									{/*Service fee: <span> ${rate.price && rate.price.service_fee}</span>*/}
-								{/*</td>*/}
-								{/*<td> ${rate.price && rate.price.service_fee}</td>*/}
-							{/*</tr>*/}
 							</tbody>
 						</table>
 
@@ -183,74 +177,14 @@ class OrderSummary extends Component {
 							</tbody>
 						</table>
 
-                        {/*4*/}
-
-						{/*<table className="order-summary__table">*/}
-							{/*<tbody>*/}
-							{/*<tr>*/}
-								{/*<td>Pay Now:</td>*/}
-								{/*<td> ${rate.price && rate.price.pay_now}</td>*/}
-							{/*</tr>*/}
-							{/*<tr>*/}
-								{/*<td>Due at Parking Lot:</td>*/}
-								{/*<td> ${rate.price && rate.price.due_at_parking_lot}</td>*/}
-							{/*</tr>*/}
-							{/*</tbody>*/}
-						{/*</table>*/}
-
-                        {/*coupon*/}
-
-						{/*<table className="order-summary__table coupon">*/}
-							{/*<tbody>*/}
-								{/*<tr>*/}
-									{/*<td>*/}
-										{/*<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>*/}
-											{/*Have a Coupon Code?*/}
-										{/*</span>*/}
-									{/*</td>*/}
-									{/*<td>*/}
-										{/*<label*/}
-											{/*className={classnames('order-summary__coupon-label', {*/}
-												{/*visible: this.state.showCoupon*/}
-											{/*})}*/}
-										{/*>*/}
-											{/*<input type="text" />*/}
-										{/*</label>*/}
-									{/*</td>*/}
-								{/*</tr>*/}
-							{/*</tbody>*/}
-						{/*</table>*/}
-
                         {/*submit*/}
 
-						<div className="order-summary__submit">
-							{
-								this.props.auth && this.props.auth.isAuthenticated ?
-									(
-                                        this.state.loading ?
-											<button
-												type="submit"
-												disabled={this.state.loading}
-												className={classnames('btn-custom', { disabled: this.state.loading })}
-											>
-												<i className="fa fa-spinner" aria-hidden="true" />
-												Please wait...
-											</button> :
-											<button
-												type="submit"
-												disabled={this.state.loading}
-												className={classnames('btn-custom', { disabled: this.state.loading })}
-											>
-												Proceed to checkout
-											</button>
-									) :
-									(
-										<a className="btn-custom" onClick={this.handleNonAuthProceed}>
-											Proceed to checkout
-										</a>
-									)
-							}
-						</div>
+						<SubmitButton
+							auth={this.props.auth}
+							loading={this.state.loading}
+							handleNonAuthProceed={this.handleNonAuthProceed}
+							onClick={this.handleSubmit}
+						/>
 
 					</form>
 

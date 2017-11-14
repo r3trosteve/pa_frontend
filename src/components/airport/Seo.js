@@ -6,8 +6,8 @@ export default class AirportPageSeo extends Component {
     render() {
         return (
             <div className="airport__seo">
-                {/*breadcrumbs*/}
 
+                {/*breadcrumbs*/}
                 <ul className="breadcrumb">
                     <li>
                         <Link to="/"><i className="fa fa-home" aria-hidden="true"></i> Home</Link>

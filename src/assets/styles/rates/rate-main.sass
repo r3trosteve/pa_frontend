@@ -59,8 +59,6 @@
         opacity: 1
         transform: translateY(0)
 
-
-
   //mobile tabs
 
   &__mobile-tabs
@@ -100,23 +98,22 @@
         margin-top: 142px
 
     &__row
-      max-width: 720px
       margin: 0 auto
       box-shadow: $shadow-main
       min-height: 627px
+      display: block!important
 
     &__column
+      display: block
 
       &--content
         width: 100%
 
       &--map
-        position: absolute
-        top: 126px
-        height: 500px
         width: 100%
-        overflow: hidden
-        z-index: 1
+        position: absolute
+        top: 125px
+        left: 0
         .map-container.fixed-map
           position: relative!important
         &.mobile-map
@@ -124,7 +121,7 @@
 
 @media (max-width: 767px)
   .rates
-    padding: 70px 15px 50px
+    padding: 70px 0 50px
 
     &__row
       min-height: 803px

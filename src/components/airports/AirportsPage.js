@@ -62,7 +62,24 @@ class AirportsPage extends Component {
                 <div className="airports__list-section section-pad">
 
                     <div className="container airports__container">
+
+                        {/*breadcrumbs*/}
+
+                        <div className="col-sm-12">
+                            <ul className="breadcrumb">
+                                <li>
+                                    <Link to="/"><i className="fa fa-home" aria-hidden="true"></i> Home</Link>
+                                </li>
+                                <li className="current-page">
+                                    <Link to="/airports">Airports</Link>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {/*airports list*/}
+
                         <AirportsList airports={this.props.airports} />
+
                     </div>
 
                 </div>

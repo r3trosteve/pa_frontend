@@ -130,15 +130,21 @@ export default class OrderSummary extends Component {
 						<tbody>
 						<tr>
 							<td>
-								{reservation.price_details && reservation.price_details[1].name}:
+                                Taxes & Fees:
+								<div>
+									<p>
+                                        {reservation.price_details && reservation.price_details[1].name}:
+										<b> ${reservation.price_details && reservation.price_details[1].amount}</b>
+									</p>
+									<p>
+										Service fee:
+										<b> ${reservation.price_details && reservation.price_details[2].amount}</b>
+									</p>
+								</div>
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[1].amount}</td>
-						</tr>
-						<tr>
 							<td>
-                                Service fee:
+								${parseFloat(reservation.price_details && reservation.price_details[1].amount) + parseFloat(reservation.price_details && reservation.price_details[2].amount)}
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[2].amount}</td>
 						</tr>
 						</tbody>
 					</table>
