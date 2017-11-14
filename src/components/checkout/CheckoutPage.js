@@ -8,7 +8,7 @@ import ContactUs from './ContactUs';
 import OrderSummary from './OrderSummary';
 import Private from '../profile/Private';
 
-import { fetchReservation } from '../../modules/reservations/reservation';
+import { fetchReservation, fetchPaidReservation } from '../../modules/reservations/reservation';
 import { requestCheckout } from '../../modules/checkout/checkout';
 
 class AirportParkingCheckoutPage extends Component {
@@ -70,6 +70,8 @@ class AirportParkingCheckoutPage extends Component {
 									requestCheckout={this.props.requestCheckout}
 									reservation={this.props.reservation}
 									checkout={this.props.checkout}
+									fetchPaidReservation={this.props.fetchPaidReservation}
+									paidReservation={this.props.paidReservation}
 								/>
 
 							</div>
@@ -93,13 +95,20 @@ AirportParkingCheckoutPage.propTypes = {
     reservation: PropTypes.object.isRequired,
     requestCheckout: PropTypes.func.isRequired,
 	checkout: PropTypes.object,
-	auth: PropTypes.object.isRequired
+	auth: PropTypes.object.isRequired,
+    fetchPaidReservation: PropTypes.func.isRequired,
+    paidReservation: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
 	reservation: state.reservation.item,
+    paidReservation: state.reservation.paidItem,
 	checkout: state.checkout.item,
     auth: state.auth
 });
 
-export default connect(mapStateToProps, { fetchReservation, requestCheckout })(AirportParkingCheckoutPage);
+export default connect(mapStateToProps, {
+	fetchReservation,
+	fetchPaidReservation,
+	requestCheckout
+})(AirportParkingCheckoutPage);

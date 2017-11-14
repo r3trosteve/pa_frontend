@@ -4,9 +4,11 @@ const baseUrl = 'http://staging.back.parkingaccess.com/reservations/';
 
 export const RESERVATION_CREATED = 'RESERVATION_CREATED';
 export const RESERVATION_FETCHED = 'RESERVATION_FETCHED';
+export const RESERVATION_PAID_FETCHED = 'RESERVATION_PAID_FETCHED';
 
 const initialState = {
-    item: {}
+    item: {},
+    paidItem: {}
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,6 +18,9 @@ export default function reducer(state = initialState, action) {
 
         case RESERVATION_FETCHED:
             return Object.assign({}, state, { item: action.item });
+
+        case RESERVATION_PAID_FETCHED:
+            return Object.assign({}, state, { paidItem: action.item });
 
         default:
             return state;
@@ -57,4 +62,36 @@ export const fetchReservation = id => dispatch => {
                 item: data['reservation']
             });
         });
+};
+
+export const fetchPaidReservation = (id) => (dispatch) => {
+
+    let interval;
+
+    const promise = new Promise((resolve, reject) => {
+        interval = setInterval(() => {
+            fetch(baseUrl + id, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json; version=1',
+                    'Access-token': localStorage.jwtToken
+                }
+            })
+                .then(res => res.json())
+                .then((data) => {
+                    if (data['reservation'].status === 'confirmed') {
+                        clearInterval(interval);
+                        resolve(data['reservation']);
+                    }
+                });
+        }, 1000);
+    });
+
+    promise.then(data => {
+        dispatch({
+            type: RESERVATION_PAID_FETCHED,
+            item: data
+        });
+    });
 };

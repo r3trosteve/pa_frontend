@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
 
 export default class PaymentDetails extends Component {
 
@@ -8,7 +9,8 @@ export default class PaymentDetails extends Component {
 
 		this.state = {
 			iframeShown: false,
-			loading: false
+			loading: false,
+			isReservationPaid: false
 		};
 
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,9 +25,19 @@ export default class PaymentDetails extends Component {
 
         this.props.requestCheckout(id)
 			.then(() => this.setState({ loading: false, iframeShown: true }));
+
+        this.props.fetchPaidReservation(id);
 	}
 
+    componentWillReceiveProps(nextProps) {
+        if (!isEmpty(nextProps.paidReservation)) {
+            console.log('paid reservation:', this.props.paidReservation);
+            this.setState({ isReservationPaid: true });
+        }
+    }
+
 	render() {
+
 		return (
 			<div>
 
@@ -95,7 +107,19 @@ export default class PaymentDetails extends Component {
 				</form>
 
 				{
-					this.state.iframeShown ?
+					this.state.isReservationPaid ?
+						(
+							<div>
+								<h4>Your reservation was successfully paid!</h4>
+
+								<p>Id: <b>{this.props.paidReservation && this.props.paidReservation.id}</b></p>
+								<p>Status: <b>{this.props.paidReservation && this.props.paidReservation.status}</b></p>
+							</div>
+						) : null
+				}
+
+				{
+					this.state.iframeShown && !this.state.isReservationPaid ?
 						(
 							<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="500" align="left">
 								Your browser does not support iframes!
@@ -111,5 +135,7 @@ export default class PaymentDetails extends Component {
 PaymentDetails.propTypes = {
 	requestCheckout: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
-    checkout: PropTypes.object.isRequired
+    checkout: PropTypes.object.isRequired,
+    fetchPaidReservation: PropTypes.func.isRequired,
+    paidReservation: PropTypes.object.isRequired
 };
