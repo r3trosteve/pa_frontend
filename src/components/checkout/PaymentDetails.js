@@ -97,7 +97,7 @@ export default class PaymentDetails extends Component {
 				{
 					this.state.iframeShown ?
 						(
-							<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="100%" align="left">
+							<iframe src={this.props.checkout && this.props.checkout.payment_url} width="100%" height="500" align="left">
 								Your browser does not support iframes!
 							</iframe>
 						) : null

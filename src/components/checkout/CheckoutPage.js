@@ -21,11 +21,11 @@ class AirportParkingCheckoutPage extends Component {
         }
     }
 
-    componentWillUpdate(nextProps) {
-		if (nextProps.auth.isAuthenticated) {
-			nextProps.fetchReservation(this.props.match.params.id);
-		}
-	}
+    // componentWillUpdate(nextProps) {
+	// 	if (nextProps.auth.isAuthenticated) {
+	// 		nextProps.fetchReservation(this.props.match.params.id);
+	// 	}
+	// }
 
 	render() {
 

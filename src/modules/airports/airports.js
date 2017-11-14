@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export const fetchAirports = () => dispatch => {
-	return fetch('http://staging.back.parkingaccess.com/airports', {
+	return fetch('http://staging.back.parkingaccess.com/airports?per_page=200', {
 		method: 'get',
 		headers: {
             'Content-Type': 'application/json',
