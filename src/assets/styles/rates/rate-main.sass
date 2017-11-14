@@ -24,7 +24,6 @@
     img
       margin-top: calc(50% - 150px)
 
-
   &__row
     display: flex
     position: relative
@@ -100,7 +99,6 @@
     &__row
       margin: 0 auto
       box-shadow: $shadow-main
-      min-height: 627px
       display: block!important
 
     &__column
@@ -117,14 +115,15 @@
         .map-container.fixed-map
           position: relative!important
         &.mobile-map
-          z-index: -1
+          height: 0
+          overflow: hidden
 
 @media (max-width: 767px)
   .rates
     padding: 70px 0 0
 
-    &__row
-      min-height: 803px
+    &__loading img
+      margin-top: 102px
 
     &__column--map
       top: 302px

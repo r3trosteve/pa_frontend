@@ -31,6 +31,8 @@ export default class OrderSummary extends Component {
 
 		const reservation = this.props.reservation;
 
+		const taxFees = parseFloat(reservation.price_details && reservation.price_details[1].amount) + parseFloat(reservation.price_details && reservation.price_details[2].amount);
+
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
 
@@ -143,7 +145,7 @@ export default class OrderSummary extends Component {
 								</div>
 							</td>
 							<td>
-								${parseFloat(reservation.price_details && reservation.price_details[1].amount) + parseFloat(reservation.price_details && reservation.price_details[2].amount)}
+								${taxFees.toFixed(2)}
 							</td>
 						</tr>
 						</tbody>
