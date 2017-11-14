@@ -15,6 +15,20 @@ export default class Header extends Component {
 	}
 
 	render() {
+
+		// prepare rate types for filter
+
+		let filterTypes = [];
+
+		this.props.rates.map(rate => {
+			filterTypes.push(rate.name);
+		});
+
+		filterTypes = new Set(filterTypes);
+		filterTypes = Array.from(filterTypes);
+
+        // end
+
 		return (
 			<div className="rates__items-header">
 
@@ -36,13 +50,13 @@ export default class Header extends Component {
 						<li onClick={() => this.props.filterRates(this.props.rates, '')}>Show All</li>
 
                         {
-                            this.props.rates.slice(0, 5).map((rate) => {
+                            filterTypes.sort().map((type, index) => {
                                 return (
 									<li
-										key={rate.id}
-										onClick={() => this.props.filterRates(this.props.rates, rate.name)}
+										key={index}
+										onClick={() => this.props.filterRates(this.props.rates, type)}
 									>
-                                        {rate.name}
+                                        {type}
 									</li>
                                 );
                             })
