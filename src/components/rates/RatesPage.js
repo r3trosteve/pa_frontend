@@ -139,7 +139,7 @@ class RatesPage extends Component {
                             !this.state.mapLoading ?
                                 ( <GoogleMap
                                     search={this.props.search}
-                                    rates={this.props.rates}
+                                    rates={this.props.filteredRates}
                                 /> ) :
                                 null
                         }
