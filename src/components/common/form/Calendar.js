@@ -30,6 +30,7 @@ export default class Calendar extends Component {
         let calendarDropdown = $('.daterangepicker.dropdown-menu');
 
         calendarDropdown.append('<i class="ion-ios-close close-calendar-dropdown"></i>');
+        
         $('.ion-ios-close.close-calendar-dropdown').click(function () {
             calendarDropdown.css({
                 'display': 'none'

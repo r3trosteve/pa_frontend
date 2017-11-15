@@ -131,9 +131,11 @@ export default class OrderSummary extends Component {
 					<table className="order-summary__table">
 						<tbody>
 						<tr>
-							<td>
+							<td className="taxes-fees">
+								<i className="fa fa-question-circle" aria-hidden="true"></i>
                                 Taxes & Fees:
-								<div>
+								<div className="summary-tooltip">
+									<h4>Taxes and fees details</h4>
 									<p>
                                         {reservation.price_details && reservation.price_details[1].name}:
 										<b> ${reservation.price_details && reservation.price_details[1].amount}</b>
@@ -142,6 +144,7 @@ export default class OrderSummary extends Component {
 										Service fee:
 										<b> ${reservation.price_details && reservation.price_details[2].amount}</b>
 									</p>
+									<i className="fa fa-caret-down" aria-hidden="true"></i>
 								</div>
 							</td>
 							<td>

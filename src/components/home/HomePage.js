@@ -41,8 +41,6 @@ class HomePage extends Component {
 		return (
 			<div className="home">
 
-
-
 				<Helmet title="Home" />
 
 				<Search />

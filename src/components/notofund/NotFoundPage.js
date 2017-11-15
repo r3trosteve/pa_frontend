@@ -10,11 +10,14 @@ export default class NotFoundPage extends Component {
                     staticContext.status = 404;
                 }
                 return (
-                    <div>
+                    <div className="not-found-page">
 
                         <Helmet title="404 Page Not Found" />
 
-                        <h1>404 Page Not Found</h1>
+                        <div className="container not-found-page__container">
+                            <span>404</span>
+                            <h1>Page Not Found</h1>
+                        </div>
 
                     </div>
                 );

@@ -1,0 +1,29 @@
+
+.not-found-page
+  background: $white
+  min-height: calc(100vh - 198px)
+  text-align: center
+  display: table
+  width: 100%
+  &__container
+    display: table-cell
+    vertical-align: middle
+    span
+      font-size: 150px
+      display: block
+      color: $red
+    h1
+      font-size: 40px
+      text-transform: uppercase
+      color: $orange
+      font-family: 'Montserrat', sans-serif
+      font-weight: 400
+      letter-spacing: 3px
+
+//responsiveness
+@media (max-width: 767px)
+  .not-found-page
+    span
+      font-size: 60px
+    h1
+      font-size: 20px

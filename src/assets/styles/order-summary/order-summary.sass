@@ -19,7 +19,6 @@
   &__title p
     margin-top: 5px
     color: $blue
-    font-family: 'Montserrat', sans-serif
 
 
   &__table
@@ -29,9 +28,9 @@
     border-collapse: separate
     tr
       td
-        font-size: 13px
+        font-size: 14px
         color: $blue
-        line-height: 22px
+        line-height: 26px
         vertical-align: middle
         a
           font-size: 14px
@@ -39,6 +38,54 @@
           color: #0274d8
           &:hover
             color: $orange
+        &.taxes-fees
+          position: relative
+          cursor: default
+          i.fa-question-circle
+            font-size: 18px
+            color: $green
+            position: relative
+            margin-right: 4px
+            top: 0.5px
+          .summary-tooltip
+            position: absolute
+            top: -110px
+            left: -15px
+            box-shadow: $shadow-popover
+            border-radius: 4px
+            z-index: 10
+            background: $blue
+            padding: 15px 0
+            color: white
+            display: none
+            opacity: 0
+            animation: summary-tooltip 0.5s forwards
+            h4, p
+              font-family: 'Montserrat', sans-serif
+              padding: 0 15px
+              font-weight: 400
+            h4
+              margin-bottom: 10px
+              border-bottom: 1px solid $white-dark-op
+              padding-bottom: 10px
+            p
+              font-size: 14px
+              b
+                float: right
+                font-weight: 600
+            i.fa-caret-down
+              color: $blue
+              position: absolute
+              font-size: 30px
+              bottom: -7px
+              height: 20px
+              left: 14px
+          &:hover .summary-tooltip
+            display: block
+          @keyframes summary-tooltip
+            to
+              top: -130px
+              opacity: 1
 
         &:first-child
           font-weight: 700
@@ -46,7 +93,6 @@
             font-weight: 400
         &:last-child
           text-align: right
-
 
     &.coupon
       padding: 0

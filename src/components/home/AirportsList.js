@@ -66,7 +66,7 @@ export default class AirportsList extends Component {
 
 							{
 								this.state.visible ?
-									this.props.airports.slice(0, 25).map((airport, index) => this.showList(index, airport)) :
+									this.props.airports.slice(0, 120).map((airport, index) => this.showList(index, airport)) :
 									this.props.airports.slice(0, 10).map((airport, index) => this.showList(index, airport))
 							}
 
