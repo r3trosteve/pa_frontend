@@ -16,16 +16,8 @@ class AirportParkingCheckoutPage extends Component {
     componentDidMount() {
         $(window).scrollTop(0); // jq to load page on top
 
-        if (this.props.auth.isAuthenticated) {
-            this.props.fetchReservation(this.props.match.params.id);
-        }
+		this.props.fetchReservation(this.props.match.params.id);
     }
-
-    // componentWillReceiveProps(nextProps) {
-    //     if (nextProps.auth.isAuthenticated) {
-    //         nextProps.fetchReservation(this.props.match.params.id);
-    //     }
-    // }
 
 	render() {
 
@@ -64,6 +56,7 @@ class AirportParkingCheckoutPage extends Component {
 									checkout={this.props.checkout}
 									fetchPaidReservation={this.props.fetchPaidReservation}
 									paidReservation={this.props.paidReservation}
+									auth={this.props.auth}
 								/>
 
 							</div>

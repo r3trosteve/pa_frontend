@@ -62,14 +62,14 @@ export default class PaymentDetails extends Component {
 						<div className="col-md-6">
 							<label>
 								Name
-								<input type="text" />
+								<input type="text" value={this.props.auth.user && this.props.auth.user.name} />
 							</label>
 						</div>
 
 						<div className="col-md-6">
 							<label>
 								Email
-								<input type="email" />
+								<input type="email" value={this.props.auth.user && this.props.auth.user.email} />
 							</label>
 						</div>
 					</div>
@@ -153,5 +153,6 @@ PaymentDetails.propTypes = {
     reservation: PropTypes.object.isRequired,
     checkout: PropTypes.object.isRequired,
     fetchPaidReservation: PropTypes.func.isRequired,
-    paidReservation: PropTypes.object.isRequired
+    paidReservation: PropTypes.object.isRequired,
+	auth: PropTypes.object.isRequired
 };
