@@ -6,6 +6,16 @@ export default ({ markup, helmet, initialData }) => {
 			<html ${helmet.htmlAttributes.toString()}>
 
 			<head>
+			
+				<!-- Global site tag (gtag.js) - Google Analytics -->
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-12474447-1"></script>
+				<script>
+				  window.dataLayer = window.dataLayer || [];
+				  function gtag(){dataLayer.push(arguments);}
+				  gtag('js', new Date());
+				
+				  gtag('config', 'UA-12474447-1');
+				</script>
 
 				${helmet.title.toString()}
 				${helmet.meta.toString()}
@@ -33,7 +43,8 @@ export default ({ markup, helmet, initialData }) => {
 				
 				<script>window.__initialData__ = ${serialize(initialData)}</script>
 
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkX5LaBfzBgmm8ihvTIOJg-N65oCwqlAk&libraries=places&language=en"></script>				
+				<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkX5LaBfzBgmm8ihvTIOJg-N65oCwqlAk&libraries=places&language=en"></script>-->
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYbKHvKbo-OVngwn9sj2s8mFuqLxUwA-A&libraries=places&callback=initGooglePlace"></script>
 
 			</body>
 
