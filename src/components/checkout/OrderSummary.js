@@ -31,7 +31,7 @@ export default class OrderSummary extends Component {
 
 		const reservation = this.props.reservation;
 
-		const taxFees = parseFloat(reservation.price_details && reservation.price_details[1].amount) + parseFloat(reservation.price_details && reservation.price_details[2].amount);
+		const taxFees = parseFloat(reservation.price_details && reservation.price_details[0].amount) + parseFloat(reservation.price_details && reservation.price_details[1].amount);
 
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
@@ -115,7 +115,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Subtotal:
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[0].amount}</td>
+							<td> ${reservation.price_details && reservation.price_details[2].amount}</td>
 						</tr>
 						<tr>
 							<td>
@@ -142,7 +142,7 @@ export default class OrderSummary extends Component {
 									</p>
 									<p>
 										Service fee:
-										<b> ${reservation.price_details && reservation.price_details[2].amount}</b>
+										<b> ${reservation.price_details && reservation.price_details[0].amount}</b>
 									</p>
 									<i className="fa fa-caret-down" aria-hidden="true"></i>
 								</div>
