@@ -4,7 +4,9 @@ const baseUrl = 'http://staging.back.parkingaccess.com/reservations/';
 
 export const RESERVATION_CREATED = 'RESERVATION_CREATED';
 export const RESERVATION_FETCHED = 'RESERVATION_FETCHED';
+export const RESERVATION_FETCH_STARTED = 'RESERVATION_FETCH_STARTED';
 export const RESERVATION_PAID_FETCHED = 'RESERVATION_PAID_FETCHED';
+export const RESERVATION_PAID_FETCH_STARTED = 'RESERVATION_PAID_FETCH_STARTED';
 
 const initialState = {
     item: {},
@@ -16,8 +18,14 @@ export default function reducer(state = initialState, action) {
         case RESERVATION_CREATED:
             return Object.assign({}, state, { item: action.item });
 
+        case RESERVATION_FETCH_STARTED:
+            return Object.assign({}, state, { item: {}, paidItem: {} });
+
         case RESERVATION_FETCHED:
             return Object.assign({}, state, { item: action.item });
+
+        case RESERVATION_PAID_FETCH_STARTED:
+            return Object.assign({}, state, { paidItem: {} });
 
         case RESERVATION_PAID_FETCHED:
             return Object.assign({}, state, { paidItem: action.item });
@@ -47,6 +55,8 @@ export const createReservation = data => dispatch => {
 };
 
 export const fetchReservation = id => dispatch => {
+    dispatch({ type: RESERVATION_FETCH_STARTED });
+
     return fetch(baseUrl + id, {
         method: 'get',
         headers: {
@@ -87,6 +97,8 @@ export const fetchPaidReservation = (id) => (dispatch) => {
                 });
         }, 1000);
     });
+
+    dispatch({ type: RESERVATION_PAID_FETCH_STARTED });
 
     promise.then(data => {
         dispatch({

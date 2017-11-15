@@ -32,7 +32,7 @@ export default class GoogleMapMark extends Component {
                     <h2>{this.props.rate.parking_lot.name}</h2>
 
                     <p className="text-bold">
-                        <span>1</span> mile(s)
+                        <span>{this.props.rate.distance.toFixed(1)}</span> mile(s)
                         from <span>airport</span>
                     </p>
 

@@ -44,7 +44,7 @@ export default ({ markup, helmet, initialData }) => {
 				<script>window.__initialData__ = ${serialize(initialData)}</script>
 
 				<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkX5LaBfzBgmm8ihvTIOJg-N65oCwqlAk&libraries=places&language=en"></script>-->
-				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYbKHvKbo-OVngwn9sj2s8mFuqLxUwA-A&libraries=places&callback=initGooglePlace"></script>
+				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYbKHvKbo-OVngwn9sj2s8mFuqLxUwA-A&libraries==places&language=en"></script>
 
 			</body>
 
