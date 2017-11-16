@@ -31,8 +31,6 @@ export default class OrderSummary extends Component {
 
 		const reservation = this.props.reservation;
 
-		// const taxFees = parseFloat(reservation.price_details && reservation.price_details[0].amount) + parseFloat(reservation.price_details && reservation.price_details[1].amount);
-
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
 
@@ -81,33 +79,17 @@ export default class OrderSummary extends Component {
 						<tr>
 							<td>
 								Days of parking:
-								<span>
-                                    {reservation.rate && reservation.rate.search.days}
-									{/*{' '}*/}
-									{/*{reservation.rate.search && reservation.rate.search.days === null ?*/}
-										{/*0 : reservation.rate.search && reservation.rate.search.days}*/}
-								</span>
 							</td>
-							<td></td>
+							<td>
+                                {' '}
+                                {reservation.rate && reservation.rate.search.days}
+							</td>
 
 						</tr>
 						</tbody>
 					</table>
 
-					{/*/!*2*!/*/}
-
-					{/*<table className="order-summary__table">*/}
-						{/*<tbody>*/}
-						{/*<tr>*/}
-							{/*<td>*/}
-								{/*Price per day:*/}
-							{/*</td>*/}
-							{/*<td> ${reservation.rate && reservation.rate.price.daily_rate}</td>*/}
-						{/*</tr>*/}
-						{/*</tbody>*/}
-					{/*</table>*/}
-
-                    {/*/!*3*!/*/}
+                    {/*/!*2*!/*/}
 
 					<table className="order-summary__table">
 						<tbody>
@@ -115,7 +97,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Subtotal:
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[1].amount}</td>
+							<td> ${reservation.price_details && reservation.price_details[5].amount}</td>
 						</tr>
 						<tr>
 							<td>
@@ -126,7 +108,7 @@ export default class OrderSummary extends Component {
 						</tbody>
 					</table>
 
-                    {/*/!*4*!/*/}
+                    {/*/!*3*!/*/}
 
 					<table className="order-summary__table">
 						<tbody>
@@ -135,21 +117,24 @@ export default class OrderSummary extends Component {
 								<i className="fa fa-question-circle" aria-hidden="true"></i>
                                 Taxes & Fees:
 								<div className="summary-tooltip">
-									<h4>Taxes and fees details</h4>
+									<h4>Taxes and Fees Details</h4>
 									<p>
                                         {reservation.price_details && reservation.price_details[0].name}:
 										<b> ${reservation.price_details && reservation.price_details[0].amount}</b>
 									</p>
-									{/*<p>*/}
-										{/*Service fee:*/}
-										{/*<b> ${reservation.price_details && reservation.price_details[0].amount}</b>*/}
-									{/*</p>*/}
-									<i className="fa fa-caret-down" aria-hidden="true"></i>
+									<p>
+                                        {reservation.price_details && reservation.price_details[1].name}:
+										<b> ${reservation.price_details && reservation.price_details[1].amount}</b>
+									</p>
+									<p>
+                                        {reservation.price_details && reservation.price_details[2].name}:
+										<b> ${reservation.price_details && reservation.price_details[2].amount}</b>
+									</p>
+									<i className="fa fa-caret-down" aria-hidden="true" />
 								</div>
 							</td>
 							<td>
-								{/*${taxFees.toFixed(2)}*/}
-								${reservation.price_details && reservation.price_details[0].amount}
+								${reservation.price_details && reservation.price_details[8].amount}
 							</td>
 						</tr>
 						</tbody>
@@ -188,14 +173,6 @@ export default class OrderSummary extends Component {
 							</tr>
 						</tbody>
 					</table>
-
-					{/*submit*/}
-
-					{/*<div className="order-summary__submit">*/}
-						{/*<button onClick={() => alert('No checkout yet')} className="btn-custom">*/}
-							{/*Check out*/}
-						{/*</button>*/}
-					{/*</div>*/}
 
 				</form>
 			</div>
