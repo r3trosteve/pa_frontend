@@ -31,7 +31,7 @@ export default class OrderSummary extends Component {
 
 		const reservation = this.props.reservation;
 
-		const taxFees = parseFloat(reservation.price_details && reservation.price_details[0].amount) + parseFloat(reservation.price_details && reservation.price_details[1].amount);
+		// const taxFees = parseFloat(reservation.price_details && reservation.price_details[0].amount) + parseFloat(reservation.price_details && reservation.price_details[1].amount);
 
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
@@ -96,16 +96,16 @@ export default class OrderSummary extends Component {
 
 					{/*/!*2*!/*/}
 
-					<table className="order-summary__table">
-						<tbody>
-						<tr>
-							<td>
-								Price per day:
-							</td>
-							<td> ${reservation.rate && reservation.rate.price.daily_rate}</td>
-						</tr>
-						</tbody>
-					</table>
+					{/*<table className="order-summary__table">*/}
+						{/*<tbody>*/}
+						{/*<tr>*/}
+							{/*<td>*/}
+								{/*Price per day:*/}
+							{/*</td>*/}
+							{/*<td> ${reservation.rate && reservation.rate.price.daily_rate}</td>*/}
+						{/*</tr>*/}
+						{/*</tbody>*/}
+					{/*</table>*/}
 
                     {/*/!*3*!/*/}
 
@@ -115,7 +115,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Subtotal:
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[2].amount}</td>
+							<td> ${reservation.price_details && reservation.price_details[1].amount}</td>
 						</tr>
 						<tr>
 							<td>
@@ -137,18 +137,19 @@ export default class OrderSummary extends Component {
 								<div className="summary-tooltip">
 									<h4>Taxes and fees details</h4>
 									<p>
-                                        {reservation.price_details && reservation.price_details[1].name}:
-										<b> ${reservation.price_details && reservation.price_details[1].amount}</b>
-									</p>
-									<p>
-										Service fee:
+                                        {reservation.price_details && reservation.price_details[0].name}:
 										<b> ${reservation.price_details && reservation.price_details[0].amount}</b>
 									</p>
+									{/*<p>*/}
+										{/*Service fee:*/}
+										{/*<b> ${reservation.price_details && reservation.price_details[0].amount}</b>*/}
+									{/*</p>*/}
 									<i className="fa fa-caret-down" aria-hidden="true"></i>
 								</div>
 							</td>
 							<td>
-								${taxFees.toFixed(2)}
+								{/*${taxFees.toFixed(2)}*/}
+								${reservation.price_details && reservation.price_details[0].amount}
 							</td>
 						</tr>
 						</tbody>
