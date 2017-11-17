@@ -30,9 +30,17 @@ export default class OrderSummary extends Component {
     render() {
 
 		const reservation = this.props.reservation;
+		const price_details = reservation.price_details;
+
+		const taxes = price_details && price_details.filter(x => x.kind === 'tax');
+
+        const total_fee = price_details && price_details.find(x => x.name === 'taxes');
+        const subtotal = price_details && price_details.find(x => x.name === 'subTotal');
 
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
+
+				<div><pre>{JSON.stringify(taxes, null, 2) }</pre></div>
 
 				{/*header*/}
 
@@ -97,7 +105,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Subtotal:
 							</td>
-							<td> ${reservation.price_details && reservation.price_details[5].amount}</td>
+							<td> ${subtotal && subtotal.amount}</td>
 						</tr>
 						<tr>
 							<td>
@@ -114,27 +122,25 @@ export default class OrderSummary extends Component {
 						<tbody>
 						<tr>
 							<td className="taxes-fees">
-								<i className="fa fa-question-circle" aria-hidden="true"></i>
+								<i className="fa fa-question-circle" aria-hidden="true" />
                                 Taxes & Fees:
 								<div className="summary-tooltip">
 									<h4>Taxes and Fees Details</h4>
-									<p>
-                                        {reservation.price_details && reservation.price_details[0].name}:
-										<b> ${reservation.price_details && reservation.price_details[0].amount}</b>
-									</p>
-									<p>
-                                        {reservation.price_details && reservation.price_details[1].name}:
-										<b> ${reservation.price_details && reservation.price_details[1].amount}</b>
-									</p>
-									<p>
-                                        {reservation.price_details && reservation.price_details[2].name}:
-										<b> ${reservation.price_details && reservation.price_details[2].amount}</b>
-									</p>
+
+									{taxes && taxes.map((tax, index) => {
+										return (
+											<p key={index}>
+												{tax.name}:
+												<b> ${tax.amount}</b>
+											</p>
+										);
+									})}
+
 									<i className="fa fa-caret-down" aria-hidden="true" />
 								</div>
 							</td>
 							<td>
-								${reservation.price_details && reservation.price_details[8].amount}
+								${total_fee && total_fee.amount}
 							</td>
 						</tr>
 						</tbody>
