@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 
 export default class AirportPagePopularLots extends Component {
     render() {
+
+        const airport = this.props.airport;
+        const airport_seo = this.props.airport_seo;
+
         return (
             <div className="airport__popular section-pad">
 
@@ -153,38 +158,13 @@ export default class AirportPagePopularLots extends Component {
 
                         <div className="col-lg-6 col-md-5 airport__popular__column airport__popular__column--right">
                             <h4 className="title-normal-bold-upper">
-                                MCO Parking Reservations
+                                {airport_seo && airport_seo.header2}
                             </h4>
                             <p className="text-big">
-                                Whether you need short or long term parking
-                                at Orlando International Airport (MCO parking)
-                                our site offers a wide range of parking options
-                                and prices so you can compare and save on
-                                off-site Orlando Airport parking.
+                                {airport_seo && airport_seo.text1}
                                 <br/>
                                 <br/>
-                                We offer a wide selection of Orlando Airport parking options at low rates. We work with 100s of parking lot operators nationwide to offer our customers great rates and discounts. The lot operators listed on our site offer low-cost parking options such as self drive, covered, valet and long term parking.
-                                <br/>
-                                <br/>
-                                Use the search field above to find
-                                the Orlando Airport parking deal that meets your needs.
-                                All operators offer free shuttle service to
-                                Orlando International Airport (MCO) when you
-                                leave your car at their secure lots.
-                                <br/>
-                                <br/>
-                                For your convenience our compare & save service includes:
-                                <br/>
-                                <br/>
-                                - Access to the best rates from popular parking lots
-                                <br/>
-                                - 1000’s of real custom reviews
-                                <br/>
-                                - Free cancellations
-                                <br/>
-                                - Guaranteed bookings
-                                <br/>
-                                - Safe & easy to use reservation system
+                                {airport_seo && airport_seo.text2}
                             </p>
                         </div>
 
@@ -196,3 +176,8 @@ export default class AirportPagePopularLots extends Component {
         );
     }
 }
+
+AirportPagePopularLots.propTypes = {
+    airport: PropTypes.object.isRequired,
+    airport_seo: PropTypes.object
+};

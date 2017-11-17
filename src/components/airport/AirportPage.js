@@ -40,10 +40,19 @@ class AirportPage extends Component {
     }
 
     render() {
+
+        const airport = this.props.airport;
+        const airport_seo = this.props.airport.seo_content;
+
         return (
           <div className="airport">
 
-              <Helmet title={this.props.airport && this.props.airport.name} />
+              <Helmet
+                  title={airport_seo && airport_seo.page_title || airport && airport.name}
+                  meta={[
+                      {name: "description", content: airport_seo && airport_seo.meta_description}
+                  ]}
+              />
 
               <div className="airport__form">
                   <div className="container airport__form__container text-center">
@@ -52,7 +61,7 @@ class AirportPage extends Component {
                           <BookTravel />
                       </div>
 
-                      <h1 className="title-big">{this.props.airport && this.props.airport.name}</h1>
+                      <h1 className="title-big">{airport_seo && airport_seo.header1 || airport && airport.name}</h1>
 
                       <Form
                           airportId={this.props.airport.id}
@@ -63,9 +72,18 @@ class AirportPage extends Component {
               </div>
 
               <AirportPageBenefits />
-              <AirportPagePopularLots />
+
+              <AirportPagePopularLots
+                  airport={airport}
+                  airport_seo={airport_seo}
+              />
+
               <AirportPageAllLots />
-              <AirportPageHotels airport={this.props.airport} />
+
+              <AirportPageHotels
+                  airport={airport}
+                  airport_seo={airport_seo}
+              />
 
           </div>
         );

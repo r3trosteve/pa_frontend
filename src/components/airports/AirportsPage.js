@@ -70,7 +70,7 @@ class AirportsPage extends Component {
                         <div className="col-sm-12">
                             <ul className="breadcrumb">
                                 <li>
-                                    <Link to="/"><i className="fa fa-home" aria-hidden="true"></i> Home</Link>
+                                    <Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>
                                 </li>
                                 <li className="current-page">
                                     <Link to="/airports">Airports</Link>
