@@ -78,7 +78,10 @@ class AirportPage extends Component {
                   airport_seo={airport_seo}
               />
 
-              <AirportPageAllLots />
+              <AirportPageAllLots
+                  airport={airport}
+                  airport_seo={airport_seo}
+              />
 
               <AirportPageHotels
                   airport={airport}
