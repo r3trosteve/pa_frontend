@@ -40,8 +40,6 @@ export default class OrderSummary extends Component {
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">
 
-				<div><pre>{JSON.stringify(taxes, null, 2) }</pre></div>
-
 				{/*header*/}
 
 				<div className="order-summary__header">
