@@ -41,7 +41,7 @@ class App extends Component {
 				
 				<Helmet
 					htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
-					titleTemplate="%s | ParkingAccess"
+					titleTemplate="%s"
 					titleAttributes={{itemprop: "name", lang: "en"}}
 					meta={[
 						{name: "description", content: "ParkingAccess provides discounted rates with park sleep and fly packages"},
