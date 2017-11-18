@@ -63,6 +63,7 @@ class App extends Component {
 
 					<Route exact path="/" component={HomePage} />
 					<Route path="/home" component={HomePage} />
+
 					<Route path="/rates/search/:id" component={RatesPage} />
 
 					<PropsRoute
@@ -74,8 +75,10 @@ class App extends Component {
 					<Route path="/checkout/:id" component={CheckoutPage} />
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
-					<Route path="/airports/:id" component={AirportPage} />
+
 					<Route path="/airports" component={AirportsPage} />
+					<Route exact path="/:slug" component={AirportPage} />
+
 					<Route path="/reservation" component={ReservatinPage} />
 
 					<Route path="*" component={NotFoundPage} />

@@ -11,19 +11,19 @@ import AirportPageHotels from './Hotels';
 import Form from '../common/form/SearchForm';
 import BookTravel from '../common/BookTravel';
 
-import { fetchAirport } from '../../modules/airports/airport';
+import { findAirport } from '../../modules/airports/airport';
 
 class AirportPage extends Component {
 
     static fetchData(store, match) {
-        return store.dispatch(fetchAirport(match.params.id));
+        return store.dispatch(findAirport(match.params.slug));
     }
 
     componentDidMount() {
 
         $(window).scrollTop(0); // jq to load page on top
 
-        this.props.fetchAirport(this.props.match.params.id);
+        this.props.findAirport(this.props.match.params.slug);
 
         // jq parallax on airport bg
 
@@ -94,12 +94,12 @@ class AirportPage extends Component {
 }
 
 AirportPage.propTypes = {
-    fetchAirport: PropTypes.func.isRequired,
+    findAirport: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
     airport: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({ airport: state.airport.item });
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchAirport }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ findAirport }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AirportPage);

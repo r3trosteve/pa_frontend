@@ -32,3 +32,15 @@ export const fetchAirport = id => dispatch => {
             });
         });
 };
+
+export const findAirport = slug => dispatch => {
+    return fetch(`http://staging.back.parkingaccess.com/airports?q[seo_content_slug_eq]=${slug}`, {
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        }
+    })
+        .then(res => res.json())
+        .then(data => dispatch(fetchAirport(data['airports'][0].id)));
+};

@@ -28,7 +28,7 @@ const routes = [
 		component: ParkingLotPage
 	},
 	{
-		path: '/che/:id',
+		path: '/checkout/:id',
 		component: CheckoutPage
 	},
 	{
@@ -39,13 +39,14 @@ const routes = [
 		path: '/new-password',
 		component: NewPasswordPage
 	},
-	{
-		path: '/airports/:id',
-		component: AirportPage
-	},
     {
         path: '/airports',
         component: AirportsPage
+    },
+    {
+        path: '/:slug',
+        exact: true,
+        component: AirportPage
     },
 	{
 		path: '/reservation',
