@@ -45,7 +45,7 @@ export default class RegisterLogin extends Component {
 
 							<div className="header">
 								<img src={logoImg3x} alt="Logo" />
-								<h4 className="title">Search results</h4>
+								<h4 className="title">Join as a Member</h4>
 							</div>
 
 							<p>

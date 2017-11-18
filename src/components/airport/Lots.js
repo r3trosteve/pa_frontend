@@ -19,17 +19,17 @@ export default class AirportPageAllLots extends Component {
 
                     <div className="row airport__lots__row">
 
-                        {airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lot.map((lot, index) => {
-                            return (
+                        {/*{airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lot.map((lot, index) => {*/}
+                            {/*return (*/}
 
-                                <div key={index} className="col-lg-6 col-md-12 airport__lots__column">
-                                    <div className="airport__card card-custom">
-                                        <h5>{lot.name}</h5>
-                                    </div>
-                                </div>
+                                {/*<div key={index} className="col-lg-6 col-md-12 airport__lots__column">*/}
+                                    {/*<div className="airport__card card-custom">*/}
+                                        {/*<h5>{lot.name}</h5>*/}
+                                    {/*</div>*/}
+                                {/*</div>*/}
 
-                            );
-                        })}
+                            {/*);*/}
+                        {/*})}*/}
 
                     </div>
                 </div>
