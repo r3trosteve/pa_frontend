@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
+import { Link } from 'react-router-dom';
 
 export default class AirportPageAllLots extends Component {
     render() {
@@ -19,7 +20,7 @@ export default class AirportPageAllLots extends Component {
 
                     <div className="row airport__lots__row">
 
-                        {airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lots.map(lot => {
+                        {airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lots.slice(0, 10).map(lot => {
                             return (
 
                                 <div key={lot.id} className="col-lg-6 col-md-12 airport__lots__column">
@@ -34,7 +35,7 @@ export default class AirportPageAllLots extends Component {
                                             <div className="col-lg-5 col-md-3 col-sm-5 airport__card__column airport__card__column--image">
                                                 <div className="airport__card__image">
                                                     <img
-                                                        src={lot.logo_utl}
+                                                        src={lot.logo_url}
                                                         alt={lot.name}
                                                     />
                                                 </div>
@@ -47,7 +48,7 @@ export default class AirportPageAllLots extends Component {
 
                                                     <h5>
                                                         {lot.name}
-                                                        <span>{lot.location.address1} {lot.location.address2}</span>
+                                                        <span>{lot.location && lot.location.address1} {lot.location && lot.location.address2}</span>
                                                     </h5>
 
                                                     <div className="airport__card__stars">
@@ -91,9 +92,9 @@ export default class AirportPageAllLots extends Component {
 
                                             <div className="col-sm-5">
 
-                                                <a href="#" className="btn-custom">
-                                                    VIEW RATES
-                                                </a>
+                                                <Link to={`/${lot.slug}`} className="btn-custom">
+                                                    VIEW DETAILS
+                                                </Link>
 
                                             </div>
 
