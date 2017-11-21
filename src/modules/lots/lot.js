@@ -30,7 +30,6 @@ export const fetchLot = id => dispatch => {
                 type: LOT_FETCHED,
                 item: data['airport_parking/parking_lot']
             });
-            console.log(data['airport_parking/parking_lot']);
         });
 };
 

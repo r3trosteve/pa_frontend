@@ -43,8 +43,6 @@ class AirportPage extends Component {
 
     render() {
 
-        console.log(this.props.match);
-
         const airport = this.props.airport;
         const airport_seo = this.props.airport.seo_content;
 

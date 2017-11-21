@@ -82,17 +82,35 @@ class ParkingLotPage extends Component {
     }
 
 	render() {
-
-        console.log(this.props.match);
-
 		return (
 			<div className="ap-details">
 
-				<Helmet title={this.props.lot && this.props.lot.name} />
+                <Helmet
+                    title={this.props.lot && this.props.lot.title || this.props.lot && this.props.lot.name}
+                    meta={[
+                        {name: "description", content: this.props.lot && this.props.lot.description}
+                    ]}
+                />
 
                 <div className="container ap-details__container">
 
                     <div className="row ap-details__row">
+
+                        {/*breadcrumbs*/}
+
+                        <div className="col-sm-12">
+                            <ul className="breadcrumb">
+                                <li>
+                                    <Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>
+                                </li>
+                                <li>
+                                    <Link to="/airports">Airports</Link>
+                                </li>
+                                <li className="current-page">
+                                    <Link to={`/${this.props.lot && this.props.lot.slug}`}>{this.props.lot && this.props.lot.name}</Link>
+                                </li>
+                            </ul>
+                        </div>
 
                         {/*left column*/}
 
