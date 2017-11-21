@@ -9,7 +9,13 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LOTS_FETCHED:
-            return Object.assign({}, state, { items: action.items });
+            return Object.assign({}, state, {
+                items: action.items.sort((a, b) => {
+                    if (a.name < b.name) return -1;
+                    if (a.name > b.name) return 1;
+                    return 0;
+                })
+            });
 
         default:
             return state;
