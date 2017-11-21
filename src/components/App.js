@@ -11,6 +11,7 @@ import Footer from './common/footer/Footer';
 import HomePage from './home/HomePage';
 import RatesPage from './rates/RatesPage';
 import ParkingLotPage from './parking-lot/ParkingLotPage';
+import ParkingLotPage2 from './parking-lot/ParkingLotPage2';
 import CheckoutPage from './checkout/CheckoutPage';
 import ProfilePage from './profile/ProfilePage';
 import NewPasswordPage from './profile/NewPasswordPage';
@@ -38,7 +39,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				
+
 				<Helmet
 					htmlAttributes={{lang: "en", amp: undefined}} // amp takes no value
 					titleTemplate="%s"
@@ -56,7 +57,7 @@ class App extends Component {
 					openLogModal={this.openLogModal}
 					closeLogModal={this.closeLogModal}
 				/>
-				
+
 				{/*{routes.map((route, i) => <Route key={i} {...route} />)}*/}
 
 				<Switch>
@@ -70,6 +71,11 @@ class App extends Component {
 						path="/airport-parking/:id"
 						component={ParkingLotPage}
 						openLogModal={this.openLogModal}
+					/>
+
+					<Route
+						path="/lot/:slug"
+						component={ParkingLotPage2}
 					/>
 
 					<Route path="/checkout/:id" component={CheckoutPage} />

@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import airports from './airports/airports';
 import airport from './airports/airport';
 import lots from './lots/lots';
+import lot from './lots/lot';
 import search from './search/search';
 import rates from './rates/rates';
 import rate from './rates/rate';
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
 	airports,
 	airport,
     lots,
+	lot,
 	search,
 	rates,
 	rate,

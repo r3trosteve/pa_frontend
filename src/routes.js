@@ -1,6 +1,7 @@
 import HomePage from './components/home/HomePage';
 import RatesPage from './components/rates/RatesPage';
 import ParkingLotPage from './components/parking-lot/ParkingLotPage';
+import ParkingLotPage2 from './components/parking-lot/ParkingLotPage2';
 import CheckoutPage from './components/checkout/CheckoutPage';
 import ProfilePage from './components/profile/ProfilePage';
 import NotFoundPage from './components/notofund/NotFoundPage';
@@ -27,6 +28,10 @@ const routes = [
 		path: '/airport-parking/:id',
 		component: ParkingLotPage
 	},
+    {
+        path: '/lot/:slug',
+        component: ParkingLotPage2
+    },
 	{
 		path: '/checkout/:id',
 		component: CheckoutPage
