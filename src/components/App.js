@@ -91,9 +91,9 @@ class App extends Component {
 						exact
 						// strict
 						render= {({ match }) => {
-							if (/airport$/.test(match.params.slug)) {
+							if (/-airport$/.test(match.params.slug)) {
 								return <AirportPage />;
-							} else if (/parking$/.test(match.params.slug)) {
+							} else if (/lot-/.test(match.params.slug)) {
 								return <ParkingLotPage2 />;
 							} else {
 								return <NotFoundPage />;
