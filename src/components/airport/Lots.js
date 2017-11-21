@@ -20,7 +20,7 @@ export default class AirportPageAllLots extends Component {
 
                     <div className="row airport__lots__row">
 
-                        {airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lots.slice(0, 10).map(lot => {
+                        {airport && airport.parking_lots && airport.parking_lots.length > 0 && airport.parking_lots.map(lot => {
                             return (
 
                                 <div key={lot.id} className="col-lg-6 col-md-12 airport__lots__column">
