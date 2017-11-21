@@ -8,17 +8,24 @@ import Search from './Search';
 import Options from './Options';
 import HowItWorks from './HowItWorks';
 import TopAirports from './TopAirports';
+import LotsList from './LotsList';
 
 import { fetchAirports } from '../../modules/airports/airports';
+import { fetchLots } from '../../modules/lots/lots';
 
 class HomePage extends Component {
 
 	static fetchData(store) {
-		return store.dispatch(fetchAirports());
+		// return store.dispatch(fetchAirports());
+        return Promise.all([
+            store.dispatch(fetchAirports()),
+            store.dispatch(fetchLots())
+        ]);
 	}
 
 	componentDidMount() {
-		this.props.fetchAirports();
+        this.props.fetchAirports();
+        this.props.fetchLots();
 
         $(window).scrollTop(0); // jq to load page on top
 
@@ -51,6 +58,8 @@ class HomePage extends Component {
 
 				<TopAirports airports={this.props.airports} />
 
+				<LotsList lots={this.props.lots} />
+
 			</div>
 		);
 	}
@@ -58,10 +67,17 @@ class HomePage extends Component {
 
 HomePage.propTypes = {
     fetchAirports: PropTypes.func.isRequired,
-	airports: PropTypes.array.isRequired
+	airports: PropTypes.array.isRequired,
+    fetchLots: PropTypes.func.isRequired,
+    lots: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = state => ({ airports: state.airports.items });
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchAirports }, dispatch);
+const mapStateToProps = state => ({
+	airports: state.airports.items,
+	lots: state.lots.items
+});
+const mapDispatchToProps = dispatch => bindActionCreators({
+	fetchAirports,
+	fetchLots }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
