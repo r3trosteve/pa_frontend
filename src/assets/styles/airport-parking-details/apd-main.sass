@@ -19,7 +19,7 @@
 
   &__navigation
     height: 60px
-    margin-top: 30px
+    margin-top: 20px
 
     &__card
       display: flex
@@ -40,6 +40,9 @@
         &:hover
           color: $orange
           background: none!important
+        &:focus, &:active
+          background: none!important
+
       &.active
         border-color: $orange
         a
@@ -67,10 +70,9 @@
       display: block
       b
         font-family: 'Montserrat', sans-serif
-        font-weight: 400
+        font-weight: 500
         color: $blue
         font-size: 30px
-        letter-spacing: 3px
 
     &__stars
       padding-left: 25px
@@ -94,8 +96,6 @@
 @media (max-width: 767px)
   .ap-details
     padding: 70px 0 50px
-    .breadcrumb
-      margin-top: 30px!important
 
     &__navigation
       margin-top: 20px

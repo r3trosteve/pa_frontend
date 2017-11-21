@@ -6,10 +6,10 @@ import { bindActionCreators } from 'redux';
 import { withRouter, Link } from 'react-router-dom';
 
 import Info2 from './Info2';
-import Overview from './Overview';
+import Overview2 from './Overview2';
 import Location2 from './Location2';
-import Details from './Details';
-import Reviews from './Reviews';
+import Details2 from './Details2';
+import Reviews2 from './Reviews2';
 import OrderSummary from './OrderSummary';
 
 import { findLot } from '../../modules/lots/lot';
@@ -41,7 +41,7 @@ class ParkingLotPage extends Component {
                 let apdNavCard = $('.ap-details__navigation__card');
                 let summaryCard = $('.order-summary.card-custom');
 
-                let apdNavTop =  216;
+                let apdNavTop =  185;
                 let apdColumnLeftW = $('.ap-details__column--left').width();
                 let apdColumnSummaryW = $('.ap-details__column--summary').width();
 
@@ -94,23 +94,21 @@ class ParkingLotPage extends Component {
 
                 <div className="container ap-details__container">
 
+                    {/*breadcrumbs*/}
+
+                    <ul className="breadcrumb">
+                        <li>
+                            <Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/airports">Airports</Link>
+                        </li>
+                        <li className="current-page">
+                            <Link to={`/${this.props.lot && this.props.lot.slug}`}>{this.props.lot && this.props.lot.name}</Link>
+                        </li>
+                    </ul>
+
                     <div className="row ap-details__row">
-
-                        {/*breadcrumbs*/}
-
-                        <div className="col-sm-12">
-                            <ul className="breadcrumb">
-                                <li>
-                                    <Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>
-                                </li>
-                                <li>
-                                    <Link to="/airports">Airports</Link>
-                                </li>
-                                <li className="current-page">
-                                    <Link to={`/${this.props.lot && this.props.lot.slug}`}>{this.props.lot && this.props.lot.name}</Link>
-                                </li>
-                            </ul>
-                        </div>
 
                         {/*left column*/}
 
@@ -141,13 +139,13 @@ class ParkingLotPage extends Component {
 
                             <Info2 lot={this.props.lot} />
 
-                            <Overview />
+                            <Overview2 lot={this.props.lot} />
 
                             <Location2 lot={this.props.lot} />
 
-                            <Details />
+                            {/*<Details2 lot={this.props.lot} />*/}
 
-                            <Reviews />
+                            <Reviews2 lot={this.props.lot} />
 
                         </div>
 

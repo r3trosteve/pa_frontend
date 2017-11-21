@@ -22,7 +22,7 @@ export default class Info extends Component {
 					<ReactStars
 						className="ap-details__info__rating-stars"
 						count={5}
-						value={4.5}
+						value={parseFloat(lot && lot.rating)}
 						size={24}
 						color1={'#c1c1c1'}
 						color2={'#fdb509'}
@@ -31,7 +31,7 @@ export default class Info extends Component {
 					/>
 					<p>
 						{' '}
-						|<span>(41</span> reviews)
+						|<span>( {lot && lot.reviews && lot.reviews.length} </span> reviews)
 						| {lot.location && lot.location.address1}
 						{' '}
                         {lot.location && lot.location.address2},

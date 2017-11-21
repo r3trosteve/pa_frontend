@@ -5,6 +5,11 @@
 
   #ap-details-carousel
 
+    .item
+      max-height: 320px
+      img
+        min-height: 320px
+
     .carousel-control
       bottom: 51px
 
@@ -20,22 +25,21 @@
       bottom: 0
       left: 0
       right: 0
-      width: calc(100% + 3px)
+      width: calc(100% + 2px)
       margin: 0 -1px
-      display: table
-      border-spacing: 2px
+      display: flex
 
       li
-        display: table-cell
-        vertical-align: middle
         background: none
         text-indent: 0
         width: 12.5%
         border: none
-        height: 48px
+        height: 52px
         transition: all 0.6s
         overflow: hidden
         border-radius: 0
+        text-align: center
+        margin: 1px!important
         img
           width: 100%
           height: 100%
@@ -47,6 +51,14 @@
     padding-top: 25px
 
 //responsiveness
+@media (max-width: 1199px)
+  .ap-details__overview #ap-details-carousel li
+    height: 50px!important
+
+@media (max-width: 991px)
+  .ap-details__overview #ap-details-carousel li
+    height: 56px!important
+
 @media (max-width: 767px)
   .ap-details__overview
     .ap-details__average-rating
