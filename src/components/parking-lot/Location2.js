@@ -57,7 +57,7 @@ export default class Location extends Component {
 								<GoogleMapReact center={{
                                     lat: lot.location && parseFloat(lot.location.latitude),
                                     lng: lot.location && parseFloat(lot.location.longitude)
-                                }} zoom={11}>
+                                }} zoom={13}>
 
 									<ParkingLotMapMark
 										lat={lot.location && parseFloat(lot.location.latitude)}
