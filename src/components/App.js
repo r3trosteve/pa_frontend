@@ -73,17 +73,33 @@ class App extends Component {
 						openLogModal={this.openLogModal}
 					/>
 
-					<Route
-						path="/lot/:slug"
-						component={ParkingLotPage2}
-					/>
+					{/*<Route*/}
+						{/*path="/lot/:slug"*/}
+						{/*component={ParkingLotPage2}*/}
+					{/*/>*/}
 
 					<Route path="/checkout/:id" component={CheckoutPage} />
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
 
 					<Route path="/airports" component={AirportsPage} />
-					<Route exact path="/:slug" component={AirportPage} />
+
+					{/*<Route exact path="/:slug" component={AirportPage} />*/}
+
+					<Route
+						path="/:slug"
+						exact
+						// strict
+						render= {({ match }) => {
+							if (/airport$/.test(match.params.slug)) {
+								return <AirportPage />;
+							} else if (/parking$/.test(match.params.slug)) {
+								return <ParkingLotPage2 />;
+							} else {
+								return <NotFoundPage />;
+							}
+                        }}
+					/>
 
 					<Route path="/reservation" component={ReservatinPage} />
 

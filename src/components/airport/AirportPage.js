@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router-dom';
 
 import AirportPageBenefits from './Benefits';
 import AirportPagePopularLots from './Popular';
@@ -16,7 +17,8 @@ import { findAirport } from '../../modules/airports/airport';
 class AirportPage extends Component {
 
     static fetchData(store, match) {
-        return store.dispatch(findAirport(match.params.slug));
+        const slug = match.url.replace(/^\/|\/$/g, '');
+        return store.dispatch(findAirport(slug));
     }
 
     componentDidMount() {
@@ -40,6 +42,8 @@ class AirportPage extends Component {
     }
 
     render() {
+
+        console.log(this.props.match);
 
         const airport = this.props.airport;
         const airport_seo = this.props.airport.seo_content;
@@ -102,4 +106,4 @@ AirportPage.propTypes = {
 const mapStateToProps = state => ({ airport: state.airport.item });
 const mapDispatchToProps = dispatch => bindActionCreators({ findAirport }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AirportPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(AirportPage));

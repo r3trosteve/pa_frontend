@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 import Info2 from './Info2';
 import Overview from './Overview';
@@ -17,7 +17,8 @@ import { findLot } from '../../modules/lots/lot';
 class ParkingLotPage extends Component {
 
     static fetchData(store, match) {
-        return store.dispatch(findLot(match.params.slug));
+        const slug = match.url.replace(/^\/|\/$/g, '');
+        return store.dispatch(findLot(slug));
     }
 
     componentDidMount() {
@@ -81,101 +82,67 @@ class ParkingLotPage extends Component {
     }
 
 	render() {
+
+        console.log(this.props.match);
+
 		return (
 			<div className="ap-details">
 
 				<Helmet title={this.props.lot && this.props.lot.name} />
 
-				<div className="container ap-details__container">
+                <div className="container ap-details__container">
 
-                    {/*breadcrumbs*/}
+                    <div className="row ap-details__row">
 
-					{/*<Link to={`/rates/search/${this.props.rate && this.props.rate.search_id}`} className="back-to hidden-xs">*/}
-						{/*<i className="ion-arrow-left-c" aria-hidden="true" />*/}
-						{/*{' '}Back to all*/}
-						{/*<b>*/}
-							{/*{' '}({this.props.rate.search && this.props.rate.search.airport.code})*/}
-							{/*{' '}{this.props.rate.search && this.props.rate.search.airport.name}*/}
-							{/*{' '}*/}
-						{/*</b>*/}
-						{/*Lots*/}
-					{/*</Link>*/}
+                        {/*left column*/}
 
-					{/*<Link to={`/rates/search/${this.props.rate && this.props.rate.search_id}`} className="back-to visible-xs">*/}
-						{/*<i className="ion-arrow-left-c" aria-hidden="true" />*/}
-                        {/*{' '}Back to results*/}
-					{/*</Link>*/}
+                        <div className="col-md-7 ap-details__column ap-details__column--left">
 
-					{/*<ul className="breadcrumb">*/}
-						{/*<li>*/}
-							{/*<Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>*/}
-						{/*</li>*/}
-						{/*<li>*/}
-							{/*<Link to="/airports">Airports</Link>*/}
-						{/*</li>*/}
-						{/*<li>*/}
-							{/*<Link to={`/airports/${this.props.rate.search && this.props.rate.search.airport_id}`}>*/}
-                                {/*{this.props.rate.search && this.props.rate.search.airport.name}*/}
-							{/*</Link>*/}
-						{/*</li>*/}
-						{/*<li className="current-page">*/}
-							{/*<Link to="#">*/}
-                                {/*{this.props.rate.parking_lot && this.props.rate.parking_lot.name}*/}
-							{/*</Link>*/}
-						{/*</li>*/}
-					{/*</ul>*/}
+                            <div className="ap-details__navigation">
 
-					<div className="row ap-details__row">
+                                <ul className="ap-details__navigation__card nav card-custom card-custom--no-pad">
 
-						{/*left column*/}
+                                    <li className="ap-details__navigation__item">
+                                        <a href="#apd-overview">Overview</a>
+                                    </li>
+                                    <li className="ap-details__navigation__item">
+                                        <a href="#apd-location">Location</a>
+                                    </li>
+                                    <li className="ap-details__navigation__item">
+                                        <a href="#apd-details">Details</a>
+                                    </li>
+                                    <li className="ap-details__navigation__item">
+                                        <a href="#apd-reviews">Reviews</a>
+                                    </li>
+                                    <li className="ap-details__navigation__item visible-xs">
+                                        <a href="#summary">Summary</a>
+                                    </li>
 
-						<div className="col-md-7 ap-details__column ap-details__column--left">
+                                </ul>
+                            </div>
 
-							<div className="ap-details__navigation">
+                            <Info2 lot={this.props.lot} />
 
-								<ul className="ap-details__navigation__card nav card-custom card-custom--no-pad">
+                            <Overview />
 
-									<li className="ap-details__navigation__item">
-										<a href="#apd-overview">Overview</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-location">Location</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-details">Details</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-reviews">Reviews</a>
-									</li>
-									<li className="ap-details__navigation__item visible-xs">
-										<a href="#summary">Summary</a>
-									</li>
+                            <Location2 lot={this.props.lot} />
 
-								</ul>
-							</div>
+                            <Details />
 
-							<Info2 lot={this.props.lot} />
+                            <Reviews />
 
-							<Overview />
+                        </div>
 
-							<Location2 lot={this.props.lot} />
+                        {/*right column*/}
 
-							<Details />
+                        <div className="col-md-5 ap-details__column ap-details__column--summary">
+                            {/*<OrderSummary*/}
+                            {/*rate={this.props.rate}*/}
+                            {/*openLogModal={this.props.openLogModal}*/}
+                            {/*/>*/}
+                        </div>
 
-							<Reviews />
-                            
-						</div>
-
-						{/*right column*/}
-
-						<div className="col-md-5 ap-details__column ap-details__column--summary">
-							{/*<OrderSummary*/}
-								{/*rate={this.props.rate}*/}
-								{/*openLogModal={this.props.openLogModal}*/}
-							{/*/>*/}
-						</div>
-
-					</div>
+                    </div>
 
 				</div>
 			</div>
@@ -192,4 +159,4 @@ ParkingLotPage.propTypes = {
 const mapStateToProps = state => ({ lot: state.lot.item });
 const mapDispatchToProps = dispatch => bindActionCreators({ findLot }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ParkingLotPage));

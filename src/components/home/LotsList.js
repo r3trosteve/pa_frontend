@@ -11,7 +11,7 @@ export default class LotsList extends Component {
                 <h2>Parking Lots</h2>
 
                 {this.props.lots.map(lot => {
-                    return <li key={lot.id}><Link to={`/lot/${lot.slug}`}>{lot.name}</Link></li>;
+                    return <li key={lot.id}><Link to={`/${lot.slug}`}>{lot.name}</Link></li>;
                 })}
 
             </div>

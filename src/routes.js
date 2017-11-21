@@ -29,7 +29,8 @@ const routes = [
 		component: ParkingLotPage
 	},
     {
-        path: '/lot/:slug',
+        path: /.*parking$/,
+        exact: true,
         component: ParkingLotPage2
     },
 	{
@@ -49,7 +50,7 @@ const routes = [
         component: AirportsPage
     },
     {
-        path: '/:slug',
+        path: /.*airport$/,
         exact: true,
         component: AirportPage
     },
