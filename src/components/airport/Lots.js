@@ -48,25 +48,38 @@ export default class AirportPageAllLots extends Component {
 
                                                     <h5>
                                                         {lot.name}
-                                                        <span>{lot.location && lot.location.address1} {lot.location && lot.location.address2}</span>
+                                                        <span>
+                                                            {lot.location && lot.location.address1}
+                                                            {' '}
+                                                            {lot.location && lot.location.address2}
+                                                            {' '}
+                                                            {lot.location && lot.location.city},
+                                                            {' '}
+                                                            {lot.location && lot.location.state},
+                                                            {' '}
+                                                            {lot.location && lot.location.country}
+                                                        </span>
                                                     </h5>
 
                                                     <div className="airport__card__stars">
                                                         <ReactStars
                                                             className="stars"
                                                             count={5}
-                                                            value={4.5}
+                                                            value={parseFloat(lot && lot.rating || 0)}
                                                             size={24}
                                                             color1={'#c1c1c1'}
                                                             color2={'#fdb509'}
                                                             edit={false}
                                                             half={true}
                                                         />
-                                                        <p>Excellent <span>(145 reviews)</span></p>
+                                                        <p>
+                                                            {/*Excellent*/}
+                                                            <span> ({lot && lot.reviews && lot.reviews.length})</span>
+                                                        </p>
                                                     </div>
 
                                                     <div className="airport__card__description">
-                                                        <p>Some description here</p>
+                                                        <p>{lot && lot.description}</p>
                                                     </div>
 
                                                 </div>
@@ -80,13 +93,13 @@ export default class AirportPageAllLots extends Component {
 
                                             <div className="col-sm-7">
 
-                                                <b className="airport__card__content__date">Review on <span>Oct 15, 2017</span></b>
+                                                {/*<b className="airport__card__content__date">Review on <span>Oct 15, 2017</span></b>*/}
 
-                                                <div className="airport__card__review">
-                                                    "Have used them before and will keep
-                                                    using them - next time December....
-                                                    Such nice people!! Excellent..."
-                                                </div>
+                                                {/*<div className="airport__card__review">*/}
+                                                    {/*"Have used them before and will keep*/}
+                                                    {/*using them - next time December....*/}
+                                                    {/*Such nice people!! Excellent..."*/}
+                                                {/*</div>*/}
 
                                             </div>
 
