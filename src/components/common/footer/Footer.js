@@ -28,22 +28,28 @@ export default class Footer extends Component {
 							<ul className="footer__list-nav">
 
 								<li>
-									<a href="#airports">Our Airports</a>
+									<NavLink to="/airports">Our Airports</NavLink>
 								</li>
 								<li>
-									<a href="#airtports_information">Airport Information</a>
+									<a href="#">About</a>
 								</li>
 								<li>
-									<a href="#help">Help/Faq</a>
+									<a href="http://parkingaccess.helpsite.io/">Help/Faq</a>
 								</li>
 								<li>
-									<a href="#">Affiliates</a>
+									<a href="#">Terms of Service</a>
 								</li>
 								<li>
-									<a href="#hotel_operators">Hotel Operators</a>
+									<a href="#">Privacy Policy</a>
 								</li>
 								<li>
-									<a href="#">Parking Operators</a>
+									<a href="https://shuttlefare.typeform.com/to/YFXRs3">Convention Discounts</a>
+								</li>
+								<li>
+									<a href="https://shuttlefare.typeform.com/to/M4BLXs">Corporate Discounts</a>
+								</li>
+								<li>
+									<a href="#">International Airport Parking</a>
 								</li>
 
 							</ul>
