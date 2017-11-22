@@ -26,6 +26,7 @@ export default class Location extends Component {
 	render() {
 
 		const rate = this.props.rate;
+		const lot = this.props.lot;
 
 		return (
 			<div className="ap-details__location card-custom" id="apd-location">
@@ -37,9 +38,15 @@ export default class Location extends Component {
 				<div className="ap-details__location__address">
 					<p className="text-mont-bold">Address</p>
 					<p className="text-normal-upper">
-						{rate.parking_lot && rate.parking_lot.location.address1}
-						{' '}
-                        {rate.parking_lot && rate.parking_lot.location.address2}
+                        {lot && lot.location && lot.location.address1}
+                        {' '}
+                        {lot && lot.location && lot.location.address2},
+                        {' '}
+                        {lot && lot.location && lot.location.city},
+                        {' '}
+                        {lot && lot.location && lot.location.state},
+                        {' '}
+                        {lot && lot.location && lot.location.country}
 					</p>
 				</div>
 
@@ -49,19 +56,23 @@ export default class Location extends Component {
 							!this.state.mapLoading ?
 							(
 								<GoogleMapReact center={{
-                                    lat: rate.parking_lot && parseFloat(rate.parking_lot.location.latitude),
-                                    lng: rate.parking_lot && parseFloat(rate.parking_lot.location.longitude)
-                                }} zoom={11}>
+                                    lat: lot && parseFloat(lot.location.latitude),
+                                    lng: lot && parseFloat(lot.location.longitude)
+                                }} zoom={13}>
 
 									<ParkingLotMapMark
-										lat={rate.parking_lot && parseFloat(rate.parking_lot.location.latitude)}
-										lng={rate.parking_lot && parseFloat(rate.parking_lot.location.longitude)}
+										lat={lot && parseFloat(lot.location.latitude)}
+										lng={lot && parseFloat(lot.location.longitude)}
 									/>
 
-									<AirportMapMark
-										lat={rate.search && parseFloat(rate.search.airport.location.latitude)}
-										lng={rate.search && parseFloat(rate.search.airport.location.longitude)}
-									/>
+									{
+										rate ?
+											<AirportMapMark
+												lat={rate && parseFloat(rate.search.airport.location.latitude)}
+												lng={rate && parseFloat(rate.search.airport.location.longitude)}
+											/> :
+											null
+									}
 
 								</GoogleMapReact>
 							) : null
@@ -75,5 +86,6 @@ export default class Location extends Component {
 }
 
 Location.propTypes = {
-	rate: PropTypes.object.isRequired
+	rate: PropTypes.object,
+	lot: PropTypes.object
 };

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import AverageRating from './AverageRating';
 
 export default class Overview extends Component {
 	render() {
+
+		const lot = this.props.lot;
+
 		return (
 			<div className="ap-details__overview card-custom" id="apd-overview">
 
@@ -19,77 +24,14 @@ export default class Overview extends Component {
 					<div id="ap-details-carousel" className="carousel slide" data-interval="6000" data-ride="carousel">
 						<div className="carousel-inner">
 
-							{/*1*/}
+                            {lot && lot.images && lot.images.slice(0, 8).map((image, index) => {
+                                return (
+									<div key={index} className={classnames('item', { 'active': index === 0 })}>
+										<img src={image.url} />
+									</div>
+                                );
+                            })}
 
-							<div className="active item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01039.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*2*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00996.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*3*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00908.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*4*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01192.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*5*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00913.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*6*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01164.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*7*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01137.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
-
-							{/*8*/}
-
-							<div className="item">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01044.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</div>
 						</div>
 
 						{/*nav*/}
@@ -105,62 +47,30 @@ export default class Overview extends Component {
 
 						<ol className="carousel-indicators">
 
-							<li data-target="#ap-details-carousel" data-slide-to="0" className="active">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01039.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="1">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00996.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="2">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00908.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="3">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01192.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="4">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC00913.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="5">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01164.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="6">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01137.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
-							<li data-target="#ap-details-carousel" data-slide-to="7">
-								<img
-									src="https://i0.wp.com/picjumbo.com/wp-content/uploads/DSC01044.jpg?w=2210&quality=50"
-									alt=""
-								/>
-							</li>
+                            {lot && lot.images && lot.images.slice(0, 8).map((image, index) => {
+                                return (
+									<li
+										key={index}
+										data-target="#ap-details-carousel"
+										data-slide-to={index}
+										className={classnames('', { 'active': index === 0 })}
+									>
+										<img src={image.url} />
+									</li>
+                                );
+                            })}
                             
 						</ol>
 					</div>
 				</div>
 
-				<AverageRating />
+				<AverageRating lot={lot} />
                 
 			</div>
 		);
 	}
 }
+
+Overview.propTypes = {
+	lot: PropTypes.object
+};

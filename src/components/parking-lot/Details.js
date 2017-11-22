@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Details extends Component {
 	render() {
+
+		const lot = this.props.lot;
+
 		return (
 			<div className="ap-details__details card-custom" id="apd-details">
 
@@ -15,70 +19,89 @@ export default class Details extends Component {
 
 					<div className="col-sm-5 ap-details__details__column">
 
-						<table className="ap-details__details__table">
+						<p className="text-mont-bold">Services</p>
 
-							<thead>
-								<tr>
-									<th colSpan="2" className="text-mont-bold">
-										Operation Hours
-									</th>
-								</tr>
-							</thead>
+						<ul className="ap-details__details__list text-normal">
 
-							<tbody>
-								<tr>
-									<td>Monday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Tuesday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Wednesday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Thursday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Friday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Saturday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-								<tr>
-									<td>Sunday</td>
-									<td>Open 24 Hours</td>
-								</tr>
-							</tbody>
+							{lot && lot.services && lot.services.map((service, index) => {
+								return (
+									<li key={index} className="ap-details__details__list-item">
+										{service}
+									</li>
+								);
+							})}
 
-						</table>
+						</ul>
+
+						{/*<table className="ap-details__details__table">*/}
+
+							{/*<thead>*/}
+								{/*<tr>*/}
+									{/*<th colSpan="2" className="text-mont-bold">*/}
+										{/*Operation Hours*/}
+									{/*</th>*/}
+								{/*</tr>*/}
+							{/*</thead>*/}
+
+							{/*<tbody>*/}
+								{/*<tr>*/}
+									{/*<td>Monday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Tuesday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Wednesday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Thursday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Friday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Saturday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+								{/*<tr>*/}
+									{/*<td>Sunday</td>*/}
+									{/*<td>Open 24 Hours</td>*/}
+								{/*</tr>*/}
+							{/*</tbody>*/}
+
+						{/*</table>*/}
 
 					</div>
 
 					{/*right*/}
 
-					<div className="col-sm-7 ap-details__details__column">
+					{/*<div className="col-sm-7 ap-details__details__column">*/}
 
-						<p className="text-mont-bold">Additional Info</p>
+						{/*<p className="text-mont-bold">Additional Info</p>*/}
 
-						<ul className="ap-details__details__list text-normal">
+						{/*<ul className="ap-details__details__list text-normal">*/}
 
-							<li className="ap-details__details__list-item">
-								Wally Park Atlanta offers 3 different parking options:
-							</li>
-							<li className="ap-details__details__list-item">Covered Self Parking (listed as Covered)</li>
-							<li className="ap-details__details__list-item">Covered Valet Parking (listed as Valet)</li>
-							<li className="ap-details__details__list-item">Outdoor Self Parking (listed as Self)</li>
-                            
-						</ul>
-					</div>
+							{/*<li className="ap-details__details__list-item">*/}
+								{/*Wally Park Atlanta offers 3 different parking options:*/}
+							{/*</li>*/}
+							{/*<li className="ap-details__details__list-item">Covered Self Parking (listed as Covered)</li>*/}
+							{/*<li className="ap-details__details__list-item">Covered Valet Parking (listed as Valet)</li>*/}
+							{/*<li className="ap-details__details__list-item">Outdoor Self Parking (listed as Self)</li>*/}
+                            {/**/}
+						{/*</ul>*/}
+					{/*</div>*/}
+
 				</div>
 			</div>
 		);
 	}
 }
+
+Details.propTypes = {
+    lot: PropTypes.object
+};

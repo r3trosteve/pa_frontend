@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
+import Breadcrumbs from './Breadcrumbs';
+import Navigation from './Navigation';
 import Info from './Info';
 import Overview from './Overview';
 import Location from './Location';
@@ -81,49 +83,20 @@ class ParkingLotPage extends Component {
     }
 
 	render() {
+
+		const rate = this.props.rate;
+		const lot = rate && rate.parking_lot;
+
 		return (
 			<div className="ap-details">
 
-				<Helmet title={this.props.rate.parking_lot && this.props.rate.parking_lot.name} />
+				<Helmet title={lot && lot.name} />
 
 				<div className="container ap-details__container">
 
                     {/*breadcrumbs*/}
 
-					<Link to={`/rates/search/${this.props.rate && this.props.rate.search_id}`} className="back-to hidden-xs">
-						<i className="ion-arrow-left-c" aria-hidden="true" />
-						{' '}Back to all
-						<b>
-							{' '}({this.props.rate.search && this.props.rate.search.airport.code})
-							{' '}{this.props.rate.search && this.props.rate.search.airport.name}
-							{' '}
-						</b>
-						Lots
-					</Link>
-
-					<Link to={`/rates/search/${this.props.rate && this.props.rate.search_id}`} className="back-to visible-xs">
-						<i className="ion-arrow-left-c" aria-hidden="true" />
-                        {' '}Back to results
-					</Link>
-
-					<ul className="breadcrumb">
-						<li>
-							<Link to="/"><i className="fa fa-home" aria-hidden="true" /> Home</Link>
-						</li>
-						<li>
-							<Link to="/airports">Airports</Link>
-						</li>
-						<li>
-							<Link to={`/airports/${this.props.rate.search && this.props.rate.search.airport_id}`}>
-                                {this.props.rate.search && this.props.rate.search.airport.name}
-							</Link>
-						</li>
-						<li className="current-page">
-							<Link to="#">
-                                {this.props.rate.parking_lot && this.props.rate.parking_lot.name}
-							</Link>
-						</li>
-					</ul>
+                    <Breadcrumbs rate={rate} />
 
 					<div className="row ap-details__row">
 
@@ -131,48 +104,35 @@ class ParkingLotPage extends Component {
 
 						<div className="col-md-7 ap-details__column ap-details__column--left">
 
-							<div className="ap-details__navigation">
+							<Navigation />
 
-								<ul className="ap-details__navigation__card nav card-custom card-custom--no-pad">
+							<Info
+								rate={rate}
+								lot={lot}
+							/>
 
-									<li className="ap-details__navigation__item">
-										<a href="#apd-overview">Overview</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-location">Location</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-details">Details</a>
-									</li>
-									<li className="ap-details__navigation__item">
-										<a href="#apd-reviews">Reviews</a>
-									</li>
-									<li className="ap-details__navigation__item visible-xs">
-										<a href="#summary">Summary</a>
-									</li>
+							<Overview lot={lot} />
 
-								</ul>
-							</div>
+							<Location
+								rate={rate}
+								lot={lot}
+							/>
 
-							<Info rate={this.props.rate} />
+							<Details lot={lot} />
 
-							<Overview />
-
-							<Location rate={this.props.rate} />
-
-							<Details />
-
-							<Reviews />
+							<Reviews lot={lot} />
                             
 						</div>
 
 						{/*right column*/}
 
 						<div className="col-md-5 ap-details__column ap-details__column--summary">
+
 							<OrderSummary
-								rate={this.props.rate}
+								rate={rate}
 								openLogModal={this.props.openLogModal}
 							/>
+
 						</div>
 
 					</div>
@@ -184,13 +144,16 @@ class ParkingLotPage extends Component {
 }
 
 ParkingLotPage.propTypes = {
-    fetchRate: PropTypes.func.isRequired,
+    fetchRate: PropTypes.func,
+    rate: PropTypes.object,
+	lot: PropTypes.object,
     match: PropTypes.object.isRequired,
-    rate: PropTypes.object.isRequired,
     openLogModal: PropTypes.func
 };
 
-const mapStateToProps = state => ({ rate: state.rate.item });
+const mapStateToProps = state => ({
+	rate: state.rate.item
+});
 const mapDispatchToProps = dispatch => bindActionCreators({ fetchRate }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ParkingLotPage);
