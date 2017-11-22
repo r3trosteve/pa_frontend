@@ -36,12 +36,27 @@ export default class Overview extends Component {
 
 						{/*nav*/}
 
-						<a className="carousel-control left" href="#ap-details-carousel" data-slide="prev">
-							<i className="ion-ios-arrow-back" />
-						</a>
-						<a className="carousel-control right" href="#ap-details-carousel" data-slide="next">
-							<i className="ion-ios-arrow-forward" />
-						</a>
+                        {
+                            lot && lot.images && lot.images.length === 0 ?
+								<p className="ap-details__reviews__no-reviews">No images yet</p> :
+                                null
+                        }
+
+						{
+							lot && lot.images && lot.images.length > 0 ?
+								<a className="carousel-control left" href="#ap-details-carousel" data-slide="prev">
+									<i className="ion-ios-arrow-back" />
+								</a> :
+								null
+						}
+
+                        {
+                            lot && lot.images && lot.images.length > 0 ?
+								<a className="carousel-control right" href="#ap-details-carousel" data-slide="next">
+									<i className="ion-ios-arrow-forward"/>
+								</a> :
+                                null
+                        }
 
 						{/*indicators*/}
 

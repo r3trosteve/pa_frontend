@@ -90,7 +90,12 @@ class ParkingLotPage extends Component {
 		return (
 			<div className="ap-details">
 
-				<Helmet title={lot && lot.name} />
+				<Helmet
+                    title={lot && lot.title || lot && lot.name}
+                    meta={[
+                        {name: "description", content: lot && lot.description}
+                    ]}
+                />
 
 				<div className="container ap-details__container">
 

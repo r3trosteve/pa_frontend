@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter, Link } from 'react-router-dom';
 
-import Info2 from './Info2';
-import Overview2 from './Overview2';
-import Location2 from './Location2';
-import Details2 from './Details2';
-import Reviews2 from './Reviews2';
-import OrderSummary from './OrderSummary';
+import Navigation from './Navigation';
+import Info from './Info';
+import Overview from './Overview';
+import Location from './Location';
+import Details from './Details';
+import Reviews from './Reviews';
 
 import { findLot } from '../../modules/lots/lot';
 
@@ -82,13 +82,16 @@ class ParkingLotPage extends Component {
     }
 
 	render() {
+
+        const lot = this.props.lot;
+
 		return (
 			<div className="ap-details">
 
                 <Helmet
-                    title={this.props.lot && this.props.lot.title || this.props.lot && this.props.lot.name}
+                    title={lot && lot.title || lot.name}
                     meta={[
-                        {name: "description", content: this.props.lot && this.props.lot.description}
+                        {name: "description", content: lot && lot.description}
                     ]}
                 />
 
@@ -114,48 +117,29 @@ class ParkingLotPage extends Component {
 
                         <div className="col-md-7 ap-details__column ap-details__column--left">
 
-                            <div className="ap-details__navigation">
+                            <Navigation />
 
-                                <ul className="ap-details__navigation__card nav card-custom card-custom--no-pad">
+                            <Info lot={lot} />
 
-                                    <li className="ap-details__navigation__item">
-                                        <a href="#apd-overview">Overview</a>
-                                    </li>
-                                    <li className="ap-details__navigation__item">
-                                        <a href="#apd-location">Location</a>
-                                    </li>
-                                    <li className="ap-details__navigation__item">
-                                        <a href="#apd-details">Details</a>
-                                    </li>
-                                    <li className="ap-details__navigation__item">
-                                        <a href="#apd-reviews">Reviews</a>
-                                    </li>
-                                    <li className="ap-details__navigation__item visible-xs">
-                                        <a href="#summary">Summary</a>
-                                    </li>
+                            <Overview lot={lot} />
 
-                                </ul>
-                            </div>
+                            <Location lot={lot} />
 
-                            <Info2 lot={this.props.lot} />
+                            <Details lot={lot} />
 
-                            <Overview2 lot={this.props.lot} />
-
-                            <Location2 lot={this.props.lot} />
-
-                            {/*<Details2 lot={this.props.lot} />*/}
-
-                            <Reviews2 lot={this.props.lot} />
+                            <Reviews lot={lot} />
 
                         </div>
 
                         {/*right column*/}
 
                         <div className="col-md-5 ap-details__column ap-details__column--summary">
+
                             {/*<OrderSummary*/}
                             {/*rate={this.props.rate}*/}
                             {/*openLogModal={this.props.openLogModal}*/}
                             {/*/>*/}
+
                         </div>
 
                     </div>
