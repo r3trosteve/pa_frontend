@@ -49,18 +49,25 @@ export default class Info extends Component {
 
 				<ul className="info-list">
 
-					<li className="info-list__item text-bold">
-						<i className="fa fa-map" aria-hidden="true" />
-						Distance from airport:
-						<span>{rate && rate.distance && rate.distance.toFixed(1)} mile(s)</span>
-					</li>
-                    
-					<li className="info-list__item text-bold">
-						<i className="fa fa-car" aria-hidden="true" />
-						Parking type:
-						<span>{rate && rate.name}</span>
-					</li>
+					{
+						rate ?
+							<li className="info-list__item text-bold">
+								<i className="fa fa-map" aria-hidden="true" />
+								Distance from airport:
+								<span>{rate && rate.distance && rate.distance.toFixed(1)} mile(s)</span>
+							</li> :
+							null
+					}
 
+					{ rate ?
+						<li className="info-list__item text-bold">
+							<i className="fa fa-car" aria-hidden="true" />
+							Parking type:
+							<span>{rate && rate.name}</span>
+						</li> :
+						null
+					}
+					
 					{/*<li className="info-list__item text-bold">*/}
 						{/*<i className="fa fa-clock-o" aria-hidden="true" />*/}
 						{/*Shuttle frequency:*/}
