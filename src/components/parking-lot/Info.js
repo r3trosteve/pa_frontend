@@ -67,7 +67,7 @@ export default class Info extends Component {
 						</li> :
 						null
 					}
-					
+
 					{/*<li className="info-list__item text-bold">*/}
 						{/*<i className="fa fa-clock-o" aria-hidden="true" />*/}
 						{/*Shuttle frequency:*/}
