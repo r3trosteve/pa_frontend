@@ -86,10 +86,10 @@ class Header extends Component {
 							</ul>
 
 							{
-								this.props.auth.isAuthenticated ?
+                                this.props.auth && this.props.auth.isAuthenticated ?
 									<AuthLinks
 										handleLogout={this.handleLogout}
-										user={this.props.auth.user}
+										user={this.props.auth && this.props.auth.user}
 										currentPathname={this.props.currentPathname}
 									/> :
 									<NonAuthLinks

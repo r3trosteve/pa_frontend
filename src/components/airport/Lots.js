@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 export default class AirportPageAllLots extends Component {
     render() {
@@ -74,7 +75,7 @@ export default class AirportPageAllLots extends Component {
                                                         />
                                                         <p>
                                                             {/*Excellent*/}
-                                                            <span> ({lot && lot.reviews && lot.reviews.length})</span>
+                                                            <span> ({lot && lot.reviews && lot.reviews.length} reviews)</span>
                                                         </p>
                                                     </div>
 
@@ -93,13 +94,27 @@ export default class AirportPageAllLots extends Component {
 
                                             <div className="col-sm-7">
 
-                                                {/*<b className="airport__card__content__date">Review on <span>Oct 15, 2017</span></b>*/}
+                                                {lot && lot.reviews && lot.reviews.length > 0 ?
+                                                    (
+                                                        <b className="airport__card__content__date">
+                                                            Review on
+                                                            <span>
+                                                                {' '}
+                                                                {moment(lot && lot.reviews && lot.reviews.slice(-1)[0].time).format('ll')}
+                                                            </span>
+                                                        </b>
+                                                    ) :
+                                                    null
+                                                }
 
-                                                {/*<div className="airport__card__review">*/}
-                                                    {/*"Have used them before and will keep*/}
-                                                    {/*using them - next time December....*/}
-                                                    {/*Such nice people!! Excellent..."*/}
-                                                {/*</div>*/}
+                                                {lot && lot.reviews && lot.reviews.length > 0 ?
+                                                    (
+                                                        <div className="airport__card__review">
+                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text}"
+                                                        </div>
+                                                    ) :
+                                                    null
+                                                }
 
                                             </div>
 

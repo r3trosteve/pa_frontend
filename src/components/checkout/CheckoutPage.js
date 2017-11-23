@@ -21,7 +21,7 @@ class AirportParkingCheckoutPage extends Component {
 
 	render() {
 
-        if (this.props.auth.isAuthenticated) {
+        if (this.props.auth && this.props.auth.isAuthenticated) {
 
             return (
 				<div className="ap-checkout">
@@ -46,7 +46,7 @@ class AirportParkingCheckoutPage extends Component {
 										Secure booking (only takes 2-3 minutes)
 									</h4>
 									<h2 className="title-normal-mont">
-                                        {this.props.reservation.rate && this.props.reservation.rate.parking_lot.name}
+                                        {this.props.reservation && this.props.reservation.rate && this.props.reservation.rate.parking_lot && this.props.reservation.rate.parking_lot.name}
 									</h2>
 								</div>
 
