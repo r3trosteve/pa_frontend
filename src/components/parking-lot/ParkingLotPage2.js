@@ -11,6 +11,7 @@ import Overview from './Overview';
 import Location from './Location';
 import Details from './Details';
 import Reviews from './Reviews';
+import SearchForm from '../common/form/SearchForm';
 
 import { findLot } from '../../modules/lots/lot';
 
@@ -135,10 +136,10 @@ class ParkingLotPage extends Component {
 
                         <div className="col-md-5 ap-details__column ap-details__column--summary">
 
-                            {/*<OrderSummary*/}
-                            {/*rate={this.props.rate}*/}
-                            {/*openLogModal={this.props.openLogModal}*/}
-                            {/*/>*/}
+                            <SearchForm
+                                airportId={lot && lot.airport_id}
+                                airportName={lot && lot.airport_name}
+                            />
 
                         </div>
 
