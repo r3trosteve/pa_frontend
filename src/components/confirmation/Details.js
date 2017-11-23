@@ -56,6 +56,14 @@ export default class Details extends Component {
                     </p>
 
                     <p className="title-small-mont">
+                        Distance from airport: <b>{rate && rate.distance.toFixed(1)} mile(s)</b>
+                    </p>
+
+                    <p className="title-small-mont">
+                        Parking type: <b>{rate && rate.name}</b>
+                    </p>
+
+                    <p className="title-small-mont">
                         Check-in: <b>{moment(rate && rate.search && rate.search.arrive_at).format('MM/DD/YYYY hh:mm A')}</b>
                     </p>
 
@@ -65,6 +73,10 @@ export default class Details extends Component {
 
                     <p className="title-small-mont">
                         Days of parking: <b>{rate && rate.search && rate.search.days}</b>
+                    </p>
+
+                    <p className="title-small-mont">
+                        Total price: <b>${rate && rate.price && rate.price.total}</b>
                     </p>
                 </div>
 

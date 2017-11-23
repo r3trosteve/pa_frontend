@@ -25,7 +25,7 @@ class ReservationPage extends Component {
 
                     <Helmet title="Confirmation" />
 
-                    <h1>Confirmation</h1>
+                    <h1>Booking Details</h1>
 
                     <Details reservation={this.props.reservation} />
 
