@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
+import moment from 'moment';
 
 import AverageRating from './AverageRating';
 
@@ -29,58 +30,54 @@ export default class Reviews extends Component {
                         null
                 }
 
-                {/*{this.props.lot && this.props.lot.reviews && this.props.lot.reviews.map((review, index) => {*/}
-                    {/*return (*/}
-						{/*<div key={index} className="ap-details__reviews__review">*/}
+                {this.props.lot && this.props.lot.reviews && this.props.lot.reviews.map((review, index) => {
+                    return (
+						<div key={index} className="ap-details__reviews__review">
 
-                            {/*/!*review header*!/*/}
+                            {/*review header*/}
 
-							{/*<div className="ap-details__reviews__review-header">*/}
+							<div className="ap-details__reviews__review-header">
 
-                                {/*/!*Name*!/*/}
+                                {/*Name*/}
 
-								{/*<div className="ap-details__reviews__review-name">*/}
-									{/*<p className="text-mont-bold">Sara Holt</p>*/}
-								{/*</div>*/}
+								<div className="ap-details__reviews__review-name">
+									<p className="text-mont-bold">{review.author_name}</p>
+								</div>
 
-								{/*<div className="ap-details__reviews__review-date">*/}
-									{/*<p className="text-mont-bold">07/03/2017</p>*/}
-								{/*</div>*/}
+								<div className="ap-details__reviews__review-date">
+									<p className="text-mont-bold">
+                                        {moment(review.time).format('MM/DD/YYYY')}
+									</p>
+								</div>
 
-                                {/*/!*rating*!/*/}
+                                {/*rating*/}
 
-								{/*<div className="ap-details__reviews__rating">*/}
-									{/*<div className="ap-details__reviews__rating-stars">*/}
-										{/*<ReactStars*/}
-											{/*className="stars"*/}
-											{/*count={5}*/}
-											{/*value={4}*/}
-											{/*size={24}*/}
-											{/*color1={'#c1c1c1'}*/}
-											{/*color2={'#fdb509'}*/}
-											{/*edit={false}*/}
-											{/*half={true}*/}
-										{/*/>*/}
-									{/*</div>*/}
-								{/*</div>*/}
-							{/*</div>*/}
+								<div className="ap-details__reviews__rating">
+									<div className="ap-details__reviews__rating-stars">
+										<ReactStars
+											className="stars"
+											count={5}
+											value={parseFloat(review.rating)}
+											size={24}
+											color1={'#c1c1c1'}
+											color2={'#fdb509'}
+											edit={false}
+											half={true}
+										/>
+									</div>
+								</div>
+							</div>
 
-                            {/*/!*review body*!/*/}
+                            {/*review body*/}
 
-							{/*<div className="ap-details__reviews__review-body">*/}
-								{/*<p className="text-normal">*/}
-									{/*Motorhome or Trailer that is the question for you. Here are some of the advantages and*/}
-									{/*disadvantages of both, so you will be confident when purchasing an RV. When comparing Rvs, a*/}
-									{/*motorhome or a travel trailer, should you buy a motorhome or fifth wheeler? The advantages*/}
-									{/*and disadvantages of both are studied so that you can make your choice wisely when*/}
-									{/*purchasing an RV. Possessing a motorhome or fifth wheel is an achievement of a lifetime. It*/}
-									{/*can be similar to sojourning with your residence as you search the various sites of our*/}
-									{/*great land, America.*/}
-								{/*</p>*/}
-							{/*</div>*/}
-						{/*</div>*/}
-                    {/*);*/}
-                {/*})}*/}
+							<div className="ap-details__reviews__review-body">
+								<p className="text-normal">
+									{review.text}
+								</p>
+							</div>
+						</div>
+                    );
+                })}
 
 			</div>
 		);
