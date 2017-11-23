@@ -68,7 +68,7 @@ class RatesPage extends Component {
         // end
 
         $('.rates__m-search-info').click(function () {
-           $('.rates__search-form').fadeIn();
+           $('.rates__search-form').show();
         });
 
         $('.close-m-header').click(function () {
@@ -81,7 +81,6 @@ class RatesPage extends Component {
                 $('.rates__search-form .submit button').click(function () {
                     $('.rates__search-form').hide();
                 });
-                $('.rates__search-form').hide();
             } else {
                 $('.rates__search-form .submit button').click(function () {
                     $('.rates__search-form').show();

@@ -29,8 +29,8 @@ class ParkingLotPage extends Component {
         // jquery
 
         $('body').scrollspy({
-			target: '.ap-details__navigation',
-			offsetTop: -100
+			target: ".ap-details__navigation",
+            offset: "55"
         });
 
 		setTimeout(function () {
