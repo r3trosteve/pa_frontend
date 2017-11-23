@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactStars from 'react-stars';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
@@ -7,6 +8,10 @@ import InfoList from '../common/InfoList';
 
 export default class Rate extends Component {
 	render() {
+
+		const rate = this.props.rate;
+		const lot = this.props.rate.parking_lot;
+
 		return (
 			<div className="rates__item">
 
@@ -19,7 +24,7 @@ export default class Rate extends Component {
 						{/*image*/}
 
 						<div className="rates__item__image">
-							<img src={this.props.rate.parking_lot.logo_url} alt={this.props.rate.parking_lot.name} />
+							<img src={lot && lot.logo_url} alt={lot && lot.name} />
 						</div>
 
 						{/*left*/}
@@ -29,23 +34,48 @@ export default class Rate extends Component {
 							{/*header*/}
 
 							<div className="rates__item__header">
+
 								<h2>
-									{this.props.rate.parking_lot.name}
-									<span>${this.props.rate.price.total}</span>
+									{lot && lot.name}
+									<span className="visible-xs">${rate.price.total}</span>
 								</h2>
+
 								<p>
-									{this.props.rate.parking_lot.location.address1}
-									{' '}
-									{this.props.rate.parking_lot.location.address2}
+									{lot && lot.location && lot.location.address1}
+                                    {' '}
+                                    {lot && lot.location && lot.location.address2},
+                                    {' '}
+                                    {lot && lot.location && lot.location.city},
+                                    {' '}
+                                    {lot && lot.location && lot.location.state},
+                                    {' '}
+                                    {lot && lot.location && lot.location.country}
 								</p>
+
+								<div className="rates__item__header__stars">
+									<ReactStars
+										className="stars"
+										count={5}
+										value={parseFloat(lot && lot.rating)}
+										size={24}
+										color1={'#c1c1c1'}
+										color2={'#fdb509'}
+										edit={false}
+										half={true}
+									/>
+									<p>
+										(<span>{lot && lot.reviews && lot.reviews.length}</span> reviews)
+									</p>
+
+								</div>
+
 							</div>
 
 							{/*info list*/}
 
 							<InfoList
-								distance={this.props.rate.distance.toFixed(1)}
-								type={this.props.rate.name}
-								// shuttleFrequency={this.props.rate.shuttleFrequency}
+								distance={rate.distance.toFixed(1)}
+								type={rate.name}
 							/>
 
 						</div>
@@ -56,7 +86,7 @@ export default class Rate extends Component {
 
 							<div className="rates__item__price">
 
-								<span>${this.props.rate.price.total}</span>
+								<span>${rate.price.total}</span>
 
 								<p className="cancellation">
 									<i className="ion-ios-checkmark" />
@@ -65,7 +95,7 @@ export default class Rate extends Component {
 
 								<p className="taxes">Taxes and Fees included</p>
 
-								<Link to={`/airport-parking/${this.props.rate.id}`} className="btn-custom">
+								<Link to={`/airport-parking/${rate.id}`} className="btn-custom">
 									View details
 								</Link>
 
@@ -78,14 +108,14 @@ export default class Rate extends Component {
 				{/*description*/}
 
 				<div className="rates__item__description hidden-xs">
-					<p>{this.props.rate.terminal_comment}</p>
+					<p>{rate && rate.terminal_comment}</p>
 				</div>
 
 				{/*options*/}
 
 				<div className="rates__item__options hidden-xs">
 
-					{this.props.rate.parking_lot.services.map((option, index) => {
+					{lot && lot.services && lot.services.map((option, index) => {
 
 						return (
 							<p key={index} className="rates__item__option-text">

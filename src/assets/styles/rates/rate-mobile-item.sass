@@ -1,0 +1,58 @@
+
+.rates-mobile__item
+  display: block
+  padding: 15px
+  text-decoration: none
+  border-bottom: 1px solid rgba(83, 115, 143, 0.1)
+
+  &__row
+    display: flex
+
+  &__image
+    background: $grey
+    flex-basis: 100px
+    display: flex
+    align-items: center
+    min-width: 100px
+    img
+      width: 100%
+
+  &__description
+    flex-grow: 1
+    padding-left: 8px
+
+  &__header
+    font-family: 'Montserrat', sans-serif
+    color: $blue
+    h2
+      font-size: 14px
+      position: relative
+      padding-right: 55px
+      line-height: 18px
+      span
+        position: absolute
+        right: 0
+        top: 0
+        font-size: 16px
+        font-family: 'Montserrat', sans-serif
+        color: $orange
+
+    &__stars
+      display: flex
+      p
+        font-family: 'Montserrat', sans-serif
+        color: $grey-dark
+        font-weight: 400
+        padding-left: 5px
+        position: relative
+        top: 4px
+        font-size: 12px
+
+  .info-list
+    &__item
+      padding: 0
+      i, b
+        display: none
+      span
+        padding-left: 0
+        font-size: 12px

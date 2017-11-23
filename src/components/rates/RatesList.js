@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import preloader from '../../assets/images/preloader/loader.gif';
 
 import Rate from './Rate';
+import RateMobile from './RateMobile';
 
 export default class RatesList extends Component {
     render() {
@@ -21,11 +22,27 @@ export default class RatesList extends Component {
             if (this.props.rates.length !== 0) {
                 return (
                     <div className="rates__items-container">
-                        {
-                            this.props.rates.map(rate => {
-                                return <Rate key={rate.id} rate={rate} />;
-                            })
-                        }
+
+                        <div className="hidden-xs">
+                            {
+                                this.props.rates.map(rate => {
+                                    return (
+                                        <Rate key={rate.id} rate={rate} />
+                                    );
+                                })
+                            }
+                        </div>
+
+                        <div className="visible-xs">
+                            {
+                                this.props.rates.map(rate => {
+                                    return (
+                                        <RateMobile key={rate.id} rate={rate} />
+                                    );
+                                })
+                            }
+                        </div>
+
                     </div>
                 );
 
