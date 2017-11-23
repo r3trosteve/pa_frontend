@@ -8,7 +8,9 @@ import NotFoundPage from './components/notofund/NotFoundPage';
 import NewPasswordPage from './components/profile/NewPasswordPage';
 import AirportPage from './components/airport/AirportPage';
 import AirportsPage from './components/airports/AirportsPage';
-import ReservatinPage from './components/reservation/ResrvationPage';
+import ConfirmationPage from './components/confirmation/ConfirmationPage';
+import PrivacyPolicyPage from './components/static-pages/PrivacyPolicyPage';
+import TermsConditionsPage from './components/static-pages/TermsConditionsPage';
 
 const routes = [
 	{
@@ -37,6 +39,10 @@ const routes = [
 		path: '/checkout/:id',
 		component: CheckoutPage
 	},
+    {
+        path: '/confirmation',
+        component: ConfirmationPage
+    },
 	{
 		path: '/profile',
 		component: ProfilePage
@@ -50,14 +56,18 @@ const routes = [
         component: AirportsPage
     },
     {
+        path: 'privacy-policy',
+        component: PrivacyPolicyPage
+    },
+    {
+        path: 'terms-of-service',
+        component: TermsConditionsPage
+    },
+    {
         path: /.*-airport$/,
         exact: true,
         component: AirportPage
     },
-	{
-		path: '/reservation',
-		component: ReservatinPage
-	},
     {
         path: '*',
         component: NotFoundPage

@@ -18,7 +18,9 @@ import NewPasswordPage from './profile/NewPasswordPage';
 import AirportPage from './airport/AirportPage';
 import AirportsPage from './airports/AirportsPage';
 import NotFoundPage from './notofund/NotFoundPage';
-import ReservatinPage from './reservation/ResrvationPage';
+import ConfirmationPage from './confirmation/ConfirmationPage';
+import PrivacyPolicyPage from './static-pages/PrivacyPolicyPage';
+import TermsConditionsPage from './static-pages/TermsConditionsPage';
 
 class App extends Component {
 
@@ -73,18 +75,16 @@ class App extends Component {
 						openLogModal={this.openLogModal}
 					/>
 
-					{/*<Route*/}
-						{/*path="/lot/:slug"*/}
-						{/*component={ParkingLotPage2}*/}
-					{/*/>*/}
-
 					<Route path="/checkout/:id" component={CheckoutPage} />
+					<Route path="/confirmation" component={ConfirmationPage} />
+
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
 
 					<Route path="/airports" component={AirportsPage} />
 
-					{/*<Route exact path="/:slug" component={AirportPage} />*/}
+					<Route path="/privacy-policy" component={PrivacyPolicyPage} />
+					<Route path="/terms-of-service" component={TermsConditionsPage} />
 
 					<Route
 						path="/:slug"
@@ -100,8 +100,6 @@ class App extends Component {
 							}
                         }}
 					/>
-
-					<Route path="/reservation" component={ReservatinPage} />
 
 					<Route path="*" component={NotFoundPage} />
 

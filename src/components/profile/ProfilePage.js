@@ -30,15 +30,15 @@ class ProfilePage extends Component {
 
     componentWillMount() {
         this.setState({
-            name: this.props.auth.user && this.props.auth.user.name,
-            email: this.props.auth.user && this.props.auth.user.email
+            name: this.props.auth && this.props.auth.user && this.props.auth.user.name,
+            email: this.props.auth && this.props.auth.user && this.props.auth.user.email
         });
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            name: nextProps.auth.user && nextProps.auth.user.name,
-            email: nextProps.auth.user && nextProps.auth.user.email
+            name: nextProps.auth && nextProps.auth.user && nextProps.auth.user.name,
+            email: nextProps.auth && nextProps.auth.user && nextProps.auth.user.email
         });
     }
 
@@ -94,7 +94,7 @@ class ProfilePage extends Component {
 
     render() {
 
-        if (this.props.auth.isAuthenticated) {
+        if (this.props.auth && this.props.auth.isAuthenticated) {
 
             return (
                 <div className="profile">
@@ -117,7 +117,7 @@ class ProfilePage extends Component {
                                         </div>
 
                                         <div className="profile__card-header__name">
-                                            <h2 className="title-normal-bold">{this.props.auth.user.name}</h2>
+                                            <h2 className="title-normal-bold">{this.props.auth && this.props.auth.user.name}</h2>
                                         </div>
 
                                     </div>
@@ -125,7 +125,7 @@ class ProfilePage extends Component {
                                     {/*item 1*/}
 
                                     <ProfileItems
-                                        user={this.props.auth.user}
+                                        user={this.props.auth && this.props.auth.user}
                                         handleProfileUpdate={this.handleProfileUpdate}
                                         handleChange={this.handleChange}
                                         errors={this.state.errors}
