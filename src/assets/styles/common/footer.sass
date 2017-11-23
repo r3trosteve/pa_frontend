@@ -10,25 +10,27 @@
   a
     color: $blue-light
     &:hover
-      color: $white
+      color: $white!important
+    &:visited
+      color: $blue-light
 
   ul, ul li
     display: inline-block
 
   &__row
-    &--top
 
     &--bottom
       .col-md-4
         padding-bottom: 20px
 
-  &__list-nav li
-    margin: 8px 13px 0
-    a
-      font-size: 14px
-      font-weight: 600
-      text-transform: capitalize
-      text-align: left
+  &__list-nav
+    li
+      margin: 8px 13px 0
+      a
+        font-size: 14px
+        font-weight: 600
+        text-transform: capitalize
+        text-align: left
 
   &__list-social
     li

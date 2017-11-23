@@ -34,6 +34,9 @@ class AuthLinks extends Component {
                     </span>
                 </li>
                 <li>
+                    <a href="http://parkingaccess.helpsite.io/">Help/Faq</a>
+                </li>
+                <li>
                     <span>
                         <a href="tel:8008515863">800-851-5863</a>
                     </span>

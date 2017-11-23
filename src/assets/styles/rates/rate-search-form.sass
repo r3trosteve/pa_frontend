@@ -56,8 +56,19 @@
 
 @media (max-width: 767px)
   .rates__search-form
+    display: none
+    position: fixed
+    background: white
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    z-index: 1000
     .search-form
-      padding: 15px
+      padding: 0 15px
+      border-bottom: none!important
+      &__m-header
+        display: block
       .react-autosuggest__suggestions-container--open span
         padding: 7px 45px!important
       label input

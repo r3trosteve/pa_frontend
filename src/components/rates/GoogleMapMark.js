@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import ReactStars from 'react-stars';
 
 export default class GoogleMapMark extends Component {
 
@@ -23,13 +24,24 @@ export default class GoogleMapMark extends Component {
 
     render() {
         return (
-            <div className="map-info" >
+            <div className="map-info">
 
                 <div className="map-info__details">
 
                     <i className="ion-ios-close" />
 
                     <h2>{this.props.rate.parking_lot.name}</h2>
+
+                    <ReactStars
+                        className="stars"
+                        count={5}
+                        value={parseFloat(this.props.rate.parking_lot && this.props.rate.parking_lot.rating)}
+                        size={24}
+                        color1={'#c1c1c1'}
+                        color2={'#fdb509'}
+                        edit={false}
+                        half={true}
+                    />
 
                     <p className="text-bold">
                         <span>{this.props.rate.distance.toFixed(1)}</span> mile(s)

@@ -12,6 +12,8 @@ import { createSearch } from '../../modules/search/search';
 import { fetchRates } from '../../modules/rates/rates';
 import { bindActionCreators } from 'redux';
 
+import logoImg3x from '../../assets/images/logo/logo@3x.png';
+
 class Form extends Component {
 	constructor(props) {
 		super(props);
@@ -140,6 +142,14 @@ class Form extends Component {
 		return (
 			<form onSubmit={this.handleSubmit} className="rates__search-form">
 				<div className="search-form">
+
+
+
+					<div className="search-form__m-header">
+						<img src={logoImg3x} alt="Logo"/>
+						<h4 className="title">Edit Search</h4>
+						<i className="ion-ios-close close-m-header" />
+					</div>
 
 					<AirportAutocomplete
 						airportName={this.state.airportName}

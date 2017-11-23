@@ -78,7 +78,7 @@ class Header extends Component {
 
 							<ul className="nav navbar-nav">
 								<li>
-									<NavLink exact to="/">
+									<NavLink exact to="/airports">
 										<img src={carIcon} alt="Car" />
 										Airport Parking
 									</NavLink>

@@ -15,7 +15,7 @@ export default class Footer extends Component {
 					{/*top row*/}
 
 					<div className="row footer__row footer__row--top">
-						<div className="col-md-2 footer__column">
+						<div className="col-md-2 footer__column footer__column--logo">
 
 							<NavLink exact to="/">
 								<img src={logoImg3x} alt="Logo" width={117} height={38} />
@@ -91,7 +91,7 @@ export default class Footer extends Component {
 							<BookTravel />
 						</div>
 						<div className="col-md-4 col-md-pull-4 footer__column">
-							<span className="footer__address">New York, 12 Feesr Meadow Apt. 692</span>
+							<span className="footer__address">Made in Connecticut</span>
 						</div>
 						<div className="col-md-4 footer__column text-right">
 							<p className="footer__copyright">© Copyright parkingaccess.com 2017</p>

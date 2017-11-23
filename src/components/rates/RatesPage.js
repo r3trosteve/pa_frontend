@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import moment from 'moment';
 
 import Form from './Form';
 import RatesList from './RatesList';
@@ -65,6 +66,36 @@ class RatesPage extends Component {
         });
 
         // end
+
+        $('.rates__m-search-info').click(function () {
+           $('.rates__search-form').fadeIn();
+        });
+
+        $('.close-m-header').click(function () {
+            $('.rates__search-form').hide();
+        });
+
+        let closeFormOnMobile = function () {
+            let wWidth = $(window).width();
+            if (wWidth < 767) {
+                $('.rates__search-form .submit button').click(function () {
+                    $('.rates__search-form').hide();
+                });
+                $('.rates__search-form').hide();
+            } else {
+                $('.rates__search-form .submit button').click(function () {
+                    $('.rates__search-form').show();
+                });
+                $('.rates__search-form').show();
+            }
+        };
+
+        closeFormOnMobile();
+
+        $(window).resize(function () {
+            closeFormOnMobile();
+        });
+
     }
 
     mapTabActive() {
@@ -86,6 +117,20 @@ class RatesPage extends Component {
                     {/*LEFT COLUMN*/}
 
                     <div className="rates__column rates__column--content">
+
+                        <div className="rates__m-search-info visible-xs">
+                            <i className="ion-ios-search" />
+                            <b>
+                                {this.props.search && this.props.search.airport && this.props.search.airport.name}
+                                {' '}
+                                ({this.props.search && this.props.search.airport && this.props.search.airport.code})
+                            </b>
+                            <p>
+                                {moment(this.props.search && this.props.search.arrive_at).format('MM/DD/YYYY hh:mm A')}
+                                <i className="ion-ios-arrow-thin-right"></i>
+                                {moment(this.props.search && this.props.search.exit_at).format('MM/DD/YYYY hh:mm A')}
+                            </p>
+                        </div>
 
                         <Form
                             airports={this.props.airports}

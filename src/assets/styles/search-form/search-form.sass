@@ -5,6 +5,26 @@
   box-shadow: $shadow-main
   display: flex
   margin: 0 auto 15px
+
+  &__m-header
+    display: none
+    margin: 50px auto 35px
+    img
+      width: 113px
+      height: 38px
+      margin-bottom: 25px
+    h4
+      color: $blue
+      font-size: 24px
+      font-weight: 600
+
+    i.ion-ios-close
+      position: absolute
+      right: 15px
+      top: 10px
+      font-size: 30px
+      color: $orange
+
   label
     margin: 0
     position: relative
@@ -127,7 +147,7 @@
           top: 20px
           cursor: pointer
           transition: all 0.3s
-          i
+          i.ion-ios-arrow-thin-right
             font-size: 40px
             color: $grey
           &.left-arrow
@@ -197,3 +217,6 @@
 @media (max-width: 767px)
   .search-form
     @include search-form-xs
+    .react-autosuggest__suggestions-list
+      max-height: 300px
+      overflow-y: auto
