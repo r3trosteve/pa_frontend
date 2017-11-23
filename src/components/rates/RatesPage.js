@@ -126,7 +126,7 @@ class RatesPage extends Component {
                             </b>
                             <p>
                                 {moment(this.props.search && this.props.search.arrive_at).format('MM/DD/YYYY hh:mm A')}
-                                <i className="ion-ios-arrow-thin-right"></i>
+                                <i className="ion-ios-arrow-thin-right" />
                                 {moment(this.props.search && this.props.search.exit_at).format('MM/DD/YYYY hh:mm A')}
                             </p>
                         </div>

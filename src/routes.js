@@ -40,7 +40,7 @@ const routes = [
 		component: CheckoutPage
 	},
     {
-        path: '/confirmation',
+        path: '/confirmation/:id',
         component: ConfirmationPage
     },
 	{

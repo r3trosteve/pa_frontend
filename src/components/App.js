@@ -76,7 +76,7 @@ class App extends Component {
 					/>
 
 					<Route path="/checkout/:id" component={CheckoutPage} />
-					<Route path="/confirmation" component={ConfirmationPage} />
+					<Route path="/confirmation/:id" component={ConfirmationPage} />
 
 					<Route path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />

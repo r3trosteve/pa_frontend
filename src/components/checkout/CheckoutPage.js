@@ -28,8 +28,6 @@ class AirportParkingCheckoutPage extends Component {
 
 					<Helmet title="Checkout" />
 
-                    {/*<div><pre>{JSON.stringify(this.props.checkout, null, 2) }</pre></div>*/}
-
 					<div className="container ap-checkout__container">
 
 						<div className="row ap-checkout__row">
