@@ -21,17 +21,14 @@ export default class PaymentDetails extends Component {
 
 		this.setState({ loading: true });
 
-		const id = this.props.reservation && this.props.reservation.id;
+        this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
+            .then(() => this.setState({ loading: false, iframeShown: true }));
 
-        this.props.requestCheckout(id)
-			.then(() => this.setState({ loading: false, iframeShown: true }));
-
-        this.props.fetchPaidReservation(id);
+        this.props.fetchPaidReservation(this.props.reservation && this.props.reservation.id);
 	}
 
     componentWillReceiveProps(nextProps) {
         if (!isEmpty(nextProps.paidReservation)) {
-            console.log('paid reservation:', this.props.paidReservation);
             this.setState({ isReservationPaid: true });
         }
     }

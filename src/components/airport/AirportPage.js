@@ -44,7 +44,7 @@ class AirportPage extends Component {
     render() {
 
         const airport = this.props.airport;
-        const airport_seo = this.props.airport.seo_content;
+        const airport_seo = this.props.airport && this.props.airport.seo_content;
 
         return (
           <div className="airport">

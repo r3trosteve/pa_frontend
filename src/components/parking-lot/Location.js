@@ -56,20 +56,20 @@ export default class Location extends Component {
 							!this.state.mapLoading ?
 							(
 								<GoogleMapReact center={{
-                                    lat: lot && parseFloat(lot.location.latitude),
-                                    lng: lot && parseFloat(lot.location.longitude)
+                                    lat: lot && lot.location && parseFloat(lot.location.latitude),
+                                    lng: lot && lot.location && parseFloat(lot.location.longitude)
                                 }} zoom={13}>
 
 									<ParkingLotMapMark
-										lat={lot && parseFloat(lot.location.latitude)}
-										lng={lot && parseFloat(lot.location.longitude)}
+										lat={lot && lot.location && parseFloat(lot.location.latitude)}
+										lng={lot && lot.location && parseFloat(lot.location.longitude)}
 									/>
 
 									{
 										rate ?
 											<AirportMapMark
-												lat={rate && parseFloat(rate.search.airport.location.latitude)}
-												lng={rate && parseFloat(rate.search.airport.location.longitude)}
+												lat={rate && rate.search && rate.search.airport && rate.search.airport.location && parseFloat(rate.search.airport.location.latitude)}
+												lng={rate && rate.search && rate.search.airport && rate.search.airport.location && parseFloat(rate.search.airport.location.longitude)}
 											/> :
 											null
 									}
