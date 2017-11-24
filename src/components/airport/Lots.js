@@ -100,7 +100,7 @@ export default class AirportPageAllLots extends Component {
                                                             </span>
                                                         </b>
                                                         <div className="airport__card__review">
-                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text.substring(0, 70)}..."
+                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text.substring(0, 90)}..."
                                                         </div>
 
                                                     </div>

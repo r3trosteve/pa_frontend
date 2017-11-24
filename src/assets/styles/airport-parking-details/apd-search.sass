@@ -1,0 +1,121 @@
+
+.ap-details__search
+  z-index: 101
+
+  &__header
+    text-align: center
+    background: $blue
+    padding: 15px
+    h2
+      color: white
+
+  .home__search-form
+    padding: 20px 25px 25px
+
+  .search-form
+    box-shadow: none
+    margin-top: 15px
+  .name-label
+    display: none
+  .date-label
+    width: 100%!important
+    input
+      padding-left: 25px
+      border-radius: 4px!important
+      border: 1px solid #dedede !important
+      background: $white
+    .end-date
+      padding-right: 25px
+  .home__search-form__submit
+    margin-top: 0
+    width: 100%
+    label
+      margin: 0
+    button
+      height: 48px
+  .home__search-form__help
+    display: none
+  .label-title
+    left: 25px!important
+
+//responsiveness
+@media (max-width: 1199px)
+  .ap-details__search
+    @include search-form-sm
+
+@media (max-width: 991px)
+  .ap-details__search
+
+    .home__search-form
+      max-width: 100%
+      display: flex
+      .search-form
+        width: 60%
+        padding-right: 25px
+      .home__search-form__submit
+        width: 40%
+        button
+          height: 65px
+          position: relative
+          top: 15px
+
+@media (max-width: 767px)
+
+  .ap-details__column--search
+    left: 0
+    right: 0
+    width: 100%!important
+    top: auto
+    position: fixed
+    bottom: 0
+    z-index: 1000
+    padding: 0
+    box-shadow: $shadow-main-revert
+
+  .ap-details__search
+
+    &.card-custom.card-custom--no-pad
+      border-radius: 0!important
+
+    &__header
+      display: none
+
+    &.card-custom.card-custom--no-pad
+      margin: 0!important
+
+    .home__search-form
+      max-width: 100%
+      display: block
+      background: none
+      padding: 0!important
+      border-radius: 0!important
+      .search-form
+        width: 100%
+        margin: 0
+        padding: 0!important
+        border-radius: 0!important
+        .error-text
+          display: none!important
+        .mobile-icon
+          top: 15px
+        .label-title
+          display: none
+        label
+          margin: 0
+          input
+            background: white!important
+            padding-left: 45px
+            height: 50px
+            padding-top: 3px
+            border: 2px solid transparent!important
+            border-radius: 0!important
+          &.has-error input
+            border: 2px solid $red!important
+      .home__search-form__submit
+        width: 100%
+        button
+          width: 100%
+          height: auto
+          top: 0
+          line-height: 45px
+          border-radius: 0!important
