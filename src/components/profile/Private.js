@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 export default class Private extends Component {
     render() {
         return (
-            <div className="profile">
+            <div className="profile__private">
 
                 <Helmet title={this.props.title} />
 

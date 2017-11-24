@@ -3,6 +3,11 @@ import { Route } from 'react-router-dom';
 import Helmet from 'react-helmet';
 
 export default class NotFoundPage extends Component {
+
+    componentDidMount() {
+        $(window).scrollTop(0); // jq to load page on top
+    }
+
     render() {
         return (
             <Route render={({ staticContext }) => {

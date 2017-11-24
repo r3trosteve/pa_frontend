@@ -49,7 +49,7 @@
             top: 0.5px
           .summary-tooltip
             position: absolute
-            bottom: 0
+            bottom: 10px
             left: -15px
             box-shadow: $shadow-popover
             border-radius: 4px
@@ -58,6 +58,7 @@
             padding: 15px 0
             color: white
             display: none
+            min-width: 290px
             opacity: 0
             animation: summary-tooltip 0.5s forwards
             h4, p
@@ -73,6 +74,7 @@
               b
                 float: right
                 font-weight: 600
+                margin-left: 5px
             i.fa-caret-down
               color: $blue
               position: absolute
@@ -150,8 +152,6 @@
         font-weight: 600
         &:hover
           color: $orange-light
-
-
 
 //responsiveness
 @media (max-width: 767px)
