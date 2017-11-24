@@ -13,7 +13,7 @@ import Header from './Header';
 import GoogleMap from './GoogleMap';
 
 import { fetchAirports } from '../../modules/airports/airports';
-import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice, filterRates } from '../../modules/rates/rates';
+import { fetchRates, sortRatesByDistance, sortRatesByLowPrice, sortRatesByHighPrice, filterRates, sortRatesByRating } from '../../modules/rates/rates';
 import { fetchSearch } from '../../modules/search/search';
 
 class RatesPage extends Component {
@@ -159,6 +159,7 @@ class RatesPage extends Component {
                                 sortRatesByDistance={this.props.sortRatesByDistance}
                                 sortRatesByLowPrice={this.props.sortRatesByLowPrice}
                                 sortRatesByHighPrice={this.props.sortRatesByHighPrice}
+                                sortRatesByRating={this.props.sortRatesByRating}
                             />
 
                             {/*rates*/}
@@ -210,7 +211,8 @@ RatesPage.propTypes = {
     sortRatesByLowPrice: PropTypes.func.isRequired,
     sortRatesByHighPrice: PropTypes.func.isRequired,
     filterRates: PropTypes.func.isRequired,
-    filteredRates: PropTypes.array.isRequired
+    filteredRates: PropTypes.array.isRequired,
+    sortRatesByRating: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -228,7 +230,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     sortRatesByDistance,
     sortRatesByHighPrice,
     sortRatesByLowPrice,
-    filterRates
+    filterRates,
+    sortRatesByRating
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(RatesPage);

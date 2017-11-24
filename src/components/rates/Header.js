@@ -76,7 +76,7 @@ export default class Header extends Component {
 					</span>
 
 					<ul className="dropdown-menu sorting">
-						<li onClick={() => alert('No rating provided for rates yet')}>Best Rating</li>
+						<li onClick={() => this.props.sortRatesByRating(this.props.filteredRates)}>Best Rating</li>
 						<li onClick={() => this.props.sortRatesByDistance(this.props.filteredRates)}>Closest to Airport</li>
 						<li onClick={() => this.props.sortRatesByLowPrice(this.props.filteredRates)}>Price: Low to High</li>
 						<li onClick={() => this.props.sortRatesByHighPrice(this.props.filteredRates)}>Price: High to Low</li>
@@ -96,5 +96,6 @@ Header.propTypes = {
 	sortRatesByLowPrice: PropTypes.func.isRequired,
 	sortRatesByHighPrice: PropTypes.func.isRequired,
 	filterRates: PropTypes.func.isRequired,
-    filteredRates: PropTypes.array.isRequired
+    filteredRates: PropTypes.array.isRequired,
+    sortRatesByRating: PropTypes.func.isRequired
 };

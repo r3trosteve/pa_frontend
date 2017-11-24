@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import isEmpty from 'lodash/isEmpty';
 
 const baseUrl = 'http://staging.back.parkingaccess.com/airport_parking/searches/';
 
@@ -12,6 +13,7 @@ export const RATES_FETCHED = 'RATES_FETCHED';
 export const RATES_SORTED_BY_DISTANCE = 'RATES_SORTED_BY_DISTANCE';
 export const RATES_SORTED_BY_LOW_PRICE = 'RATES_SORTED_BY_LOW_PRICE';
 export const RATES_SORTED_BY_HIGH_PRICE = 'RATES_SORTED_BY_HIGH_PRICE';
+export const RATES_SORTED_BY_RATING = 'RATES_SORTED_BY_RATING';
 export const RATES_UNFILTERED = 'RATES_UNFILTERED';
 export const RATES_FILTERED = 'RATES_FILTERED';
 
@@ -52,6 +54,15 @@ export default function reducer(state = initialState, action) {
         case RATES_SORTED_BY_HIGH_PRICE:
             return Object.assign({}, state, {
                 filteredItems: action.items.slice().sort((a, b) => b.price.total - a.price.total)
+            });
+
+        case RATES_SORTED_BY_RATING:
+            return Object.assign({}, state, {
+                filteredItems: action.items.slice().sort((a, b) => {
+                    if (!isEmpty(a.parking_lot) && !isEmpty(b.parking_lot)) {
+                        return a.parking_lot.rating - b.parking_lot.rating;
+                    }
+                })
             });
 
         default:
@@ -129,6 +140,13 @@ export const sortRatesByLowPrice = rates => dispatch => {
 export const sortRatesByHighPrice = rates => dispatch => {
     return dispatch({
         type: RATES_SORTED_BY_HIGH_PRICE,
+        items: rates
+    });
+};
+
+export const sortRatesByRating = rates => dispatch => {
+    return dispatch({
+        type: RATES_SORTED_BY_RATING,
         items: rates
     });
 };
