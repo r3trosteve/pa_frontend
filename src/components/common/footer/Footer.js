@@ -37,10 +37,10 @@ export default class Footer extends Component {
 									<a href="http://parkingaccess.helpsite.io/">Help/Faq</a>
 								</li>
 								<li>
-									<NavLink to="/terms-of-service">Terms of Service</NavLink>
+									<NavLink to="#">Terms of Service</NavLink>
 								</li>
 								<li>
-									<NavLink to="/privacy-policy">Privacy Policy</NavLink>
+									<NavLink to="#">Privacy Policy</NavLink>
 								</li>
 								<li>
 									<a href="https://shuttlefare.typeform.com/to/YFXRs3">Convention Discounts</a>
