@@ -21,9 +21,9 @@ export default class AirportPagePopularLots extends Component {
 
                             {/*title*/}
 
-                            <h4 className="title-normal-bold-upper">
-                                Today’s Most Popular {airport && airport.code} Parking Lots
-                            </h4>
+                            {/*<h4 className="title-normal-bold-upper">*/}
+                                {/*Today’s Most Popular {airport && airport.code} Parking Lots*/}
+                            {/*</h4>*/}
 
                             {/*card 1*/}
 
@@ -93,7 +93,7 @@ export default class AirportPagePopularLots extends Component {
 
                         {/*RIGHT COLUMN*/}
 
-                        <div className="col-lg-6 col-md-5 airport__popular__column airport__popular__column--right">
+                        <div className="col-lg-12 airport__popular__column airport__popular__column--right">
                             <h4 className="title-normal-bold-upper">
                                 {airport_seo && airport_seo.header2}
                             </h4>

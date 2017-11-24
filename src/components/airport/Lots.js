@@ -19,12 +19,12 @@ export default class AirportPageAllLots extends Component {
                         All {airport && airport.name} Lots...
                     </h4>
 
-                    <div className="row airport__lots__row">
+                    <div className="airport__lots__row">
 
                         {airport && airport.parking_lots && airport.parking_lots.map(lot => {
                             return (
 
-                                <div key={lot.id} className="col-lg-6 col-md-12 airport__lots__column">
+                                <div key={lot.id} className="airport__lots__column">
                                     <div className="airport__card card-custom">
 
                                         {/*body*/}
@@ -33,7 +33,7 @@ export default class AirportPageAllLots extends Component {
 
                                             {/*image*/}
 
-                                            <div className="col-lg-5 col-md-3 col-sm-5 airport__card__column airport__card__column--image">
+                                            <div className="col-lg-6 col-md-6 col-sm-5 airport__card__column airport__card__column--image">
                                                 <div className="airport__card__image">
                                                     <img
                                                         src={lot.logo_url}
@@ -44,7 +44,7 @@ export default class AirportPageAllLots extends Component {
 
                                             {/*right content*/}
 
-                                            <div className="col-md-9 col-lg-7 col-sm-7 airport__card__column">
+                                            <div className="col-lg-6 col-md-6 col-sm-7 airport__card__column">
                                                 <div className="airport__card__content">
 
                                                     <h5>
@@ -79,10 +79,6 @@ export default class AirportPageAllLots extends Component {
                                                         </p>
                                                     </div>
 
-                                                    <div className="airport__card__description">
-                                                        <p>{lot && lot.description}</p>
-                                                    </div>
-
                                                 </div>
 
                                             </div>
@@ -92,41 +88,30 @@ export default class AirportPageAllLots extends Component {
 
                                         <div className="row airport__card__row airport__card__footer">
 
-                                            <div className="col-sm-7">
+                                            {lot && lot.reviews && lot.reviews.length > 0 ?
+                                                (
+                                                    <div className="col-sm-7 airport__card__review-content">
 
-                                                {lot && lot.reviews && lot.reviews.length > 0 ?
-                                                    (
-                                                        <b className="airport__card__content__date">
+                                                        <b className="airport__card__date">
                                                             Review on
                                                             <span>
                                                                 {' '}
                                                                 {moment(lot && lot.reviews && lot.reviews.slice(-1)[0].time).format('ll')}
                                                             </span>
                                                         </b>
-                                                    ) :
-                                                    null
-                                                }
-
-                                                {lot && lot.reviews && lot.reviews.length > 0 ?
-                                                    (
                                                         <div className="airport__card__review">
-                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text}"
+                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text.substring(0, 70)}..."
                                                         </div>
-                                                    ) :
-                                                    null
-                                                }
 
-                                            </div>
-
-                                            <div className="col-sm-5">
-
-                                                <Link to={`/${lot.slug}`} className="btn-custom">
-                                                    VIEW DETAILS
-                                                </Link>
-
-                                            </div>
+                                                    </div>
+                                                ) : null
+                                            }
 
                                         </div>
+
+                                        <Link to={`/${lot.slug}`} className="btn-custom">
+                                            VIEW DETAILS
+                                        </Link>
 
                                     </div>
                                 </div>
