@@ -82,7 +82,6 @@ export default class TopAirports extends Component {
 					{/*END TOP*/}
 
 					{/*AIRPORTS LIST*/}
-
 					<AirportsList airports={this.props.airports} />
 					{/*END*/}
 

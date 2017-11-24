@@ -31,6 +31,15 @@
         color: $orange
       &:visited
         color: $blue
+      &.visible
+        display: inline-block!important
+    &:nth-child(n+11) a
+      display: none
+
+  .show-more
+    padding: 15px 35px
+    display: inline-block
+    margin-top: 15px
 
 //responsiveness
 @media (max-width: 767px)

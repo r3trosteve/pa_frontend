@@ -62,6 +62,13 @@ export default class LotsList extends Component {
                                     {this.props.lots.slice(88, 132).map((lot, index) => this.showList(index, lot))}
                                 </ul>
                             </div>
+
+                            <div className="col-md-12 text-center">
+                                <span className="btn-custom show-more">
+                                    Show more
+                                </span>
+                            </div>
+
                         </div>
 
                         {/*mobile*/}

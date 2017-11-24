@@ -56,11 +56,11 @@ export default class AirportsList extends Component {
 						</ul>
 					</div>
 
-					{/*<div className="col-md-12 text-center">*/}
-						{/*<span className="btn-custom">*/}
-							{/*Show more*/}
-						{/*</span>*/}
-					{/*</div>*/}
+					<div className="col-md-12 text-center">
+						<span className="btn-custom show-more">
+							Show more
+						</span>
+					</div>
 
 				</div>
 

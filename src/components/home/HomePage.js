@@ -42,6 +42,13 @@ class HomePage extends Component {
 
 		// end
 
+		$('.home__top-airports .show-more').click(function () {
+			$(this).parent().parent().find('.airports-list__list-item a').toggleClass('visible');
+            $(this).text(function(i, text){
+                return text === 'Show less' ? 'Show more' : 'Show less';
+            });
+        });
+
 	}
 
 	render() {
