@@ -146,7 +146,7 @@ export default class PaymentDetails extends Component {
 
                     {
                         this.state.iframeShown && !this.state.isReservationPaid ?
-							<p>
+							<p className="ap-checkout__payment-details__notification small">
 								When you submit the payment form you will need to wait for a while till PNF completes the payment.
 								Afterwards you will be redirected to confirmation page.
 							</p> :

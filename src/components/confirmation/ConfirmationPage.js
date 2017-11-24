@@ -21,13 +21,19 @@ class ReservationPage extends Component {
         if (this.props.auth && this.props.auth.isAuthenticated) {
 
             return (
-                <div>
+                <div className="confirmation">
 
                     <Helmet title="Confirmation" />
 
-                    <h1>Booking Details</h1>
+                    <div className="container confirmation__container">
 
-                    <Details reservation={this.props.reservation} />
+                        <p className="ap-checkout__payment-details__notification small">
+                            Please check your email for your reservation receipt which you need to present to the parking lot upon arrival.
+                        </p>
+
+                        <Details reservation={this.props.reservation} />
+
+                    </div>
 
                 </div>
             );
