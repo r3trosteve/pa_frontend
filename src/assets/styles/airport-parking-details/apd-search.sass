@@ -12,6 +12,9 @@
   .home__search-form
     padding: 20px 25px 25px
 
+  .error-text
+    font-size: 14px!important
+
   .search-form
     box-shadow: none
     margin-top: 15px
@@ -45,6 +48,8 @@
 
 @media (max-width: 991px)
   .ap-details__search
+    position: relative!important
+    margin-top: 30px!important
 
     .home__search-form
       max-width: 100%
@@ -61,18 +66,16 @@
 
 @media (max-width: 767px)
 
-  .ap-details__column--search
+  .ap-details__search
     left: 0
     right: 0
     width: 100%!important
     top: auto
-    position: fixed
+    position: fixed!important
     bottom: 0
     z-index: 1000
     padding: 0
-    box-shadow: $shadow-main-revert
-
-  .ap-details__search
+    box-shadow: $shadow-main-revert!important
 
     &.card-custom.card-custom--no-pad
       border-radius: 0!important
@@ -119,3 +122,4 @@
           top: 0
           line-height: 45px
           border-radius: 0!important
+          box-shadow: none!important

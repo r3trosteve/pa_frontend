@@ -35,6 +35,14 @@ class ParkingLotPage extends Component {
             });
         });
 
+        $('.ap-details--with-search button').click(function () {
+
+            if ($('input.airport-date').val().length === 0) {
+                $('input.airport-date').click();
+            }
+
+        });
+
 		setTimeout(function () {
 
             let stickyContainers = function () {
@@ -115,28 +123,9 @@ class ParkingLotPage extends Component {
 
                     <div className="row ap-details__row">
 
-                        {/*right column*/}
-
-                        <div className="col-md-5 col-md-push-7 ap-details__column ap-details__column--search">
-
-                            <div className="card-custom card-custom--no-pad ap-details__search">
-
-                                <div className="ap-details__search__header">
-                                    <h2 className="title-normal-bold">Start Searching</h2>
-                                </div>
-
-                                <SearchForm
-                                    airportId={lot && lot.airport_id}
-                                    airportName={lot && lot.airport_name}
-                                />
-
-                            </div>
-
-                        </div>
-
                         {/*left column*/}
 
-                        <div className="col-md-7 col-md-pull-5 ap-details__column ap-details__column--left">
+                        <div className="col-md-7 ap-details__column ap-details__column--left">
 
                             <Navigation />
 
@@ -149,6 +138,23 @@ class ParkingLotPage extends Component {
                             <Details lot={lot} />
 
                             <Reviews lot={lot} />
+
+                        </div>
+
+                        {/*right column*/}
+
+                        <div className="col-md-5 ap-details__column ap-details__column--search">
+
+                            <div className="card-custom card-custom--no-pad ap-details__search">
+                                <div className="ap-details__search__header">
+                                    <h2 className="title-normal-bold">Start Searching</h2>
+                                </div>
+
+                                <SearchForm
+                                    airportId={lot && lot.airport_id}
+                                    airportName={lot && lot.airport_name}
+                                />
+                            </div>
 
                         </div>
 

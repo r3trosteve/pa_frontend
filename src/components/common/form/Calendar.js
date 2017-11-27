@@ -39,6 +39,38 @@ export default class Calendar extends Component {
 
         // end
 
+		let openCalendarResponsive = function (width) {
+			if (width < 767) {
+				$('input.airport-date').click(function () {
+					$('.daterangepicker.dropdown-menu.ltr.show-calendar.opensright:last-of-type').css({
+						'display': 'block'
+					});
+				});
+
+                $('.airport-date').focus(function () {
+                    $('body, html').css({
+						'overflow': 'hidden'
+					});
+                    $(this).blur();
+                });
+
+                $('.close-calendar-dropdown, .applyBtn, .cancelBtn').click(function () {
+                    $('body, html').css({
+                        'overflow': 'visible'
+                    });
+                });
+			}
+		};
+
+		let wWidth = $(window).width();
+
+        openCalendarResponsive(wWidth);
+
+		$(window).resize(function () {
+            let wWidth = $(window).width();
+            openCalendarResponsive(wWidth);
+        });
+
 	}
 
 	render() {
