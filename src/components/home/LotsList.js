@@ -33,6 +33,11 @@ export default class LotsList extends Component {
 
         const lotsAmount = this.props.lots && this.props.lots.length;
         const lotsColumn = Math.floor(lotsAmount / 3);
+        const remainderColumn = lotsAmount - lotsColumn * 3;
+
+        // console.log(lotsAmount);
+        // console.log(lotsColumn);
+        // console.log(remainderColumn);
 
         return (
             <section className="home__top-airports section-pad">
@@ -65,7 +70,7 @@ export default class LotsList extends Component {
 
                             <div className="col-md-4 col-sm-4 airports-list__column">
                                 <ul className="airports-list__list">
-                                    {this.props.lots.slice(lotsColumn * 2, lotsColumn * 3).map((lot, index) => this.showList(index, lot))}
+                                    {this.props.lots.slice(lotsColumn * 2, lotsColumn * 3 + remainderColumn).map((lot, index) => this.showList(index, lot))}
                                 </ul>
                             </div>
 
