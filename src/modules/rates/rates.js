@@ -62,7 +62,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, {
                 filteredItems: action.items.slice().sort((a, b) => {
                     if (!isEmpty(a.parking_lot) && !isEmpty(b.parking_lot)) {
-                        return a.parking_lot.rating - b.parking_lot.rating;
+                        return b.parking_lot.rating - a.parking_lot.rating;
                     }
                 })
             });
