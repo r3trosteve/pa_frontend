@@ -28,6 +28,12 @@ export default class LotsList extends Component {
     }
 
     render() {
+
+        console.log('lots amount:', this.props.lots.length);
+
+        const lotsAmount = this.props.lots && this.props.lots.length;
+        const lotsColumn = Math.floor(lotsAmount / 3);
+
         return (
             <section className="home__top-airports section-pad">
                 <div className="container home__top-airports__container">
@@ -43,7 +49,7 @@ export default class LotsList extends Component {
 
                             <div className="col-md-4 col-sm-4 airports-list__column">
                                 <ul className="airports-list__list">
-                                    {this.props.lots.slice(0, 44).map((lot, index) => this.showList(index, lot))}
+                                    {this.props.lots.slice(0, lotsColumn).map((lot, index) => this.showList(index, lot))}
                                 </ul>
                             </div>
 
@@ -51,7 +57,7 @@ export default class LotsList extends Component {
 
                             <div className="col-md-4 col-sm-4 airports-list__column">
                                 <ul className="airports-list__list">
-                                    {this.props.lots.slice(44, 88).map((lot, index) => this.showList(index, lot))}
+                                    {this.props.lots.slice(lotsColumn, lotsColumn * 2).map((lot, index) => this.showList(index, lot))}
                                 </ul>
                             </div>
 
@@ -59,7 +65,7 @@ export default class LotsList extends Component {
 
                             <div className="col-md-4 col-sm-4 airports-list__column">
                                 <ul className="airports-list__list">
-                                    {this.props.lots.slice(88, 132).map((lot, index) => this.showList(index, lot))}
+                                    {this.props.lots.slice(lotsColumn * 2, lotsColumn * 3).map((lot, index) => this.showList(index, lot))}
                                 </ul>
                             </div>
 
@@ -80,7 +86,7 @@ export default class LotsList extends Component {
 
                                     {
                                         this.state.visible ?
-                                            this.props.lots.slice(0, 200).map((lot, index) => this.showList(index, lot)) :
+                                            this.props.lots.slice(0, lotsAmount).map((lot, index) => this.showList(index, lot)) :
                                             this.props.lots.slice(0, 10).map((lot, index) => this.showList(index, lot))
                                     }
 
