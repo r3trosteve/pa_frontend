@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 
+import apiBaseUrl from '../config';
+
 export const LOT_FETCHED = 'LOT_FETCHED';
 
 const initialState = {
@@ -17,7 +19,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export const fetchLot = id => dispatch => {
-    return fetch(`http://staging.back.parkingaccess.com/airport_parking/parking_lots/${id}`, {
+    return fetch(apiBaseUrl + `airport_parking/parking_lots/${id}`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -34,7 +36,7 @@ export const fetchLot = id => dispatch => {
 };
 
 export const findLot = slug => dispatch => {
-    return fetch(`http://staging.back.parkingaccess.com/airport_parking/parking_lots?q[slug_eq]=${slug}`, {
+    return fetch(apiBaseUrl + `airport_parking/parking_lots?q[slug_eq]=${slug}`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',

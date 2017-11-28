@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 
+import apiBaseUrl from '../config';
+
 export const RATE_FETCHED = 'RATE_FETCHED';
 
 const initialState = {
@@ -17,7 +19,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export const fetchRate = (id) => (dispatch) => {
-    return fetch(`http://staging.back.parkingaccess.com/airport_parking/rates/${id}`, {
+    return fetch(apiBaseUrl + `airport_parking/rates/${id}`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',

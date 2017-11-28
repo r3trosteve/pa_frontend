@@ -1,5 +1,7 @@
 import 'isomorphic-fetch';
 
+import apiBaseUrl from '../config';
+
 export const CHECKOUT_REQUESTED = 'CHECKOUT_REQUESTED';
 
 const initialState = {
@@ -17,7 +19,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export const requestCheckout = id => dispatch => {
-    return fetch(`http://staging.back.parkingaccess.com/reservations/${id}/charge`, {
+    return fetch(apiBaseUrl + `reservations/${id}/charge`, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',

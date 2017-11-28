@@ -1,7 +1,9 @@
 import 'isomorphic-fetch';
 import isEmpty from 'lodash/isEmpty';
 
-const baseUrl = 'http://staging.back.parkingaccess.com/airport_parking/searches/';
+import apiBaseUrl from '../config';
+
+const baseUrl = apiBaseUrl + 'airport_parking/searches/';
 
 const headers = {
     'Content-Type': 'application/json',

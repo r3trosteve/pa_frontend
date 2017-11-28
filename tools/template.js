@@ -21,11 +21,11 @@ export default ({ markup, helmet, initialData }) => {
 				${helmet.meta.toString()}
 				${helmet.link.toString()}
 
-				<link href="/static/bundle.css" rel="stylesheet">
+				${process.env.NODE_ENV === 'production' ? '<link rel="stylesheet" href="/static/bundle.css">': ''}
 
 				<!--icons-->
 				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-				<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+				<link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 				<!--end-->
 
 				<!--fonts-->
@@ -43,7 +43,6 @@ export default ({ markup, helmet, initialData }) => {
 				
 				<script>window.__initialData__ = ${serialize(initialData)}</script>
 
-				<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkX5LaBfzBgmm8ihvTIOJg-N65oCwqlAk&libraries=places&language=en"></script>-->
 				<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCYbKHvKbo-OVngwn9sj2s8mFuqLxUwA-A&libraries==places&language=en"></script>
 
 			</body>

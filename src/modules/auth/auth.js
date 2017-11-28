@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import isEmpty from 'lodash/isEmpty';
 
-const baseUrl = 'http://staging.back.parkingaccess.com/';
+import apiBaseUrl from '../config';
 
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const USER_LOGIN_REQUESTED = 'USER_LOGIN_REQUESTED';
@@ -79,7 +79,7 @@ export default function reducer(state = initialState, action) {
 // login
 
 export const setCurrentUser = (token) => (dispatch) => {
-    return fetch(baseUrl + 'profile', {
+    return fetch(apiBaseUrl + 'profile', {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ export const setCurrentUser = (token) => (dispatch) => {
 
 export const login = (data) => (dispatch) => {
     dispatch({ type: USER_LOGIN_REQUESTED });
-    return fetch(baseUrl + 'sign_in', {
+    return fetch(apiBaseUrl + 'sign_in', {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
@@ -124,7 +124,7 @@ export const login = (data) => (dispatch) => {
 
 export const signup = (data) => (dispatch) => {
     dispatch({ type: USER_SIGNUP_REQUSTED });
-    return fetch(baseUrl + 'sign_up', {
+    return fetch(apiBaseUrl + 'sign_up', {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
@@ -146,7 +146,7 @@ export const signup = (data) => (dispatch) => {
 // profile
 
 export const updateProfile = (data) => (dispatch) => {
-    return fetch(baseUrl + 'profile', {
+    return fetch(apiBaseUrl + 'profile', {
         method: 'put',
         body: JSON.stringify(data),
         headers: {
@@ -165,7 +165,7 @@ export const updateProfile = (data) => (dispatch) => {
 };
 
 export const updatePassword = (data) => (dispatch) => {
-    return fetch(baseUrl + 'profile/change_password', {
+    return fetch(apiBaseUrl + 'profile/change_password', {
         method: 'put',
         body: JSON.stringify(data),
         headers: {
@@ -186,7 +186,7 @@ export const updatePassword = (data) => (dispatch) => {
 // reset pwd
 
 export const resetPasswordRequest = (data) => (dispatch) => {
-    return fetch(baseUrl + 'password_reset', {
+    return fetch(apiBaseUrl + 'password_reset', {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
@@ -198,7 +198,7 @@ export const resetPasswordRequest = (data) => (dispatch) => {
 };
 
 export const resetPassword = (data) => (dispatch) => {
-    return fetch(baseUrl + 'password_reset', {
+    return fetch(apiBaseUrl + 'password_reset', {
         method: 'put',
         body: JSON.stringify(data),
         headers: {

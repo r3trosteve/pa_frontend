@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node tools/development",
+    "dev": "NODE_ENV=development node tools/development.js",
     "prod": "NODE_ENV=production node tools/production.js",
-    "build": "npm run clean & NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --colors",
+    "build:dev": "npm run clean & NODE_ENV=development webpack --config webpack.production.config.js --progress --profile --colors",    
+    "build:prod": "npm run clean & NODE_ENV=production webpack --config webpack.production.config.js --progress --profile --colors",
     "clean": "rimraf ./static/*"
   },
   "keywords": [],

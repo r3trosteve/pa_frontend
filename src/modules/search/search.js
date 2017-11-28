@@ -1,6 +1,8 @@
 import 'isomorphic-fetch';
 
-const baseUrl = 'http://staging.back.parkingaccess.com/airport_parking/searches/';
+import apiBaseUrl from '../config';
+
+const baseUrl = apiBaseUrl + 'airport_parking/searches/';
 
 const headers = {
     'Content-Type': 'application/json',
