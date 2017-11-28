@@ -21,7 +21,7 @@ export default ({ markup, helmet, initialData }) => {
 				${helmet.meta.toString()}
 				${helmet.link.toString()}
 
-				${process.env.NODE_ENV === 'production' ? '<link rel="stylesheet" href="/static/bundle.css">': ''}
+				<link rel="stylesheet" href="/static/bundle.css">
 
 				<!--icons-->
 				<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
