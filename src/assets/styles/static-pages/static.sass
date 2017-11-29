@@ -1,0 +1,47 @@
+
+.static
+  padding: 80px 0
+  background: $white
+  color: $blue
+
+  h1
+    font-weight: 300
+
+  h4
+    font-size: 24px
+    font-weight: 500
+    font-family: 'Montserrat', sans-serif
+    margin-bottom: 10px
+    margin-top: 30px
+  p
+    line-height: 25px
+    font-size: 15px
+    font-weight: 400
+    margin-bottom: 10px
+    b
+      font-weight: 600
+    a
+      color: $orange
+    &.address
+      b
+        display: block
+    &.contacts
+      span
+        display: block
+
+//responsiveness
+@media (max-width: 767px)
+  .static
+    padding: 40px 0 0
+    .container
+      padding: 0
+    .card-custom
+      box-shadow: none
+    h1
+      font-size: 28px
+    h4
+      font-size: 18px
+    p
+      font-size: 14px
+      line-height: 24px
+

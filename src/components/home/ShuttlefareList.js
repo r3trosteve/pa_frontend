@@ -4,12 +4,12 @@ export default class ShuttlefareLinks extends Component {
 
     render() {
         return (
-            <section className="home__top-airports section-pad">
+            <section className="home__top-airports home__top-airports--shuttle section-pad">
                 <div className="container home__top-airports__container">
 
                     <div className="home__top-airports__title">
                         <h2 className="title-upper-bold">Top Airport Shuttle Information Pages</h2>
-                        <p>Click your departure or arrival airport to find and compare top companies such as SuperShuttle, GO Airport Shuttle and more.</p>
+                        <p className="title-small-mont">Click your departure or arrival airport to find and compare top companies such as SuperShuttle, GO Airport Shuttle and more.</p>
                     </div>
 
                     <div className="airports-list">
@@ -364,7 +364,7 @@ export default class ShuttlefareLinks extends Component {
                         <div className="row airports-list__row visible-sm visible-xs">
                             <div className="col-md-12 airports-list__column text-center">
 
-                                <ul className="airports-list__list">
+                                <ul className="airports-list__list shuttle-list">
 
                                     <li className="airports-list__list-item">
                                         <a title="" href="https://www.shuttlefare.com/akron_airport_shuttle_cak">Akron (CAK)</a>
@@ -682,14 +682,12 @@ export default class ShuttlefareLinks extends Component {
                                         <a href="https://www.shuttlefare.com/worcester_airport_shuttle_orh">Worcester (ORH)</a>
                                     </li>
 
+                                    <span className="btn-custom show-more show-more--mobile">
+                                        Show more
+                                    </span>
+
                                 </ul>
 
-                            </div>
-
-                            <div className="col-md-12 text-center">
-                                <span className="btn-custom show-more">
-                                    Show more
-                                </span>
                             </div>
 
                         </div>

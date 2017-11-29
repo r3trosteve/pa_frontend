@@ -30,7 +30,7 @@
       &:hover
         color: $orange!important
       &:visited
-        color: $blue
+        color: $blue-op
       &.visible
         display: inline-block!important
     &:nth-child(n+11) a
@@ -45,8 +45,13 @@
 @media (max-width: 767px)
   .airports-list
 
-    &__list
+    &__list:not(.shuttle-list)
       text-align: center
+      li
+        a
+          font-size: 15px
+        &:nth-child(n+11) a
+          display: inline-block
 
     &__row
       padding: 10px 15px 15px
@@ -55,12 +60,6 @@
     &__column
       padding: 0
 
-    &__list-item
-      a
-        font-size: 15px
-      &:nth-child(n+11) a
-        display: inline-block
-
 @media (max-width: 400px)
   .airports-list
     &__list-item
@@ -68,4 +67,5 @@
 
     .btn-custom
       max-width: 100%
+      margin-top: 10px
       width: 100%

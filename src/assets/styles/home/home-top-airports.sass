@@ -1,6 +1,12 @@
 
 .home__top-airports
 
+  &--shuttle
+    p
+      text-align: center
+      color: $blue
+      margin-top: 10px
+
   padding-bottom: 0!important
 
   &:last-of-type
@@ -81,6 +87,10 @@
 
 @media (max-width: 767px)
   .home__top-airports
+
+    &--shuttle
+      p
+        font-size: 14px
 
     &__title
       h2
