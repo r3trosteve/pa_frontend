@@ -35,10 +35,6 @@ export default class LotsList extends Component {
         const lotsColumn = Math.floor(lotsAmount / 3);
         const remainderColumn = lotsAmount - lotsColumn * 3;
 
-        // console.log(lotsAmount);
-        // console.log(lotsColumn);
-        // console.log(remainderColumn);
-
         return (
             <section className="home__top-airports section-pad">
                 <div className="container home__top-airports__container">

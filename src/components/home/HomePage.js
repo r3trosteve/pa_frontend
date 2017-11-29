@@ -9,6 +9,7 @@ import Options from './Options';
 import HowItWorks from './HowItWorks';
 import TopAirports from './TopAirports';
 import LotsList from './LotsList';
+import ShuttlefareList from './ShuttlefareList';
 
 import { fetchAirports } from '../../modules/airports/airports';
 import { fetchLots } from '../../modules/lots/lots';
@@ -66,6 +67,8 @@ class HomePage extends Component {
 				<TopAirports airports={this.props.airports} />
 
 				<LotsList lots={this.props.lots} />
+
+				<ShuttlefareList />
 
 			</div>
 		);
