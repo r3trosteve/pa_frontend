@@ -109,8 +109,9 @@ class OrderSummary extends Component {
 						<div className="order-summary__title">
 							<h4>{rate.parking_lot && rate.parking_lot.name}</h4>
 							<p>
-                                {rate.parking_lot && rate.parking_lot.location.address1}
-                                { rate.parking_lot && rate.parking_lot.location.address2},
+								{rate.parking_lot && rate.parking_lot.location.address1}
+								{' '}
+                                {rate.parking_lot && rate.parking_lot.location.address2},
                                 {' '}
                                 {rate.parking_lot && rate.parking_lot.location.city},
                                 {' '}
@@ -159,7 +160,7 @@ class OrderSummary extends Component {
 								<td>
 									Price per day:
 								</td>
-								<td> ${rate.price && rate.price.daily_rate}</td>
+								<td> ${rate.price && parseFloat(rate.price.daily_rate).toFixed(2)}</td>
 							</tr>
 							</tbody>
 						</table>
@@ -170,7 +171,7 @@ class OrderSummary extends Component {
 							<tbody>
 							<tr>
 								<td className="total">Total:</td>
-								<td className="total"> ${rate.price && rate.price.total}</td>
+								<td className="total"> ${rate.price && parseFloat(rate.price.total).toFixed(2)}</td>
 							</tr>
 							</tbody>
 						</table>

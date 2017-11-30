@@ -56,7 +56,8 @@ export default class OrderSummary extends Component {
 						<h4>{reservation.rate && reservation.rate.parking_lot.name}</h4>
 						<p>
 							{reservation.rate && reservation.rate.parking_lot.location.address1}
-                            { reservation.rate && reservation.rate.parking_lot.location.address2},
+							{' '}
+                            {reservation.rate && reservation.rate.parking_lot.location.address2},
 							{' '}
                             {reservation.rate && reservation.rate.parking_lot.location.city},
 							{' '}
@@ -103,7 +104,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Subtotal:
 							</td>
-							<td> ${subtotal && subtotal.amount}</td>
+							<td> ${subtotal && parseFloat(subtotal.amount).toFixed(2)}</td>
 						</tr>
 						<tr>
 							<td>
@@ -129,7 +130,7 @@ export default class OrderSummary extends Component {
 										return (
 											<p key={index}>
 												{tax.name}:
-												<b> ${tax.amount}</b>
+												<b> ${parseFloat(tax.amount).toFixed(2)}</b>
 											</p>
 										);
 									})}
@@ -138,7 +139,7 @@ export default class OrderSummary extends Component {
 								</div>
 							</td>
 							<td>
-								${total_fee && total_fee.amount}
+								${total_fee && parseFloat(total_fee.amount).toFixed(2)}
 							</td>
 						</tr>
 						</tbody>
@@ -150,7 +151,9 @@ export default class OrderSummary extends Component {
 						<tbody>
 						<tr>
 							<td className="total">Total:</td>
-							<td className="total"> ${reservation.rate && reservation.rate.price.total}</td>
+							<td className="total"> 
+								${ reservation.rate && parseFloat(reservation.rate.price.total).toFixed(2)}
+							</td>
 						</tr>
 						</tbody>
 					</table>

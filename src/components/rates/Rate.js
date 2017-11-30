@@ -37,7 +37,7 @@ export default class Rate extends Component {
 
 								<h2>
 									{lot && lot.name}
-									<span className="visible-xs">${rate.price.total}</span>
+									<span className="visible-xs">${parseFloat(rate.price.total).toFixed(2)}</span>
 								</h2>
 
 								<p>
@@ -86,7 +86,7 @@ export default class Rate extends Component {
 
 							<div className="rates__item__price">
 
-								<span>${rate.price.total}</span>
+								<span>${parseFloat(rate.price.total).toFixed(2)}</span>
 
 								<p className="cancellation">
 									<i className="ion-ios-checkmark" />

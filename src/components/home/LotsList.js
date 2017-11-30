@@ -29,8 +29,6 @@ export default class LotsList extends Component {
 
     render() {
 
-        console.log('lots amount:', this.props.lots.length);
-
         const lotsAmount = this.props.lots && this.props.lots.length;
         const lotsColumn = Math.floor(lotsAmount / 3);
         const remainderColumn = lotsAmount - lotsColumn * 3;

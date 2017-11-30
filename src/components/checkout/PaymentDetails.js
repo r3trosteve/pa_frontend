@@ -133,21 +133,10 @@ export default class PaymentDetails extends Component {
 						</div>
 					</div>
 
-                    {/*{*/}
-                    {/*this.state.isReservationPaid ?*/}
-                    {/*(*/}
-                    {/*<div className="ap-checkout__payment-details__success">*/}
-                    {/*<h4 className="title-normal">Your reservation was successfully paid!</h4>*/}
-                    {/*<p className="title-small-mont">Reservation Id: <b>{this.props.paidReservation && this.props.paidReservation.id}</b></p>*/}
-                    {/*<p className="title-small-mont">Status: <b>{this.props.paidReservation && this.props.paidReservation.status}</b></p>*/}
-                    {/*</div>*/}
-                    {/*) : null*/}
-                    {/*}*/}
-
                     {
                         this.state.iframeShown && !this.state.isReservationPaid ?
 							<p className="ap-checkout__payment-details__notification small">
-								When you submit the payment form you will need to wait for a while till PNF completes the payment.
+								When you submit the payment form you will need to wait for a while till Wells Fargo completes the payment.
 								Afterwards you will be redirected to confirmation page.
 							</p> :
                             null
