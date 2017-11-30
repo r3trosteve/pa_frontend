@@ -4,6 +4,8 @@ import ReactStars from 'react-stars';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+import noImg from '../../assets/images/no-img.png';
+
 export default class AirportPageAllLots extends Component {
     render() {
 
@@ -16,7 +18,7 @@ export default class AirportPageAllLots extends Component {
                 <div className="container airport__lots__container">
 
                     <h4 className="title-normal-bold-upper text-center">
-                        All {airport && airport.name} Lots...
+                        All {airport && airport.name} Lots
                     </h4>
 
                     <div className="airport__lots__row">
@@ -35,10 +37,18 @@ export default class AirportPageAllLots extends Component {
 
                                             <div className="col-lg-6 col-md-6 col-sm-5 airport__card__column airport__card__column--image">
                                                 <div className="airport__card__image">
-                                                    <img
-                                                        src={lot.logo_url}
-                                                        alt={lot.name}
-                                                    />
+
+                                                    {lot.logo_url ?
+                                                        <img
+                                                            src={lot.logo_url}
+                                                            alt={lot.name}
+                                                        /> :
+                                                        <img
+                                                            src={noImg}
+                                                            alt={lot.name}
+                                                        />
+                                                    }
+
                                                 </div>
                                             </div>
 
