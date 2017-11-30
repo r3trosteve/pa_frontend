@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
-import PaymentDetails from './PaymentDetails';
+import PnfPayment from './PnfPayment';
 import ContactUs from './ContactUs';
 import OrderSummary from './OrderSummary';
 import Private from '../profile/Private';
@@ -22,6 +22,9 @@ class AirportParkingCheckoutPage extends Component {
 	render() {
 
         if (this.props.auth && this.props.auth.isAuthenticated) {
+
+			const reservation = this.props.reservation;
+			const rate = this.props.reservation && this.props.reservation.rate;
 
             return (
 				<div className="ap-checkout">
@@ -44,18 +47,21 @@ class AirportParkingCheckoutPage extends Component {
 										Secure booking (only takes 2-3 minutes)
 									</h4>
 									<h2 className="title-normal-mont">
-                                        {this.props.reservation && this.props.reservation.rate && this.props.reservation.rate.parking_lot && this.props.reservation.rate.parking_lot.name}
+                                        {rate && rate.parking_lot && rate.parking_lot.name}
 									</h2>
 								</div>
 
-								<PaymentDetails
-									requestCheckout={this.props.requestCheckout}
-									reservation={this.props.reservation}
-									checkout={this.props.checkout}
-									fetchPaidReservation={this.props.fetchPaidReservation}
-									paidReservation={this.props.paidReservation}
-									auth={this.props.auth}
-								/>
+								{rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg' ?
+									<PnfPayment
+										requestCheckout={this.props.requestCheckout}
+										reservation={reservation}
+										checkout={this.props.checkout}
+										fetchPaidReservation={this.props.fetchPaidReservation}
+										paidReservation={this.props.paidReservation}
+										auth={this.props.auth}
+									/> :
+									null
+								}
 
 							</div>
 
@@ -64,7 +70,7 @@ class AirportParkingCheckoutPage extends Component {
 							<div className="col-md-5 ap-checkout__column ap-checkout__column--summary">
 								<ContactUs />
 
-								<OrderSummary reservation={this.props.reservation} />
+								<OrderSummary reservation={reservation} />
 							</div>
 
 						</div>

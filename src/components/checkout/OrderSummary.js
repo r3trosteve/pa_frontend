@@ -110,7 +110,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Coupon discount:
 							</td>
-							<td> $0</td>
+							<td> $0.00</td>
 						</tr>
 						</tbody>
 					</table>

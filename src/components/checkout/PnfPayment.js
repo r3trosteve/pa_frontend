@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import { Route, Redirect } from 'react-router-dom';
 
-export default class PaymentDetails extends Component {
+export default class PnfPayment extends Component {
 
 	constructor() {
 		super();
@@ -163,7 +163,7 @@ export default class PaymentDetails extends Component {
 	}
 }
 
-PaymentDetails.propTypes = {
+PnfPayment.propTypes = {
 	requestCheckout: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
     checkout: PropTypes.object.isRequired,
