@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
 
 import PnfPayment from './PnfPayment';
+import PrsPayment from './PrsPayment';
 import ContactUs from './ContactUs';
 import OrderSummary from './OrderSummary';
 import Private from '../profile/Private';
@@ -60,6 +61,11 @@ class AirportParkingCheckoutPage extends Component {
 										paidReservation={this.props.paidReservation}
 										auth={this.props.auth}
 									/> :
+									null
+								}
+
+								{rate && rate.parking_lot && rate.parking_lot.payment_processor === 'prs' ?
+									<PrsPayment /> :
 									null
 								}
 
