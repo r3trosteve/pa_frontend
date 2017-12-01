@@ -4,8 +4,6 @@ import ReactStars from 'react-stars';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 
-import noImg from '../../assets/images/no-img.png';
-
 import InfoList from '../common/InfoList';
 
 export default class RateMobile extends Component {
@@ -31,11 +29,8 @@ export default class RateMobile extends Component {
 								<img
 									src={lot && lot.logo_url}
 									alt={lot && lot.name}
-								/> :
-								<img
-									src={noImg}
-									alt={lot && lot.name}
-								/>
+                                /> :
+								<p className="no-image-text">No Image</p>
                             }
                             
                         </div>

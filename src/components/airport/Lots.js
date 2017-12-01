@@ -4,8 +4,6 @@ import ReactStars from 'react-stars';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
-import noImg from '../../assets/images/no-img.png';
-
 export default class AirportPageAllLots extends Component {
     render() {
 
@@ -43,10 +41,7 @@ export default class AirportPageAllLots extends Component {
                                                             src={lot.logo_url}
                                                             alt={lot.name}
                                                         /> :
-                                                        <img
-                                                            src={noImg}
-                                                            alt={lot.name}
-                                                        />
+                                                        <p className="no-image-text">No Image</p>
                                                     }
 
                                                 </div>
