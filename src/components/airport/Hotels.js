@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 
-import AirportPageSeo from './Seo';
-
 export default class AirportPageHotels extends Component {
     render() {
         return (
@@ -103,13 +101,6 @@ export default class AirportPageHotels extends Component {
                         {/*</div>*/}
 
                     {/*</div>*/}
-
-                    {/*SEO*/}
-
-                    <AirportPageSeo
-                        airport={this.props.airport}
-                        airport_seo={this.props.airport_seo}
-                    />
 
                 </div>
 

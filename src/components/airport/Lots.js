@@ -25,15 +25,20 @@ export default class AirportPageAllLots extends Component {
                             return (
 
                                 <div key={lot.id} className="airport__lots__column">
-                                    <div className="airport__card card-custom">
+                                    <div className="airport__card card-custom">                                        
 
-                                        {/*body*/}
+                                        <Link to={`/${lot.slug}`} className="btn-custom">
+                                            VIEW DETAILS
+                                        </Link>
+
+                                        {/*left*/}
 
                                         <div className="row airport__card__row">
 
-                                            {/*image*/}
-
                                             <div className="col-lg-6 col-md-6 col-sm-5 airport__card__column airport__card__column--image">
+                                                
+                                                {/*image*/}
+
                                                 <div className="airport__card__image">
 
                                                     {lot.logo_url ?
@@ -45,11 +50,35 @@ export default class AirportPageAllLots extends Component {
                                                     }
 
                                                 </div>
+
+                                                {/*review*/}
+
+                                                {lot && lot.reviews && lot.reviews.length > 0 ?
+                                                    (
+                                                        <div className="airport__card__review-content">
+
+                                                            <b className="airport__card__date">
+                                                                Review on
+                                                                <span>
+                                                                    {' '}
+                                                                    {moment(lot && lot.reviews && lot.reviews.slice(-1)[0].time).format('ll')}
+                                                                </span>
+                                                            </b>
+                                                            <div className="airport__card__review">
+                                                                "{lot && lot.reviews && lot.reviews.slice(-1)[0].text.substring(0, 90)}..."
+                                                            </div>
+
+                                                        </div>
+                                                    ) : null
+                                                }
+                                                
                                             </div>
 
-                                            {/*right content*/}
+
+                                            {/*right*/}
 
                                             <div className="col-lg-6 col-md-6 col-sm-7 airport__card__column">
+
                                                 <div className="airport__card__content">
 
                                                     <h5>
@@ -88,35 +117,6 @@ export default class AirportPageAllLots extends Component {
 
                                             </div>
                                         </div>
-
-                                        {/*footer*/}
-
-                                        <div className="row airport__card__row airport__card__footer">
-
-                                            {lot && lot.reviews && lot.reviews.length > 0 ?
-                                                (
-                                                    <div className="col-sm-7 airport__card__review-content">
-
-                                                        <b className="airport__card__date">
-                                                            Review on
-                                                            <span>
-                                                                {' '}
-                                                                {moment(lot && lot.reviews && lot.reviews.slice(-1)[0].time).format('ll')}
-                                                            </span>
-                                                        </b>
-                                                        <div className="airport__card__review">
-                                                            "{lot && lot.reviews && lot.reviews.slice(-1)[0].text.substring(0, 90)}..."
-                                                        </div>
-
-                                                    </div>
-                                                ) : null
-                                            }
-
-                                        </div>
-
-                                        <Link to={`/${lot.slug}`} className="btn-custom">
-                                            VIEW DETAILS
-                                        </Link>
 
                                     </div>
                                 </div>

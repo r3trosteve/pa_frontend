@@ -8,9 +8,10 @@ import { withRouter } from 'react-router-dom';
 import AirportPageBenefits from './Benefits';
 import AirportPagePopularLots from './Popular';
 import AirportPageAllLots from './Lots';
-import AirportPageHotels from './Hotels';
 import Form from '../common/form/SearchForm';
 import BookTravel from '../common/BookTravel';
+
+import AirportPageSeo from './Seo';
 
 import { findAirport } from '../../modules/airports/airport';
 
@@ -75,20 +76,22 @@ class AirportPage extends Component {
 
               <AirportPageBenefits />
 
-              <AirportPagePopularLots
-                  airport={airport}
-                  airport_seo={airport_seo}
-              />
 
-              <AirportPageAllLots
-                  airport={airport}
-                  airport_seo={airport_seo}
-              />
+                <AirportPagePopularLots
+                    airport={airport}
+                    airport_seo={airport_seo}
+                />
+                <AirportPageAllLots
+                    airport={airport}
+                    airport_seo={airport_seo}
+                />
 
-              <AirportPageHotels
-                  airport={airport}
-                  airport_seo={airport_seo}
-              />
+            {/*SEO*/}
+
+            <AirportPageSeo
+                airport={airport}
+                airport_seo={airport_seo}
+            />  
 
           </div>
         );
