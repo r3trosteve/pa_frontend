@@ -222,7 +222,6 @@ class SearchForm extends Component {
 										'Get Quote' :
 										'Search parking lots'
 									}
-									
 								</button>
 							)}
 						</label>

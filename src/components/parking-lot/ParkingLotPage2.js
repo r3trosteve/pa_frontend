@@ -36,9 +36,15 @@ class ParkingLotPage extends Component {
         });
 
         $('.ap-details--with-search button').click(function () {
-
-            if ($('input.airport-date').val().length === 0) {
-                $('input.airport-date').click();
+            
+            let wWidth = $(window).width();
+    
+            if (wWidth < 767) {
+                
+                if ($('input.airport-date').val().length === 0) {
+                    $('input.airport-date').click();
+                }
+                
             }
 
         });
@@ -147,7 +153,7 @@ class ParkingLotPage extends Component {
 
                             <div className="card-custom card-custom--no-pad ap-details__search">
                                 <div className="ap-details__search__header">
-                                    <h2 className="title-normal-bold">Get Rate Quote {lot && lot.name}</h2>
+                                    <h2>Get Rate Quote {lot && lot.name}</h2>
                                 </div>
 
                                 <SearchForm
