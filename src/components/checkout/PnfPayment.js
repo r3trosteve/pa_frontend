@@ -138,9 +138,9 @@ export default class PnfPayment extends Component {
 
 						<p className="ap-checkout__payment-details__terms">
 							I have read and accept the
-							<Link to="/terms-of-service"> terms of use</Link>,
+							<Link to="/terms-of-service" target="_blank"> terms of use</Link>,
 							and
-							<Link to="/privacy-policy"> privacy policy</Link>
+							<Link to="/privacy-policy" target="_blank"> privacy policy</Link>
 						</p>
 
                         {/*submit*/}
