@@ -56,7 +56,7 @@ export default class GoogleMapMark extends Component {
 
                 <span className="map-info__price">
                     <i className="fa fa-caret-down" aria-hidden="true" />
-                    ${this.props.rate.price.total}
+                    ${parseFloat(this.props.rate.price.total).toFixed(2)}
                 </span>
 
             </div>

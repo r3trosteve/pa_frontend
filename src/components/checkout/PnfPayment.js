@@ -13,6 +13,7 @@ export default class PnfPayment extends Component {
 			iframeShown: false,
 			loading: false,
 			isReservationPaid: false,
+			isReservationFailed: false,
 			errors: {},
 			phoneNumber: ''
 		};
@@ -56,8 +57,12 @@ export default class PnfPayment extends Component {
 	}
 
     componentWillReceiveProps(nextProps) {
-        if (!isEmpty(nextProps.paidReservation)) {
+        if (!isEmpty(nextProps.paidReservation) && nextProps.paidReservation.status === 'confirmed') {
             this.setState({ isReservationPaid: true });
+		}
+		
+		if (!isEmpty(nextProps.paidReservation) && !isEmpty(nextProps.paidReservation.last_error_message)) {
+            this.setState({ isReservationFailed: true });
         }
     }
 
@@ -175,7 +180,16 @@ export default class PnfPayment extends Component {
 								Afterwards you will be redirected to confirmation page.
 							</p> :
                             null
-                    }
+					}
+					
+					{
+						this.state.isReservationFailed ?
+							<div className="alert alert-danger">
+								<p>{this.props.paidReservation && this.props.paidReservation.last_error_message}</p>
+								<p>We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863</p>
+							</div> :
+							null
+					}
 
                     {
                         this.state.iframeShown && !this.state.isReservationPaid ?
@@ -188,7 +202,7 @@ export default class PnfPayment extends Component {
 								</div>
 
                             ) : null
-                    }
+					}
 
 				</form>
             );

@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import isEmpty from 'lodash/isEmpty';
 
 import apiBaseUrl from '../config';
 
@@ -92,7 +93,7 @@ export const fetchPaidReservation = (id) => (dispatch) => {
             })
                 .then(res => res.json())
                 .then((data) => {
-                    if (data['reservation'].status === 'confirmed') {
+                    if (data['reservation'].status === 'confirmed' || !isEmpty(data['reservation'].last_error_message)) {
                         clearInterval(interval);
                         resolve(data['reservation']);
                     }
