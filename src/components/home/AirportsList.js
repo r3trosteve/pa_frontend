@@ -67,7 +67,7 @@ export default class AirportsList extends Component {
 				{/*mobile*/}
 
 				<div className="row airports-list__row visible-sm visible-xs">
-					<div className="col-md-12 airports-list__column text-center">
+					<div className="col-sm-12 airports-list__column text-center">
 
 						<ul className="airports-list__list">
 
