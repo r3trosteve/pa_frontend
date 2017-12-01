@@ -25,11 +25,7 @@ export default class AirportPageAllLots extends Component {
                             return (
 
                                 <div key={lot.id} className="airport__lots__column">
-                                    <div className="airport__card card-custom">                                        
-
-                                        <Link to={`/${lot.slug}`} className="btn-custom">
-                                            VIEW DETAILS
-                                        </Link>
+                                    <div className="airport__card card-custom">
 
                                         {/*left*/}
 
@@ -116,7 +112,11 @@ export default class AirportPageAllLots extends Component {
                                                 </div>
 
                                             </div>
-                                        </div>
+                                        </div>                            
+
+                                        <Link to={`/${lot.slug}`} className="btn-custom">
+                                            VIEW DETAILS
+                                        </Link>
 
                                     </div>
                                 </div>
