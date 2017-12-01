@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 import { Route, Redirect, Link } from 'react-router-dom';
+import classnames from 'classnames';
 
 export default class PnfPayment extends Component {
 
@@ -11,21 +12,47 @@ export default class PnfPayment extends Component {
 		this.state = {
 			iframeShown: false,
 			loading: false,
-			isReservationPaid: false
+			isReservationPaid: false,
+			errors: {},
+			phoneNumber: ''
 		};
 
+		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
+
+	handleChange(e) {
+        if (this.state.errors[e.target.name]) {
+
+            let errors = Object.assign({}, this.state.errors);
+            delete errors[e.target.name];
+            this.setState({
+                [e.target.name]: e.target.value,
+                errors
+            });
+
+        } else {
+            this.setState({ [e.target.name]: e.target.value });
+        }
+    }
 
     handleSubmit(e) {
 		e.preventDefault();
 
-		this.setState({ loading: true });
+		let errors = {};
+		if (this.state.phoneNumber === '') errors.phoneNumber = " can't be empty";
 
-        this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
-            .then(() => this.setState({ loading: false, iframeShown: true }));
+		this.setState({ errors });
+		const isValid = Object.keys(errors).length === 0;
 
-        this.props.fetchPaidReservation(this.props.reservation && this.props.reservation.id);
+		if (isValid) {
+			this.setState({ loading: true });
+
+			this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
+            	.then(() => this.setState({ loading: false, iframeShown: true }));
+
+        	this.props.fetchPaidReservation(this.props.reservation && this.props.reservation.id);
+		}
 	}
 
     componentWillReceiveProps(nextProps) {
@@ -90,10 +117,15 @@ export default class PnfPayment extends Component {
 
 						<div className="row">
 							<div className="col-md-6">
-								<label>
-									Phone Number
-									<input type="tel" />
-								</label>
+								<label className={classnames('', { 'has-error': this.state.errors.phoneNumber })}>
+                                    Phone Number
+                                    <span className="error-text">{this.state.errors.phoneNumber}</span>
+                                    <input
+                                        type="tel"
+                                        name="phoneNumber"
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
 							</div>
 						</div>
 
