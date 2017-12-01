@@ -147,7 +147,7 @@ class ParkingLotPage extends Component {
 
                             <div className="card-custom card-custom--no-pad ap-details__search">
                                 <div className="ap-details__search__header">
-                                    <h2 className="title-normal-bold">Start Searching</h2>
+                                    <h2 className="title-normal-bold">Get Rate Quote {lot && lot.name}</h2>
                                 </div>
 
                                 <SearchForm

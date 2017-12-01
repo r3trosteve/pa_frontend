@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import AirportAutocomplete from './AirportAutocomplete';
@@ -218,7 +218,11 @@ class SearchForm extends Component {
 										disabled: this.state.loading
 									})}
 								>
-									Search parking lots
+									{this.props.location.pathname.match(/\/lot-.*/) ?
+										'Get Quote' :
+										'Search parking lots'
+									}
+									
 								</button>
 							)}
 						</label>
@@ -244,4 +248,4 @@ const mapStateToProps = state => {
 	};
 };
 
-export default connect(mapStateToProps, { createSearch, fetchAirports })(SearchForm);
+export default connect(mapStateToProps, { createSearch, fetchAirports })(withRouter(SearchForm));

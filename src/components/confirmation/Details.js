@@ -80,7 +80,7 @@ export default class Details extends Component {
 
                         <div className="confirmation__details__item">
                             <p className="title-small-mont"><b>Reservation id:</b> {reservation && reservation.id}</p>
-                            {/*<p>PNF confirm number: <b></b></p>*/}
+                            <p className="title-small-mont"><b>PNF confirm number:</b> {reservation && reservation.confirmation_number}</p>
                             <p className="title-small-mont"><b>Status:</b> {reservation && reservation.status}</p>
                         </div>
 

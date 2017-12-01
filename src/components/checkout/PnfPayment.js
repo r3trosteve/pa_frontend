@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Link } from 'react-router-dom';
 
 export default class PnfPayment extends Component {
 
@@ -101,36 +101,39 @@ export default class PnfPayment extends Component {
 
 						<p className="ap-checkout__payment-details__terms">
 							I have read and accept the
-							<a href="#"> terms of use</a>,
-							<a href="#"> rules of flight </a>
+							<Link to="/terms-of-service"> terms of use</Link>,
 							and
-							<a href="#"> privacy policy</a>
+							<Link to="/privacy-policy"> privacy policy</Link>
 						</p>
 
                         {/*submit*/}
 
-						<div className="ap-checkout__payment-details__submit">
+						{!this.state.iframeShown ?
 
-                            {
-                                this.state.loading ?
-                                    (
-										<button type="submit" className="btn-custom" disabled>
-											<i className="fa fa-spinner" aria-hidden="true" />
-											Please wait...
-										</button>
-                                    ) :
-                                    (
-										<button
-											type="submit"
-											className="btn-custom"
-											disabled={this.state.isReservationPaid}
-										>
-											Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
-										</button>
-                                    )
-                            }
-
-						</div>
+							<div className="ap-checkout__payment-details__submit">
+								{
+									this.state.loading ?
+										(
+											<button type="submit" className="btn-custom" disabled>
+												<i className="fa fa-spinner" aria-hidden="true" />
+												Please wait...
+											</button>
+										) :
+										(
+											<button
+												type="submit"
+												className="btn-custom"
+												disabled={this.state.isReservationPaid}
+											>
+												Pay Now <i className="fa fa-chevron-right" aria-hidden="true" />
+											</button>
+										)
+								}
+							</div> :
+							null
+							
+						}
+						
 					</div>
 
                     {
