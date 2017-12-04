@@ -72,13 +72,23 @@ export default class ProfileUpdate extends Component {
                             <div className="col-sm-6">
                                 <label>
                                     Address line 1
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        name="address1"
+                                        value={this.props.address1}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                             <div className="col-sm-6">
                                 <label>
                                     Address line 2
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        name="address2"
+                                        value={this.props.address2}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -89,13 +99,23 @@ export default class ProfileUpdate extends Component {
                             <div className="col-sm-6">
                                 <label>
                                     City
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        name="city"
+                                        value={this.props.city}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                             <div className="col-sm-6">
                                 <label>
                                     Zip/Postal code
-                                    <input type="text"/>
+                                    <input
+                                        type="number"
+                                        name="zipCode"
+                                        value={this.props.zipCode}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -103,10 +123,26 @@ export default class ProfileUpdate extends Component {
                         {/*4 row*/}
 
                         <div className="row">
-                            <div className="col-sm-12">
+                            <div className="col-sm-6">
+                                <label>
+                                    State
+                                    <input
+                                        type="text"
+                                        name="state"
+                                        value={this.props.state}
+                                        onChange={this.props.handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <div className="col-sm-6">
                                 <label className="select-label">
                                     Country
-                                    <select name="country" id="country">
+                                    <select
+                                        name="country"
+                                        id="country"
+                                        onChange={this.props.handleChange}
+                                        value={this.props.country}
+                                    >
                                         <option value="USA">United States of America</option>
                                         <option value="Canada">Canada</option>
                                         <option value="UK">United Kingdom</option>
@@ -122,13 +158,23 @@ export default class ProfileUpdate extends Component {
                             <div className="col-sm-6">
                                 <label>
                                     Phone number
-                                    <input type="text" placeholder="e.g. +1 234 567 8910"/>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={this.props.phone}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                             <div className="col-sm-6">
                                 <label>
                                     Company name
-                                    <input type="text"/>
+                                    <input
+                                        type="text"
+                                        name="companyName"
+                                        value={this.props.companyName}
+                                        onChange={this.props.handleChange}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -229,6 +275,14 @@ ProfileUpdate.propTypes = {
     confirmPassword: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
+    phone: PropTypes.string,
+    address1: PropTypes.string,
+    address2: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    country: PropTypes.string,
+    zipCode: PropTypes.string,
+    companyName: PropTypes.string,
     password: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     errors: PropTypes.object.isRequired

@@ -31,6 +31,14 @@ export default class ProfileItems extends Component {
                                 errors={this.props.errors}
                                 name={this.props.name}
                                 email={this.props.email}
+                                phone={this.props.phone}
+                                address1={this.props.address1}
+                                address2={this.props.address2}
+                                city={this.props.city}
+                                state={this.props.state}
+                                country={this.props.country}
+                                zipCode={this.props.zipCode}
+                                companyName={this.props.companyName}
                                 handlePasswordUpdate={this.props.handlePasswordUpdate}
                                 password={this.props.password}
                                 confirmPassword={this.props.confirmPassword}
@@ -97,6 +105,14 @@ ProfileItems.propTypes = {
     errors: PropTypes.object.isRequired,
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
+    phone: PropTypes.string,
+    address1: PropTypes.string,
+    address2: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    country: PropTypes.string,
+    zipCode: PropTypes.string,
+    companyName: PropTypes.string,
     handlePasswordUpdate: PropTypes.func.isRequired,
     password: PropTypes.string.isRequired,
     confirmPassword: PropTypes.string.isRequired

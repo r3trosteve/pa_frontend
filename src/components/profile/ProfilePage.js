@@ -19,6 +19,14 @@ class ProfilePage extends Component {
             name: '',
             email: '',
             password: '',
+            phone: '',
+            address1: '',
+            address2: '',
+            city: '',
+            state: '',
+            country: 'USA',
+            zipCode: '',
+            companyName: '',
             confirmPassword: '',
             errors: {}
         };
@@ -31,14 +39,30 @@ class ProfilePage extends Component {
     componentWillMount() {
         this.setState({
             name: this.props.auth && this.props.auth.user && this.props.auth.user.name,
-            email: this.props.auth && this.props.auth.user && this.props.auth.user.email
+            email: this.props.auth && this.props.auth.user && this.props.auth.user.email,
+            phone: this.props.auth && this.props.auth.user && this.props.auth.user.phone,
+            address1: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.address1,
+            address2: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.address2,
+            city: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.city,
+            state: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.state,
+            country: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.country,
+            zipCode: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.zip_code,
+            companyName: this.props.auth && this.props.auth.user && this.props.auth.user.company_name,
         });
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
             name: nextProps.auth && nextProps.auth.user && nextProps.auth.user.name,
-            email: nextProps.auth && nextProps.auth.user && nextProps.auth.user.email
+            email: nextProps.auth && nextProps.auth.user && nextProps.auth.user.email,
+            phone: nextProps.auth && nextProps.auth.user && nextProps.auth.user.phone,
+            address1: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.address1,
+            address2: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.address2,
+            city: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.city,
+            state: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.state,
+            country: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.country,
+            zipCode: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.zip_code,
+            companyName: nextProps.auth && nextProps.auth.user && nextProps.auth.user.company_name
         });
     }
 
@@ -60,7 +84,7 @@ class ProfilePage extends Component {
     handleProfileUpdate(e) {
         e.preventDefault();
 
-        const { name, email } = this.state;
+        const { name, email, phone, address1, address2, city, state, country, zipCode, companyName } = this.state;
         let errors = {};
 
         if (this.state.name === '') { errors.name = "Name can't be empty"; }
@@ -70,8 +94,23 @@ class ProfilePage extends Component {
 
         const isValid = Object.keys(errors).length === 0;
 
+        const userData = {
+            name,
+            email,
+            phone,
+            location_attributes: {
+                address1,
+                address2,
+                city,
+                state,
+                country,
+                zip_code: zipCode
+            },
+            company_name: companyName
+        };
+
         if (isValid) {
-            this.props.updateProfile({ name, email });
+            this.props.updateProfile(userData);
         }
     }
 
@@ -131,6 +170,14 @@ class ProfilePage extends Component {
                                         errors={this.state.errors}
                                         name={this.state.name}
                                         email={this.state.email}
+                                        phone={this.state.phone}
+                                        address1={this.state.address1}
+                                        address2={this.state.address2}
+                                        city={this.state.city}
+                                        state={this.state.state}
+                                        country={this.state.country}
+                                        zipCode={this.state.zipCode}
+                                        companyName={this.state.companyName}
                                         handlePasswordUpdate={this.handlePasswordUpdate}
                                         password={this.state.password}
                                         confirmPassword={this.state.confirmPassword}
