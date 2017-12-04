@@ -10,7 +10,7 @@ import OrderSummary from './OrderSummary';
 import Private from '../profile/Private';
 
 import { fetchReservation, fetchPaidReservation } from '../../modules/reservations/reservation';
-import { requestCheckout } from '../../modules/checkout/checkout';
+import { requestPnfCheckout, requestPrsCheckout } from '../../modules/checkout/checkout';
 
 class AirportParkingCheckoutPage extends Component {
 
@@ -54,7 +54,7 @@ class AirportParkingCheckoutPage extends Component {
 
 								{rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg' ?
 									<PnfPayment
-										requestCheckout={this.props.requestCheckout}
+										requestCheckout={this.props.requestPnfCheckout}
 										reservation={reservation}
 										checkout={this.props.checkout}
 										fetchPaidReservation={this.props.fetchPaidReservation}
@@ -65,7 +65,11 @@ class AirportParkingCheckoutPage extends Component {
 								}
 
 								{rate && rate.parking_lot && rate.parking_lot.payment_processor === 'prs' ?
-									<PrsPayment /> :
+									<PrsPayment
+                                        auth={this.props.auth}
+                                        requestCheckout={this.props.requestPrsCheckout}
+                                        reservation={reservation}
+									/> :
 									null
 								}
 
@@ -97,7 +101,8 @@ AirportParkingCheckoutPage.propTypes = {
     match: PropTypes.object.isRequired,
     fetchReservation: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
-    requestCheckout: PropTypes.func.isRequired,
+    requestPnfCheckout: PropTypes.func.isRequired,
+    requestPrsCheckout: PropTypes.func.isRequired,
 	checkout: PropTypes.object,
 	auth: PropTypes.object.isRequired,
     fetchPaidReservation: PropTypes.func.isRequired,
@@ -114,5 +119,6 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
 	fetchReservation,
 	fetchPaidReservation,
-	requestCheckout
+    requestPnfCheckout,
+    requestPrsCheckout
 })(AirportParkingCheckoutPage);

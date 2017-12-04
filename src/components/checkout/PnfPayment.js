@@ -22,11 +22,38 @@ export default class PnfPayment extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+    componentWillMount() {
+		const user = this.props.auth && this.props.auth.user;
+        this.setState({
+			name: user && user.name,
+			email: user && user.email,
+            phoneNumber: user && user.phone
+        });
+    }
+    componentWillReceiveProps(nextProps) {
+		const user = nextProps.auth && nextProps.auth.user;
+
+        this.setState({
+            name: user && user.name,
+            email: user && user.email,
+            phoneNumber: user && user.phone
+        });
+
+        if (!isEmpty(nextProps.paidReservation) && nextProps.paidReservation.status === 'confirmed') {
+            this.setState({ isReservationPaid: true });
+        }
+
+        if (!isEmpty(nextProps.paidReservation) && !isEmpty(nextProps.paidReservation.last_error_message)) {
+            this.setState({ isReservationFailed: true });
+        }
+    }
+
 	handleChange(e) {
         if (this.state.errors[e.target.name]) {
 
             let errors = Object.assign({}, this.state.errors);
             delete errors[e.target.name];
+
             this.setState({
                 [e.target.name]: e.target.value,
                 errors
@@ -41,7 +68,10 @@ export default class PnfPayment extends Component {
 		e.preventDefault();
 
 		let errors = {};
-		if (this.state.phoneNumber === '') errors.phoneNumber = " can't be empty";
+
+        if (isEmpty(this.state.name)) errors.name = " can't be empty";
+        if (isEmpty(this.state.email)) errors.email = " can't be empty";
+		if (isEmpty(this.state.phoneNumber)) errors.phoneNumber = " can't be empty";
 
 		this.setState({ errors });
 		const isValid = Object.keys(errors).length === 0;
@@ -49,22 +79,12 @@ export default class PnfPayment extends Component {
 		if (isValid) {
 			this.setState({ loading: true });
 
-			this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
+            this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
             	.then(() => this.setState({ loading: false, iframeShown: true }));
 
         	this.props.fetchPaidReservation(this.props.reservation && this.props.reservation.id);
 		}
 	}
-
-    componentWillReceiveProps(nextProps) {
-        if (!isEmpty(nextProps.paidReservation) && nextProps.paidReservation.status === 'confirmed') {
-            this.setState({ isReservationPaid: true });
-		}
-		
-		if (!isEmpty(nextProps.paidReservation) && !isEmpty(nextProps.paidReservation.last_error_message)) {
-            this.setState({ isReservationFailed: true });
-        }
-    }
 
 	render() {
 
@@ -106,16 +126,28 @@ export default class PnfPayment extends Component {
 
 						<div className="row">
 							<div className="col-md-6">
-								<label>
+                                <label className={classnames('', { 'has-error': this.state.errors.name })}>
 									Name
-									<input type="text" value={this.props.auth.user && this.props.auth.user.name} />
+                                    <span className="error-text">{this.state.errors.name}</span>
+									<input
+										type="text"
+										name="name"
+										value={this.state.name}
+                                        onChange={this.handleChange}
+									/>
 								</label>
 							</div>
 
 							<div className="col-md-6">
-								<label>
+                                <label className={classnames('', { 'has-error': this.state.errors.email })}>
 									Email
-									<input type="email" value={this.props.auth.user && this.props.auth.user.email} />
+                                    <span className="error-text">{this.state.errors.email}</span>
+									<input
+										type="email"
+                                        name="email"
+										value={this.state.email}
+                                        onChange={this.handleChange}
+									/>
 								</label>
 							</div>
 						</div>
@@ -128,6 +160,7 @@ export default class PnfPayment extends Component {
                                     <input
                                         type="tel"
                                         name="phoneNumber"
+										value={this.state.phoneNumber}
                                         onChange={this.handleChange}
                                     />
                                 </label>
