@@ -14,14 +14,16 @@ export default class PrsPayment extends Component {
             loading: false,
             cardNumber: '',
             cvvNumber: '',
-            month: '',
-            year: '',
+            month: 1,
+            year: parseInt(moment().format('YYYY')),
             address: '',
             city: '',
             state: '',
             country: 'US',
             zipCode: '',
-            errors: {}
+            errors: {},
+            isReservationPaid: false,
+            isReservationFailed: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -112,6 +114,15 @@ export default class PrsPayment extends Component {
 
         if (isValid) {
             this.props.requestCheckout(id, checkoutData);
+                // .then(() => {
+                //     if (this.props.reservation && this.props.reservation.status === 'confirmed' && isEmpty(this.props.reservation.last_error_message)) {
+                //         this.setState({isReservationPaid: true})
+                //     }
+                //
+                //     if (this.props.reservation && this.props.reservation.status === 'pending' && !isEmpty(this.props.reservation.last_error_message)) {
+                //         this.setState({isReservationFailed: true})
+                //     }
+                // });
         }
     }
 
@@ -123,6 +134,8 @@ export default class PrsPayment extends Component {
         for (let i = 0; i <= 21; i++) {
             years.push(parseInt(currentYear) + i);
         }
+
+        console.log(this.props.reservation);
 
         return (
             <form onSubmit={this.handleSubmit} className="ap-checkout__payment-details card-custom">
@@ -350,6 +363,16 @@ export default class PrsPayment extends Component {
                     </div>
 
                 </div>
+
+                {this.state.isReservationFailed ?
+                    <div>
+                        <br />
+                        <div className="alert alert-danger">
+                            <p>We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863!</p>
+                        </div>
+                    </div> :
+                    null
+                }
 
             </form>
         );

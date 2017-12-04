@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import isEmpty from 'lodash/isEmpty';
 
 export default class ProfileUpdate extends Component {
 
@@ -53,6 +54,7 @@ export default class ProfileUpdate extends Component {
                             <div className="col-sm-6">
                                 <label className={classnames('', { 'has-error': this.props.errors.name })}>
                                     Full name
+                                    <span className="error-text">{this.props.errors.name}</span>
                                     <input
                                         type="name"
                                         name="name"
@@ -64,6 +66,7 @@ export default class ProfileUpdate extends Component {
                             <div className="col-sm-6">
                                 <label className={classnames('', { 'has-error': this.props.errors.email })}>
                                     Email address
+                                    <span className="error-text">{this.props.errors.email}</span>
                                     <input
                                         type="email"
                                         name="email"
@@ -105,8 +108,9 @@ export default class ProfileUpdate extends Component {
 
                         <div className="row">
                             <div className="col-sm-6">
-                                <label>
+                                <label className={classnames('', { 'has-error': this.props.errors.city })}>
                                     City
+                                    <span className="error-text">{this.props.errors.city}</span>
                                     <input
                                         type="text"
                                         name="city"
@@ -132,8 +136,9 @@ export default class ProfileUpdate extends Component {
 
                         <div className="row">
                             <div className="col-sm-6">
-                                <label>
+                                <label className={classnames('', { 'has-error': this.props.errors.state })}>
                                     State
+                                    <span className="error-text">{this.props.errors.state}</span>
                                     <input
                                         type="text"
                                         name="state"

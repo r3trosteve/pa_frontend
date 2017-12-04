@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import isEmpty from 'lodash/isEmpty';
 
 import userImg from '../../assets/images/user.png';
 
@@ -39,32 +40,36 @@ class ProfilePage extends Component {
     }
 
     componentWillMount() {
+        const user = this.props.auth && this.props.auth.user;
+
         this.setState({
-            name: this.props.auth && this.props.auth.user && this.props.auth.user.name,
-            email: this.props.auth && this.props.auth.user && this.props.auth.user.email,
-            phone: this.props.auth && this.props.auth.user && this.props.auth.user.phone,
-            address1: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.address1,
-            address2: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.address2,
-            city: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.city,
-            state: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.state,
-            country: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.country,
-            zipCode: this.props.auth && this.props.auth.user && this.props.auth.user.location && this.props.auth.user.location.zip_code,
-            companyName: this.props.auth && this.props.auth.user && this.props.auth.user.company_name,
+            name: user && user.name,
+            email: user && user.email,
+            phone: user && user.phone,
+            address1: user && user.location && user.location.address1,
+            address2: user && user.location && user.location.address2,
+            city: user && user.location && user.location.city,
+            state: user && user.location && user.location.state,
+            country: user && user.location && user.location.country ? user.location.country : 'USA',
+            zipCode: user && user.location && user.location.zip_code,
+            companyName: user && user.company_name,
         });
     }
 
     componentWillReceiveProps(nextProps) {
+        const user = nextProps.auth && nextProps.auth.user;
+
         this.setState({
-            name: nextProps.auth && nextProps.auth.user && nextProps.auth.user.name,
-            email: nextProps.auth && nextProps.auth.user && nextProps.auth.user.email,
-            phone: nextProps.auth && nextProps.auth.user && nextProps.auth.user.phone,
-            address1: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.address1,
-            address2: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.address2,
-            city: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.city,
-            state: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.state,
-            country: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.country,
-            zipCode: nextProps.auth && nextProps.auth.user && nextProps.auth.user.location && nextProps.auth.user.location.zip_code,
-            companyName: nextProps.auth && nextProps.auth.user && nextProps.auth.user.company_name
+            name: user && user.name,
+            email: user && user.email,
+            phone: user && user.phone,
+            address1: user && user.location && user.location.address1,
+            address2: user && user.location && user.location.address2,
+            city: user && user.location && user.location.city,
+            state: user && user.location && user.location.state,
+            country: user && user.location && user.location.country ? user.location.country : 'USA',
+            zipCode: user && user.location && user.location.zip_code,
+            companyName: user && user.company_name
         });
     }
 
@@ -73,6 +78,7 @@ class ProfilePage extends Component {
 
             let errors = Object.assign({}, this.state.errors);
             delete errors[e.target.name];
+
             this.setState({
                 [e.target.name]: e.target.value,
                 errors
@@ -89,8 +95,10 @@ class ProfilePage extends Component {
         const { name, email, phone, address1, address2, city, state, country, zipCode, companyName } = this.state;
         let errors = {};
 
-        if (this.state.name === '') { errors.name = "Name can't be empty"; }
-        if (this.state.email === '') { errors.email = "Email can't be empty"; }
+        if (isEmpty(name)) { errors.name = " can't be empty"; }
+        if (isEmpty(email)) { errors.email = " can't be empty"; }
+        if (isEmpty(city)) { errors.city = " can't be empty"; }
+        if (isEmpty(state)) { errors.state = " can't be empty"; }
 
         this.setState({ errors });
 
