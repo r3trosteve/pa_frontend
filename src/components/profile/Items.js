@@ -42,6 +42,8 @@ export default class ProfileItems extends Component {
                                 handlePasswordUpdate={this.props.handlePasswordUpdate}
                                 password={this.props.password}
                                 confirmPassword={this.props.confirmPassword}
+                                isProfileUpdated={this.props.isProfileUpdated}
+                                isPwdUpdated={this.props.isPwdUpdated}
                             />
 
                         </div>
@@ -115,5 +117,7 @@ ProfileItems.propTypes = {
     companyName: PropTypes.string,
     handlePasswordUpdate: PropTypes.func.isRequired,
     password: PropTypes.string.isRequired,
-    confirmPassword: PropTypes.string.isRequired
+    confirmPassword: PropTypes.string.isRequired,
+    isProfileUpdated: PropTypes.bool,
+    isPwdUpdated: PropTypes.bool
 };

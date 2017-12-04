@@ -39,6 +39,14 @@ export default class ProfileUpdate extends Component {
 
                     <form onSubmit={this.props.handleProfileUpdate} className="profile__items-info__body">
 
+                        {
+                            this.props.isProfileUpdated ?
+                                <div className="alert alert-success">
+                                    <p>Your profile was updated.</p>
+                                </div> :
+                                null
+                        }
+
                         {/*1 row*/}
 
                         <div className="row">
@@ -213,6 +221,14 @@ export default class ProfileUpdate extends Component {
 
                     <form onSubmit={this.props.handlePasswordUpdate} className="profile__items-info__body">
 
+                        {
+                            this.props.isPwdUpdated ?
+                                <div className="alert alert-success">
+                                    <p>Your password was updated.</p>
+                                </div> :
+                                null
+                        }
+
                         {/*1*/}
 
                         <div className="row">
@@ -285,5 +301,7 @@ ProfileUpdate.propTypes = {
     companyName: PropTypes.string,
     password: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    isProfileUpdated: PropTypes.bool,
+    isPwdUpdated: PropTypes.bool
 };

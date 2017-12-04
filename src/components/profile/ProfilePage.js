@@ -28,7 +28,9 @@ class ProfilePage extends Component {
             zipCode: '',
             companyName: '',
             confirmPassword: '',
-            errors: {}
+            errors: {},
+            isProfileUpdated: false,
+            isPwdUpdates: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -110,7 +112,8 @@ class ProfilePage extends Component {
         };
 
         if (isValid) {
-            this.props.updateProfile(userData);
+            this.props.updateProfile(userData)
+                .then(() => this.setState({ isProfileUpdated: true }));
         }
     }
 
@@ -123,7 +126,8 @@ class ProfilePage extends Component {
         if (this.state.password === '') { errors.password = "Password can't be empty"; }
 
         if (this.state.confirmPassword !== '' && this.state.password === this.state.confirmPassword) {
-            this.props.updatePassword({ password });
+            this.props.updatePassword({ password })
+                .then(() => this.setState({ isPwdUpdated: true }));
         } else {
             errors.confirmPassword = "Passwords don't match";
         }
@@ -181,6 +185,8 @@ class ProfilePage extends Component {
                                         handlePasswordUpdate={this.handlePasswordUpdate}
                                         password={this.state.password}
                                         confirmPassword={this.state.confirmPassword}
+                                        isProfileUpdated={this.state.isProfileUpdated}
+                                        isPwdUpdated={this.state.isPwdUpdated}
                                     />
 
                                 </div>
