@@ -31,30 +31,16 @@ export default class AirportsList extends Component {
 		return (
 			<div className="airports-list">
 				<div className="row airports-list__row hidden-sm hidden-xs">
-					
-					{/*1*/}
 
-					<div className="col-md-4 col-sm-4 airports-list__column">
-						<ul className="airports-list__list">
-							{this.props.airports.slice(0, 37).map((airport, index) => this.showList(index, airport))}
-						</ul>
-					</div>
-
-					{/*2*/}
-
-					<div className="col-md-4 col-sm-4 airports-list__column">
-						<ul className="airports-list__list">
-							{this.props.airports.slice(37, 73).map((airport, index) => this.showList(index, airport))}
-						</ul>
-					</div>
-
-					{/*3*/}
-
-					<div className="col-md-4 col-sm-4 airports-list__column">
-						<ul className="airports-list__list">
-							{this.props.airports.slice(73, 120).map((airport, index) => this.showList(index, airport))}
-						</ul>
-					</div>
+					<ul className="css-list">
+						{this.props.airports.map((airport, index) => {
+							return (
+								<li key={index} className="airports-list__list-item list-another">
+									<Link to={`/${airport.slug}`}>{airport.name}</Link>
+								</li>
+							);
+						})}
+					</ul>
 
 					<div className="col-md-12 text-center">
 						<span className="btn-custom show-more">

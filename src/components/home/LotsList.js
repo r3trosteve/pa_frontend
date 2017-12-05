@@ -42,31 +42,19 @@ export default class LotsList extends Component {
                     </div>
 
                     <div className="airports-list">
+
+
                         <div className="row airports-list__row hidden-sm hidden-xs">
 
-                            {/*1*/}
-
-                            <div className="col-md-4 col-sm-4 airports-list__column">
-                                <ul className="airports-list__list">
-                                    {this.props.lots.slice(0, lotsColumn).map((lot, index) => this.showList(index, lot))}
-                                </ul>
-                            </div>
-
-                            {/*2*/}
-
-                            <div className="col-md-4 col-sm-4 airports-list__column">
-                                <ul className="airports-list__list">
-                                    {this.props.lots.slice(lotsColumn, lotsColumn * 2).map((lot, index) => this.showList(index, lot))}
-                                </ul>
-                            </div>
-
-                            {/*3*/}
-
-                            <div className="col-md-4 col-sm-4 airports-list__column">
-                                <ul className="airports-list__list">
-                                    {this.props.lots.slice(lotsColumn * 2, lotsColumn * 3 + remainderColumn).map((lot, index) => this.showList(index, lot))}
-                                </ul>
-                            </div>
+                            <ul className="css-list">
+                                {this.props.lots.map((lot, index) => {
+                                    return (
+                                        <li key={index} className="airports-list__list-item list-another">
+                                            <Link to={`/${lot.slug}`}>{lot.name}</Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
 
                             <div className="col-md-12 text-center">
                                 <span className="btn-custom show-more">
