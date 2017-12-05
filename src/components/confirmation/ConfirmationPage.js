@@ -13,7 +13,43 @@ class ReservationPage extends Component {
     componentDidMount() {
         $(window).scrollTop(0); // jq to load page on top
 
-        this.props.fetchReservation(this.props.match.params.id);
+        this.props.fetchReservation(this.props.match.params.id)
+            .then(() => {
+
+                // jq to send transaction details for google analytics revenue
+
+                const reservation = this.props.reservation;
+                const rate = this.props.reservation && this.props.reservation.rate;
+
+                const id = reservation && reservation.id;
+                const affiliation = "ParkingAccess";
+                const revenue = rate && rate.price && rate.price.total;
+                const shipping = 0;
+                let tax = reservation && reservation.price_details && reservation.price_details.find(x => x.name === 'taxes');
+                tax = tax && tax.amount;
+
+                console.log('id', id);
+                console.log('affiliation', affiliation);
+                console.log('revenue', revenue);
+                console.log('shipping', shipping);
+                console.log('tax', tax);
+                console.log('reservation:', reservation);
+
+                const transaction = {
+                    'id': id,                    // Transaction ID.
+                    'affiliation': affiliation,  // Affiliation or store name.
+                    'revenue': revenue,          // Grand Total.
+                    'shipping': shipping,        // Shipping.
+                    'tax': tax                   // Tax.
+                };
+
+                ga('ecommerce:addTransaction', transaction);
+
+                ga('ecommerce:send');
+
+                // end
+
+            });
     }
 
     render() {
