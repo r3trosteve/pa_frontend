@@ -131,13 +131,13 @@ class ProfilePage extends Component {
         const { password, confirmPassword } = this.state;
         let errors = {};
 
-        if (this.state.password === '') { errors.password = "Password can't be empty"; }
-
-        if (this.state.confirmPassword !== '' && this.state.password === this.state.confirmPassword) {
+        if (this.state.confirmPassword !== '' && this.state.password === this.state.confirmPassword && this.state.password.length >= 6) {
             this.props.updatePassword({ password })
                 .then(() => this.setState({ isPwdUpdated: true }));
+        } else if (this.state.confirmPassword !== '' && this.state.password === this.state.confirmPassword && this.state.password.length < 6) {
+            errors.password = "Password must contain at least 6 characters";
         } else {
-            errors.confirmPassword = "Passwords don't match";
+            errors.password = "Passwords don't match";
         }
 
         this.setState({ errors });

@@ -249,7 +249,7 @@ export default class ProfileUpdate extends Component {
                                 </label>
                             </div>
                             <div className="col-sm-6">
-                                <label className={classnames('', { 'has-error': this.props.errors.confirmPassword })}>
+                                <label className={classnames('', { 'has-error': this.props.errors.password })}>
                                     Confirm new password
                                     <input
                                         type="password"
@@ -263,7 +263,7 @@ export default class ProfileUpdate extends Component {
 
                         <div className="row">
                             <div className="col-sm-12">
-                                <span className="error-text">{this.props.errors.confirmPassword}</span>
+                                <span className="error-text">{this.props.errors.password}</span>
                             </div>
                         </div>
 

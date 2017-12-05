@@ -58,6 +58,7 @@ class Register extends Component {
         if (this.state.name === '') errors.name = " can't be empty";
         if (this.state.email === '') errors.email = " can't be empty";
         if (this.state.password === '') errors.password = " can't be empty";
+        if (this.state.password !== '' && this.state.password.length < 6) errors.password = " must contain at least 6 characters";
         if (this.state.passwordConfirm === '') errors.passwordConfirm = " can't be empty";
         if (this.state.passwordConfirm !== '' && this.state.password !== this.state.passwordConfirm)
             errors.passwordConfirm = " doesn't match password above";
