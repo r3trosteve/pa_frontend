@@ -144,13 +144,37 @@ export default class PrsForm extends Component {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber })}>
+                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber1 })}>
                                 Credit Card Number
-                                <span className="error-text">{this.props.errors.cardNumber}</span>
+                                <span className="error-text">{this.props.errors.cardNumber1}</span>
                                 <input
                                     type="number"
-                                    name="cardNumber"
-                                    value={this.props.cardNumber}
+                                    name="cardNumber1"
+                                    value={this.props.cardNumber1}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
+                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber1 })}>
+                                <input
+                                    type="number"
+                                    name="cardNumber2"
+                                    value={this.props.cardNumber2}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
+                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber1 })}>
+                                <input
+                                    type="number"
+                                    name="cardNumber3"
+                                    value={this.props.cardNumber3}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
+                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber1 })}>
+                                <input
+                                    type="number"
+                                    name="cardNumber4"
+                                    value={this.props.cardNumber4}
                                     onChange={this.props.handleChange}
                                 />
                             </label>
@@ -231,6 +255,7 @@ export default class PrsForm extends Component {
                                     <button
                                         type="submit"
                                         className="btn-custom"
+                                        style={this.props.isReservationFailed ? {'display': 'none'} : {}}
                                     >
                                         Complete Reservation
                                     </button>
@@ -256,9 +281,13 @@ PrsForm.propTypes = {
     state: PropTypes.string,
     country: PropTypes.string,
     zipCode: PropTypes.string,
-    cardNumber: PropTypes.string,
+    cardNumber1: PropTypes.string,
+    cardNumber2: PropTypes.string,
+    cardNumber3: PropTypes.string,
+    cardNumber4: PropTypes.string,
     month: PropTypes.number,
     year: PropTypes.number,
     cvvNumber: PropTypes.string,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    isReservationFailed: PropTypes.bool
 };

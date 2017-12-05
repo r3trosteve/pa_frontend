@@ -14,7 +14,10 @@ export default class PrsPayment extends Component {
 
         this.state = {
             loading: false,
-            cardNumber: '',
+            cardNumber1: '',
+            cardNumber2: '',
+            cardNumber3: '',
+            cardNumber4: '',
             cvvNumber: '',
             month: 1,
             year: parseInt(moment().format('YYYY')),
@@ -39,7 +42,7 @@ export default class PrsPayment extends Component {
             name: user && user.name,
             email: user && user.email,
             phoneNumber: user && user.phone,
-            address: user && user.location && (user.location.address1 + ', ' + user.location.address2),
+            address: user && user.location && (user.location.address1 || user.location.address2) && (user.location.address1 + ', ' + user.location.address2),
             city: user && user.location && user.location.city,
             state: user && user.location && user.location.state,
             country: user && user.location && user.location.country,
@@ -54,7 +57,7 @@ export default class PrsPayment extends Component {
             name: user && user.name,
             email: user && user.email,
             phoneNumber: user && user.phone,
-            address: user && user.location && (user.location.address1 + ', ' + user.location.address2),
+            address: user && user.location && (user.location.address1 || user.location.address2) && (user.location.address1 + ', ' + user.location.address2),
             city: user && user.location && user.location.city,
             state: user && user.location && user.location.state,
             country: user && user.location && user.location.country,
@@ -81,42 +84,46 @@ export default class PrsPayment extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const { address, city, state, country, zipCode, cardNumber, month, year, cvvNumber } = this.state;
+        const { address, city, state, country, zipCode, cardNumber1, cardNumber2, cardNumber3, cardNumber4, month, year, cvvNumber } = this.state;
         let errors = {};
 
         if (isEmpty(address)) { errors.address = " can't be empty"; }
         if (isEmpty(city)) { errors.city = " can't be empty"; }
         if (isEmpty(state)) { errors.state = " can't be empty"; }
         if (isEmpty(zipCode)) { errors.zipCode = " can't be empty"; }
-        if (isEmpty(cardNumber)) { errors.cardNumber = " can't be empty"; }
+        if (isEmpty(cardNumber1) || isEmpty(cardNumber2) || isEmpty(cardNumber3) || isEmpty(cardNumber4)) { errors.cardNumber1 = " can't be empty"; }
         if (isEmpty(cvvNumber)) { errors.cvvNumber = " can't be empty"; }
 
         this.setState({ errors });
 
         const isValid = Object.keys(errors).length === 0;
 
-        const checkoutData = {
-            card: {
-                name,
-                number: cardNumber,
-                cvv: cvvNumber,
-                month,
-                year
-            },
-            address: {
-                address,
-                city,
-                state,
-                country,
-                zip: zipCode
-            }
-        };
-
-        const id = this.props.reservation && this.props.reservation.id;
-
-        this.setState({ loading: true });
-
         if (isValid) {
+            const id = this.props.reservation && this.props.reservation.id;
+
+            const cardNumber = cardNumber1 + cardNumber2 + cardNumber3 + cardNumber4;
+
+            console.log(cardNumber);
+
+            const checkoutData = {
+                card: {
+                    name,
+                    number: cardNumber,
+                    cvv: cvvNumber,
+                    month,
+                    year
+                },
+                address: {
+                    address,
+                    city,
+                    state,
+                    country,
+                    zip: zipCode
+                }
+            };
+
+            this.setState({ loading: true });
+
             this.props.requestCheckout(id, checkoutData)
                 .then(() => {
                     if (!isEmpty(this.props.checkoutError)) {
@@ -159,11 +166,15 @@ export default class PrsPayment extends Component {
                         state={this.state.state}
                         country={this.state.country}
                         zipCode={this.state.zipCode}
-                        cardNumber={this.state.cardNumber}
+                        cardNumber1={this.state.cardNumber1}
+                        cardNumber2={this.state.cardNumber2}
+                        cardNumber3={this.state.cardNumber3}
+                        cardNumber4={this.state.cardNumber4}
                         month={this.state.month}
                         year={this.state.year}
                         cvvNumber={this.state.cvvNumber}
                         loading={this.state.loading}
+                        isReservationFailed={this.state.isReservationFailed}
                     />
 
                     {this.state.isReservationFailed ?
