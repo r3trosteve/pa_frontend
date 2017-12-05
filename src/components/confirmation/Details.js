@@ -43,7 +43,15 @@ export default class Details extends Component {
                             {/*image*/}
                             <div className="col-sm-4">
                                 <div className="confirmation__details__image">
-                                    <img src={rate && rate.parking_lot && rate.parking_lot.logo_url} />
+
+                                    {rate && rate.parking_lot && rate.parking_lot.logo_url ?
+                                        <img
+                                            src={rate && rate.parking_lot && rate.parking_lot.logo_url}
+                                            alt={rate && rate.parking_lot && rate.parking_lot.name}
+                                        /> :
+                                        <p className="no-image-text">No Image</p>
+                                    }
+
                                 </div>
                             </div>
 

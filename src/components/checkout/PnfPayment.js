@@ -208,10 +208,12 @@ export default class PnfPayment extends Component {
 
                     {
                         this.state.iframeShown && !this.state.isReservationPaid ?
-							<p className="ap-checkout__payment-details__notification small">
-								When you submit the payment form you will need to wait for a while till Wells Fargo completes the payment.
-								Afterwards you will be redirected to confirmation page.
-							</p> :
+							<div className="ap-checkout__payment-details__notification small">
+								<p>
+                                    When you submit the payment form you will need to wait for a while till Wells Fargo completes the payment.
+                                    Afterwards you will be redirected to confirmation page.
+								</p>
+							</div> :
                             null
 					}
 

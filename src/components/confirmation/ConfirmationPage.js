@@ -27,9 +27,11 @@ class ReservationPage extends Component {
 
                     <div className="container confirmation__container">
 
-                        <p className="ap-checkout__payment-details__notification small">
-                            Please check your email for your reservation receipt which you need to present to the parking lot upon arrival.
-                        </p>
+                        <div className="ap-checkout__payment-details__notification small space-above">
+                            <p>
+                                Please check your email for your reservation receipt which you need to present to the parking lot upon arrival.
+                            </p>
+                        </div>
 
                         <Details reservation={this.props.reservation} />
 
