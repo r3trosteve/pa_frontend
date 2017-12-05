@@ -5,6 +5,21 @@ import moment from "moment/moment";
 import { Link } from 'react-router-dom';
 
 export default class PrsForm extends Component {
+
+    componentDidMount() {
+
+        // jq for auto tab in card inputs
+
+        $(".card-input").keyup(function () {
+            if (this.value.length === 4) {
+                $(this).parent().next().find('input').focus();
+            }
+        });
+
+        // end
+        
+    }
+
     render() {
 
         const years = [];
@@ -157,7 +172,7 @@ export default class PrsForm extends Component {
                             <div className={classnames('inline-inputs', { 'has-error': this.props.errors.cardNumber1 })}>
                                 <label>
                                     <input
-                                        className="col-sm-3"
+                                        className="col-xs-3 card-input"
                                         type="text"
                                         name="cardNumber1"
                                         value={this.props.cardNumber1}
@@ -171,7 +186,7 @@ export default class PrsForm extends Component {
 
                                 <label>
                                     <input
-                                        className="col-sm-3"
+                                        className="col-xs-3 card-input"
                                         type="text"
                                         name="cardNumber2"
                                         value={this.props.cardNumber2}
@@ -185,7 +200,7 @@ export default class PrsForm extends Component {
 
                                 <label>
                                     <input
-                                        className="col-sm-3"
+                                        className="col-xs-3 card-input"
                                         type="text"
                                         name="cardNumber3"
                                         value={this.props.cardNumber3}
@@ -199,7 +214,7 @@ export default class PrsForm extends Component {
 
                                 <label>
                                     <input
-                                        className="col-sm-3"
+                                        className="col-xs-3 card-input"
                                         type="text"
                                         name="cardNumber4"
                                         value={this.props.cardNumber4}
@@ -224,7 +239,7 @@ export default class PrsForm extends Component {
 
                             <div className="row inline-inputs">
 
-                                <div className="col-sm-4">
+                                <div className="col-xs-4">
                                     <label className="select-label">
                                         Month
                                         <select
@@ -241,7 +256,7 @@ export default class PrsForm extends Component {
                                     </label>
                                 </div>
 
-                                <div className="col-sm-4">
+                                <div className="col-xs-4">
                                     <label className="select-label">
                                         Year
                                         <select
@@ -258,7 +273,7 @@ export default class PrsForm extends Component {
                                     </label>
                                 </div>
 
-                                <div className="col-sm-4">
+                                <div className="col-xs-4">
                                     <label className={classnames('', { 'has-error': this.props.errors.cvvNumber })}>
                                         CVV
                                         <input
@@ -269,6 +284,7 @@ export default class PrsForm extends Component {
                                             maxLength="3"
                                             pattern="\d*"
                                             title="Only digits allowed"
+                                            placeholder="000"
                                         />
                                     </label>
                                 </div>
