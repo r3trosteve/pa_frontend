@@ -214,12 +214,15 @@ export default class PnfPayment extends Component {
 							</p> :
                             null
 					}
-					
+
 					{
 						this.state.isReservationFailed ?
-							<div className="alert alert-danger">
+							<div className="ap-checkout__payment-details__notification small small--red">
 								<p>{this.props.paidReservation && this.props.paidReservation.last_error_message}</p>
-								<p>We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863</p>
+                                <p>
+                                    We are sorry but we cannot process your reservation at the moment. <br/>
+                                    Please call <a href="tel:18008515863">1-800-851-5863</a>
+                                </p>
 							</div> :
 							null
 					}

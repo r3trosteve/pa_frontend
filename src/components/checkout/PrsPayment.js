@@ -177,19 +177,6 @@ export default class PrsPayment extends Component {
                         isReservationFailed={this.state.isReservationFailed}
                     />
 
-                    {this.state.isReservationFailed ?
-                        <div>
-                            <br />
-                            <div className="alert alert-danger">
-                                <p>
-                                    We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863!
-                                    Or you can <a href="javascript:window.location.reload(true)">try again</a>.
-                                </p>
-                            </div>
-                        </div> :
-                        null
-                    }
-
                 </div>
             );
 

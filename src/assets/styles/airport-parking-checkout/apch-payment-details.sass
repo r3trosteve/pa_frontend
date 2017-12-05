@@ -19,15 +19,24 @@
   &__notification
     text-align: left
     box-shadow: inset 0 -1px 0 0 #efefef, inset 0 1px 0 0 #efefef
+    p
+      margin: 10px 0
+
+    &.space-above
+      margin-top: 25px
 
     &.small
       color: #027c33
       background: #efffc5
-      padding: 16px
+      padding: 5px 15px
       font-size: 16px
       font-family: 'Montserrat', sans-serif
-      margin: 25px 0
-
+      &--red
+        background: #fcfbee
+        color: $red
+        a
+          color: $red
+          font-weight: 600
     &.big
       font-family: 'Open Sans', sans-serif
       background: #fcfbee
@@ -99,6 +108,19 @@
           font-weight: 300
           color: #cccccc
           opacity: 1
+
+  .inline-inputs
+    display: flex
+    margin-left: -2.5px
+    margin-right: -2.5px
+    label, .col-sm-4
+      margin: 0 2.5px 13px
+      padding: 0
+    .col-sm-4
+      margin-bottom: 0
+
+  .label-title
+    margin-bottom: 0
 
   &__terms
     opacity: 0.7

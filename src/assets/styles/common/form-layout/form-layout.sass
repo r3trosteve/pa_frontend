@@ -7,19 +7,23 @@ input
     -webkit-appearance: none
 
   &::-webkit-input-placeholder
-    color: $blue-op
+    color: $grey
+    font-weight: 300
     opacity: 1
   &::-moz-placeholder
-    color: $blue-op
+    color: $grey
+    font-weight: 300
     opacity: 1
   &:-ms-input-placeholder
-    color: $blue-op
+    color: $grey
+    font-weight: 300
     opacity: 1
   &:-moz-placeholder
-    color: $blue-op
+    color: $grey
+    font-weight: 300
     opacity: 1
 
-label
+label, .label-title
   width: 100%
   transition: all 0.5s
   text-align: left
@@ -109,17 +113,17 @@ label
       right: 16px
       top: 36px
 
-  &.has-error
-    color: $red
-    input
-      border-color: $red
-    span.error-text
-      animation: fade-bottom-error 0.5s forwards
-      position: relative
-      right: 10px
-      opacity: 0
+.has-error, .has-error label
+  color: $red
+  input
+    border-color: $red!important
+  span.error-text
+    animation: fade-bottom-error 0.5s forwards
+    position: relative
+    right: 10px
+    opacity: 0
 
-      @keyframes fade-bottom-error
-        to
-          right: 0
-          opacity: 1
+    @keyframes fade-bottom-error
+      to
+        right: 0
+        opacity: 1
