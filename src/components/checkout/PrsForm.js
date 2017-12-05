@@ -195,7 +195,7 @@ export default class PrsForm extends Component {
                                     value={this.props.month}
                                 >
                                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((m, i) =>
-                                        <option key={i} value={m}>{m}</option>
+                                        <option key={i} value={m}>{m < 10 ? '0' + m : m}</option>
                                     )}
                                 </select>
                                 <i className="ion-arrow-down-b" />
