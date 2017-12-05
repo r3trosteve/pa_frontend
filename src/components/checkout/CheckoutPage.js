@@ -69,6 +69,7 @@ class AirportParkingCheckoutPage extends Component {
                                         auth={this.props.auth}
                                         requestCheckout={this.props.requestPrsCheckout}
                                         reservation={reservation}
+                                        checkoutError={this.props.checkoutError}
 									/> :
 									null
 								}
@@ -113,6 +114,7 @@ const mapStateToProps = state => ({
 	reservation: state.reservation.item,
     paidReservation: state.reservation.paidItem,
 	checkout: state.checkout.item,
+	checkoutError: state.checkout.error,
     auth: state.auth
 });
 

@@ -4,9 +4,11 @@ import apiBaseUrl from '../config';
 
 export const PNF_CHECKOUT_REQUESTED = 'PNF_CHECKOUT_REQUESTED';
 export const PRS_CHECKOUT_REQUESTED = 'PRS_CHECKOUT_REQUESTED';
+export const PRS_CHECKOUT_FAILED = 'PRS_CHECKOUT_FAILED';
 
 const initialState = {
-    item: {}
+    item: {},
+    error: ''
 };
 
 export default function reducer(state = initialState, action) {
@@ -16,6 +18,9 @@ export default function reducer(state = initialState, action) {
 
         case PRS_CHECKOUT_REQUESTED:
             return Object.assign({}, state, { item: action.item });
+
+        case PRS_CHECKOUT_FAILED:
+            return Object.assign({}, state, { error: action.error });
 
         default:
             return state;
@@ -50,11 +55,27 @@ export const requestPrsCheckout = (id, data) => dispatch => {
             'Access-token': localStorage.jwtToken
         }
     })
+        .then(handleErrors)
         .then(res => res.json())
         .then(data => {
             dispatch({
                 type: PRS_CHECKOUT_REQUESTED,
                 item: data
             });
+        })
+        .catch(() => {
+            dispatch({
+                type: PRS_CHECKOUT_FAILED,
+                error: 'Payment failed.'
+            });
         });
+};
+
+// handle response error
+
+export const handleErrors = res => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
 };

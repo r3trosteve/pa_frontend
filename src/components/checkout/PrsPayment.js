@@ -5,6 +5,8 @@ import { Route, Redirect, Link } from 'react-router-dom';
 import moment from 'moment';
 import isEmpty from 'lodash/isEmpty';
 
+import PrsForm from './PrsForm';
+
 export default class PrsPayment extends Component {
 
     constructor() {
@@ -112,274 +114,80 @@ export default class PrsPayment extends Component {
 
         const id = this.props.reservation && this.props.reservation.id;
 
+        this.setState({ loading: true });
+
         if (isValid) {
-            this.props.requestCheckout(id, checkoutData);
-                // .then(() => {
-                //     if (this.props.reservation && this.props.reservation.status === 'confirmed' && isEmpty(this.props.reservation.last_error_message)) {
-                //         this.setState({isReservationPaid: true})
-                //     }
-                //
-                //     if (this.props.reservation && this.props.reservation.status === 'pending' && !isEmpty(this.props.reservation.last_error_message)) {
-                //         this.setState({isReservationFailed: true})
-                //     }
-                // });
+            this.props.requestCheckout(id, checkoutData)
+                .then(() => {
+                    if (!isEmpty(this.props.checkoutError)) {
+                        this.setState({ isReservationFailed: true, loading: false });
+                    } else {
+                        this.setState({ isReservationPaid: true, loading: false });
+                    }
+                });
         }
     }
 
     render() {
+        if (this.state.isReservationPaid) {
 
-        const years = [];
-        const currentYear = moment().format('YYYY');
+            return (
 
-        for (let i = 0; i <= 21; i++) {
-            years.push(parseInt(currentYear) + i);
-        }
-
-        console.log(this.props.reservation);
-
-        return (
-            <form onSubmit={this.handleSubmit} className="ap-checkout__payment-details card-custom">
-
-                {/*title*/}
-
-                <div className="ap-checkout__payment-details__title">
-                    <h3 className="title-normal">
-                        <i className="fa fa-lock" aria-hidden="true" />
-                        Payment details
-                        <span>your reservation is safe and secure</span>
-                    </h3>
-                </div>
-
-                {/*inputs*/}
-
-                <div className="ap-checkout__payment-details__inputs">
-
-                    {/*inputs body*/}
-
-                    {/*row 1*/}
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.name })}>
-                                Name
-                                <span className="error-text">{this.state.errors.name}</span>
-                                <input
-                                    type="text"
-                                    value={this.state.name}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.email })}>
-                                Email
-                                <span className="error-text">{this.state.errors.email}</span>
-                                <input
-                                    type="email"
-                                    value={this.state.email}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*row 2*/}
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <label className={classnames('', { 'has-error': this.state.errors.address })}>
-                                Address
-                                <span className="error-text">{this.state.errors.address}</span>
-                                <input
-                                    type="text"
-                                    name="address"
-                                    value={this.state.address}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*row 3*/}
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.city })}>
-                                City
-                                <span className="error-text">{this.state.errors.city}</span>
-                                <input
-                                    type="text"
-                                    name="city"
-                                    value={this.state.city}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.state })}>
-                                State
-                                <span className="error-text">{this.state.errors.state}</span>
-                                <input
-                                    type="text"
-                                    name="state"
-                                    value={this.state.state}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*row 4*/}
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <label className="select-label">
-                                Country
-                                <select
-                                    name="country"
-                                    id="country"
-                                    onChange={this.handleChange}
-                                    value={this.state.country}
-                                >
-                                    <option value="USA">United States of America</option>
-                                    <option value="Canada">Canada</option>
-                                    <option value="UK">United Kingdom</option>
-                                </select>
-                                <i className="ion-arrow-down-b" />
-                            </label>
-                        </div>
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.zipCode })}>
-                                Zip/Postal code
-                                <span className="error-text">{this.state.errors.zipCode}</span>
-                                <input
-                                    type="number"
-                                    name="zipCode"
-                                    value={this.state.zipCode}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*row 5*/}
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.state.errors.cardNumber })}>
-                                Credit Card Number
-                                <span className="error-text">{this.state.errors.cardNumber}</span>
-                                <input
-                                    type="number"
-                                    name="cardNumber"
-                                    value={this.state.cardNumber}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*row 3*/}
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            {/*1*/}
-                            <label className="select-label">
-                                Month
-                                <select
-                                    name="month"
-                                    id="month"
-                                    onChange={this.handleChange}
-                                    value={this.state.month}
-                                >
-                                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((m, i) =>
-                                        <option key={i} value={m}>{m}</option>
-                                    )}
-                                </select>
-                                <i className="ion-arrow-down-b" />
-                            </label>
-
-                            {/*2*/}
-                            <label className="select-label">
-                                Year
-                                <select
-                                    name="year"
-                                    id="year"
-                                    onChange={this.handleChange}
-                                    value={this.state.year}
-                                >
-                                    {years.map((y, i) =>
-                                        <option key={i} value={y}>{y}</option>
-                                    )}
-                                </select>
-                                <i className="ion-arrow-down-b" />
-                            </label>
-
-                            {/*3*/}
-                            <label className={classnames('', { 'has-error': this.state.errors.cvvNumber })}>
-                                CVV
-                                <span className="error-text">{this.state.errors.cvvNumber}</span>
-                                <input
-                                    type="number"
-                                    name="cvvNumber"
-                                    value={this.state.cvvNumber}
-                                    onChange={this.handleChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
-
-                    {/*t&c*/}
-
-                    <p className="ap-checkout__payment-details__terms">
-                        I have read and accept the
-                        <Link to="/terms-of-service" target="_blank"> terms of use</Link>,
-                        and
-                        <Link to="/privacy-policy" target="_blank"> privacy policy</Link>
-                    </p>
-
-                    {/*submit*/}
-
-                    <div className="ap-checkout__payment-details__submit">
-                        {
-                            this.state.loading ?
-                                (
-                                    <button type="submit" className="btn-custom" disabled>
-                                        <i className="fa fa-spinner" aria-hidden="true" />
-                                        Please wait...
-                                    </button>
-                                ) :
-                                (
-                                    <button
-                                        type="submit"
-                                        className="btn-custom"
-                                        // disabled={this.state.isReservationPaid}
-                                    >
-                                        Complete Reservation
-                                    </button>
-                                )
+                <Route
+                    render={({ staticContext }) => {
+                        if (staticContext) {
+                            staticContext.status = 302;
                         }
-                    </div>
+                        return <Redirect to={`/confirmation/${this.props.reservation && this.props.reservation.id}`} />;
+                    }}
+                />
+            );
+
+        } else {
+
+            return (
+                <div>
+
+                    <PrsForm
+                        handleSubmit={this.handleSubmit}
+                        errors={this.state.errors}
+                        handleChange={this.handleChange}
+                        name={this.state.name}
+                        email={this.state.email}
+                        address={this.state.address}
+                        city={this.state.city}
+                        state={this.state.state}
+                        country={this.state.country}
+                        zipCode={this.state.zipCode}
+                        cardNumber={this.state.cardNumber}
+                        month={this.state.month}
+                        year={this.state.year}
+                        cvvNumber={this.state.cvvNumber}
+                        loading={this.state.loading}
+                    />
+
+                    {this.state.isReservationFailed ?
+                        <div>
+                            <br />
+                            <div className="alert alert-danger">
+                                <p>
+                                    We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863!
+                                    Or you can <a href="javascript:window.location.reload(true)">try again</a>.
+                                </p>
+                            </div>
+                        </div> :
+                        null
+                    }
 
                 </div>
+            );
 
-                {this.state.isReservationFailed ?
-                    <div>
-                        <br />
-                        <div className="alert alert-danger">
-                            <p>We are sorry but we cannot process your reservation at the moment. Please call 1-800-851-5863!</p>
-                        </div>
-                    </div> :
-                    null
-                }
-
-            </form>
-        );
+        }
     }
 }
 
 PrsPayment.propTypes = {
     requestCheckout: PropTypes.func.isRequired,
-    reservation: PropTypes.object.isRequired
+    reservation: PropTypes.object.isRequired,
+    paidReservation: PropTypes.object
 };
