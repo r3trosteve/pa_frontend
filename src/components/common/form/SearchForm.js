@@ -224,7 +224,7 @@ class SearchForm extends Component {
 									}
 
                                     {this.props.location.pathname.match(/\/lot-.*/) ?
-                                        <i className="fa fa-arrow-up" aria-hidden="true" /> : null
+                                        <i className="ion-arrow-up-a" /> : null
                                     }
 								</button>
 

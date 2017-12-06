@@ -42,23 +42,30 @@ class ParkingLotPage extends Component {
                 let apdNavCard = $('.ap-details__navigation__card');
                 let summaryCard = $('.order-summary.card-custom');
 
-                let apdNavTop =  216;
+                let apdNavTop =  $('.ap-details__navigation').offset().top;
+                let apdSummaryTop =  215;
+
                 let apdColumnLeftW = $('.ap-details__column--left').width();
                 let apdColumnSummaryW = $('.ap-details__column--summary').width();
 
                 if (wScrollTop >= apdNavTop) {
                     apdNavCard.addClass('sticky');
-                    summaryCard.addClass('sticky');
                     apdNavCard.css({
                         'width': apdColumnLeftW,
                     });
+                } else {
+                    apdNavCard.removeClass('sticky');
+                }
+
+                if (wScrollTop >= apdSummaryTop) {
+                    summaryCard.addClass('sticky');
                     summaryCard.css({
                         'width': apdColumnSummaryW,
                     });
                 } else {
-                    apdNavCard.removeClass('sticky');
                     summaryCard.removeClass('sticky');
                 }
+
             };
 
             stickyContainers();
@@ -109,12 +116,12 @@ class ParkingLotPage extends Component {
 
 						<div className="col-md-7 ap-details__column ap-details__column--left">
 
-							<Navigation />
-
 							<Info
 								rate={rate}
 								lot={lot}
 							/>
+
+                            <Navigation />
 
 							<Overview lot={lot} />
 

@@ -40,11 +40,9 @@ class ParkingLotPage extends Component {
             let wWidth = $(window).width();
     
             if (wWidth < 767) {
-                
                 if ($('input.airport-date').val().length === 0) {
                     $('input.airport-date').click();
                 }
-                
             }
 
         });
@@ -57,23 +55,30 @@ class ParkingLotPage extends Component {
                 let apdNavCard = $('.ap-details__navigation__card');
                 let searchCard = $('.ap-details__search.card-custom');
 
-                let apdNavTop =  195;
+                let apdNavTop =  $('.ap-details__navigation').offset().top;
+                let apdSearchTop =  195;
+
                 let apdColumnLeftW = $('.ap-details__column--left').width();
                 let apdColumnSearchW = $('.ap-details__column--search').width();
 
                 if (wScrollTop >= apdNavTop) {
                     apdNavCard.addClass('sticky');
-                    searchCard.addClass('sticky');
                     apdNavCard.css({
                         'width': apdColumnLeftW,
                     });
+                } else {
+                    apdNavCard.removeClass('sticky');
+                }
+
+                if (wScrollTop >= apdSearchTop) {
+                    searchCard.addClass('sticky');
                     searchCard.css({
                         'width': apdColumnSearchW,
                     });
                 } else {
-                    apdNavCard.removeClass('sticky');
                     searchCard.removeClass('sticky');
                 }
+
             };
 
             stickyContainers();
@@ -136,9 +141,9 @@ class ParkingLotPage extends Component {
 
                         <div className="col-md-7 ap-details__column ap-details__column--left">
 
-                            <Navigation />
-
                             <Info lot={lot} />
+
+                            <Navigation />
 
                             <Overview lot={lot} />
 
