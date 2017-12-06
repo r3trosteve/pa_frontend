@@ -10,7 +10,7 @@ export default class AirportPageBenefits extends Component {
                     {/*title*/}
 
                     <div className="airport__benefits__title">
-                        <h1 className="section-title">What Can You Save with <b>parkingaccess.com</b>?</h1>
+                        <h1 className="section-title">How can you save with <b>parkingaccess.com</b>?</h1>
                     </div>
 
                     <div className="airport__benefits__row">
