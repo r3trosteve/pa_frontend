@@ -22,8 +22,7 @@ export default class AirportPageBenefits extends Component {
                             <div className="airport__benefits__card">
                                 <h4>Save Money</h4>
                                 <p className="text-bigger">
-                                    Save up to 70% off on our site compared
-                                    to the cost of on-airport parking.
+                                    You can compare other sites and parking at the airport, we guarantee low rates, everyday!
                                 </p>
                             </div>
 
@@ -36,8 +35,7 @@ export default class AirportPageBenefits extends Component {
                             <div className="airport__benefits__card">
                                 <h4>Save Time</h4>
                                 <p className="text-bigger">
-                                    It's easy to compare parking at all major
-                                    airports. Booking a reservation is quick & simple!
+                                    Compare multiple parking providers at over 2000 airports world wide and reserve in minutes.
                                 </p>
                             </div>
                         </div>
@@ -49,8 +47,7 @@ export default class AirportPageBenefits extends Component {
                             <div className="airport__benefits__card">
                                 <h4>Save Stress</h4>
                                 <p className="text-bigger">
-                                    Guarantee your parking spot by booking in advance.
-                                    Can't make it? Cancellations are free.
+                                    Save your spot by booking ahead, plus there's no risk with our free cancellation policy.
                                 </p>
                             </div>
 
