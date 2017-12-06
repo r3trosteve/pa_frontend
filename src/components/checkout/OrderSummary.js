@@ -30,12 +30,24 @@ export default class OrderSummary extends Component {
     render() {
 
 		const reservation = this.props.reservation;
-		const price_details = reservation.price_details;
+		const price_details = this.props.reservation && this.props.reservation.price_details;
+		const rate = this.props.reservation && this.props.reservation.rate;
 
-		const taxes = price_details && price_details.filter(x => x.kind === 'tax');
+		let taxes, total_fee, subtotal;
 
-        const total_fee = price_details && price_details.find(x => x.name === 'taxes');
-        const subtotal = price_details && price_details.find(x => x.name === 'subTotal');
+		if (rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg') {
+
+            taxes = price_details && price_details.filter(x => x.kind === 'tax');
+            total_fee = price_details && price_details.find(x => x.name === 'taxes');
+            subtotal = price_details && price_details.find(x => x.name === 'subTotal');
+
+		} else {
+
+            taxes = price_details && price_details.filter(x => x.name === '5.6% state taxes');
+            total_fee = price_details && price_details.find(x => x.name === '5.6% state taxes');
+            subtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
+
+		}
 
 		return (
 			<div className="order-summary card-custom card-custom--no-pad">

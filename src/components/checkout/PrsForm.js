@@ -316,7 +316,7 @@ PrsForm.propTypes = {
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
     firstName: PropTypes.string.isRequired,
-    lsatName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     address: PropTypes.string,
     city: PropTypes.string,
