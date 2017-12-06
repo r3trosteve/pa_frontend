@@ -187,8 +187,9 @@ export default class ProfileUpdate extends Component {
 
                         <div className="row">
                             <div className="col-sm-6">
-                                <label>
+                                <label className={classnames('', { 'has-error': this.props.errors.phone })}>
                                     Phone number
+                                    <span className="error-text">{this.props.errors.phone}</span>
                                     <input
                                         type="tel"
                                         name="phone"

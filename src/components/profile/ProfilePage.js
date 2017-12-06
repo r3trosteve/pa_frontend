@@ -101,6 +101,7 @@ class ProfilePage extends Component {
         if (isEmpty(firstName)) { errors.firstName = " can't be empty"; }
         if (isEmpty(lastName)) { errors.lastName = " can't be empty"; }
         if (isEmpty(email)) { errors.email = " can't be empty"; }
+        if (isEmpty(phone)) { errors.phone = " can't be empty"; }
         if (isEmpty(city)) { errors.city = " can't be empty"; }
         if (isEmpty(state)) { errors.state = " can't be empty"; }
 

@@ -14,10 +14,7 @@ export default class PrsPayment extends Component {
 
         this.state = {
             loading: false,
-            cardNumber1: '',
-            cardNumber2: '',
-            cardNumber3: '',
-            cardNumber4: '',
+            cardNumber: '',
             cvvNumber: '',
             month: 1,
             year: parseInt(moment().format('YYYY')),
@@ -39,10 +36,15 @@ export default class PrsPayment extends Component {
         const user = this.props.auth && this.props.auth.user;
 
         this.setState({
-            name: user && user.name,
+            firstName: user && user.first_name,
+            lastName: user && user.last_name,
             email: user && user.email,
             phoneNumber: user && user.phone,
-            address: user && user.location && (user.location.address1 || user.location.address2) && (user.location.address1 + ', ' + user.location.address2),
+
+            address: user && user.location &&
+                (user.location.address1 || user.location.address2) &&
+                ((isEmpty(user.location.address1) ? '' : user.location.address1) + ' ' + (isEmpty(user.location.address2) ? '' : user.location.address2)),
+
             city: user && user.location && user.location.city,
             state: user && user.location && user.location.state,
             country: user && user.location && user.location.country,
@@ -54,10 +56,15 @@ export default class PrsPayment extends Component {
         const user = nextProps.auth && nextProps.auth.user;
 
         this.setState({
-            name: user && user.name,
+            firstName: user && user.first_name,
+            lastName: user && user.last_name,
             email: user && user.email,
             phoneNumber: user && user.phone,
-            address: user && user.location && (user.location.address1 || user.location.address2) && (user.location.address1 + ', ' + user.location.address2),
+
+            address: user && user.location &&
+                (user.location.address1 || user.location.address2) &&
+                ((isEmpty(user.location.address1) ? '' : user.location.address1) + ' ' + (isEmpty(user.location.address2) ? '' : user.location.address2)),
+
             city: user && user.location && user.location.city,
             state: user && user.location && user.location.state,
             country: user && user.location && user.location.country,
@@ -84,14 +91,17 @@ export default class PrsPayment extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const { address, city, state, country, zipCode, cardNumber1, cardNumber2, cardNumber3, cardNumber4, month, year, cvvNumber } = this.state;
+        const { firstName, lastName, email, address, city, state, country, zipCode, cardNumber, month, year, cvvNumber } = this.state;
         let errors = {};
 
+        if (isEmpty(firstName)) { errors.firstName = " can't be empty"; }
+        if (isEmpty(lastName)) { errors.lastName = " can't be empty"; }
+        if (isEmpty(email)) { errors.email = " can't be empty"; }
         if (isEmpty(address)) { errors.address = " can't be empty"; }
         if (isEmpty(city)) { errors.city = " can't be empty"; }
         if (isEmpty(state)) { errors.state = " can't be empty"; }
         if (isEmpty(zipCode)) { errors.zipCode = " can't be empty"; }
-        if (isEmpty(cardNumber1) || isEmpty(cardNumber2) || isEmpty(cardNumber3) || isEmpty(cardNumber4)) { errors.cardNumber1 = " can't be empty"; }
+        if (isEmpty(cardNumber)) { errors.cardNumber = " can't be empty"; }
         if (isEmpty(cvvNumber)) { errors.cvvNumber = " can't be empty"; }
 
         this.setState({ errors });
@@ -101,13 +111,12 @@ export default class PrsPayment extends Component {
         if (isValid) {
             const id = this.props.reservation && this.props.reservation.id;
 
-            const cardNumber = cardNumber1 + cardNumber2 + cardNumber3 + cardNumber4;
-
             console.log(cardNumber);
 
             const checkoutData = {
                 card: {
-                    name,
+                    first_name: firstName,
+                    last_name: lastName,
                     number: cardNumber,
                     cvv: cvvNumber,
                     month,
@@ -159,17 +168,15 @@ export default class PrsPayment extends Component {
                         handleSubmit={this.handleSubmit}
                         errors={this.state.errors}
                         handleChange={this.handleChange}
-                        name={this.state.name}
+                        firstName={this.state.firstName}
+                        lastName={this.state.lastName}
                         email={this.state.email}
                         address={this.state.address}
                         city={this.state.city}
                         state={this.state.state}
                         country={this.state.country}
                         zipCode={this.state.zipCode}
-                        cardNumber1={this.state.cardNumber1}
-                        cardNumber2={this.state.cardNumber2}
-                        cardNumber3={this.state.cardNumber3}
-                        cardNumber4={this.state.cardNumber4}
+                        cardNumber={this.state.cardNumber}
                         month={this.state.month}
                         year={this.state.year}
                         cvvNumber={this.state.cvvNumber}

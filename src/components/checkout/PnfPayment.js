@@ -24,8 +24,10 @@ export default class PnfPayment extends Component {
 
     componentWillMount() {
 		const user = this.props.auth && this.props.auth.user;
+
         this.setState({
-			name: user && user.name,
+			firstName: user && user.first_name,
+            lastName: user && user.last_name,
 			email: user && user.email,
             phoneNumber: user && user.phone
         });
@@ -34,8 +36,8 @@ export default class PnfPayment extends Component {
 		const user = nextProps.auth && nextProps.auth.user;
 
         this.setState({
-            name: user && user.name,
-            email: user && user.email,
+            firstName: user && user.first_name,
+            lastName: user && user.last_name,
             phoneNumber: user && user.phone
         });
 
@@ -69,7 +71,8 @@ export default class PnfPayment extends Component {
 
 		let errors = {};
 
-        if (isEmpty(this.state.name)) errors.name = " can't be empty";
+        if (isEmpty(this.state.firstName)) errors.firstName = " can't be empty";
+        if (isEmpty(this.state.lastName)) errors.lastName = " can't be empty";
         if (isEmpty(this.state.email)) errors.email = " can't be empty";
 		if (isEmpty(this.state.phoneNumber)) errors.phoneNumber = " can't be empty";
 
@@ -126,33 +129,44 @@ export default class PnfPayment extends Component {
 
 						<div className="row">
 							<div className="col-md-6">
-                                <label className={classnames('', { 'has-error': this.state.errors.name })}>
-									Name
-                                    <span className="error-text">{this.state.errors.name}</span>
+                                <label className={classnames('', { 'has-error': this.state.errors.firstName })}>
+									First Name
+                                    <span className="error-text">{this.state.errors.firstName}</span>
 									<input
 										type="text"
-										name="name"
-										value={this.state.name}
+										name="firstName"
+										value={this.state.firstName}
                                         onChange={this.handleChange}
 									/>
 								</label>
 							</div>
-
-							<div className="col-md-6">
-                                <label className={classnames('', { 'has-error': this.state.errors.email })}>
-									Email
-                                    <span className="error-text">{this.state.errors.email}</span>
-									<input
-										type="email"
-                                        name="email"
-										value={this.state.email}
+                            <div className="col-md-6">
+                                <label className={classnames('', { 'has-error': this.state.errors.lastName })}>
+                                    Last Name
+                                    <span className="error-text">{this.state.errors.lastName}</span>
+                                    <input
+                                        type="text"
+                                        name="lastName"
+                                        value={this.state.lastName}
                                         onChange={this.handleChange}
-									/>
-								</label>
-							</div>
+                                    />
+                                </label>
+                            </div>
 						</div>
 
 						<div className="row">
+                            <div className="col-md-6">
+                                <label className={classnames('', { 'has-error': this.state.errors.email })}>
+                                    Email
+                                    <span className="error-text">{this.state.errors.email}</span>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+                            </div>
 							<div className="col-md-6">
 								<label className={classnames('', { 'has-error': this.state.errors.phoneNumber })}>
                                     Phone Number

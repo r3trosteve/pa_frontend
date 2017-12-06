@@ -52,24 +52,25 @@ export default class PrsForm extends Component {
 
                     <div className="row">
                         <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.props.errors.name })}>
-                                Name
-                                <span className="error-text">{this.props.errors.name}</span>
+                            <label className={classnames('', { 'has-error': this.props.errors.firstName })}>
+                                First Name
+                                <span className="error-text">{this.props.errors.firstName}</span>
                                 <input
                                     type="text"
-                                    value={this.props.name}
+                                    name="firstName"
+                                    value={this.props.firstName}
                                     onChange={this.props.handleChange}
                                 />
                             </label>
                         </div>
-
                         <div className="col-md-6">
-                            <label className={classnames('', { 'has-error': this.props.errors.email })}>
-                                Email
-                                <span className="error-text">{this.props.errors.email}</span>
+                            <label className={classnames('', { 'has-error': this.props.errors.lastName })}>
+                                Last Name
+                                <span className="error-text">{this.props.errors.lastName}</span>
                                 <input
-                                    type="email"
-                                    value={this.props.email}
+                                    type="text"
+                                    name="lastName"
+                                    value={this.props.lastName}
                                     onChange={this.props.handleChange}
                                 />
                             </label>
@@ -77,6 +78,23 @@ export default class PrsForm extends Component {
                     </div>
 
                     {/*row 2*/}
+
+                    <div className="row">
+                        <div className="col-md-12">
+                            <label className={classnames('', { 'has-error': this.props.errors.email })}>
+                                Email
+                                <span className="error-text">{this.props.errors.email}</span>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={this.props.email}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
+                        </div>
+                    </div>
+
+                    {/*row 3*/}
 
                     <div className="row">
                         <div className="col-md-12">
@@ -93,7 +111,7 @@ export default class PrsForm extends Component {
                         </div>
                     </div>
 
-                    {/*row 3*/}
+                    {/*row 4*/}
 
                     <div className="row">
                         <div className="col-md-6">
@@ -118,13 +136,14 @@ export default class PrsForm extends Component {
                                     name="state"
                                     value={this.props.state}
                                     onChange={this.props.handleChange}
+                                    placeholder="For example, CA for California"
                                 />
                             </label>
                         </div>
 
                     </div>
 
-                    {/*row 4*/}
+                    {/*row 5*/}
 
                     <div className="row">
                         <div className="col-md-6">
@@ -160,78 +179,25 @@ export default class PrsForm extends Component {
                         </div>
                     </div>
 
-                    {/*row 5*/}
+                    {/*row 6*/}
 
                     <div className="row">
                         <div className="col-md-6">
-                            <div className={classnames('label-title', { 'has-error': this.props.errors.cardNumber1 })}>
+                            <label className={classnames('', { 'has-error': this.props.errors.cardNumber })}>
                                 Credit Card Number
-                                <span className="error-text">{this.props.errors.cardNumber1}</span>
-                            </div>
-
-                            <div className={classnames('inline-inputs', { 'has-error': this.props.errors.cardNumber1 })}>
-                                <label>
-                                    <input
-                                        className="col-xs-3 card-input"
-                                        type="text"
-                                        name="cardNumber1"
-                                        value={this.props.cardNumber1}
-                                        onChange={this.props.handleChange}
-                                        placeholder="0000"
-                                        maxLength="4"
-                                        pattern="\d*"
-                                        title="Only digits allowed"
-                                    />
-                                </label>
-
-                                <label>
-                                    <input
-                                        className="col-xs-3 card-input"
-                                        type="text"
-                                        name="cardNumber2"
-                                        value={this.props.cardNumber2}
-                                        onChange={this.props.handleChange}
-                                        placeholder="0000"
-                                        maxLength="4"
-                                        pattern="\d*"
-                                        title="Only digits allowed"
-                                        />
-                                </label>
-
-                                <label>
-                                    <input
-                                        className="col-xs-3 card-input"
-                                        type="text"
-                                        name="cardNumber3"
-                                        value={this.props.cardNumber3}
-                                        onChange={this.props.handleChange}
-                                        placeholder="0000"
-                                        maxLength="4"
-                                        pattern="\d*"
-                                        title="Only digits allowed"
-                                    />
-                                </label>
-
-                                <label>
-                                    <input
-                                        className="col-xs-3 card-input"
-                                        type="text"
-                                        name="cardNumber4"
-                                        value={this.props.cardNumber4}
-                                        onChange={this.props.handleChange}
-                                        placeholder="0000"
-                                        maxLength="4"
-                                        pattern="\d*"
-                                        title="Only digits allowed"
-                                    />
-                                </label>
-
-                            </div>
+                                <span className="error-text">{this.props.errors.cardNumber}</span>
+                                <input
+                                    type="number"
+                                    name="cardNumber"
+                                    value={this.props.cardNumber}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
                         </div>
 
                     </div>
 
-                    {/*row 6*/}
+                    {/*row 7*/}
 
                     <div className="row">
 
@@ -349,17 +315,15 @@ PrsForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lsatName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     address: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
     country: PropTypes.string,
     zipCode: PropTypes.string,
-    cardNumber1: PropTypes.string,
-    cardNumber2: PropTypes.string,
-    cardNumber3: PropTypes.string,
-    cardNumber4: PropTypes.string,
+    cardNumber: PropTypes.string,
     month: PropTypes.number,
     year: PropTypes.number,
     cvvNumber: PropTypes.string,
