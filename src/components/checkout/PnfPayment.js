@@ -207,7 +207,7 @@ export default class PnfPayment extends Component {
 					</div>
 
                     {
-                        this.state.iframeShown && !this.state.isReservationPaid ?
+                        this.state.iframeShown && !this.state.isReservationPaid && !this.state.isReservationFailed ?
 							<div className="ap-checkout__payment-details__notification small">
 								<p>
                                     When you submit the payment form you will need to wait for a while till Wells Fargo completes the payment.
@@ -225,6 +225,7 @@ export default class PnfPayment extends Component {
                                     We are sorry but we cannot process your reservation at the moment. <br/>
                                     Please call <a href="tel:18008515863">1-800-851-5863</a>
                                 </p>
+                                <p>Or you can <a href="javascript:window.location.reload(true)">try again</a>.</p>
 							</div> :
 							null
 					}
