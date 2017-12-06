@@ -32,7 +32,7 @@ export default class ProfileUpdate extends Component {
 
                     <div className="profile__items-info__header">
                         <h3 className="text-bigger">Your details</h3>
-                        <p className="text-bigger hidden-xs">{this.props.user.name}</p>
+                        <p className="text-bigger hidden-xs">{this.props.user.first_name} {this.props.user.last_name}</p>
                         <span className="text-bigger profile__items-info__edit">Edit</span>
                     </div>
 
@@ -52,18 +52,35 @@ export default class ProfileUpdate extends Component {
 
                         <div className="row">
                             <div className="col-sm-6">
-                                <label className={classnames('', { 'has-error': this.props.errors.name })}>
-                                    Full name
-                                    <span className="error-text">{this.props.errors.name}</span>
+                                <label className={classnames('', { 'has-error': this.props.errors.firstName })}>
+                                    First name
+                                    <span className="error-text">{this.props.errors.firstName}</span>
                                     <input
                                         type="name"
-                                        name="name"
-                                        value={this.props.name}
+                                        name="firstName"
+                                        value={this.props.firstName}
                                         onChange={this.props.handleChange}
                                     />
                                 </label>
                             </div>
                             <div className="col-sm-6">
+                                <label className={classnames('', { 'has-error': this.props.errors.lastName })}>
+                                    Last name
+                                    <span className="error-text">{this.props.errors.lastName}</span>
+                                    <input
+                                        type="name"
+                                        name="lastName"
+                                        value={this.props.lastName}
+                                        onChange={this.props.handleChange}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+
+                        {/*2 row*/}
+
+                        <div className="row">
+                            <div className="col-sm-12">
                                 <label className={classnames('', { 'has-error': this.props.errors.email })}>
                                     Email address
                                     <span className="error-text">{this.props.errors.email}</span>
@@ -77,7 +94,7 @@ export default class ProfileUpdate extends Component {
                             </div>
                         </div>
 
-                        {/*2 row*/}
+                        {/*3 row*/}
 
                         <div className="row">
                             <div className="col-sm-6">
@@ -104,7 +121,7 @@ export default class ProfileUpdate extends Component {
                             </div>
                         </div>
 
-                        {/*3 row*/}
+                        {/*4 row*/}
 
                         <div className="row">
                             <div className="col-sm-6">
@@ -132,7 +149,7 @@ export default class ProfileUpdate extends Component {
                             </div>
                         </div>
 
-                        {/*4 row*/}
+                        {/*5 row*/}
 
                         <div className="row">
                             <div className="col-sm-6">
@@ -144,6 +161,7 @@ export default class ProfileUpdate extends Component {
                                         name="state"
                                         value={this.props.state}
                                         onChange={this.props.handleChange}
+                                        placeholder="For example, CA for California"
                                     />
                                 </label>
                             </div>
@@ -165,7 +183,7 @@ export default class ProfileUpdate extends Component {
                             </div>
                         </div>
 
-                        {/*5 row*/}
+                        {/*6 row*/}
 
                         <div className="row">
                             <div className="col-sm-6">
@@ -305,7 +323,8 @@ ProfileUpdate.propTypes = {
     zipCode: PropTypes.string,
     companyName: PropTypes.string,
     password: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     errors: PropTypes.object.isRequired,
     isProfileUpdated: PropTypes.bool,
     isPwdUpdated: PropTypes.bool

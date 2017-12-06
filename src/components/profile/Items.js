@@ -29,7 +29,8 @@ export default class ProfileItems extends Component {
                                 handleProfileUpdate={this.props.handleProfileUpdate}
                                 handleChange={this.props.handleChange}
                                 errors={this.props.errors}
-                                name={this.props.name}
+                                firstName={this.props.firstName}
+                                lastName={this.props.lastName}
                                 email={this.props.email}
                                 phone={this.props.phone}
                                 address1={this.props.address1}
@@ -105,7 +106,8 @@ ProfileItems.propTypes = {
     handleProfileUpdate: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
-    name: PropTypes.string.isRequired,
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     phone: PropTypes.string,
     address1: PropTypes.string,

@@ -17,7 +17,8 @@ class ProfilePage extends Component {
         super();
 
         this.state = {
-            name: '',
+            firstName: '',
+            lastName: '',
             email: '',
             password: '',
             phone: '',
@@ -43,7 +44,8 @@ class ProfilePage extends Component {
         const user = this.props.auth && this.props.auth.user;
 
         this.setState({
-            name: user && user.name,
+            firstName: user && user.first_name,
+            lastName: user && user.last_name,
             email: user && user.email,
             phone: user && user.phone,
             address1: user && user.location && user.location.address1,
@@ -60,7 +62,8 @@ class ProfilePage extends Component {
         const user = nextProps.auth && nextProps.auth.user;
 
         this.setState({
-            name: user && user.name,
+            firstName: user && user.first_name,
+            lastName: user && user.last_name,
             email: user && user.email,
             phone: user && user.phone,
             address1: user && user.location && user.location.address1,
@@ -92,10 +95,11 @@ class ProfilePage extends Component {
     handleProfileUpdate(e) {
         e.preventDefault();
 
-        const { name, email, phone, address1, address2, city, state, country, zipCode, companyName } = this.state;
+        const { firstName, lastName, email, phone, address1, address2, city, state, country, zipCode, companyName } = this.state;
         let errors = {};
 
-        if (isEmpty(name)) { errors.name = " can't be empty"; }
+        if (isEmpty(firstName)) { errors.firstName = " can't be empty"; }
+        if (isEmpty(lastName)) { errors.lastName = " can't be empty"; }
         if (isEmpty(email)) { errors.email = " can't be empty"; }
         if (isEmpty(city)) { errors.city = " can't be empty"; }
         if (isEmpty(state)) { errors.state = " can't be empty"; }
@@ -105,7 +109,8 @@ class ProfilePage extends Component {
         const isValid = Object.keys(errors).length === 0;
 
         const userData = {
-            name,
+            first_name: firstName,
+            last_name: lastName,
             email,
             phone,
             location_attributes: {
@@ -180,7 +185,8 @@ class ProfilePage extends Component {
                                         handleProfileUpdate={this.handleProfileUpdate}
                                         handleChange={this.handleChange}
                                         errors={this.state.errors}
-                                        name={this.state.name}
+                                        firstName={this.state.firstName}
+                                        lastName={this.state.lastName}
                                         email={this.state.email}
                                         phone={this.state.phone}
                                         address1={this.state.address1}

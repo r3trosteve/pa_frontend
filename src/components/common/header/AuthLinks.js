@@ -21,7 +21,7 @@ class AuthLinks extends Component {
             <ul className="nav navbar-nav navbar-right">
                 <li>
                     <span>
-                        <Link to="/profile" className="navbar-shadowed"><b className="hello">Hello,</b> {this.props.user.name}</Link>
+                        <Link to="/profile" className="navbar-shadowed"><b className="hello">Hello,</b> {this.props.user.first_name} {this.props.user.last_name}</Link>
                     </span>
                 </li>
                 <li>

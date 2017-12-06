@@ -56,7 +56,7 @@ class HomePage extends Component {
 		return (
 			<div className="home">
 
-				<Helmet title="ParkingAccess" />
+				<Helmet title="Airport parking, Long Term parking, Cash back and easy expense reporting on parkingaccess.com." />
 
 				<Search />
 				

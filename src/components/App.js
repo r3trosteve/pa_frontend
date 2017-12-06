@@ -47,8 +47,14 @@ class App extends Component {
 					titleTemplate="%s"
 					titleAttributes={{itemprop: "name", lang: "en"}}
 					meta={[
-						{name: "description", content: "ParkingAccess provides discounted rates with park sleep and fly packages"},
-						{name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"},
+						{
+							name: "description",
+							content: "Book airport parking services at over 2,000 airports worldwide for off-airport parking such as self-park, long term, valet and covered airport parking offering free shuttles."
+						},
+						{
+							name: "viewport",
+							content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+						},
 
                     ]}
 				/>

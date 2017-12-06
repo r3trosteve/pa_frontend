@@ -16,7 +16,8 @@ class Register extends Component {
         super();
 
         this.state = {
-            name: '',
+            firstName: '',
+			lastName: '',
             email: '',
             password: '',
             passwordConfirm: '',
@@ -55,7 +56,8 @@ class Register extends Component {
 
         let errors = {};
 
-        if (this.state.name === '') errors.name = " can't be empty";
+        if (this.state.firstName === '') errors.firstName = " can't be empty";
+        if (this.state.lastName === '') errors.lastName = " can't be empty";
         if (this.state.email === '') errors.email = " can't be empty";
         if (this.state.password === '') errors.password = " can't be empty";
         if (this.state.password !== '' && this.state.password.length < 6) errors.password = " must contain at least 6 characters";
@@ -68,9 +70,14 @@ class Register extends Component {
         const isValid = Object.keys(errors).length === 0;
 
         if (isValid) {
-            const { name, email, password } = this.state;
+            const { firstName, lastName, email, password } = this.state;
 
-            this.props.signup({ name, email, password })
+            this.props.signup({
+				first_name: firstName,
+				last_name: lastName,
+				email,
+				password
+            })
                 .then(() => {
                     if (!this.props.auth.error) {
                         this.setState({ isSignedUp: true });
@@ -151,11 +158,17 @@ class Register extends Component {
                                             ) : null
                                     }
 
-									<label className={classnames('', { 'has-error': this.state.errors.name })}>
-										Name
-										<span className="error-text">{this.state.errors.name}</span>
-										<input type="text" name="name" onChange={this.handleChange} />
+									<label className={classnames('', { 'has-error': this.state.errors.firstName })}>
+										First Name
+										<span className="error-text">{this.state.errors.firstName}</span>
+										<input type="text" name="firstName" onChange={this.handleChange} />
 									</label>
+
+                                    <label className={classnames('', { 'has-error': this.state.errors.lastName })}>
+                                        Last Name
+                                        <span className="error-text">{this.state.errors.lastName}</span>
+                                        <input type="text" name="lastName" onChange={this.handleChange} />
+                                    </label>
 
 									<label className={classnames('', { 'has-error': this.state.errors.email })}>
 										Email
