@@ -8,8 +8,10 @@ import AirportMapMark from '../common/map/AirportMapMark';
 export default class GoogleMap extends Component {
     render() {
 
-        const airportLat = parseFloat(this.props.search.airport.location.latitude);
-        const airportLng = parseFloat(this.props.search.airport.location.longitude);
+        const search = this.props.search;
+
+        const airportLat = search && search.airport && search.airport.location && parseFloat(search.airport.location.latitude);
+        const airportLng = search && search.airport && search.airport.location && parseFloat(search.airport.location.longitude);
 
         return (
             <div className="map-container">
