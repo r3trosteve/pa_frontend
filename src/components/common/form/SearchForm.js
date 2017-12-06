@@ -219,10 +219,15 @@ class SearchForm extends Component {
 									})}
 								>
 									{this.props.location.pathname.match(/\/lot-.*/) ?
-										'Get Quote' :
+										'Get a Quote and Reserve' :
 										'Search parking lots'
 									}
+
+                                    {this.props.location.pathname.match(/\/lot-.*/) ?
+                                        <i className="fa fa-arrow-up" aria-hidden="true" /> : null
+                                    }
 								</button>
+
 							)}
 						</label>
 						

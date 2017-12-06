@@ -122,8 +122,11 @@ class ParkingLotPage extends Component {
                         <li>
                             <Link to="/airports">Airports</Link>
                         </li>
+                        <li>
+                            <Link to={`/${lot && lot.airport && lot.airport.slug}`}>{lot && lot.airport && lot.airport.name}</Link>
+                        </li>
                         <li className="current-page">
-                            <Link to={`/${this.props.lot && this.props.lot.slug}`}>{this.props.lot && this.props.lot.name}</Link>
+                            <Link to={`/${lot && lot.slug}`}>{lot && lot.name}</Link>
                         </li>
                     </ul>
 
@@ -157,8 +160,8 @@ class ParkingLotPage extends Component {
                                 </div>
 
                                 <SearchForm
-                                    airportId={lot && lot.airport_id}
-                                    airportName={lot && lot.airport_name}
+                                    airportId={lot && lot.airport && lot.airport.id}
+                                    airportName={lot && lot.airport && lot.airport.name}
                                 />
                             </div>
 
