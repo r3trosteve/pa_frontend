@@ -6,15 +6,15 @@ export default ({ markup, helmet, initialData }) => {
 			<html ${helmet.htmlAttributes.toString()}>
 
 			<head>
-			
+				
 				<!-- Global site tag (gtag.js) - Google Analytics -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-12474447-1"></script>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102648750-1"></script>
 				<script>
 				  window.dataLayer = window.dataLayer || [];
 				  function gtag(){dataLayer.push(arguments);}
 				  gtag('js', new Date());
 				
-				  gtag('config', 'UA-12474447-1');
+				  gtag('config', 'UA-102648750-1');
 				</script>
 
 				${helmet.title.toString()}
