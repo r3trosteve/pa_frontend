@@ -11,6 +11,16 @@ import App from '../src/components/App';
 import jwt from 'jsonwebtoken';
 import { setCurrentUser } from '../src/modules/auth/auth';
 
+// google analytics
+
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-102648750-1', {
+	debug: true
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+// redux store
+
 const store = configureStore(window.__initialData__);
 
 if (localStorage.jwtToken) {
