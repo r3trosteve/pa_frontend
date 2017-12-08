@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
-import ReactGA from 'react-ga';
 
 import Private from '../profile/Private';
 import Details from './Details';
@@ -22,18 +21,22 @@ class ReservationPage extends Component {
                 const reservation = this.props.reservation;
                 const rate = this.props.reservation && this.props.reservation.rate;
 
-                const id = reservation && reservation.id;
+                const id = reservation && reservation.id.toString();
                 const affiliation = "ParkingAccess";
                 const revenue = rate && rate.price && rate.price.total;
                 let tax = reservation && reservation.price_details && reservation.price_details.find(x => x.name === 'taxes');
                 tax = tax && tax.amount;
 
-                ReactGA.plugin.execute('ecommerce', 'addTransaction', {
-                    id: id.toString(),
-                    affiliation: affiliation,
-                    revenue: revenue,
-                    tax: tax
-                });
+                ga('require', 'ecommerce');
+
+                ga('ecommerce:addTransaction', {
+                    'id': id,
+                    'affiliation': affiliation,
+                    'revenue': revenue,
+                    'tax': tax
+                  });
+
+                ga('ecommerce:send');
 
                 // end
 
