@@ -27,16 +27,22 @@ class ReservationPage extends Component {
                 let tax = reservation && reservation.price_details && reservation.price_details.find(x => x.name === 'taxes');
                 tax = tax && tax.amount;
 
-                ga('require', 'ecommerce');
+                if (process.env.NODE_ENV === 'production') {
 
-                ga('ecommerce:addTransaction', {
-                    'id': id,
-                    'affiliation': affiliation,
-                    'revenue': revenue,
-                    'tax': tax
-                  });
+                    ga('create', 'UA-102648750-1');
+                    
+                    ga('require', 'ecommerce');
+    
+                    ga('ecommerce:addTransaction', {
+                        'id': id,
+                        'affiliation': affiliation,
+                        'revenue': revenue,
+                        'tax': tax
+                        });
+    
+                    ga('ecommerce:send');
 
-                ga('ecommerce:send');
+                }
 
                 // end
 
