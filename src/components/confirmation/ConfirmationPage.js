@@ -51,7 +51,7 @@ class ReservationPage extends Component {
 
     render() {
 
-        if (this.props.auth && this.props.auth.isAuthenticated) {
+        // if (this.props.auth && this.props.auth.isAuthenticated) {
 
             return (
                 <div className="confirmation">
@@ -73,11 +73,11 @@ class ReservationPage extends Component {
                 </div>
             );
 
-        } else {
-
-            return <Private title={"Confirmation"} />;
-
-        }
+        // } else {
+        //
+        //     return <Private title={"Confirmation"} />;
+        //
+        // }
 
     }
 }

@@ -142,7 +142,7 @@ class ParkingLotPage extends Component {
 
 							<OrderSummary
 								rate={rate}
-								openLogModal={this.props.openLogModal}
+								// openLogModal={this.props.openLogModal}
 							/>
 
 						</div>

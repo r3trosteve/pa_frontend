@@ -7,8 +7,8 @@ export default class SubmitButton extends Component {
         return (
             <div className="order-summary__submit">
                 {
-                    this.props.auth && this.props.auth.isAuthenticated ?
-                        (
+                    // this.props.auth && this.props.auth.isAuthenticated ?
+                    //     (
                             this.props.loading ?
                                 <button
                                     type="submit"
@@ -27,14 +27,14 @@ export default class SubmitButton extends Component {
                                     <span className="m-text">Park here</span>
                                     <span className="m-price">${this.props.rate.price && this.props.rate.price.total}</span>
                                 </button>
-                        ) :
-                        (
-                            <a className="btn-custom" onClick={this.props.handleNonAuthProceed}>
-                                <span className="hidden-xs">Proceed to checkout</span>
-                                <span className="m-text">Park here</span>
-                                <span className="m-price">${this.props.rate.price && this.props.rate.price.total}</span>
-                            </a>
-                        )
+                        // ) :
+                        // (
+                        //     <a className="btn-custom" onClick={this.props.handleNonAuthProceed}>
+                        //         <span className="hidden-xs">Proceed to checkout</span>
+                        //         <span className="m-text">Park here</span>
+                        //         <span className="m-price">${this.props.rate.price && this.props.rate.price.total}</span>
+                        //     </a>
+                        // )
                 }
             </div>
         );
@@ -44,6 +44,6 @@ export default class SubmitButton extends Component {
 SubmitButton.propTypes = {
     auth: PropTypes.object.isRequired,
     loading: PropTypes.bool.isRequired,
-    handleNonAuthProceed: PropTypes.func.isRequired,
+    // handleNonAuthProceed: PropTypes.func.isRequired,
     rate: PropTypes.object.isRequired
 };

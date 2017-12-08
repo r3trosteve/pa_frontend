@@ -28,13 +28,24 @@ export default function reducer(state = initialState, action) {
 }
 
 export const requestPnfCheckout = id => dispatch => {
-    return fetch(apiBaseUrl + `reservations/${id}/charge`, {
-        method: 'get',
-        headers: {
+    let headers;
+
+    if (localStorage.jwtToken) {
+        headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json; version=1',
             'Access-token': localStorage.jwtToken
-        }
+        };
+    } else {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        };
+    }
+
+    return fetch(apiBaseUrl + `reservations/${id}/charge`, {
+        method: 'get',
+        headers: headers
     })
         .then(res => res.json())
         .then(data => {
@@ -46,14 +57,25 @@ export const requestPnfCheckout = id => dispatch => {
 };
 
 export const requestPrsCheckout = (id, data) => dispatch => {
-    return fetch(apiBaseUrl + `reservations/${id}`, {
-        method: 'put',
-        body: JSON.stringify(data),
-        headers: {
+    let headers;
+
+    if (localStorage.jwtToken) {
+        headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json; version=1',
             'Access-token': localStorage.jwtToken
-        }
+        };
+    } else {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        };
+    }
+
+    return fetch(apiBaseUrl + `reservations/${id}`, {
+        method: 'put',
+        body: JSON.stringify(data),
+        headers: headers
     })
         .then(handleErrors)
         .then(res => res.json())

@@ -68,8 +68,8 @@ class OrderSummary extends Component {
 
 		const id = this.props.rate.id;
 
-		this.props.createReservation({ rate_id: id })
-			.then(() => this.setState({ redirect: true, loading: false }));
+        this.props.createReservation({ rate_id: id })
+            .then(() => this.setState({ redirect: true, loading: false }));
 	}
 
 	render() {
@@ -181,7 +181,7 @@ class OrderSummary extends Component {
 						<SubmitButton
 							auth={this.props.auth}
 							loading={this.state.loading}
-							handleNonAuthProceed={this.handleNonAuthProceed}
+							// handleNonAuthProceed={this.handleNonAuthProceed}
 							onClick={this.handleSubmit}
 							rate={rate}
 						/>

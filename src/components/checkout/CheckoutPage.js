@@ -22,7 +22,7 @@ class AirportParkingCheckoutPage extends Component {
 
 	render() {
 
-        if (this.props.auth && this.props.auth.isAuthenticated) {
+        // if (this.props.auth && this.props.auth.isAuthenticated) {
 
 			const reservation = this.props.reservation;
 			const rate = this.props.reservation && this.props.reservation.rate;
@@ -90,11 +90,11 @@ class AirportParkingCheckoutPage extends Component {
 				</div>
             );
 
-		} else {
-
-			return <Private title={"Checkout"} />;
-
-		}
+		// } else {
+        //
+		// 	return <Private title={"Checkout"} />;
+        //
+		// }
 	}
 }
 

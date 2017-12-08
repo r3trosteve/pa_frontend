@@ -39,14 +39,25 @@ export default function reducer(state = initialState, action) {
 }
 
 export const createReservation = data => dispatch => {
-    return fetch(baseUrl, {
-        method: 'post',
-        body: JSON.stringify(data),
-        headers: {
+    let headers;
+
+    if (localStorage.jwtToken) {
+        headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json; version=1',
             'Access-token': localStorage.jwtToken
-        }
+        };
+    } else {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        };
+    }
+
+    return fetch(baseUrl, {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: headers
     })
         .then(res => res.json())
         .then(data => {
@@ -58,15 +69,26 @@ export const createReservation = data => dispatch => {
 };
 
 export const fetchReservation = id => dispatch => {
+    let headers;
+
+    if (localStorage.jwtToken) {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1',
+            'Access-token': localStorage.jwtToken
+        };
+    } else {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        };
+    }
+
     dispatch({ type: RESERVATION_FETCH_STARTED });
 
     return fetch(baseUrl + id, {
         method: 'get',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json; version=1',
-            'Access-token': localStorage.jwtToken
-        }
+        headers: headers
     })
         .then(res => res.json())
         .then(data => {
@@ -78,6 +100,20 @@ export const fetchReservation = id => dispatch => {
 };
 
 export const fetchPaidReservation = (id) => (dispatch) => {
+    let headers;
+
+    if (localStorage.jwtToken) {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1',
+            'Access-token': localStorage.jwtToken
+        };
+    } else {
+        headers = {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json; version=1'
+        };
+    }
 
     let interval;
 
@@ -85,11 +121,7 @@ export const fetchPaidReservation = (id) => (dispatch) => {
         interval = setInterval(() => {
             fetch(baseUrl + id, {
                 method: 'get',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json; version=1',
-                    'Access-token': localStorage.jwtToken
-                }
+                headers: headers
             })
                 .then(res => res.json())
                 .then((data) => {
