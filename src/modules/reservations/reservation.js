@@ -2,6 +2,7 @@ import 'isomorphic-fetch';
 import isEmpty from 'lodash/isEmpty';
 
 import apiBaseUrl from '../config';
+import USER_LOGOUT from '../auth/auth';
 
 const baseUrl = apiBaseUrl + 'reservations/';
 
@@ -39,33 +40,75 @@ export default function reducer(state = initialState, action) {
 }
 
 export const createReservation = data => dispatch => {
-    let headers;
-
     if (localStorage.jwtToken) {
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json; version=1',
-            'Access-token': localStorage.jwtToken
-        };
-    } else {
-        headers = {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json; version=1'
-        };
-    }
 
-    return fetch(baseUrl, {
-        method: 'post',
-        body: JSON.stringify(data),
-        headers: headers
-    })
-        .then(res => res.json())
-        .then(data => {
-            dispatch({
-                type: RESERVATION_CREATED,
-                item: data['reservation']
+        return fetch(apiBaseUrl + 'profile', {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json; version=1',
+                'Access-Token': localStorage.jwtToken
+            }
+        })
+            .then(handleErrors)
+            .then(res => res.json())
+            .then(() => {
+                return fetch(baseUrl, {
+                    method: 'post',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json; version=1',
+                        'Access-Token': localStorage.jwtToken
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        dispatch({
+                            type: RESERVATION_CREATED,
+                            item: data['reservation']
+                        });
+                    });
+            })
+            .catch(() => {
+                localStorage.removeItem('jwtToken');
+                dispatch({ type: USER_LOGOUT });
+
+                return fetch(baseUrl, {
+                    method: 'post',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json; version=1'
+                    }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        dispatch({
+                            type: RESERVATION_CREATED,
+                            item: data['reservation']
+                        });
+                    });
+            })
+
+
+    } else {
+        return fetch(baseUrl, {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json; version=1'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                dispatch({
+                    type: RESERVATION_CREATED,
+                    item: data['reservation']
+                });
             });
-        });
+    }
 };
 
 export const fetchReservation = id => dispatch => {
@@ -141,4 +184,13 @@ export const fetchPaidReservation = (id) => (dispatch) => {
             item: data
         });
     });
+};
+
+// handle response error
+
+export const handleErrors = res => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
 };

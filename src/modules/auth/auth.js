@@ -67,6 +67,7 @@ export default function reducer(state = initialState, action) {
             };
 
         case USER_LOGOUT:
+            console.log('user logged out');
             return {
                 isAuthenticated: false
             };
@@ -87,12 +88,17 @@ export const setCurrentUser = (token) => (dispatch) => {
             'Access-Token': token
         }
     })
+        .then(handleErrors)
         .then(res => res.json())
         .then(data => {
             dispatch({
                type: SET_CURRENT_USER,
                user: data.user
             });
+        })
+        .catch(() => {
+            localStorage.removeItem('jwtToken');
+            dispatch({ type: USER_LOGOUT });
         });
 };
 
