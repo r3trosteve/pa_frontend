@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import PnfPayment from './PnfPayment';
 import PrsPayment from './PrsPayment';
@@ -51,6 +52,18 @@ class AirportParkingCheckoutPage extends Component {
                                         {rate && rate.parking_lot && rate.parking_lot.name}
 									</h2>
 								</div>
+
+                                {
+                                    this.props.auth && !this.props.auth.isAuthenticated ?
+                                        <div className="ap-checkout__payment-details__notification small space-above">
+                                            <p>
+                                                Returning Customer,
+												<b><Link to="#" onClick={this.props.openLogModal}> Sign in </Link></b>
+												for faster checkout on the checkout page.
+                                            </p>
+                                        </div> :
+                                        null
+                                }
 
 								{rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg' ?
 									<PnfPayment
@@ -107,7 +120,8 @@ AirportParkingCheckoutPage.propTypes = {
 	checkout: PropTypes.object,
 	auth: PropTypes.object.isRequired,
     fetchPaidReservation: PropTypes.func.isRequired,
-    paidReservation: PropTypes.object.isRequired
+    paidReservation: PropTypes.object.isRequired,
+    openLogModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({

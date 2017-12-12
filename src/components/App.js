@@ -81,7 +81,13 @@ class App extends Component {
 						openLogModal={this.openLogModal}
 					/>
 
-					<Route path="/checkout/:id" component={CheckoutPage} />
+					{/*<Route path="/checkout/:id" component={CheckoutPage} />*/}
+                    <PropsRoute
+                        path="/checkout/:id"
+                        component={CheckoutPage}
+                        openLogModal={this.openLogModal}
+                    />
+
 					<Route path="/confirmation/:id" component={ConfirmationPage} />
 
 					<Route path="/profile" component={ProfilePage} />
