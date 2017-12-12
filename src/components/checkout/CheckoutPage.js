@@ -57,9 +57,9 @@ class AirportParkingCheckoutPage extends Component {
                                     this.props.auth && !this.props.auth.isAuthenticated ?
                                         <div className="ap-checkout__payment-details__notification small space-above">
                                             <p>
-                                                Returning Customer,
+                                                Returning Customers,
 												<Link to="#" onClick={this.props.openLogModal}> Sign in </Link>
-												for faster checkout on the checkout page.
+												for faster checkout.
                                             </p>
                                         </div> :
                                         null

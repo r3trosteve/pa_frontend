@@ -133,25 +133,39 @@ export default class OrderSummary extends Component {
 						<tbody>
 						<tr>
 							<td className="taxes-fees">
-								<i className="fa fa-question-circle" aria-hidden="true" />
+
+                                {
+                                    taxes && taxes.length > 0 ?
+                                        <i className="fa fa-question-circle" aria-hidden="true"/> :
+                                        null
+                                }
+
                                 Taxes & Fees:
-								<div className="summary-tooltip">
-									<h4>Taxes and Fees Details</h4>
 
-									{taxes && taxes.map((tax, index) => {
-										return (
-											<p key={index}>
-												{tax.name}:
-												<b> ${parseFloat(tax.amount).toFixed(2)}</b>
-											</p>
-										);
-									})}
+                                {
+                                    taxes && taxes.length > 0 ?
+                                        (
+                                            <div className="summary-tooltip">
+                                                <h4>Taxes and Fees Details</h4>
 
-									<i className="fa fa-caret-down" aria-hidden="true" />
-								</div>
+                                                {taxes && taxes.map((tax, index) => {
+                                                    return (
+                                                        <p key={index}>
+                                                            {tax.name}:
+                                                            <b> ${parseFloat(tax.amount).toFixed(2)}</b>
+                                                        </p>
+                                                    );
+                                                })}
+
+                                                <i className="fa fa-caret-down" aria-hidden="true" />
+                                            </div>
+                                        ) :
+										null
+                                }
+
 							</td>
 							<td>
-								${total_fee && parseFloat(total_fee.amount).toFixed(2)}
+								${total_fee && parseFloat(total_fee.amount).toFixed(2) || 0}
 							</td>
 						</tr>
 						</tbody>
