@@ -58,7 +58,7 @@ class AirportParkingCheckoutPage extends Component {
                                         <div className="ap-checkout__payment-details__notification small space-above">
                                             <p>
                                                 Returning Customer,
-												<b><Link to="#" onClick={this.props.openLogModal}> Sign in </Link></b>
+												<Link to="#" onClick={this.props.openLogModal}> Sign in </Link>
 												for faster checkout on the checkout page.
                                             </p>
                                         </div> :
