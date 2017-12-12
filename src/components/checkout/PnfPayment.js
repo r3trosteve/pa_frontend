@@ -15,6 +15,9 @@ export default class PnfPayment extends Component {
 			isReservationPaid: false,
 			isReservationFailed: false,
 			errors: {},
+			firstName: '',
+			lastName: '',
+			email: '',
 			phoneNumber: ''
 		};
 
@@ -69,20 +72,21 @@ export default class PnfPayment extends Component {
     handleSubmit(e) {
 		e.preventDefault();
 
+        const { firstName, lastName, email, phoneNumber } = this.state;
 		let errors = {};
 
-        if (isEmpty(this.state.firstName)) errors.firstName = " can't be empty";
-        if (isEmpty(this.state.lastName)) errors.lastName = " can't be empty";
-        if (isEmpty(this.state.email)) errors.email = " can't be empty";
-		if (isEmpty(this.state.phoneNumber)) errors.phoneNumber = " can't be empty";
+        if (isEmpty(firstName)) errors.firstName = " can't be empty";
+        if (isEmpty(lastName)) errors.lastName = " can't be empty";
+        if (isEmpty(email)) errors.email = " can't be empty";
+		if (isEmpty(phoneNumber)) errors.phoneNumber = " can't be empty";
 
 		this.setState({ errors });
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			this.setState({ loading: true });
+            this.setState({ loading: true });
 
-            this.props.requestCheckout(this.props.reservation && this.props.reservation.id)
+            this.props.requestCheckout(this.props.reservation && this.props.reservation.id, firstName, lastName, email, phoneNumber)
             	.then(() => this.setState({ loading: false, iframeShown: true }));
 
         	this.props.fetchPaidReservation(this.props.reservation && this.props.reservation.id);

@@ -27,7 +27,7 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-export const requestPnfCheckout = id => dispatch => {
+export const requestPnfCheckout = (id, firstName, lastName, email, phone) => dispatch => {
     let headers;
 
     if (localStorage.jwtToken) {
@@ -43,7 +43,7 @@ export const requestPnfCheckout = id => dispatch => {
         };
     }
 
-    return fetch(apiBaseUrl + `reservations/${id}/charge`, {
+    return fetch(apiBaseUrl + `reservations/${id}/charge?first_name=${firstName}&last_name=${lastName}&email=${email}&phone=${phone}`, {
         method: 'get',
         headers: headers
     })
