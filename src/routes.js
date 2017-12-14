@@ -20,6 +20,7 @@ const routes = [
 	},
 	{
 		path: '/home',
+        exact: true,
 		component: HomePage
 	},
 	{
@@ -45,6 +46,7 @@ const routes = [
     },
 	{
 		path: '/profile',
+        exact: true,
 		component: ProfilePage
 	},
 	{
@@ -53,14 +55,17 @@ const routes = [
 	},
     {
         path: '/airports',
+        exact: true,
         component: AirportsPage
     },
     {
         path: 'privacy-policy',
+        exact: true,
         component: PrivacyPolicyPage
     },
     {
         path: 'terms-of-service',
+        exact: true,
         component: TermsConditionsPage
     },
     {

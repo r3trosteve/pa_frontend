@@ -71,7 +71,7 @@ class App extends Component {
 				<Switch>
 
 					<Route exact path="/" component={HomePage} />
-					<Route path="/home" component={HomePage} />
+					<Route exact path="/home" component={HomePage} />
 
 					<Route path="/rates/search/:id" component={RatesPage} />
 
@@ -90,13 +90,13 @@ class App extends Component {
 
 					<Route path="/confirmation/:id" component={ConfirmationPage} />
 
-					<Route path="/profile" component={ProfilePage} />
+					<Route exact path="/profile" component={ProfilePage} />
 					<Route path="/new-password" component={NewPasswordPage} />
 
-					<Route path="/airports" component={AirportsPage} />
+					<Route exact path="/airports" component={AirportsPage} />
 
-					<Route path="/privacy-policy" component={PrivacyPolicyPage} />
-					<Route path="/terms-of-service" component={TermsConditionsPage} />
+					<Route exact path="/privacy-policy" component={PrivacyPolicyPage} />
+					<Route exact path="/terms-of-service" component={TermsConditionsPage} />
 
 					<Route
 						path="/:slug"
