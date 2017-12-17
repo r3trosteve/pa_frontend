@@ -5,6 +5,7 @@ const webpackCleanupPlugin = require('webpack-cleanup-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 const statsPlugin = require('stats-webpack-plugin');
 const optimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = [
 	{
@@ -93,7 +94,17 @@ module.exports = [
 				'process.env': {
 					NODE_ENV: JSON.stringify(process.env.NODE_ENV)
 				}
-			})
+			}),
+            new copyWebpackPlugin([
+                {
+                    from: path.join(__dirname, 'public/robots.txt'),
+                    to: path.join(__dirname, 'static/public/robots.txt')
+                },
+                {
+                    from: path.join(__dirname, 'public/sitemap.xml'),
+                    to: path.join(__dirname, 'static/public/sitemap.xml')
+                },
+            ])
 		]
 	},
 	{

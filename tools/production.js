@@ -11,6 +11,16 @@ const port = 8001;
 
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
+app.get('/robots.txt', function (req, res) {
+    res.type('text/plain');
+    res.sendFile(path.join(__dirname, '../static/public/robots.txt'));
+});
+
+app.get('/sitemap.xml', function (req, res) {
+	res.type('xml');
+    res.sendFile(path.join(__dirname, '../static/public/sitemap.xml'));
+});
+
 app.use(serverRenderer(stats));
 
 app.listen(port, () => {
