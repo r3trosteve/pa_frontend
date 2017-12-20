@@ -104,8 +104,8 @@ export default class Calendar extends Component {
 
 				<div className="hidden-xs">
 					<DatetimeRangePicker
-						startDate={this.props.startDate ? this.props.startDate : moment()}
-						endDate={this.props.endDate ? this.props.endDate : moment()}
+						startDate={this.props.startDate ? this.props.startDate : moment().add(1, 'day')}
+						endDate={this.props.endDate ? this.props.endDate : null}
 						onApply={this.props.handleCalendarPicker}
 						onCancel={this.props.clearCalendarPicker}
 						autoUpdateInput={false}
@@ -140,6 +140,8 @@ export default class Calendar extends Component {
 					<i className="mobile-icon fa fa-calendar" aria-hidden="true" />
 
 					<DatetimeRangePicker
+						startDate={this.props.startDate ? this.props.startDate : moment().add(1, 'day')}
+						endDate={this.props.endDate ? this.props.endDate : null}
 						onApply={this.props.handleCalendarPicker}
 						onCancel={this.props.clearCalendarPicker}
 						autoUpdateInput={false}
