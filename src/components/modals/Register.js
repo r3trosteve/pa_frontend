@@ -8,7 +8,7 @@ import logoImg3x from '../../assets/images/logo/logo@3x.png';
 
 import ModalFooter from './ModalFooter';
 
-import { signup } from '../../modules/auth/auth';
+import { signup, login } from '../../modules/auth/auth';
 
 class Register extends Component {
 
@@ -28,12 +28,6 @@ class Register extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleOpenlogModal = this.handleOpenlogModal.bind(this);
-    }
-
-    handleOpenlogModal() {
-        this.props.closeModal();
-        this.props.openLogModal();
     }
 
     handleChange(e) {
@@ -80,7 +74,10 @@ class Register extends Component {
             })
                 .then(() => {
                     if (!this.props.auth.error) {
-                        this.setState({ isSignedUp: true });
+
+						this.props.login({ email, password })
+							.then(this.props.closeModal());
+							
                     }
                 });
         }
@@ -88,128 +85,90 @@ class Register extends Component {
 
     render() {
 
-        if (this.state.isSignedUp) {
+		return (
 
-            return (
+			<Modal
+				className="auth-modal"
+				isOpen={this.props.isModalOpen}
+				onRequestClose={this.props.closeModal}
+				contentLabel="Modal"
+			>
+				<div className="dialog">
+					<div className="content">
+						<div className="body text-center">
 
-				<Modal
-					className="auth-modal register-modal"
-					isOpen={this.props.isModalOpen}
-					onRequestClose={this.props.closeModal}
-					contentLabel="Modal"
-				>
-					<div className="dialog">
-						<div className="content">
-							<div className="body text-center">
+							<button className="close" onClick={this.props.closeModal}>
+								<i className="ion-ios-close" />
+							</button>
 
-								<button className="close" onClick={this.props.closeModal}>
-									<i className="ion-ios-close" />
-								</button>
+							{/*header*/}
 
-                                {/*header*/}
-
-								<div className="header">
-									<img src={logoImg3x} alt="Logo" />
-									<h4 className="title">Thank you for signing up!</h4>
-								</div>
-
-								<a href="#" className="modal-btn-white" onClick={this.handleOpenlogModal}>Log in to start</a>
-
+							<div className="header">
+								<img src={logoImg3x} alt="Logo" />
+								<h4 className="title">Register</h4>
 							</div>
+
+							<form onSubmit={this.handleSubmit}>
+
+								{
+									this.props.auth.error ?
+										(
+											<div className="alert alert-danger">
+												<p>{this.props.auth.error}</p>
+											</div>
+										) : null
+								}
+
+								<label className={classnames('', { 'has-error': this.state.errors.firstName })}>
+									First Name
+									<span className="error-text">{this.state.errors.firstName}</span>
+									<input type="text" name="firstName" onChange={this.handleChange} />
+								</label>
+
+								<label className={classnames('', { 'has-error': this.state.errors.lastName })}>
+									Last Name
+									<span className="error-text">{this.state.errors.lastName}</span>
+									<input type="text" name="lastName" onChange={this.handleChange} />
+								</label>
+
+								<label className={classnames('', { 'has-error': this.state.errors.email })}>
+									Email
+									<span className="error-text">{this.state.errors.email}</span>
+									<input type="email" name="email" onChange={this.handleChange} />
+								</label>
+
+								<label className={classnames('', { 'has-error': this.state.errors.password })}>
+									Password
+									<span className="error-text">{this.state.errors.password}</span>
+									<input type="password" name="password" onChange={this.handleChange} />
+								</label>
+
+								<label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
+									Confirm password
+									<span className="error-text">{this.state.errors.passwordConfirm}</span>
+									<input type="password" name="passwordConfirm" onChange={this.handleChange} />
+								</label>
+
+								<label>
+									<button type="submit" className="modal-btn-orange">
+										Register
+									</button>
+								</label>
+							</form>
+
+							<ModalFooter
+								authText="Already have an account?"
+								modalTarget="#login-modal"
+								linkText="Login"
+								openNextModal={this.props.openLogModal}
+								closeModal={this.props.closeModal}
+							/>
+
 						</div>
 					</div>
-				</Modal>
-
-            );
-
-        } else {
-
-            return (
-
-				<Modal
-					className="auth-modal"
-					isOpen={this.props.isModalOpen}
-					onRequestClose={this.props.closeModal}
-					contentLabel="Modal"
-				>
-					<div className="dialog">
-						<div className="content">
-							<div className="body text-center">
-
-								<button className="close" onClick={this.props.closeModal}>
-									<i className="ion-ios-close" />
-								</button>
-
-                                {/*header*/}
-
-								<div className="header">
-									<img src={logoImg3x} alt="Logo" />
-									<h4 className="title">Register</h4>
-								</div>
-
-								<form onSubmit={this.handleSubmit}>
-
-                                    {
-                                        this.props.auth.error ?
-                                            (
-												<div className="alert alert-danger">
-													<p>{this.props.auth.error}</p>
-												</div>
-                                            ) : null
-                                    }
-
-									<label className={classnames('', { 'has-error': this.state.errors.firstName })}>
-										First Name
-										<span className="error-text">{this.state.errors.firstName}</span>
-										<input type="text" name="firstName" onChange={this.handleChange} />
-									</label>
-
-                                    <label className={classnames('', { 'has-error': this.state.errors.lastName })}>
-                                        Last Name
-                                        <span className="error-text">{this.state.errors.lastName}</span>
-                                        <input type="text" name="lastName" onChange={this.handleChange} />
-                                    </label>
-
-									<label className={classnames('', { 'has-error': this.state.errors.email })}>
-										Email
-										<span className="error-text">{this.state.errors.email}</span>
-										<input type="email" name="email" onChange={this.handleChange} />
-									</label>
-
-									<label className={classnames('', { 'has-error': this.state.errors.password })}>
-										Password
-										<span className="error-text">{this.state.errors.password}</span>
-										<input type="password" name="password" onChange={this.handleChange} />
-									</label>
-
-									<label className={classnames('', { 'has-error': this.state.errors.passwordConfirm })}>
-										Confirm password
-										<span className="error-text">{this.state.errors.passwordConfirm}</span>
-										<input type="password" name="passwordConfirm" onChange={this.handleChange} />
-									</label>
-
-									<label>
-										<button type="submit" className="modal-btn-orange">
-											Register
-										</button>
-									</label>
-								</form>
-
-								<ModalFooter
-									authText="Already have an account?"
-									modalTarget="#login-modal"
-									linkText="Login"
-									openNextModal={this.props.openLogModal}
-									closeModal={this.props.closeModal}
-								/>
-
-							</div>
-						</div>
-					</div>
-				</Modal>
-            );
-
-        }
+				</div>
+			</Modal>
+		);
 
     }
 }
@@ -223,4 +182,4 @@ Register.propTypes = {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { signup })(Register);
+export default connect(mapStateToProps, { signup, login })(Register);
