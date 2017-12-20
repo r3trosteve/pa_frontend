@@ -228,8 +228,9 @@ export default class PnfPayment extends Component {
                         this.state.iframeShown && !this.state.isReservationPaid && !this.state.isReservationFailed ?
 							<div className="ap-checkout__payment-details__notification small">
 								<p>
-                                    When you submit the payment form you will need to wait for a while till Wells Fargo completes the payment.
-                                    Afterwards you will be redirected to confirmation page.
+									Please enter your card details below and allow our system to securely process your transaction. 
+									You'll then be directed to your confirmation page and also receive an email with your 
+									reservation details with a bar code to present to the lot when you arrive.
 								</p>
 							</div> :
                             null
