@@ -40,7 +40,8 @@ export default class PnfPayment extends Component {
 
         this.setState({
             firstName: user && user.first_name,
-            lastName: user && user.last_name,
+			lastName: user && user.last_name,
+			email: user && user.email,
             phoneNumber: user && user.phone
         });
 
