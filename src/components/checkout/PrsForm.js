@@ -203,7 +203,7 @@ export default class PrsForm extends Component {
                             errors={this.props.errors}
                         />
 
-                        <div className="col-md-6">
+                        <div className="col-md-6 col-sm-6">
                             <label className={classnames('', { 'has-error': this.props.errors.cardNumber })}>
                                 Credit Card Number
                                 <span className="error-text">{this.props.errors.cardNumber}</span>

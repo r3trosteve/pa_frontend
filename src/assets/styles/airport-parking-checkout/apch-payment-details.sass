@@ -1,6 +1,11 @@
 
 .ap-checkout__payment-details
 
+  .has-error
+    label.radio-label
+      border-color: $red
+        
+
   &__title
     margin-bottom: 25px
     h3
@@ -52,6 +57,29 @@
       margin-bottom: 25px
 
   &__inputs
+
+    &__radios
+      display: flex
+      margin: 0 -7px 13px
+
+      label
+        flex-grow: 1
+        margin: 0 7px
+        border: 1px solid #e0e0e0
+        border-radius: 4px
+        overflow: hidden
+        transition: all 0.3s
+
+        img
+          width: 100%
+          height: 100%
+          border-radius: 4px
+        
+        &.checked
+          border-color: $orange
+          box-shadow: 0 0 0 1px $orange
+
+      &.has-error
 
     &__header
       background: #f2f8ff
@@ -130,7 +158,7 @@
 
 
   .label-title
-    margin-bottom: 0
+    margin-bottom: 6px
 
   &__terms
     opacity: 0.7
@@ -192,6 +220,14 @@
 
 
 //responsiveness
+
+@media (max-width: 991px)
+  .ap-checkout__payment-details__inputs__radios
+      margin: 0 -12px 13px!important
+
+      label
+        margin: 0 12px
+
 @media (max-width: 767px)
   .ap-checkout__payment-details
 
