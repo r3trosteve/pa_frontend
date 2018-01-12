@@ -44,8 +44,12 @@ export default class OrderSummary extends Component {
 		} else {
 
             taxes = price_details && price_details.filter(x => x.name === '5.6% state taxes');
-            total_fee = price_details && price_details.find(x => x.name === '5.6% state taxes');
-            subtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
+			total_fee = price_details && price_details.find(x => x.name === '5.6% state taxes');
+
+			// const taxableSubtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
+			// const nonTaxableSubtotal = price_details && price_details.find(x => x.name === 'Non-Taxable Sub-Total');
+			// subtotal = price_details && nonTaxableSubtotal === 0 ? taxableSubtotal : nonTaxableSubtotal;
+			subtotal = price_details && price_details.find(x => x.name === 'Non-Taxable Sub-Total');
 
 		}
 

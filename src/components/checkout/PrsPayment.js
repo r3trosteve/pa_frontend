@@ -170,8 +170,6 @@ export default class PrsPayment extends Component {
 
         } else {
 
-            console.log('type', this.state.cardType);
-
             return (
                 <div>
 
