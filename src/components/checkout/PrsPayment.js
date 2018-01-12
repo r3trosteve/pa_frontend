@@ -14,6 +14,7 @@ export default class PrsPayment extends Component {
 
         this.state = {
             loading: false,
+            cardType: '',
             cardNumber: '',
             cvvNumber: '',
             month: 1,
@@ -91,16 +92,18 @@ export default class PrsPayment extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        const { firstName, lastName, email, address, city, state, country, zipCode, cardNumber, month, year, cvvNumber } = this.state;
+        const { firstName, lastName, email, phoneNumber, address, city, state, country, zipCode, cardType, cardNumber, month, year, cvvNumber } = this.state;
         let errors = {};
 
         if (isEmpty(firstName)) { errors.firstName = " can't be empty"; }
         if (isEmpty(lastName)) { errors.lastName = " can't be empty"; }
         if (isEmpty(email)) { errors.email = " can't be empty"; }
+        if (isEmpty(phoneNumber)) { errors.phoneNumber = " can't be empty"; }
         if (isEmpty(address)) { errors.address = " can't be empty"; }
         if (isEmpty(city)) { errors.city = " can't be empty"; }
         if (isEmpty(state)) { errors.state = " can't be empty"; }
         if (isEmpty(zipCode)) { errors.zipCode = " can't be empty"; }
+        if (isEmpty(cardType)) { errors.cardType = " can't be empty"; }
         if (isEmpty(cardNumber)) { errors.cardNumber = " can't be empty"; }
         if (isEmpty(cvvNumber)) { errors.cvvNumber = " can't be empty"; }
 
@@ -114,9 +117,14 @@ export default class PrsPayment extends Component {
             console.log(cardNumber);
 
             const checkoutData = {
-                card: {
+                user: {
                     first_name: firstName,
                     last_name: lastName,
+                    email,
+                    phone: phoneNumber
+                },
+                card: {
+                    type: cardType,
                     number: cardNumber,
                     cvv: cvvNumber,
                     month,
@@ -138,7 +146,8 @@ export default class PrsPayment extends Component {
                     if (!isEmpty(this.props.checkoutError)) {
                         this.setState({ isReservationFailed: true, loading: false });
                     } else {
-                        this.setState({ isReservationPaid: true, loading: false });
+                        this.setState({ loading: false });
+                        //this.setState({ isReservationPaid: true, loading: false });
                     }
                 });
         }
@@ -161,6 +170,8 @@ export default class PrsPayment extends Component {
 
         } else {
 
+            console.log('type', this.state.cardType);
+
             return (
                 <div>
 
@@ -171,11 +182,13 @@ export default class PrsPayment extends Component {
                         firstName={this.state.firstName}
                         lastName={this.state.lastName}
                         email={this.state.email}
+                        phoneNumber={this.state.phoneNumber}
                         address={this.state.address}
                         city={this.state.city}
                         state={this.state.state}
                         country={this.state.country}
                         zipCode={this.state.zipCode}
+                        cardType={this.state.cardType}
                         cardNumber={this.state.cardNumber}
                         month={this.state.month}
                         year={this.state.year}

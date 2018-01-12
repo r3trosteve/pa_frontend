@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import moment from "moment/moment";
 import { Link } from 'react-router-dom';
 
+import PrsCardType from './PrsCardType';
+
 export default class PrsForm extends Component {
 
     componentDidMount() {
@@ -80,7 +82,7 @@ export default class PrsForm extends Component {
                     {/*row 2*/}
 
                     <div className="row">
-                        <div className="col-md-12">
+                        <div className="col-md-6">
                             <label className={classnames('', { 'has-error': this.props.errors.email })}>
                                 Email
                                 <span className="error-text">{this.props.errors.email}</span>
@@ -88,6 +90,18 @@ export default class PrsForm extends Component {
                                     type="email"
                                     name="email"
                                     value={this.props.email}
+                                    onChange={this.props.handleChange}
+                                />
+                            </label>
+                        </div>
+                        <div className="col-md-6">
+                            <label className={classnames('', { 'has-error': this.props.errors.phoneNumber })}>
+                                Phone Number
+                                <span className="error-text">{this.props.errors.phoneNumber}</span>
+                                <input
+                                    type="tel"
+                                    name="phoneNumber"
+                                    value={this.props.phoneNumber}
                                     onChange={this.props.handleChange}
                                 />
                             </label>
@@ -182,6 +196,13 @@ export default class PrsForm extends Component {
                     {/*row 6*/}
 
                     <div className="row">
+
+                        <PrsCardType 
+                            cardType={this.props.cardType}
+                            handleChange={this.props.handleChange}
+                            errors={this.props.errors}
+                        />
+
                         <div className="col-md-6">
                             <label className={classnames('', { 'has-error': this.props.errors.cardNumber })}>
                                 Credit Card Number
@@ -315,14 +336,16 @@ PrsForm.propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    phoneNumber: PropTypes.string,
     address: PropTypes.string,
     city: PropTypes.string,
     state: PropTypes.string,
     country: PropTypes.string,
     zipCode: PropTypes.string,
+    cardType: PropTypes.string,
     cardNumber: PropTypes.string,
     month: PropTypes.number,
     year: PropTypes.number,
