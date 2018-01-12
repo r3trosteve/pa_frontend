@@ -71,6 +71,10 @@ export default class PrsPayment extends Component {
             country: user && user.location && user.location.country,
             zipCode: user && user.location && user.location.zip_code
         });
+
+        if (!isEmpty(nextProps.paidReservation) && !isEmpty(nextProps.paidReservation.last_error_message)) {
+            this.setState({ isReservationFailed: true });
+        }
     }
 
     handleChange(e) {
@@ -146,10 +150,11 @@ export default class PrsPayment extends Component {
                     if (!isEmpty(this.props.checkoutError)) {
                         this.setState({ isReservationFailed: true, loading: false });
                     } else {
-                        this.setState({ loading: false });
-                        //this.setState({ isReservationPaid: true, loading: false });
+                        this.setState({ isReservationPaid: true, loading: false });
                     }
                 });
+
+            this.props.fetchPaidReservation(id);
         }
     }
 
@@ -193,6 +198,8 @@ export default class PrsPayment extends Component {
                         cvvNumber={this.state.cvvNumber}
                         loading={this.state.loading}
                         isReservationFailed={this.state.isReservationFailed}
+                        fetchPaidReservation={this.props.fetchPaidReservation}
+                        paidReservation={this.props.paidReservation}
                     />
 
                 </div>
@@ -205,5 +212,6 @@ export default class PrsPayment extends Component {
 PrsPayment.propTypes = {
     requestCheckout: PropTypes.func.isRequired,
     reservation: PropTypes.object.isRequired,
+    fetchPaidReservation: PropTypes.func.isRequired,
     paidReservation: PropTypes.object
 };

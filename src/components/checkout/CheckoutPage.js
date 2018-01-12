@@ -82,7 +82,9 @@ class AirportParkingCheckoutPage extends Component {
                                         auth={this.props.auth}
                                         requestCheckout={this.props.requestPrsCheckout}
                                         reservation={reservation}
-                                        checkoutError={this.props.checkoutError}
+										checkoutError={this.props.checkoutError}
+										fetchPaidReservation={this.props.fetchPaidReservation}
+										paidReservation={this.props.paidReservation}
 									/> :
 									null
 								}
