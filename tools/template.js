@@ -37,6 +37,9 @@ export default ({ markup, helmet, initialData }) => {
 
 			<body ${helmet.bodyAttributes.toString()}>
 
+				${helmet.script.toString()}
+				${helmet.noscript.toString()}
+
 				<div id="root">${markup}</div>
 
 				<script src="/static/client.js" async></script>

@@ -56,6 +56,31 @@ class ReservationPage extends Component {
             return (
                 <div className="confirmation">
 
+                    {/*Script for google conversion tracking requested by support*/}
+
+                    {process.env.NODE_ENV === 'production' ?
+                        <Helmet>
+                            <script type="text/javascript">
+                            var google_conversion_id = 846750830;
+                            var google_conversion_label = "H1DRCP_uk3UQ7sjhkwM";
+                            var google_conversion_value = 7.00;
+                            var google_conversion_currency = "USD";
+                            var google_remarketing_only = false;
+                            </script>
+                            <script type="text/javascript"
+                            src="//www.googleadservices.com/pagead/conversion.js">
+                            </script>
+                            <noscript>
+                            <div style="display:inline;">
+                            <img height="1" width="1" style="border-style:none;" alt=""
+                            src="//www.googleadservices.com/pagead/conversion/846750830/?value=7.00&amp;currency_code=USD&amp;label=H1DRCP_uk3UQ7sjhkwM&amp;guid=ON&amp;script=0"/>
+                            </div>
+                            </noscript>
+                        </Helmet> : null
+                    }
+
+                    {/*end*/}
+
                     <Helmet title="Confirmation" />
 
                     <div className="container confirmation__container">
