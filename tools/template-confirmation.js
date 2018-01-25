@@ -57,6 +57,30 @@ export default ({ markup, helmet, initialData }) => {
 			</head>
 
 			<body ${helmet.bodyAttributes.toString()}>
+			
+				${
+					process.env.NODE_ENV === 'production' ?
+						`
+							<!-- Google Code for Conversion Reservation Conversion Page -->
+							<script type="text/javascript">
+							/* <![CDATA[ */
+							var google_conversion_id = 846750830;
+							var google_conversion_label = "H1DRCP_uk3UQ7sjhkwM";
+							var google_conversion_value = 7.00;
+							var google_conversion_currency = "USD";
+							var google_remarketing_only = false;
+							/* ]]> */
+							</script>
+							<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+							</script>
+							<noscript>
+							<div style="display:inline;">
+							<img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/846750830/?value=7.00&amp;currency_code=USD&amp;label=H1DRCP_uk3UQ7sjhkwM&amp;guid=ON&amp;script=0"/>
+							</div>
+							</noscript>
+						`
+						: ''
+				}
 
 				<div id="root">${markup}</div>
 

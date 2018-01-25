@@ -4,6 +4,7 @@ import { StaticRouter } from 'react-router-dom';
 import { matchRoutes } from 'react-router-config';
 import { Helmet } from 'react-helmet';
 import template from './template';
+import templateConfirmation from './template-confirmation';
 import { Provider } from 'react-redux';
 import configureStore from '../src/configureStore';
 import App from '../src/components/App';
@@ -49,11 +50,20 @@ export default function serverRenderer({ clientStats, serverStats }) {
 				return res.redirect(302, context.url);
 			}
 
-			res.status(200).send(template({
-				markup,
-				helmet,
-				initialData
-			}));
+			if (req.path.match(/^.confirmation.*$/)) {
+                res.status(200).send(templateConfirmation({
+                    markup,
+                    helmet,
+                    initialData
+                }));
+			} else {
+                res.status(200).send(template({
+                    markup,
+                    helmet,
+                    initialData
+                }));
+			}
+
 		});
 
 	};
