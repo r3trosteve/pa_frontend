@@ -168,7 +168,7 @@ export default class PrsPayment extends Component {
                         if (staticContext) {
                             staticContext.status = 302;
                         }
-                        return <Redirect to={`/confirmation/${this.props.reservation && this.props.reservation.id}`} />;
+                        return <Redirect onEnter={window.location.reload()} to={`/confirmation/${this.props.reservation && this.props.reservation.id}`} />;
                     }}
                 />
             );

@@ -105,7 +105,7 @@ export default class PnfPayment extends Component {
                         if (staticContext) {
                             staticContext.status = 302;
                         }
-                        return <Redirect to={`/confirmation/${this.props.paidReservation && this.props.paidReservation.id}`} />;
+                        return <Redirect onEnter={window.location.reload()} to={`/confirmation/${this.props.paidReservation && this.props.paidReservation.id}`} />;
                     }}
 				/>
             );
