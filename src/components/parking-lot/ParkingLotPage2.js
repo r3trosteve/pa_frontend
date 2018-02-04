@@ -23,6 +23,7 @@ class ParkingLotPage extends Component {
     }
 
     componentDidMount() {
+
         this.props.findLot(this.props.match.params.slug);
 
         $(window).scrollTop(0); // jq to load page on top
@@ -36,9 +37,9 @@ class ParkingLotPage extends Component {
         });
 
         $('.ap-details--with-search button').click(function () {
-            
+
             let wWidth = $(window).width();
-    
+
             if (wWidth < 767) {
                 if ($('input.airport-date').val().length === 0) {
                     $('input.airport-date').click();
@@ -50,33 +51,39 @@ class ParkingLotPage extends Component {
 		setTimeout(function () {
 
             let stickyContainers = function () {
-                let wScrollTop = $(window).scrollTop();
 
-                let apdNavCard = $('.ap-details__navigation__card');
-                let searchCard = $('.ap-details__search.card-custom');
+                const ifDetailsPage = $('.ap-details');
 
-                let apdNavTop =  $('.ap-details__navigation').offset().top;
-                let apdSearchTop =  195;
+                if (ifDetailsPage.length != 0) {
 
-                let apdColumnLeftW = $('.ap-details__column--left').width();
-                let apdColumnSearchW = $('.ap-details__column--search').width();
+                    let wScrollTop = $(window).scrollTop();
 
-                if (wScrollTop >= apdNavTop) {
-                    apdNavCard.addClass('sticky');
-                    apdNavCard.css({
-                        'width': apdColumnLeftW,
-                    });
-                } else {
-                    apdNavCard.removeClass('sticky');
-                }
+                    let apdNavCard = $('.ap-details__navigation__card');
+                    let searchCard = $('.ap-details__search.card-custom');
 
-                if (wScrollTop >= apdSearchTop) {
-                    searchCard.addClass('sticky');
-                    searchCard.css({
-                        'width': apdColumnSearchW,
-                    });
-                } else {
-                    searchCard.removeClass('sticky');
+                    let apdNavTop =  $('.ap-details__navigation').offset().top;
+                    let apdSearchTop =  195;
+
+                    let apdColumnLeftW = $('.ap-details__column--left').width();
+                    let apdColumnSearchW = $('.ap-details__column--search').width();
+
+                    if (wScrollTop >= apdNavTop) {
+                        apdNavCard.addClass('sticky');
+                        apdNavCard.css({
+                            'width': apdColumnLeftW,
+                        });
+                    } else {
+                        apdNavCard.removeClass('sticky');
+                    }
+
+                    if (wScrollTop >= apdSearchTop) {
+                        searchCard.addClass('sticky');
+                        searchCard.css({
+                            'width': apdColumnSearchW,
+                        });
+                    } else {
+                        searchCard.removeClass('sticky');
+                    }
                 }
 
             };

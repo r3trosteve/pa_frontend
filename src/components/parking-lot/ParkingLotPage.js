@@ -23,6 +23,7 @@ class ParkingLotPage extends Component {
     }
 
     componentDidMount() {
+
         this.props.fetchRate(this.props.match.params.id);
 
         $(window).scrollTop(0); // jq to load page on top
@@ -37,36 +38,42 @@ class ParkingLotPage extends Component {
 		setTimeout(function () {
 
             let stickyContainers = function () {
-                let wScrollTop = $(window).scrollTop();
 
-                let apdNavCard = $('.ap-details__navigation__card');
-                let summaryCard = $('.order-summary.card-custom');
+                const ifDetailsPage = $('.ap-details');
 
-                let apdNavTop =  $('.ap-details__navigation').offset().top;
-                let apdSummaryTop =  215;
+                if (ifDetailsPage.length != 0) {
+                    let wScrollTop = $(window).scrollTop();
 
-                let apdColumnLeftW = $('.ap-details__column--left').width();
-                let apdColumnSummaryW = $('.ap-details__column--summary').width();
+                    let apdNavCard = $('.ap-details__navigation__card');
+                    let summaryCard = $('.order-summary.card-custom');
 
-                if (wScrollTop >= apdNavTop) {
-                    apdNavCard.addClass('sticky');
-                    apdNavCard.css({
-                        'width': apdColumnLeftW,
-                    });
-                } else {
-                    apdNavCard.removeClass('sticky');
-                }
+                    let apdNavTop =  $('.ap-details__navigation').offset().top;
+                    let apdSummaryTop =  215;
 
-                if (wScrollTop >= apdSummaryTop) {
-                    summaryCard.addClass('sticky');
-                    summaryCard.css({
-                        'width': apdColumnSummaryW,
-                    });
-                } else {
-                    summaryCard.removeClass('sticky');
+                    let apdColumnLeftW = $('.ap-details__column--left').width();
+                    let apdColumnSummaryW = $('.ap-details__column--summary').width();
+
+                    if (wScrollTop >= apdNavTop) {
+                        apdNavCard.addClass('sticky');
+                        apdNavCard.css({
+                            'width': apdColumnLeftW,
+                        });
+                    } else {
+                        apdNavCard.removeClass('sticky');
+                    }
+
+                    if (wScrollTop >= apdSummaryTop) {
+                        summaryCard.addClass('sticky');
+                        summaryCard.css({
+                            'width': apdColumnSummaryW,
+                        });
+                    } else {
+                        summaryCard.removeClass('sticky');
+                    }
                 }
 
             };
+
 
             stickyContainers();
 
