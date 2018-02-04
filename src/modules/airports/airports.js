@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export const fetchAirports = () => dispatch => {
-	return fetch(apiBaseUrl + 'airports?per_page=200', {
+	return fetch(apiBaseUrl + 'airports?per_page=110', {
 		method: 'get',
 		headers: {
             'Content-Type': 'application/json',
