@@ -8,7 +8,7 @@ export default ({ markup, helmet, initialData }) => {
 			<head>
 			
 				${
-					process.env.NODE_ENV === 'production' ?
+					process.env.NODE_ENV === 'development' ?
 						`
 							<!-- Rollbar notifier -->
 							<script>
@@ -17,7 +17,7 @@ export default ({ markup, helmet, initialData }) => {
 									captureUncaught: true,
 									captureUnhandledRejections: true,
 									payload: {
-										environment: "production"
+										environment: "development"
 									}
 								};
 								// Rollbar Snippet
