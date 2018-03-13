@@ -9,6 +9,7 @@ import rate from './rates/rate';
 import auth from './auth/auth';
 import reservation from './reservations/reservation';
 import checkout from './checkout/checkout';
+import coupons from './coupons/coupons';
 
 const rootReducer = combineReducers({
 	airports,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
 	rate,
 	auth,
     reservation,
-	checkout
+	checkout,
+	coupons
 });
 
 export default rootReducer;

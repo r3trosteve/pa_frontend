@@ -10,22 +10,46 @@ export default class OrderSummary extends Component {
 
         this.state = {
             showCoupon: false,
-            redirect: false
+			redirect: false,
+			coupon: '',
+			couponBtnDisabled: true
         };
 
-        this.showCouponInput = this.showCouponInput.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+		this.showCouponInput = this.showCouponInput.bind(this);
+		this.handleCouponChange = this.handleCouponChange.bind(this);
+		this.handleCouponSubmit = this.handleCouponSubmit.bind(this);
     }
 
     showCouponInput() {
         this.setState({
             showCoupon: !this.state.showCoupon
         });
+	}
+	
+	handleCouponChange(e) {
+        this.setState({
+			coupon: e.target.value,
+			couponBtnDisabled: e.target.value !== '' ? false : true
+		});
     }
+	
+	handleCouponSubmit(e) {
+		e.preventDefault();
 
-    handleSubmit(e) {
-        e.preventDefault();
-    }
+		const coupon = this.state.coupon;
+		const reservationId = this.props.reservation.id;
+
+		console.log('Coupon submitted:', coupon);
+		
+		this.props.requestCoupon(reservationId, coupon)
+			.then(() => {
+				if (this.props.couponData.error !== '') {
+					console.log(this.props.couponData.error);
+				} else {
+					console.log('Coupon Data:', this.props.couponData);
+				}
+			});
+	}
 
     render() {
 
@@ -62,9 +86,7 @@ export default class OrderSummary extends Component {
 					<h3 className="title-normal-bold">Order Summary</h3>
 				</div>
 
-				{/*form*/}
-
-				<form onSubmit={this.handleSubmit} className="order-summary__form">
+				<div className="order-summary__form">
 
 					{/*title*/}
 
@@ -126,7 +148,7 @@ export default class OrderSummary extends Component {
 							<td>
 								Coupon discount:
 							</td>
-							<td> $0.00</td>
+							<td> ${parseFloat(reservation.bonus_amount).toFixed(2)}</td>
 						</tr>
 						</tbody>
 					</table>
@@ -190,28 +212,50 @@ export default class OrderSummary extends Component {
 
 					{/*/!*coupon*!/*/}
 
-					<table className="order-summary__table coupon">
-						<tbody>
-							<tr>
-								<td>
-									<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
-										Have a Coupon Code?
-									</span>
-								</td>
-								<td>
-									<label
-										className={classnames('order-summary__coupon-label', {
-											visible: this.state.showCoupon
-										})}
-									>
-										<input type="text" />
-									</label>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+					{ this.props.auth && this.props.auth.isAuthenticated ? 
 
-				</form>
+						<table className="order-summary__table coupon">
+							<tbody>
+								<tr>
+									<td>
+										<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
+											Have a Coupon Code?
+										</span>
+									</td>
+									<td>
+										<form onSubmit={this.handleCouponSubmit}>
+
+											<label
+												className={classnames('order-summary__coupon-label', {
+													visible: this.state.showCoupon
+												})}
+											>
+												<input onChange={this.handleCouponChange} type="text" name="coupon" />
+											</label>
+
+											<label
+												className={classnames('order-summary__coupon-label', {
+													visible: this.state.showCoupon
+												})}
+											>
+												<button 
+													type="submit" 
+													className="btn-custom"
+													disabled={this.state.couponBtnDisabled ? 'disabled': null}
+												>
+													Submit
+												</button>
+											</label>
+
+										</form>
+									</td>
+								</tr>
+							</tbody>
+						</table> : null
+
+					}
+
+				</div>
 			</div>
 		);
 
@@ -219,5 +263,8 @@ export default class OrderSummary extends Component {
 }
 
 OrderSummary.propTypes = {
-    reservation: PropTypes.object.isRequired
+	reservation: PropTypes.object.isRequired,
+	requestCoupon: PropTypes.func.isRequired,
+	couponData: PropTypes.object,
+	auth: PropTypes.object
 };

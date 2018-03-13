@@ -12,6 +12,7 @@ import Private from '../profile/Private';
 
 import { fetchReservation, fetchPaidReservation } from '../../modules/reservations/reservation';
 import { requestPnfCheckout, requestPrsCheckout } from '../../modules/checkout/checkout';
+import { requestCoupon } from '../../modules/coupons/coupons';
 
 class AirportParkingCheckoutPage extends Component {
 
@@ -96,7 +97,12 @@ class AirportParkingCheckoutPage extends Component {
 							<div className="col-md-5 ap-checkout__column ap-checkout__column--summary">
 								<ContactUs />
 
-								<OrderSummary reservation={reservation} />
+								<OrderSummary 
+									reservation={reservation} 
+									requestCoupon={this.props.requestCoupon}
+									couponData={this.props.couponData}
+									auth={this.props.auth}
+								/>
 							</div>
 
 						</div>
@@ -123,7 +129,9 @@ AirportParkingCheckoutPage.propTypes = {
 	auth: PropTypes.object.isRequired,
     fetchPaidReservation: PropTypes.func.isRequired,
     paidReservation: PropTypes.object.isRequired,
-    openLogModal: PropTypes.func.isRequired
+	openLogModal: PropTypes.func.isRequired,
+	requestCoupon: PropTypes.func.isRequired,
+	couponData: PropTypes.object
 };
 
 const mapStateToProps = state => ({
@@ -131,12 +139,14 @@ const mapStateToProps = state => ({
     paidReservation: state.reservation.paidItem,
 	checkout: state.checkout.item,
 	checkoutError: state.checkout.error,
-    auth: state.auth
+	auth: state.auth,
+	couponData: state.coupons
 });
 
 export default connect(mapStateToProps, {
 	fetchReservation,
 	fetchPaidReservation,
     requestPnfCheckout,
-    requestPrsCheckout
+	requestPrsCheckout,
+	requestCoupon
 })(AirportParkingCheckoutPage);
