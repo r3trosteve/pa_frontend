@@ -97,10 +97,16 @@
           text-align: right
 
     &.coupon
+      position: relative
       padding: 0
+
+      .coupon-error
+        color: $red!important
+
       td
         height: 52px
         text-align: left!important
+        padding: 10px 0
         &:first-child
           width: 160px!important
         span
@@ -110,27 +116,42 @@
           transition: all 0.3s
           &:hover
             color: $orange
-        label
-          margin: 0
-          max-width: 110px
-          position: relative
-          display: none
-          animation: coupon-label-fade 0.7s forwards
-          transform: translateX(-20px)
-          opacity: 0
 
-          @keyframes coupon-label-fade
-            to
-              transform: translateX(0)
-              opacity: 1
+        form
+          display: flex
 
-          &.visible
-            display: block
-
-          input
-            height: 36px
-            text-align: center
+          label.order-summary__coupon-label
+            flex-grow: 1
             margin: 0
+            position: relative
+            display: none
+            animation: coupon-label-fade 0.7s forwards
+            transform: translateX(-20px)
+            opacity: 0
+            display: inline-block
+
+            @keyframes coupon-label-fade
+              to
+                transform: translateX(0)
+                opacity: 1
+
+            &.visible
+              display: block
+
+            input
+              height: 36px
+              margin: 0
+
+            &.label-submit
+              width: 50%
+              padding-left: 6px
+              button
+                height: 36px
+                width: 100%
+                &:disabled
+                  opacity: 0.7
+                  cursor: not-allowed!important
+
 
   &__submit
     padding-top: 30px

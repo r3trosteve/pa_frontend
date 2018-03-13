@@ -102,6 +102,7 @@ class AirportParkingCheckoutPage extends Component {
 									requestCoupon={this.props.requestCoupon}
 									couponData={this.props.couponData}
 									auth={this.props.auth}
+									fetchReservation={this.props.fetchReservation}
 								/>
 							</div>
 

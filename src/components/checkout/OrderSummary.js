@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import moment from 'moment';
+import isEmpty from 'lodash/isEmpty';
+
+import Coupon from './Coupon';
 
 export default class OrderSummary extends Component {
 
@@ -12,7 +15,8 @@ export default class OrderSummary extends Component {
             showCoupon: false,
 			redirect: false,
 			coupon: '',
-			couponBtnDisabled: true
+			couponBtnDisabled: true,
+			couponError: ''
         };
 
 		this.showCouponInput = this.showCouponInput.bind(this);
@@ -38,17 +42,14 @@ export default class OrderSummary extends Component {
 
 		const coupon = this.state.coupon;
 		const reservationId = this.props.reservation.id;
-
-		console.log('Coupon submitted:', coupon);
 		
 		this.props.requestCoupon(reservationId, coupon)
 			.then(() => {
 				if (this.props.couponData.error !== '') {
-					console.log(this.props.couponData.error);
-				} else {
-					console.log('Coupon Data:', this.props.couponData);
+					this.setState({ couponError: this.props.couponData.error });
 				}
-			});
+			})
+			.then(() => this.props.fetchReservation(reservationId));
 	}
 
     render() {
@@ -212,47 +213,15 @@ export default class OrderSummary extends Component {
 
 					{/*/!*coupon*!/*/}
 
-					{ this.props.auth && this.props.auth.isAuthenticated ? 
-
-						<table className="order-summary__table coupon">
-							<tbody>
-								<tr>
-									<td>
-										<span className="order-summary__coupon-btn" onClick={this.showCouponInput}>
-											Have a Coupon Code?
-										</span>
-									</td>
-									<td>
-										<form onSubmit={this.handleCouponSubmit}>
-
-											<label
-												className={classnames('order-summary__coupon-label', {
-													visible: this.state.showCoupon
-												})}
-											>
-												<input onChange={this.handleCouponChange} type="text" name="coupon" />
-											</label>
-
-											<label
-												className={classnames('order-summary__coupon-label', {
-													visible: this.state.showCoupon
-												})}
-											>
-												<button 
-													type="submit" 
-													className="btn-custom"
-													disabled={this.state.couponBtnDisabled ? 'disabled': null}
-												>
-													Submit
-												</button>
-											</label>
-
-										</form>
-									</td>
-								</tr>
-							</tbody>
-						</table> : null
-
+					{ (this.props.auth && this.props.auth.isAuthenticated) && (reservation && !isEmpty(reservation.user))  ? 
+						<Coupon
+							showCouponInput={this.showCouponInput}
+							handleCouponSubmit={this.handleCouponSubmit}
+							showCoupon={this.state.showCoupon}
+							handleCouponChange={this.handleCouponChange}
+							couponBtnDisabled={this.state.couponBtnDisabled}
+							couponError={this.state.couponError}
+						/> : null
 					}
 
 				</div>
