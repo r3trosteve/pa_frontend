@@ -40,7 +40,9 @@ export default class Coupon extends Component {
 
                             </form>
 
-                            <div className="coupon-error">{this.props.couponError}</div>
+                            <div className={classnames('coupon-error', { visible: this.props.showCoupon })}>
+                                {this.props.couponError}
+                            </div>
                             
                         </td>
                     </tr>

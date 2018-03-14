@@ -62,6 +62,7 @@ export const requestCoupon = (reservationId, coupon) => dispatch => {
                     body: JSON.stringify({ coupon_id: data['coupons'][0].id }),
                     headers: headers
                 })
+                    .then(handleErrors)
                     .then(res => res.json())
                     .then(data => {
                         dispatch({
@@ -70,6 +71,12 @@ export const requestCoupon = (reservationId, coupon) => dispatch => {
                         });
 
                         console.log('Coupon submitted', data);
+                    })
+                    .catch(() => {
+                        dispatch({
+                            type: COUPON_NOT_FOUND,
+                            error: 'This coupon has been already used'
+                        });
                     });
 
             } else {
@@ -80,4 +87,13 @@ export const requestCoupon = (reservationId, coupon) => dispatch => {
             }
         });
 
+};
+
+// handle response error
+
+export const handleErrors = res => {
+    if (!res.ok) {
+        throw Error(res.statusText);
+    }
+    return res;
 };

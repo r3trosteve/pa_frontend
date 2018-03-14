@@ -47,6 +47,8 @@ export default class OrderSummary extends Component {
 			.then(() => {
 				if (this.props.couponData.error !== '') {
 					this.setState({ couponError: this.props.couponData.error });
+				} else {
+					this.setState({ couponError: '' });
 				}
 			})
 			.then(() => this.props.fetchReservation(reservationId));

@@ -101,7 +101,11 @@
       padding: 0
 
       .coupon-error
+        display: none!important
         color: $red!important
+        
+        &.visible
+              display: block!important
 
       td
         height: 52px
@@ -124,7 +128,7 @@
             flex-grow: 1
             margin: 0
             position: relative
-            display: none
+            display: none!important
             animation: coupon-label-fade 0.7s forwards
             transform: translateX(-20px)
             opacity: 0
@@ -136,7 +140,7 @@
                 opacity: 1
 
             &.visible
-              display: block
+              display: block!important
 
             input
               height: 36px
