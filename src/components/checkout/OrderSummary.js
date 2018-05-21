@@ -62,7 +62,9 @@ export default class OrderSummary extends Component {
 
 		let taxes, total_fee, subtotal;
 
-		if (rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg') {
+		const pnfLot = rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg';
+
+		if (pnfLot) {
 
             taxes = price_details && price_details.filter(x => x.kind === 'tax');
 			total_fee = (price_details && price_details.find(x => x.name === 'taxes')).amount;
@@ -70,7 +72,8 @@ export default class OrderSummary extends Component {
 
 		} else {
 
-			taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.name === 'Non-Taxable Sub-Total' || x.name === '5.6% state taxes');
+			// taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.kind === 'Non-Taxable Sub-Total' || x.name === '5.6% state taxes');
+			taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.kind === 'fee');
 			total_fee = taxes && taxes.reduce((prev, next) => { return prev + next.amount; }, 0);
 			subtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
 
@@ -190,7 +193,7 @@ export default class OrderSummary extends Component {
 
 							</td>
 							<td>
-								${total_fee && parseFloat(total_fee).toFixed(2) || 0}
+								{pnfLot === true ? total_fee && `$${parseFloat(total_fee).toFixed(2)}` || 0 : ''}
 							</td>
 						</tr>
 						</tbody>
