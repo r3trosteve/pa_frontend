@@ -65,18 +65,14 @@ export default class OrderSummary extends Component {
 		if (rate && rate.parking_lot && rate.parking_lot.payment_processor === 'wfg') {
 
             taxes = price_details && price_details.filter(x => x.kind === 'tax');
-            total_fee = price_details && price_details.find(x => x.name === 'taxes');
+			total_fee = (price_details && price_details.find(x => x.name === 'taxes')).amount;
             subtotal = price_details && price_details.find(x => x.name === 'subTotal');
 
 		} else {
 
-            taxes = price_details && price_details.filter(x => x.name === '5.6% state taxes');
-			total_fee = price_details && price_details.find(x => x.name === '5.6% state taxes');
-
-			// const taxableSubtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
-			// const nonTaxableSubtotal = price_details && price_details.find(x => x.name === 'Non-Taxable Sub-Total');
-			// subtotal = price_details && nonTaxableSubtotal === 0 ? taxableSubtotal : nonTaxableSubtotal;
-			subtotal = price_details && price_details.find(x => x.name === 'Non-Taxable Sub-Total');
+			taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.name === 'Non-Taxable Sub-Total' || x.name === '5.6% state taxes');
+			total_fee = taxes && taxes.reduce((prev, next) => { return prev + next.amount; }, 0);
+			subtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
 
 		}
 
@@ -194,7 +190,7 @@ export default class OrderSummary extends Component {
 
 							</td>
 							<td>
-								${total_fee && parseFloat(total_fee.amount).toFixed(2) || 0}
+								${total_fee && parseFloat(total_fee).toFixed(2) || 0}
 							</td>
 						</tr>
 						</tbody>
