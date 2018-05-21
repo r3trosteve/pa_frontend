@@ -53,11 +53,12 @@ class RatesPage extends Component {
 
         let fixedMapScroll = () => {
             const wScrollTop = $(window).scrollTop();
+            const posZero = 111;
 
             if (wScrollTop > 110) {
-                $('.map-container').addClass('fixed-map');
+                $('.map-container').css('top', wScrollTop-posZero);
             } else {
-                $('.map-container').removeClass('fixed-map');
+                $('.map-container').css('top', '0');
             }
         };
 
