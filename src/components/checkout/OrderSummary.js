@@ -72,8 +72,7 @@ export default class OrderSummary extends Component {
 
 		} else {
 
-			// taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.kind === 'Non-Taxable Sub-Total' || x.name === '5.6% state taxes');
-			taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.kind === 'fee');
+			taxes = price_details && price_details.filter(x => x.kind === 'tax' || x.kind === 'fee' || x.kind === 'service_fee');
 			total_fee = taxes && taxes.reduce((prev, next) => { return prev + next.amount; }, 0);
 			subtotal = price_details && price_details.find(x => x.name === 'Taxable Sub-Total');
 
