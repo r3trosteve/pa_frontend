@@ -13,6 +13,9 @@ export default class AuthLinks extends Component {
                     <Link to="#" onClick={this.props.openLogModal} >Login</Link>
                 </li>
                 <li>
+                    <a href="https://cheapflightalerts.net/">Cheap Flights</a>
+                </li>
+                <li>
                     <a href="http://parkingaccess.helpsite.io/">Help/Faq</a>
                 </li>
                 <li>

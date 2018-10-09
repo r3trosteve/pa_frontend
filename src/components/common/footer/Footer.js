@@ -42,6 +42,12 @@ export default class Footer extends Component {
 								<li>
 									<NavLink to="/privacy-policy">Privacy Policy</NavLink>
 								</li>
+                                <li>
+                                    <a href="https://www.shuttlefare.com/">Airport Shuttle</a>
+                                </li>
+								<li>
+                                    <a href="https://cheapflightalerts.net/">Cheap Flight Alerts</a>
+								</li>
 								<li>
 									<a href="https://shuttlefare.typeform.com/to/YFXRs3">Convention Discounts</a>
 								</li>
