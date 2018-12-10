@@ -30,23 +30,29 @@ export default class AirportPageSeo extends Component {
 
                     <div className="airport__seo__item">
                         <h6 className="text-mont-bold">Sightseeing</h6>
-                        <p className="text-big">
-                            {airport_seo && airport_seo.sightseeing}
-                        </p>
+                        <div className="text-big">
+                            {airport_seo &&
+                            <div dangerouslySetInnerHTML={{__html: airport_seo.sightseeing}}></div>
+                            }
+                        </div>
                     </div>
 
                     <div className="airport__seo__item">
                         <h6 className="text-mont-bold">The Good Side of {airport && airport.code}</h6>
-                        <p className="text-big">
-                            {airport_seo && airport_seo.advantages}
-                        </p>
+                        <div className="text-big">
+                            {airport_seo &&
+                                <div dangerouslySetInnerHTML={{__html: airport_seo.advantages}}></div>
+                            }
+                        </div>
                     </div>
 
                     <div className="airport__seo__item">
                         <h6 className="text-mont-bold">The Bad Side of {airport && airport.code}</h6>
-                        <p className="text-big">
-                            {airport_seo && airport_seo.disadvantages}
-                        </p>
+                        <div className="text-big">
+                            {airport_seo &&
+                                <div dangerouslySetInnerHTML={{__html: airport_seo.disadvantages}}></div>
+                            }
+                        </div>
                     </div>
 
                 </div>
