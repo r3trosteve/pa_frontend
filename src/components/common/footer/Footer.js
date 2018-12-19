@@ -34,6 +34,9 @@ export default class Footer extends Component {
 									<a href="#">About</a>
 								</li>
 								<li>
+									<a href="/blog">Blog</a>
+								</li>
+								<li>
 									<a href="http://parkingaccess.helpsite.io/">Help/Faq</a>
 								</li>
 								<li>
