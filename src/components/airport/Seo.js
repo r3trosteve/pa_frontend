@@ -29,28 +29,28 @@ export default class AirportPageSeo extends Component {
                     </ul>
 
                     <div className="airport__seo__item">
-                        <h6 className="text-mont-bold">Sightseeing</h6>
+                        {/*<h6 className="text-mont-bold">Sightseeing</h6>*/}
                         <div className="text-big">
                             {airport_seo &&
-                            <div dangerouslySetInnerHTML={{__html: airport_seo.sightseeing}}></div>
+                            <div dangerouslySetInnerHTML={{__html: airport_seo.section1}}></div>
                             }
                         </div>
                     </div>
-
+                    <hr />
                     <div className="airport__seo__item">
-                        <h6 className="text-mont-bold">The Good Side of {airport && airport.code}</h6>
+                        {/*<h6 className="text-mont-bold">The Good Side of {airport && airport.code}</h6>*/}
                         <div className="text-big">
                             {airport_seo &&
-                                <div dangerouslySetInnerHTML={{__html: airport_seo.advantages}}></div>
+                                <div dangerouslySetInnerHTML={{__html: airport_seo.section2}}></div>
                             }
                         </div>
                     </div>
-
+                    <hr/>
                     <div className="airport__seo__item">
-                        <h6 className="text-mont-bold">The Bad Side of {airport && airport.code}</h6>
+                        {/*<h6 className="text-mont-bold">The Bad Side of {airport && airport.code}</h6>*/}
                         <div className="text-big">
                             {airport_seo &&
-                                <div dangerouslySetInnerHTML={{__html: airport_seo.disadvantages}}></div>
+                                <div dangerouslySetInnerHTML={{__html: airport_seo.section3}}></div>
                             }
                         </div>
                     </div>
