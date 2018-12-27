@@ -16,7 +16,7 @@ export default class AirportPageAllLots extends Component {
                 <div className="container airport__lots__container">
 
                     <h4 className="title-normal-bold-upper text-center">
-                        All {airport && airport.name} Lots
+                        {airport && airport.name} Parking Coupons, Discounts and Deals
                     </h4>
 
                     <div className="airport__lots__row">
