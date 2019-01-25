@@ -7,18 +7,16 @@ export default ({ markup, helmet, initialData }) => {
 
 			<head>
 			
-				
-				
 				<!-- Global site tag (gtag.js) - Google Analytics -->
-				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102648750-1"></script>
+				<script async src="https://www.googletagmanager.com/gtag/js?id=UA-12474447-1"></script>
 				<script>
-				  window.dataLayer = window.dataLayer || [];
-				  function gtag(){dataLayer.push(arguments);}
-				  gtag('js', new Date());
+				 window.dataLayer = window.dataLayer || [];
+				 function gtag(){dataLayer.push(arguments);}
+				 gtag('js', new Date());
 				
-				  gtag('config', 'UA-102648750-1');
+				 gtag('config', 'UA-12474447-1');
 				</script>
-
+				
 				${helmet.title.toString()}
 				${helmet.meta.toString()}
 				${helmet.link.toString()}
